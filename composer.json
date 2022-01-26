@@ -1,0 +1,22 @@
+{
+    "name": "ippworldwide/merchantportal",
+    "description": "IPP Worldwide Merchant Portal",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mathias Gajhede",
+            "email": "mag@ippworldwide.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "vlucas/phpdotenv": "dev-master",
+        "ippworldwide/component-mcc-list": "0.0.1",
+        "ippworldwide/component-currency": "1.0.0",
+        "ippworldwide/component-request-params": "1.0.0"
+    },
+    "minimum-stability": "dev",
+    "repositories":[
+
+    ]
+}
