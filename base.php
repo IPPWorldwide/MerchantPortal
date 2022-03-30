@@ -28,6 +28,10 @@ $mcc        = new MCC();
 
 $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"]);
 
+$inline_css = [];
+$inline_script = [];
+$load_script = [];
+
 if(isset($partner_page) && $partner_page == 1) {
     $data = $partner->checkLogin();
     if(!$data->success) {
@@ -41,4 +45,6 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
         header("Location: /");
         die();
     }
+    require_once("theme/head.php");
+    require_once("theme/foot.php");
 }

@@ -4,8 +4,14 @@ include("../../b.php");
 $subscription_plans = $partner->ListSubscriptionPlans();
 echo head();
 ?>
-    <h2>Invoice Plans</h2>
-    <a class="btn btn-success" href="add.php">Add new Scheme</a>
+    <div class="row">
+        <div class="col-6">
+            <h2>Invoice Plans</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-success" href="add.php">Add new Scheme</a>
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>

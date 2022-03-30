@@ -115,7 +115,6 @@ class IPPCurrency {
             "356",
             "208"
         ];
-        asort($currencies,"string");
         return $currencies;
     }
 

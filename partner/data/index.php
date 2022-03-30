@@ -1,6 +1,9 @@
 <?php
 include("../b.php");
 
+if(isset($REQ["submit"])) {
+    $partner->UpdateData($REQ);
+}
 $partner_data = $partner->PartnerData();
 echo head();
 ?>
@@ -13,7 +16,18 @@ echo head();
             </div>
             <h2>Partner Details</h2>
             <div class="row row-cols-md-3 mb-3">
-                <div class="col themed-grid-col">Partner Name:<br /><input name="meta[partner][name]" class="form-control" value="<?php echo isset($partner_data->meta_data->name) ? $partner_data->meta_data->name : ""; ?>"></div>
+                <div class="col themed-grid-col">Partner Name:<br /><input name="meta[name]" class="form-control" value="<?php echo isset($partner_data->meta_data->name) ? $partner_data->meta_data->name : ""; ?>"></div>
+            </div>
+            <div class="row row-cols-md-3 mb-3">
+                <div class="col themed-grid-col">Country:<br />
+                    <select name="meta[country]" class="form-control" >
+                        <?php foreach($partner->ListCountry() as $key=>$value) {
+                            echo "<option value='".$value->id."' ";
+                            echo (isset($partner_data->country->id) && $partner_data->country->id == $value->id) ? "selected" : "";
+                            echo ">".$value->name."</option>";
+                        } ?>
+                    </select>
+                    </div>
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">
@@ -36,7 +50,7 @@ echo head();
             </div>
             <div class="row row-cols-md-1 mb-1">
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary mb-3">Save</button>
+                    <button type="submit" name="submit" class="btn btn-primary mb-3">Save</button>
                 </div>
             </div>
         </form>

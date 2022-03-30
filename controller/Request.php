@@ -50,11 +50,11 @@ class IPPRequest {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if($type == "POST") {
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         }
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if (is_array($headers) && sizeof($headers) > 0) {
             curl_setopt($ch, CURLOPT_HEADER, $headers);
             curl_setopt($ch, CURLINFO_HEADER_OUT, true);

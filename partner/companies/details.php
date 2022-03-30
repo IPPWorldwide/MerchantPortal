@@ -5,13 +5,18 @@ if(isset($REQ["id"]) && isset($REQ["meta"])) {
     $partner->MerchantDataUpdate($REQ);
 }
 
+$partner_acquirers = $partner->ListAcquirers();
 $merchant_data = $partner->MerchantData($REQ["id"]);
+$merchant_acquirers = [];
+
+foreach($merchant_data->acquirers as $key=>$value) {
+    $merchant_acquirers[$value->id] = $value->name;
+}
 
 $invoices = $partner->ListCompanyInvoices($REQ["id"]);
 $subscription_plans = $partner->ListSubscriptionPlans();
 
 $mcc_list = $mcc->list();
-
 
 echo head();
 ?>
@@ -41,6 +46,9 @@ echo head();
                     foreach($mcc_list as $key=>$value) {
                         echo "<option value='".$key."'";
 
+                        if(isset($merchant_data->mcc->code) && $key == $merchant_data->mcc->code)
+                            echo " selected";
+
                         echo ">".$key." - ".$value."</option>";
                     }
                     ?>
@@ -60,27 +68,40 @@ echo head();
         <div class="row row-cols-md-3 mb-3">
             <div class="col themed-grid-col">Country:<br /><input name="meta[address][country]" class="form-control" value="<?php echo isset($merchant_data->meta_data->address->country) ? $merchant_data->meta_data->address->country : ""; ?>"></div>
             <div class="col themed-grid-col">Phone number:<br /><input name="meta[company][phone]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->phone) ? $merchant_data->meta_data->company->phone : ""; ?>"></div>
-            <div class="col themed-grid-col">Cardholder Description:<br /><input name="meta[processing][descriptor]" class="form-control" value="<?php echo isset($merchant_data->meta_data->processing->descriptor) ? $merchant_data->meta_data->processing->descriptor : ""; ?>"></div>
+            <div class="col themed-grid-col">Doing business as (Cardholder Description):<br /><input name="meta[processing][descriptor]" class="form-control" value="<?php echo isset($merchant_data->meta_data->processing->descriptor) ? $merchant_data->meta_data->processing->descriptor : ""; ?>"></div>
         </div>
+        <div class="row">
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mb-3">Save</button>
+            </div>
+        </div>
+
+
         <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">
                 <h2>Acquirers</h2>
-                <table class="table v-middle p-0 m-0 box" data-plugin="dataTable">
+                <table class="table table-striped table-sm">
                     <thead>
                     <tr>
+                        <th>Active</th>
                         <th>Name</th>
-                        <th>ID</th>
-                        <th>Website</th>
+                        <th>Acquirer ID</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($merchant_data->acquirers as $key=>$value) {
-                        echo "<tr><td>".$value->name."</td><td>".$value->id."</td><td></td><td><a href='".$value->url."' target='_BLANK'>".$value->url."</a></td></tr>";
-                    } ?>
+                    <?php
+                    foreach($partner_acquirers as $key=>$value) {
+                        echo "<tr><td><input name='acquirers[$key]' type='checkbox'";
+                        if(isset($merchant_acquirers[$key])) {
+                            echo " checked ";
+                        }
+                        echo ">";
+                        echo "</td><td>".$value->name."</td><td>".$value->id."</td><td></td></tr>";
+                    }
+                    ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="col themed-grid-col">
+
                 <div class="box-header">
                     <h2>Acquirers Rules</h2>
                 </div>
@@ -155,8 +176,13 @@ echo head();
                                             echo ">";
                                             echo "</td>";
                                         }
-                                        if ($merchant_data->rules->id == "CCCC-DDDD-EEEE") {
-
+                                        else {
+                                            echo "<td>";
+                                                echo "Non applicable";
+                                            echo "</td>";
+                                            echo "<td>";
+                                                echo "Non applicable";
+                                            echo "</td>";
                                         }
                                         echo "</tr>";
                                     }
@@ -167,51 +193,50 @@ echo head();
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row row-cols-md-1 mb-1">
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary mb-3">Save</button>
-            </div>
-
-        </div>
-    </form>
-            <div class="row row-cols-md-1 mb-1">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Package</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">VAT</th>
-                        <th scope="col">Period End</th>
-                        <th scope="col">Paid</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    echo "<tr>";
-                    foreach($invoices as $value) {
-                        echo "
+            <div class="col themed-grid-col">
+                <h2>Invoices</h2>
+                 <table class="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Package</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">VAT</th>
+                            <th scope="col">Period End</th>
+                            <th scope="col">Paid</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        echo "<tr>";
+                        foreach($invoices as $value) {
+                            echo "
               <td>".$value->id."</td>
               <td>".$value->package_id."</td>
               <td>".$value->amount_readable." ".$value->currency_txt."</td>
               <td>".$value->vat."%</td>
               <td>".date("Y-m-d", $value->period_end)."</td>
               <td>";
-                        if($value->cancelled == 1)
-                            echo "Cancelled";
-                        elseif($value->paid == 1)
-                            echo "Paid";
-                        else
-                            echo "Unpaid";
-                        echo "</td>
+                            if($value->cancelled == 1)
+                                echo "Cancelled";
+                            elseif($value->paid == 1)
+                                echo "Paid";
+                            else
+                                echo "Unpaid";
+                            echo "</td>
             </tr>";
-                    }
-                    ?>
-                    </tbody>
-                </table>
+                        }
+                        ?>
+                        </tbody>
+                    </table>
             </div>
+        </div>
+
+        <div class="row row-cols-md-1 mb-1">
+
+        </div>
+    </form>
+
 <?php
 
 echo foot();

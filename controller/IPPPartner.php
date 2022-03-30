@@ -24,11 +24,31 @@ class IPPPartner {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/data/", "POST", [], $data);
     }
 
-    public function PartnerData($data = []) {
+    public function PartnerData() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/data/", "POST", [], $data)->content;
     }
 
+    public function UpdateData($all_data = []) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "value" => $all_data, "name" => $all_data["meta"]["name"]];
+        $data = array_merge($all_data, $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/data/update/", "POST", [], $data)->content;
+    }
+
+
+    public function AddMerchant($all_data = []) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        $data = array_merge($all_data, $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/add/", "POST", [], $data);
+    }
+    public function CloseMerchant($company_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "company_id" => $company_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/close/", "POST", [], $data);
+    }
+    public function ResetMerchantPassword($company_id,$company_user_id,$password) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "company_id" => $company_id, "company_user_id" => $company_user_id, "password" => $password];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/password/reset/", "POST", [], $data);
+    }
     public function MerchantData($merchant_id) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/", "POST", [], $data)->content;
@@ -49,6 +69,11 @@ class IPPPartner {
         $meta_data["field"] = "meta";
         $meta_data["value"] = $all_data["meta"];
         $meta_data["subscription_plan"] = $all_data["subscription_plan"];
+        $meta_data["mcc"] = $all_data["mcc"];
+        if(isset($all_data["rules"]))
+            $meta_data["rules"] = $all_data["rules"];
+
+        $meta_data["acquirers"] = $all_data["acquirers"];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update.php", "POST", [], $meta_data)->content;
     }
 
@@ -92,8 +117,21 @@ class IPPPartner {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/subscription_plans/", "POST", [], $data)->content;
     }
 
+    public function AddInvoice($all_data = []) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        $data = array_merge($all_data, $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/add/", "POST", [], $data);
+    }
+    public function InvoiceData($invoice_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"id" => $invoice_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/data/", "POST", [], $data)->content;
+    }
 
 
+    public function ListCountry() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/country.php", "POST", [], $data)->content;
+    }
     public function ListCompany() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/company.php", "POST", [], $data)->content;

@@ -23,8 +23,8 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data);
     }
 
-    public function TransactionsList() {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+    public function TransactionsList($list_type = "ALL", $result = "ALL") {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "type" => $list_type, "result" => $result];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/list/", "POST", [], $data)->content;
     }
     public function TransactionsData($action_id) {
@@ -42,6 +42,7 @@ class IPP {
 
 
     public function MerchantData($data = []) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data)->content;
     }
     public function MerchantDataUpdate($all_data = []) {
