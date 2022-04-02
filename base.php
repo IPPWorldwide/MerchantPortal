@@ -45,6 +45,6 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
         header("Location: /");
         die();
     }
-    require_once("theme/head.php");
-    require_once("theme/foot.php");
+    require_once("theme/".$_ENV["THEME"]."/head.php");
+    require_once("theme/".$_ENV["THEME"]."/foot.php");
 }
