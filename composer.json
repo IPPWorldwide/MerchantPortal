@@ -13,7 +13,8 @@
         "vlucas/phpdotenv": "dev-master",
         "ippworldwide/component-mcc-list": "0.0.1",
         "ippworldwide/component-currency": "1.0.0",
-        "ippworldwide/component-request-params": "1.0.0"
+        "ippworldwide/component-request-params": "1.0.0",
+        "ippworldwide/php-sdk": "dev-main"
     },
     "minimum-stability": "dev",
     "repositories":[
