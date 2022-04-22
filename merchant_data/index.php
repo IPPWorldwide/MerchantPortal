@@ -13,6 +13,11 @@ echo head();
                 <div class="col themed-grid-col">API Password:<br /><input name="security[key1]" class="form-control" value="<?php echo $merchant_data->security->key1; ?>"></div>
                 <div class="col themed-grid-col">Payment Password:<br /><input name="security[key2]" class="form-control" value="<?php echo $merchant_data->security->key2; ?>"></div>
             </div>
+            <h2>Session Data</h2>
+            <div class="row row-cols-md-3 mb-3">
+                <div class="col themed-grid-col">User ID :<br /><input name="id" class="form-control" value="<?php echo $ipp->getSession()["user_id"]; ?>" readonly></div>
+                <div class="col themed-grid-col">Session Key:<br /><input name="security[key1]" class="form-control" value="<?php echo $ipp->getSession()["session_id"]; ?>"></div>
+            </div>
             <h2>Company Details</h2>
             <div class="row row-cols-md-3 mb-3">
                 <div class="col themed-grid-col">Company Name:<br /><input name="meta[company][name]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->name) ? $merchant_data->meta_data->company->name : ""; ?>"></div>
