@@ -58,6 +58,12 @@ function head() {
       <div class=\"position-sticky pt-3\">
         <ul class=\"nav flex-column\">
             <li class=\"nav-item\">
+                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/\">
+                    <span data-feather=\"home\"></span>
+                    Dashboard
+                </a>
+            </li>
+            <li class=\"nav-item\">
                 <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/companies/\">
                     <span data-feather=\"home\"></span>
                     Companies
@@ -79,6 +85,12 @@ function head() {
                 <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/data/\">
                     <span data-feather=\"home\"></span>
                     Partner Data
+                </a>
+            </li>
+            <li class=\"nav-item\">
+                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/users/\">
+                    <span data-feather=\"home\"></span>
+                    Users
                 </a>
             </li>
             <li class=\"nav-item\">

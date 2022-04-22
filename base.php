@@ -38,6 +38,8 @@ if(isset($partner_page) && $partner_page == 1) {
         header("Location: /");
         die();
     }
+    require_once("theme/".$_ENV["THEME"]."/partner/head.php");
+    require_once("theme/".$_ENV["THEME"]."/partner/foot.php");
 }
 elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
     $data = $ipp->checkLogin();
