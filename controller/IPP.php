@@ -13,6 +13,10 @@ class IPP {
             $this->session_id = $session_id;
     }
 
+    public function getSession() {
+        return ["user_id" => $this->user_id, "session_id" => $this->session_id];
+    }
+
     public function login($username,$password) {
         $data = ["username" => $username, "password" => $password];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/login/", "POST", [], $data);
@@ -23,7 +27,7 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data);
     }
 
-    public function SubscriptionsList($list_type = "ALL", $result = "ALL") {
+    public function SubscriptionsList($result = "ALL") {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "result" => $result];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/cards/stored/", "POST", [], $data)->content;
     }
