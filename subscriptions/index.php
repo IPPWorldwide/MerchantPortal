@@ -8,8 +8,8 @@ echo head();
 
         <form action="/subscriptions" method="GET">
             <div class="form-group">
-                <label for="payment_result">Subscription Result:</label>
-                <select id="payment_result" name="payment_result">
+                <label for="result">Subscription Result:</label>
+                <select id="result" name="result">
                 <option>ALL</option>
                 <option>ACK</option>
                 <option>NOK</option>
@@ -22,7 +22,6 @@ echo head();
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Transaction ID</th>
               <th scope="col">Card holder</th>
               <th scope="col">Card hashed</th>
