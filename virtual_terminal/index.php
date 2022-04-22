@@ -1,13 +1,15 @@
 <?php
 include("../base.php");
 $merchant_data = $ipp->MerchantData();
-if(isset($_POST["start_terminal"])) {
+if(isset($REQ["start_terminal"])) {
     $gateway    = new IPPGateway($merchant_data->id,$merchant_data->security->key2);
     $data   = [];
-    $data["currency"] = $_POST["currency"];
-    $data["amount"] = number_format($_POST["amount"],2,"","");
-    $data["order_id"] = $_POST["order_id"];
-    $data["transaction_type"] = $_POST["type"];
+    $data["currency"] = $REQ["currency"];
+    $data["amount"] = number_format($REQ["amount"],2,"","");
+    $data["order_id"] = $REQ["order_id"];
+    if(isset($REQ["rebill"]))
+        $data["rebill"] = $REQ["rebill"];
+    $data["transaction_type"] = $REQ["type"];
     $data["ipn"] = "https://www.google.dk";
 
     $data = $gateway->checkout_id($data);
@@ -54,6 +56,10 @@ if(!isset($_POST["start_terminal"])) {
             <div class="col themed-grid-col">
                 Order ID:<br>
                 <input name="order_id" class="form-control">
+            </div>
+            <div class="col themed-grid-col">
+                Store Card for later use:<br>
+                <input name="rebill" type="checkbox" class="form-check-input" >
             </div>
             <div class="col themed-grid-col">
                 Type:<br>
