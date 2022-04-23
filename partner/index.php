@@ -1,10 +1,7 @@
 <?php
 include("b.php");
 if(isset($REQ["update"]) && $REQ["update"] == "true") {
-    header( "refresh:90;url=/partner/" );
-
-    $partner->UpgradePortal();
-    echo "Updating. Please wait 90 seconds";
+    header( "url=/update/?version=".$ipp->version()->content->version);
     die();
 }
 echo head();
