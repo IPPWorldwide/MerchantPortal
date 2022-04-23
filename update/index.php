@@ -1,20 +1,6 @@
 <?php
 $public_page=1;
 include "../base.php";
-/*function recurse_copy($src,$dst) {
-    $dir = opendir($src);
-    while(false !== ( $file = readdir($dir)) ) {
-        if (( $file != '.' ) && ( $file != '..' )) {
-            if ( is_dir($src . '/' . $file) ) {
-                recurse_copy($src . '/' . $file,$dst . '/' . $file);
-            }
-            else {
-                copy($src . '/' . $file,$dst . '/' . $file);
-            }
-        }
-    }
-    closedir($dir);
-}*/
 $updated_version = [];
 $original_version = [];
 function recurse_copy($src,$replaced_value,$ignored_files) {
@@ -94,3 +80,4 @@ foreach($result as $value) {
 print_r($result);
 folder_copy($src."MerchantPortal-".$REQ["version"],$dst);
 rmdir($src);
+header("Location: /partner/");
