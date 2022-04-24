@@ -100,6 +100,23 @@ class IPPPartner {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/portals/update.php", "POST", [], $data);
     }
 
+    public function AddUser($all_data = []) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        $data = array_merge($all_data, $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/add/", "POST", [], $data);
+    }
+    public function CloseUser($update_user_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/close/", "POST", [], $data);
+    }
+    public function ResetUserPassword($update_user_id,$password) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id, "password" => $password];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/password/reset/", "POST", [], $data);
+    }
+    public function UserData($merchant_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/data/", "POST", [], $data)->content;
+    }
 
 
     public function AddSubscriptionPlan($all_data = []) {
