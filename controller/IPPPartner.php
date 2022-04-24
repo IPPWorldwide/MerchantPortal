@@ -103,19 +103,19 @@ class IPPPartner {
     public function AddUser($all_data = []) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         $data = array_merge($all_data, $data);
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/add/", "POST", [], $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/users/add/", "POST", [], $data);
     }
     public function CloseUser($update_user_id) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/close/", "POST", [], $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/users/close/", "POST", [], $data);
     }
     public function ResetUserPassword($update_user_id,$password) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id, "password" => $password];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/password/reset/", "POST", [], $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/users/password/reset/", "POST", [], $data);
     }
     public function UserData($merchant_id) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/user/data/", "POST", [], $data)->content;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/users/data/", "POST", [], $data)->content;
     }
 
 
@@ -185,5 +185,9 @@ class IPPPartner {
     public function ListUsers() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/users.php", "POST", [], $data)->content;
+    }
+    public function ListPlugins() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/plugins/list.json", "POST", [], $data);
     }
 }
