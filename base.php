@@ -10,7 +10,7 @@ include(BASEDIR . "controller/IPP.php");
 include(BASEDIR . "controller/IPPPayments.php");
 include(BASEDIR . "controller/IPPCurrency.php");
 include(BASEDIR . "controller/IPPPartner.php");
-
+include(BASEDIR . "controller/IPPPlugins.php");
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -22,6 +22,7 @@ $login_type     = isset($_COOKIE["ipp_type"]) ? $_COOKIE["ipp_type"] : "";
 $request    = new IPPRequest();
 $ipp        = new IPP($request,$id,$session_id);
 $partner    = new IPPPartner($request,$id,$session_id);
+$plugins    = new IPPPlugins();
 $currency   = new IPPCurrency($request);
 $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
@@ -50,3 +51,4 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
     require_once("theme/".$_ENV["THEME"]."/head.php");
     require_once("theme/".$_ENV["THEME"]."/foot.php");
 }
+$plugins->loadPlugins();

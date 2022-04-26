@@ -98,6 +98,12 @@ function head() {
                     <span data-feather=\"home\"></span>
                     Partner Domains
                 </a>
+            </li>            
+            <li class=\"nav-item\">
+                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/plugins/\">
+                    <span data-feather=\"home\"></span>
+                    Plugins
+                </a>
             </li>
       </div>
     </nav>
