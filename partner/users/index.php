@@ -2,13 +2,11 @@
 include("../b.php");
 
 if(isset($REQ["userid"])) {
-    var_dump($partner->ResetUserPassword($REQ["userid"],$REQ["password"]));
+    $partner->ResetUserPassword($REQ["userid"],$REQ["password"]);
     die();
 }
 if(isset($REQ["close"])) {
-    $close = $partner->CloseUser($REQ["user_id"]);
-    var_dump($close);
-    die();
+    $partner->CloseUser($REQ["user_id"]);
     header("Location: /partner/users");
     die();
 }
