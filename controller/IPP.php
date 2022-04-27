@@ -68,6 +68,29 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/update", "POST", [], $meta_data)->content;
     }
 
+    public function AddUser($all_data = []) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        $data = array_merge($all_data, $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/add/", "POST", [], $data);
+    }
+    public function CloseUser($update_user_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/close/", "POST", [], $data);
+    }
+    public function ResetUserPassword($update_user_id,$password) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id, "password" => $password];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/password/reset/", "POST", [], $data);
+    }
+    public function UserData($merchant_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/data/", "POST", [], $data)->content;
+    }
+
+
+    public function ListUsers() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/list/", "POST", [], $data)->content;
+    }
     public function version() {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/version.php");
     }
