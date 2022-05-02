@@ -67,6 +67,12 @@ class IPP {
         $meta_data["value"] = $all_data["meta"];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/update", "POST", [], $meta_data)->content;
     }
+    public function MerchantAcquirerUpdate($acquirer_id,$settings = []) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        $data["acquirer_id"] = $acquirer_id;
+        $data["settings"] = $settings;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/acquirer/data/update.php", "POST", [], $data)->content;
+    }
 
     public function AddUser($all_data = []) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];

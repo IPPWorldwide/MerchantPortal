@@ -3,6 +3,13 @@ include("../base.php");
 if(isset($REQ["id"])) {
     $merchant_data = $ipp->MerchantDataUpdate($REQ);
 }
+if(isset($REQ["acquirer_id"]) && isset($REQ["acquirer_data"])) {
+    $acquirer_data = array();
+    parse_str($REQ["acquirer_data"], $acquirer_data);
+    $merchant_data = $ipp->MerchantAcquirerUpdate($REQ["acquirer_id"],$acquirer_data);
+    echo json_encode($acquirer_data);
+    die();
+}
 $merchant_data = $ipp->MerchantData();
 echo head();
 ?>
@@ -107,6 +114,7 @@ echo head();
                                             <th>Name</th>
                                             <th>Daily max volume</th>
                                             <th>Supported brands</th>
+                                            <th>Data</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -126,10 +134,15 @@ echo head();
                                                 }
                                                 echo ">";
                                                 echo "</td>";
+                                            } else {
+                                                echo "<td>";
+                                                echo "</td>";
+                                                echo "<td>";
+                                                echo "</td>";
                                             }
-                                            if ($merchant_data->rules->id == "CCCC-DDDD-EEEE") {
-
-                                            }
+                                                echo "<td>";
+                                                    echo "<button class='btn btn-info btnAcquirerSettings' data-id='".$value->id."' data-title='".$value->name."' data-fields='".json_encode($value->fields)."' data-field-values='".($value->settings)."'>Settings</button>";
+                                                echo "</td>";
                                             echo "</tr>";
                                         }
                                         ?>
@@ -148,5 +161,23 @@ echo head();
 
             </div>
         </form>
+    <div class="modal fade" id="settingsAcquirerModal" tabindex="-1" role="dialog" aria-labelledby="settingsAcquirerModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" name="acquirer_id" id="acquirer-id" readonly>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeModal">Close</button>
+                    <button type="button" class="btn btn-primary confirm">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php
 echo foot();
