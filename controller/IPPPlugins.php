@@ -4,6 +4,8 @@
 class IPPPlugins
 {
     public $available_plugins;
+    public $hook_footer;
+    public $hook_header;
 
     public function loadPlugins() {
         if ($handle = opendir(BASEDIR . 'plugins')) {
@@ -62,8 +64,8 @@ class IPPPlugins
         if(is_object($this->available_plugins[$plugin_name])) {
             $this->available_plugins[$plugin_name]->values = $values;
         }
-        else
-            return "";
+        if(method_exists($this->available_plugins[$plugin_name],"hook_footer"))
+            $this->hook_footer[] = $this->available_plugins[$plugin_name]->hook_footer();
     }
     public function getSettingsValues($plugin_name) {
         if(isset($this->available_plugins[$plugin_name]->values))
