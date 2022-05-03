@@ -70,13 +70,6 @@ echo head();
             <div class="col themed-grid-col">Phone number:<br /><input name="meta[company][phone]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->phone) ? $merchant_data->meta_data->company->phone : ""; ?>"></div>
             <div class="col themed-grid-col">Doing business as (Cardholder Description):<br /><input name="meta[processing][descriptor]" class="form-control" value="<?php echo isset($merchant_data->meta_data->processing->descriptor) ? $merchant_data->meta_data->processing->descriptor : ""; ?>"></div>
         </div>
-        <div class="row">
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary mb-3">Save</button>
-            </div>
-        </div>
-
-
         <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">
                 <h2>Acquirers</h2>
@@ -234,6 +227,11 @@ echo head();
 
         <div class="row row-cols-md-1 mb-1">
 
+        </div>
+        <div class="row">
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mb-3">Save</button>
+            </div>
         </div>
     </form>
 

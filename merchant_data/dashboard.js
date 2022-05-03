@@ -3,7 +3,9 @@ $(".btnAcquirerSettings").on("click",function(event) {
     $('#settingsAcquirerModal .modal-title').text($(this).data("title"));
     $("#settingsAcquirerModal #acquirer-id").val($(this).data("id"));
     $("#settingsAcquirerModal form .stdFormsSetup").remove();
-    var acquirer_values = JSON.parse($(this).attr("data-field-values"));
+    var acquirer_values;
+    if(typeof $(this).attr("data-field-values") !== undefined)
+        acquirer_values = JSON.parse($(this).attr("data-field-values"));
     $.each($(this).data("fields"), function(index,fields) {
         var fieldvalue = "";
         if(acquirer_values.hasOwnProperty(fields.key))

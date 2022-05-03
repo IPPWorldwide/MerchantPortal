@@ -60,7 +60,7 @@ class IPPPartner {
         $security_data["company_id"] = $all_data["id"];
         $security_data["field"] = "security";
         $security_data["value"] = $all_data["security"];
-        $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update.php", "POST", [], $security_data);
+        $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update", "POST", [], $security_data);
 
         $meta_data = [];
         $meta_data["user_id"] = $this->user_id;
@@ -74,7 +74,7 @@ class IPPPartner {
             $meta_data["rules"] = $all_data["rules"];
 
         $meta_data["acquirers"] = $all_data["acquirers"];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update.php", "POST", [], $meta_data)->content;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update/", "POST", [], $meta_data)->content;
     }
 
     public function ValidateDomains($domains) {

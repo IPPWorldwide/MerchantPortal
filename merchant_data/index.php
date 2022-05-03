@@ -120,6 +120,7 @@ echo head();
                                         <tbody>
                                         <?php
                                         foreach($merchant_data->acquirers as $value) {
+                                            $settings = ((bool)$value->settings == NULL) ? "{}" : $value->settings;
                                             echo "<tr>";
                                             echo "<td>";
                                             echo $value->name;
@@ -141,7 +142,7 @@ echo head();
                                                 echo "</td>";
                                             }
                                                 echo "<td>";
-                                                    echo "<button class='btn btn-info btnAcquirerSettings' data-id='".$value->id."' data-title='".$value->name."' data-fields='".json_encode($value->fields)."' data-field-values='".($value->settings)."'>Settings</button>";
+                                                    echo "<button class='btn btn-info btnAcquirerSettings' data-id='".$value->id."' data-title='".$value->name."' data-fields='".json_encode($value->fields)."' data-field-values='".($settings)."'>Settings</button>";
                                                 echo "</td>";
                                             echo "</tr>";
                                         }

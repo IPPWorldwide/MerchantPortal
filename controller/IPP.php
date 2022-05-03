@@ -55,17 +55,17 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data)->content;
     }
     public function MerchantDataUpdate($all_data = []) {
-        $security_data = [];
+        $security_data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         $security_data["id"] = $all_data["id"];
         $security_data["field"] = "security";
         $security_data["value"] = $all_data["security"];
         $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/update", "POST", [], $security_data);
 
-        $meta_data = [];
+        $meta_data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         $meta_data["id"] = $all_data["id"];
         $meta_data["field"] = "meta";
         $meta_data["value"] = $all_data["meta"];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/update", "POST", [], $meta_data)->content;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/update.php", "POST", [], $meta_data)->content;
     }
     public function MerchantAcquirerUpdate($acquirer_id,$settings = []) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
