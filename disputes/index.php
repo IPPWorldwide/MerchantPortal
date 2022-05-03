@@ -43,7 +43,7 @@ echo head();
         <?php
         foreach($ipp->ListDisputes($state, $status) as $value) {
             echo "<tr>";
-            echo "<td><a href='/disputes/?id=".$value->id."' class='btn btn-dark'>Info</a></td>";
+            echo "<td><a href='/disputes/data.php?id=".$value->id."' class='btn btn-dark'>Info</a></td>";
             echo "<td>".$value->transaction->id."</td>";
             echo "<td>".$value->amount_readable."</td>";
             echo "<td>".$value->transaction->amount_readable."</td>";
