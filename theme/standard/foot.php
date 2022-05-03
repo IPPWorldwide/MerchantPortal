@@ -1,6 +1,6 @@
 <?php
 function foot() {
-    global $inline_css, $inline_script,$load_script;
+    global $inline_css, $inline_script,$load_script,$plugins;
     $css = "";
     $script = "";
     foreach($inline_css as $value) {
@@ -12,7 +12,9 @@ function foot() {
     foreach($load_script as $value) {
         $script .= "<script src='".$value."'></script>";
     }
-
+    foreach($plugins->hook_footer as $value) {
+        $script .= $value;
+    }
     return '    </main>
   </div>
 </div>

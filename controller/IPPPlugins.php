@@ -67,9 +67,9 @@ class IPPPlugins
         if(method_exists($this->available_plugins[$plugin_name],"hook_footer"))
             $this->hook_footer[] = $this->available_plugins[$plugin_name]->hook_footer();
     }
-    public function getSettingsValues($plugin_name) {
-        if(isset($this->available_plugins[$plugin_name]->values))
-            return json_encode($this->available_plugins[$plugin_name]->values);
+    protected function getSettingsValues($plugin_name, $value) {
+        if(isset($this->values[$value]))
+            return $this->values[$value];
         else
             return "";
     }

@@ -92,9 +92,9 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/data/", "POST", [], $data)->content;
     }
 
-    public function DisputesData($action_id) {
-        $data = ["action_id" => $action_id,"user_id" => $this->user_id, "session_id" => $this->session_id];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/", "POST", [], $data)->content;
+    public function DisputesData($dispute_id) {
+        $data = ["dispute_id" => $dispute_id,"user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/disputes/data/", "POST", [], $data)->content;
     }
     public function DisputesRelated($transaction_id) {
         $data = ["transaction_id" => $transaction_id,"user_id" => $this->user_id, "session_id" => $this->session_id];
