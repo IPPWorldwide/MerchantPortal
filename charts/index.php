@@ -57,7 +57,7 @@ $ch_count = count((array)$charts);
 $i = 1;
 $amount_data_set = "";
 foreach ($charts as $value) {
-    $amount_data_set .= $value->amount->approved."0";
+    $amount_data_set .= ($value->amount->approved/100);
     if ($ch_count != $i)
         $amount_data_set .= ",";
     $i++;
@@ -67,7 +67,7 @@ $ch_count = count((array)$charts);
 $i = 1;
 $amount_data_set_decline = "";
 foreach ($charts as $value) {
-    $amount_data_set_decline .= $value->amount->declined;
+    $amount_data_set_decline .= ($value->amount->declined/100);
     if ($ch_count != $i)
         $amount_data_set_decline .= ",";
     $i++;
@@ -104,13 +104,13 @@ $inline_script = ["
         data: {
             labels: [".$amount_label."],
             datasets: [{
-                label: 'Approved amount past 30 days',
+                label: 'Approved amount',
                 backgroundColor: 'rgba(161, 198, 247, 0.3)',
                 borderColor: 'rgb(47, 128, 237)',
                 fillOpacity: '.3',
                 data: [$amount_data_set],
             },{
-                label: 'Declined amount past 30 days',
+                label: 'Declined amount',
                 backgroundColor: 'rgba(255, 0, 0, 0.3)',
                 borderColor: 'rgb(255, 0, 0)',
                 fillOpacity: .3,
