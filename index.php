@@ -81,7 +81,7 @@ if(
 
     <div class="checkbox mb-3">
       <label>
-        <input name="administrator" type="checkbox" value="1"> Login as Administrator
+        <input name="administrator" type="checkbox" value="1"> Login as Payfac
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
