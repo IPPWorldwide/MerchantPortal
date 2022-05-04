@@ -55,10 +55,12 @@ class IPPPlugins
             return $this->getFields();
     }
     public function getSettingsFields($plugin_name) {
-        if(isset($this->available_plugins[$plugin_name]))
+        if(isset($this->available_plugins[$plugin_name])) {
             return json_encode($this->available_plugins[$plugin_name]->getFields());
-        else
+        }
+        else {
             return "";
+        }
     }
     private function setSettingsValues($plugin_name,$values) {
         if(is_object($this->available_plugins[$plugin_name])) {
@@ -67,9 +69,11 @@ class IPPPlugins
         if(method_exists($this->available_plugins[$plugin_name],"hook_footer"))
             $this->hook_footer[] = $this->available_plugins[$plugin_name]->hook_footer();
     }
-    protected function getSettingsValues($plugin_name, $value) {
+    public function getSettingsValues($plugin_name, $value) {
         if(isset($this->values[$value]))
             return $this->values[$value];
+        elseif(isset($this->available_plugins[$plugin_name]->values))
+            return json_encode($this->available_plugins[$plugin_name]->values);
         else
             return "";
     }
