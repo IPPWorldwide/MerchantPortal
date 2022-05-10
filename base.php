@@ -22,8 +22,9 @@ $login_type     = isset($_COOKIE["ipp_type"]) ? $_COOKIE["ipp_type"] : "";
 $request    = new IPPRequest();
 $ipp        = new IPP($request,$id,$session_id);
 $partner    = new IPPPartner($request,$id,$session_id);
-$plugins    = new IPPPlugins();
-$currency   = new IPPCurrency($request);
+
+$plugins    = new IPPPlugins($request);
+$currency   = new IPPCurrency();
 $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
 
