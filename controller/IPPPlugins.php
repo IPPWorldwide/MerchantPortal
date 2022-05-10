@@ -72,6 +72,8 @@ class IPPPlugins
     public function getSettingsValues($plugin_name, $value) {
         if(isset($this->values[$value]))
             return $this->values[$value];
+        elseif(isset($this->available_plugins[$plugin_name]->values[$value]))
+            return $this->available_plugins[$plugin_name]->values[$value];
         elseif(isset($this->available_plugins[$plugin_name]->values))
             return json_encode($this->available_plugins[$plugin_name]->values);
         else
