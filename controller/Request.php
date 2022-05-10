@@ -46,7 +46,6 @@ class IPPRequest {
             $data["key1"] = $_ENV["partner_key1"];
             $data["key2"] = $_ENV["partner_key2"];
         }
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
