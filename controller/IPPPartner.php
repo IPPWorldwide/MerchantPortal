@@ -145,6 +145,19 @@ class IPPPartner {
     }
 
 
+    public function RemovePlugin($id,$slug) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$id,"plugin_slug"=>$slug];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/close/", "POST", [], $data);
+    }
+    public function InstallPlugin($slug) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/add/", "POST", [], $data)->content;
+    }
+    public function UpdatePluginSettings($plugin_id,$key,$value) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/update/", "POST", [], $data);
+    }
+
     public function ListCountry() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/country.php", "POST", [], $data)->content;
