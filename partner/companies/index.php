@@ -2,7 +2,7 @@
 include("../b.php");
 
 if(isset($REQ["userid"])) {
-    var_dump($partner->ResetMerchantPassword($REQ["company_id"],$REQ["userid"],$REQ["password"]));
+    $partner->ResetMerchantPassword($REQ["company_id"],$REQ["userid"],$REQ["password"]);
     die();
 }
 if(isset($REQ["close"])) {
