@@ -99,6 +99,12 @@ function head() {
                     Plugins
                 </a>
             </li>
+            <li class=\"nav-item\">
+                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/communications/\">
+                    <span data-feather=\"home\"></span>
+                    Communications
+                </a>
+            </li>
       </div>
     </nav>
     <main class=\"col-md-9 ms-sm-auto col-lg-10 px-md-4\">
