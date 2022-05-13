@@ -12,9 +12,13 @@ include(BASEDIR . "controller/IPPCurrency.php");
 include(BASEDIR . "controller/IPPPartner.php");
 include(BASEDIR . "controller/IPPPlugins.php");
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
+if (file_exists(BASEDIR . "ipp-config.php")) {
+    include BASEDIR . "ipp-config.php";
+} else {
+    echo "Rename ipp-config-sample.php to ipp-config.php and insert your Partner ID.";
+    die();
+}
+$_ENV           = $IPP_CONFIG;
 $id             = isset($_COOKIE["ipp_id"]) ? $_COOKIE["ipp_id"] : "";
 $session_id     = isset($_COOKIE["ipp_session_id"]) ? $_COOKIE["ipp_session_id"] : "";
 $login_type     = isset($_COOKIE["ipp_type"]) ? $_COOKIE["ipp_type"] : "";
