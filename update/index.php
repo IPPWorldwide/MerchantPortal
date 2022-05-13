@@ -80,4 +80,14 @@ foreach($result as $value) {
 print_r($result);
 folder_copy($src."MerchantPortal-".$REQ["version"],$dst);
 rmdir($src);
+
+$IPP_CONFIG["version"] = $REQ["version"];
+$txt = "<?php\n";
+foreach($IPP_CONFIG as $key=>$value) {
+    $txt .= "\$IPP_CONFIG[\"$key\"] = \"$value\";\n";
+}
+$myfile = fopen(BASEDIR . "ipp-config.php", "w") or die("Unable to update config file with new version!");
+fwrite($myfile, $txt);
+fclose($myfile);
+
 header("Location: /partner/");
