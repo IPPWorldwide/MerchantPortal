@@ -6,6 +6,7 @@ class IPPPlugins
     public $available_plugins;
     public $hook_footer;
     public $hook_header;
+    public $hook_login;
 
     public function loadPlugins() {
         if ($handle = opendir(BASEDIR . 'plugins')) {
@@ -68,6 +69,10 @@ class IPPPlugins
         }
         if(method_exists($this->available_plugins[$plugin_name],"hook_footer"))
             $this->hook_footer[] = $this->available_plugins[$plugin_name]->hook_footer();
+        if(method_exists($this->available_plugins[$plugin_name],"hook_header"))
+            $this->hook_header[] = $this->available_plugins[$plugin_name]->hook_header();
+        if(method_exists($this->available_plugins[$plugin_name],"hook_login"))
+            $this->hook_login[] = $this->available_plugins[$plugin_name]->hook_login();
     }
     public function hookUpdate($plugin_name,$plugin_id,$params) {
         if(method_exists($this->available_plugins[$plugin_name],"hookUpdate"))
@@ -81,7 +86,7 @@ class IPPPlugins
         elseif(isset($this->available_plugins[$plugin_name]->values))
             return json_encode($this->available_plugins[$plugin_name]->values);
         else
-            return "";
+            return "{}";
     }
     public function getId($plugin_name) {
         return $this->available_plugins[$plugin_name]->id;

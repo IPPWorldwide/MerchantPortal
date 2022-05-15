@@ -1,5 +1,13 @@
 <?php
 function head() {
+    global $plugins;
+    $hook_header = "";
+    if(!is_null($plugins->hook_header)) {
+        foreach($plugins->hook_header as $value) {
+            $hook_header .= $value;
+        }
+    }
+
     return '<html lang="en">
   <head>
     <meta charset="utf-8">
@@ -35,6 +43,7 @@ function head() {
     
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
+    '.$hook_header.'
   </head>
   <body>
     

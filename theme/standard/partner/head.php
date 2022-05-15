@@ -1,5 +1,12 @@
 <?php
 function head() {
+    global $plugins;
+    $hook_header = "";
+    if(!is_null($plugins->hook_header)) {
+        foreach($plugins->hook_header as $value) {
+            $hook_header .= $value;
+        }
+    }
     return "<!doctype html>
 <html lang=\"en\">
   <head>
@@ -36,6 +43,7 @@ function head() {
     
     <!-- Custom styles for this template -->
     <link href=\"/partner/dashboard.css\" rel=\"stylesheet\">
+    ".$hook_header."
   </head>
   <body>
     

@@ -63,6 +63,13 @@ if(
     
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
+    <?php
+    if(!is_null($plugins->hook_login)) {
+        foreach($plugins->hook_login as $value) {
+            echo $value;
+        }
+    }
+    ?>
   </head>
   <body class="text-center">
     
