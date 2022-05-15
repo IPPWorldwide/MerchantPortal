@@ -1,0 +1,25 @@
+{
+    "name": "ippworldwide/component-request-params",
+    "description": "Commmons Class for Request Params",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mathias Gajhede",
+            "email": "mag@ippworldwide.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    },
+    "minimum-stability": "dev",
+    "repositories":[
+        {
+
+        }
+    ]
+}

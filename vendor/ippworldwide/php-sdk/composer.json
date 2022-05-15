@@ -1,0 +1,20 @@
+{
+    "name": "ippworldwide/php-sdk",
+    "description": "PHP SDK for the IPP Worldwide Services",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mathias Gajhede",
+            "email": "mag@ippworldwide.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    },
+    "minimum-stability": "dev"
+}

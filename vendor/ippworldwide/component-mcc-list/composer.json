@@ -1,0 +1,25 @@
+{
+    "name": "ippworldwide/component-mcc-list",
+    "description": "Commmons Class for MCC List",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mathias Gajhede",
+            "email": "mag@ippworldwide.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    },
+    "minimum-stability": "dev",
+    "repositories":[
+        {
+
+        }
+    ]
+}
