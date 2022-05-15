@@ -12,8 +12,10 @@ function foot() {
     foreach($load_script as $value) {
         $script .= "<script src='".$value."'></script>";
     }
-    foreach($plugins->hook_footer as $value) {
-        $script .= $value;
+    if(!is_null($plugins->hook_footer)) {
+        foreach ($plugins->hook_footer as $value) {
+            $script .= $value;
+        }
     }
     return '    </main>
   </div>
