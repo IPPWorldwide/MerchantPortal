@@ -28,13 +28,16 @@ $('.pluginSettingsModal').on('click', function () {
             input_value = "";
         else
             input_value = plugin_values[value.id];
-        $("#pluginModal form").append(plugin_fields(value.title,value.name,value.id,input_value));
+
+        $("#pluginModal form").append(plugin_fields(value.title,value.name,value.id,input_value,value.hidden));
     });
 });
 
-function plugin_fields(text,name,id,value) {
-    console.log(value);
-    return "<div class=\"form-group\"><label for=\""+id+"\" class=\"col-form-label\">"+text+":</label><input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\"></div>";
+function plugin_fields(text,name,id,value,hidden) {
+    var css = "";
+    if(typeof hidden !== 'undefined' && hidden === true)
+        css = "display:none";
+    return "<div class=\"form-group\" style='" + css +  "'><label for=\""+id+"\" class=\"col-form-label\">"+text+":</label><input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\"></div>";
 }
 $(".confirmPluginSettngs").on("click", function() {
     $.post( "?", $("#pluginModal form").serialize())
