@@ -24,11 +24,14 @@ $('.pluginSettingsModal').on('click', function () {
     console.log(plugin_values.plugin_id);
     $("#pluginModal form").empty().append('<input type="hidden" id="plugin_slug" name="plugin_slug" value="' + $(this).data("plugin-name") + '"/><input type="hidden" id="plugin_id" name="plugin_id" value="' + plugin_values.plugin_id + '"/>');
     $( $(this).data("fields")).each(function(key,value) {
-        if(typeof plugin_values[value.id] === 'undefined')
+        if(typeof value.standard === 'undefined')
             input_value = "";
         else
+            input_value = value.standard;
+        if(typeof plugin_values[value.id] !== 'undefined')
             input_value = plugin_values[value.id];
 
+        console.log(input_value);
         $("#pluginModal form").append(plugin_fields(value.title,value.name,value.id,input_value,value.hidden));
     });
 });
