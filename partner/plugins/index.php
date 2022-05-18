@@ -10,8 +10,8 @@ if(isset($REQ["plugin_slug"])) {
         fwrite($myfile, $txt);
     }
     fclose($myfile);
-    echo json_encode($REQ);
     $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
+    echo json_encode($REQ);
     die();
 }
 $all_plugins = $partner->ListPlugins();
