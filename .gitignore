@@ -3,5 +3,5 @@
 composer.lock
 .idea
 composer.lock
-plugins
 ipp-config.php
+plugins/
