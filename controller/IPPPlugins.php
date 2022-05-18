@@ -75,7 +75,8 @@ class IPPPlugins
             $this->hook_login[] = $this->available_plugins[$plugin_name]->hook_login();
     }
     public function hookUpdate($plugin_name,$plugin_id,$params) {
-        if(method_exists($this->available_plugins[$plugin_name],"hookUpdate"))
+        $method = new ReflectionMethod($this->available_plugins[$plugin_name], 'hookUpdate');
+        if($method->class == $plugin_name)
             $this->hook_footer[] = $this->available_plugins[$plugin_name]->hookUpdate($plugin_name,$plugin_id,$params);
     }
     public function getSettingsValues($plugin_name, $value) {
