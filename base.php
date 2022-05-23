@@ -57,3 +57,6 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
     require_once("theme/".$_ENV["THEME"]."/foot.php");
 }
 $plugins->loadPlugins();
+
+
+require_once(BASEDIR . "language/en-gb.php");
