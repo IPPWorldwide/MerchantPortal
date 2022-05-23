@@ -1,6 +1,6 @@
 <?php
 function head() {
-    global $plugins;
+    global $plugins, $lang;
     $hook_header = "";
     if(!is_null($plugins->hook_header)) {
         foreach($plugins->hook_header as $value) {
