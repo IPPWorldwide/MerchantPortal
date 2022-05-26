@@ -2,6 +2,7 @@
 # ENVIRONMENT
 $IPP_CONFIG["GLOBAL_BASE_URL"] = "https://api.ippworldwide.com/";
 $IPP_CONFIG["ONBOARDING_BASE_URL"] = "https://onboarding.api.ippworldwide.com/";
+$IPP_CONFIG["PORTAL_URL"] = "httpS://merchantportal.ippewa.com/";
 $IPP_CONFIG["domain_id"] = "";
 $IPP_CONFIG["partner_id"] = "";
 $IPP_CONFIG["partner_key1"] = "";
