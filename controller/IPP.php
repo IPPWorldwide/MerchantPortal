@@ -74,6 +74,23 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/acquirer/data/update.php", "POST", [], $data)->content;
     }
 
+    public function SendPaymentLink($sender,$recipient,$expiry_time,$order_id,$amount,$currency) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        $data["url"]        = $_ENV["PORTAL_URL"];
+        $data["sender"]        = $sender;
+        $data["recipient"]        = $recipient;
+        $data["expiry_time"]        = strtotime($expiry_time);
+        $data["order_id"]        = $order_id;
+        $data["amount"]        = $amount;
+        $data["currency"]        = $currency;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/links/create/", "POST", [], $data);
+    }
+
+    public function InvoiceData($invoice_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"id" => $invoice_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/invoice/", "POST", [], $data)->content;
+    }
+
     public function AddUser($all_data = []) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         $data = array_merge($all_data, $data);
@@ -108,6 +125,10 @@ class IPP {
     public function ListUsers() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/list/", "POST", [], $data)->content;
+    }
+    public function ListInvoices() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/invoice/list/", "POST", [], $data)->content;
     }
     public function version() {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/version.php");
