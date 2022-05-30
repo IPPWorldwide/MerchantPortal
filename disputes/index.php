@@ -42,13 +42,23 @@ echo head();
         <tbody>
         <?php
         foreach($ipp->ListDisputes($state, $status) as $value) {
-            echo "<tr>";
+            echo "<tr class='align-middle'>";
             echo "<td><a href='/disputes/data.php?id=".$value->id."' class='btn btn-dark'>Info</a></td>";
             echo "<td>".$value->transaction->id."</td>";
             echo "<td>".$value->amount_readable."</td>";
             echo "<td>".$value->transaction->amount_readable."</td>";
             echo "<td>".$value->transaction->currency->id."</td>";
-            echo "<td>".$value->status."</td>";
+            echo "<td><img class='small-icon' src='";
+            if($value->status == "lost") {
+                echo "/theme/".$_ENV["THEME"]."/assets/img/chargeback_lost.png";
+            }
+            elseif($value->status == "won") {
+                echo "/theme/".$_ENV["THEME"]."/assets/img/chargeback_won.png";
+            }
+            else {
+                echo "/theme/".$_ENV["THEME"]."/assets/img/chargeback_info.png";
+            }
+            echo "'></td>";
             echo "</tr>";
         }
         ?>
