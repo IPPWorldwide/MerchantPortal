@@ -1,12 +1,15 @@
 <?php
 function head() {
-    global $plugins;
+    global $plugins,$menu;
     $hook_header = "";
     if(!is_null($plugins->hook_header)) {
         foreach($plugins->hook_header as $value) {
             $hook_header .= $value;
         }
     }
+    $extra_css = "";
+    if(file_exists("css.css"))
+        $extra_css = "<link href=\"css.css\" rel=\"stylesheet\">";
     return "<!doctype html>
 <html lang=\"en\">
   <head>
@@ -43,6 +46,7 @@ function head() {
     
     <!-- Custom styles for this template -->
     <link href=\"/partner/dashboard.css\" rel=\"stylesheet\">
+    ".$extra_css."
     ".$hook_header."
   </head>
   <body>
@@ -64,55 +68,9 @@ function head() {
   <div class=\"row\">
     <nav id=\"sidebarMenu\" class=\"col-md-3 col-lg-2 d-md-block bg-light sidebar collapse\">
       <div class=\"position-sticky pt-3\">
+
         <ul class=\"nav flex-column\">
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/\">
-                    <span data-feather=\"home\"></span>
-                    Dashboard
-                </a>
-            </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/companies/\">
-                    <span data-feather=\"home\"></span>
-                    Companies
-                </a>
-            </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/invoices/\">
-                    <span data-feather=\"home\"></span>
-                    Companies Invoices
-                </a>
-            </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/invoices/plans/\">
-                    <span data-feather=\"home\"></span>
-                    Companies Recurring Plans
-                </a>
-            </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/data/\">
-                    <span data-feather=\"home\"></span>
-                    Partner Data
-                </a>
-            </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/users/\">
-                    <span data-feather=\"home\"></span>
-                    Users
-                </a>
-            </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/plugins/\">
-                    <span data-feather=\"home\"></span>
-                    Plugins
-                </a>
-            </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link active\" aria-current=\"page\" href=\"/partner/communications/\">
-                    <span data-feather=\"home\"></span>
-                    Communications
-                </a>
-            </li>
+            ".standard_theme_menu("partner", "partner/")."
       </div>
     </nav>
     <main class=\"col-md-9 ms-sm-auto col-lg-10 px-md-4\">

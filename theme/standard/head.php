@@ -60,60 +60,7 @@ function head() {
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/dashboard/">
-                  <span data-feather="home"></span>
-                  Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/charts/">
-                    <span data-feather="home"></span>
-                    Charts
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/subscriptions/">
-                    <span data-feather="home"></span>
-                    Subscriptions
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/virtual_terminal/">
-                    <span data-feather="home"></span>
-                    Virtual Terminal
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/merchant_data/">
-                    <span data-feather="home"></span>
-                    Merchant data
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/onboarding/">
-                    <span data-feather="home"></span>
-                    Onboarding
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/payouts/">
-                    <span data-feather="home"></span>
-                    Payouts / Settlements
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/users/">
-                    <span data-feather="home"></span>
-                    Users
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/disputes/">
-                    <span data-feather="home"></span>
-                    Disputes
-                </a>
-            </li>
+            '.standard_theme_menu("company").'
       </div>
     </nav>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">

@@ -1,0 +1,6 @@
+
+.canvas.dropzone {
+  background-color: lightgray;
+  min-height: 200px;
+  min-width: 200px;
+}
