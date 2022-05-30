@@ -10,7 +10,7 @@ class IPPMenu {
 
     private function set_menu() {
         $menu = [];
-        $menu["PARTNER"]["dashboard"] = "Dashboard";
+        $menu["PARTNER"][""] = "Dashboard";
         $menu["PARTNER"]["companies"] = "Companies";
         $menu["PARTNER"]["invoices"] = "Companies Invoices";
         $menu["PARTNER"]["invoices/plans/"] = "Companies Recurring Plans";
