@@ -5,6 +5,7 @@ if(isset($REQ["submit"])) {
     $partner->UpdateData($REQ);
 }
 $partner_data = $partner->PartnerData();
+
 echo head();
 ?>
         <form action="?" method="POST" class="form">
@@ -28,6 +29,10 @@ echo head();
                         } ?>
                     </select>
                     </div>
+            </div>
+            <h2>Partner Invoices</h2>
+            <div class="row row-cols-md-12 mb-12">
+                <div class="col themed-grid-col"Invoice text:<br /><input name="meta[invoicetext]" class="form-control" value="<?php echo isset($partner_data->meta_data->meta->invoicetext) ? $partner_data->meta_data->meta->invoicetext : ""; ?>">
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">
