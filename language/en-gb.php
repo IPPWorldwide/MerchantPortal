@@ -84,3 +84,8 @@ $lang["PARTNER"]["USERS"]["MODAL_REPEAT_PASSWORD"] = "Repeat Password:";
 $lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
 $lang["PARTNER"]["USERS"]["MODAL_CLOSE"] = "Close";
 $lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"] = "Change password";
+
+$lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Add new User";
+$lang["PARTNER"]["USERS_ADD"]["EMAIL"] = "Email:";
+$lang["PARTNER"]["USERS_ADD"]["PASSWORD"] = "Password:";
+$lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create USer";
