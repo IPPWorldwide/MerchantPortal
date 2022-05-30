@@ -11,6 +11,8 @@ include(BASEDIR . "controller/IPPPayments.php");
 include(BASEDIR . "controller/IPPCurrency.php");
 include(BASEDIR . "controller/IPPPartner.php");
 include(BASEDIR . "controller/IPPPlugins.php");
+include(BASEDIR . "controller/IPPMenu.php");
+include(BASEDIR . "controller/IPPUtils.php");
 
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
@@ -31,6 +33,8 @@ $plugins    = new IPPPlugins($request);
 $currency   = new IPPCurrency();
 $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
+$menu       = new IPPMenu();
+$utils      = new IPPUtils();
 
 $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"]);
 
