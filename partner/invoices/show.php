@@ -57,30 +57,30 @@ echo head();
             <div class="row g-3">
                 <div class="col-sm-6">
                     <label for="firstName" class="form-label">Company Name</label>
-                    <div class="form-control"><?php echo $invoice->billing->company_name ?></div>
+                    <div><?php echo $invoice->billing->company_name ?></div>
                 </div>
 
                 <div class="col-sm-6">
                     <label for="lastName" class="form-label">VAT</label>
-                    <div class="form-control"><?php echo $invoice->billing->vat ?></div>
+                    <div><?php echo $invoice->billing->vat ?></div>
                 </div>
 
                 <div class="col-12">
                     <label for="address" class="form-label">Address</label>
-                    <div class="form-control"><?php echo $invoice->billing->address ?></div>
+                    <div><?php echo $invoice->billing->address ?></div>
                 </div>
 
                 <div class="col-md-4">
                     <label for="zip" class="form-label">Postal</label>
-                    <div class="form-control"><?php echo $invoice->billing->postal ?></div>
+                    <div><?php echo $invoice->billing->postal ?></div>
                 </div>
                 <div class="col-md-4">
                     <label for="zip" class="form-label">City</label>
-                    <div class="form-control"><?php echo $invoice->billing->city ?></div>
+                    <div><?php echo $invoice->billing->city ?></div>
                 </div>
                 <div class="col-md-4">
                     <label for="country" class="form-label">Country</label>
-                    <div class="form-control"><?php echo $invoice->billing->country ?></div>
+                    <div><?php echo $invoice->billing->country ?></div>
                 </div>
             </div>
         </form>

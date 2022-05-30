@@ -12,14 +12,15 @@ if(isset($REQ["add_invoice"])) {
     header("Location: /partner/invoices");
     die();
 }
+$partner_data = $partner->PartnerData();
 
 echo head();
-
 ?>
 <div class="py-5 text-center">
     <h2>Invoice</h2>
 </div>
 <form class="needs-validation" method="POST" novalidate>
+    <input type="hidden" name="invoice_payment_slip" value="<?php echo $partner_data->meta_data->meta->invoicetext ?: "" ?>">
     <div class="row g-5">
     <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -51,7 +52,7 @@ echo head();
                     <td><select class="form-control" name="currency">
                             <?php
                             foreach($currency->currency_list() as $value) {
-                                echo "<option>".$value."</option>";
+                                echo "<option value='$value'>".$currency->currency($value)[0]."</option>";
                             }
                             ?>
                         </select></td>
