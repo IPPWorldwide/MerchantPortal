@@ -81,13 +81,10 @@ print_r($result);
 folder_copy($src."MerchantPortal-".$REQ["version"],$dst);
 rmdir($src);
 
-$IPP_CONFIG["version"] = $REQ["version"];
-$txt = "<?php\n";
-foreach($IPP_CONFIG as $key=>$value) {
-    $txt .= "\$IPP_CONFIG[\"$key\"] = \"$value\";\n";
-}
-$myfile = fopen(BASEDIR . "ipp-config.php", "w") or die("Unable to update config file with new version!");
-fwrite($myfile, $txt);
-fclose($myfile);
+include(BASEDIR . "controller/IPPConfig.php");
+$config = new IPPConfig();
+$new_config = $config->UpdateConfig("version",$REQ["version"]);
+$config = $config->WriteConfig();
+$utils->rrmdir("setup");
 
 header("Location: /partner/");
