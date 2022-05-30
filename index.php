@@ -1,8 +1,10 @@
 <?php
 $public_page = true;
-
 include("base.php");
 
+if(isset($REQ["setup"])) {
+    $utils->rrmdir("setup");
+}
 if(
         isset($_POST["username"]) && strlen($_POST["username"]) > 2 &&
         isset($_POST["password"]) && strlen($_POST["password"]) > 2
