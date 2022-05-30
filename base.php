@@ -17,7 +17,7 @@ include(BASEDIR . "controller/IPPUtils.php");
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
 } else {
-    echo "Rename ipp-config-sample.php to ipp-config.php and insert your Partner ID.";
+    header("Location: /setup");
     die();
 }
 $_ENV           = $IPP_CONFIG;
@@ -48,6 +48,7 @@ if(isset($partner_page) && $partner_page == 1) {
         header("Location: /");
         die();
     }
+    require_once("theme/".$_ENV["THEME"]."/functions.php");
     require_once("theme/".$_ENV["THEME"]."/partner/head.php");
     require_once("theme/".$_ENV["THEME"]."/partner/foot.php");
 }
@@ -57,6 +58,7 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
         header("Location: /");
         die();
     }
+    require_once("theme/".$_ENV["THEME"]."/functions.php");
     require_once("theme/".$_ENV["THEME"]."/head.php");
     require_once("theme/".$_ENV["THEME"]."/foot.php");
 }
