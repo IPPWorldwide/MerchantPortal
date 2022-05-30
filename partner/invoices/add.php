@@ -52,7 +52,7 @@ echo head();
                     <td><select class="form-control" name="currency">
                             <?php
                             foreach($currency->currency_list() as $value) {
-                                echo "<option value='$value'>".$currency->currency($value)[0]."</option>";
+                                echo "<option value='$value' "; if($value===$IPP_CONFIG["CURRENCY"]) { echo "selected"; } echo ">".$currency->currency($value)[0]."</option>";
                             }
                             ?>
                         </select></td>
