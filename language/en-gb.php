@@ -68,3 +68,19 @@ $lang["PARTNER"]["DATA"]["ACQUIRERS_NAME"] = "Name";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_WEBSITE"] = "Website";
 $lang["PARTNER"]["DATA"]["SAVE"] = "Save";
+
+
+$lang["PARTNER"]["USERS"]["HEADER"] = "Users";
+$lang["PARTNER"]["USERS"]["ADD_NEW"] = "Add new User";
+$lang["PARTNER"]["USERS"]["ID"] = "ID";
+$lang["PARTNER"]["USERS"]["USERNAME"] = "Username";
+$lang["PARTNER"]["USERS"]["ADMINISTRATOR"] = "Administrator";
+$lang["PARTNER"]["USERS"]["FUNCTIONS"] = "#";
+$lang["PARTNER"]["USERS"]["RESET_PASSWORD"] = "Reset Password";
+$lang["PARTNER"]["USERS"]["CLOSE_ACCOUNT"] = "Close Account";
+$lang["PARTNER"]["USERS"]["MODAL_USERNAME"] = "Username:";
+$lang["PARTNER"]["USERS"]["MODAL_PASSWORD"] = "Password:";
+$lang["PARTNER"]["USERS"]["MODAL_REPEAT_PASSWORD"] = "Repeat Password:";
+$lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+$lang["PARTNER"]["USERS"]["MODAL_CLOSE"] = "Close";
+$lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"] = "Change password";
