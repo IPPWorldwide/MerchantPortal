@@ -37,7 +37,7 @@ if(
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Signin Template · Bootstrap v5.1</title>
+    <title><?php echo $IPP_CONFIG["PORTAL_TITLE"]; ?></title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
 
@@ -74,30 +74,26 @@ if(
     ?>
   </head>
   <body class="text-center">
-    
-<main class="form-signin">
-  <form method="post" action="index.php">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <main class="form-signin">
+      <form method="post" action="index.php">
+        <h3 class="h3 mb-3 fw-normal"><?php echo $lang["LOGIN"]["HEADLINE"]; ?></h3>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+          <label for="floatingInput"><?php echo $lang["LOGIN"]["EMAIL"]; ?></label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+          <label for="floatingPassword"><?php echo $lang["LOGIN"]["PASSWORD"]; ?></label>
+        </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input name="administrator" type="checkbox" value="1"> Login as Payfac
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-  </form>
-</main>
-
-
-    
+        <div class="checkbox mb-3">
+          <label>
+            <input name="administrator" type="checkbox" value="1"> <?php echo $lang["LOGIN"]["AS_PAYFAC"]; ?>
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit"><?php echo $lang["LOGIN"]["SIGN_IN"]; ?></button>
+      </form>
+    </main>
   </body>
 </html>
