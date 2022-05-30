@@ -58,24 +58,32 @@ include("../ipp-config-sample.php");
                                 </div>
                             </div>
                             <div class="form-row">
+                                <label class="form-label">Standard Currency</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="text" name="currency" id="currency" value="<?php echo $IPP_CONFIG["CURRENCY"]; ?>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <label class="form-label">Portal URL</label>
                                 <div class="form-flex">
                                     <input type="text" name="portal_url" id="portal_url" value="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]".str_replace("/setup","",$_SERVER["REQUEST_URI"]); ?>" />
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row" style="display: none;">
                                 <label class="form-label">API BASE URL</label>
                                 <div class="form-flex">
                                     <input type="text" name="global_base_url" id="global_base_url" value="https://api.ippeurope.com" />
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row" style="display: none;">
                                 <label class="form-label">Onboarding BASE URL</label>
                                 <div class="form-flex">
                                     <input type="text" name="onboarding_base_url" id="onboarding_base_url" value="https://onboarding.api.ippeurope.com" />
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row" style="display: none;">
                                 <label class="form-label">Menu string</label>
                                 <div class="form-flex">
                                     <input type="text" name="menu" id="menu" value="<?php echo htmlentities($IPP_CONFIG["MENU"]); ?>" />
