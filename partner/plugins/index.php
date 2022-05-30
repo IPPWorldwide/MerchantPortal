@@ -29,11 +29,11 @@ foreach($all_plugins as $key=>$value) {
               <p class="card-text">'.$value->description->en_gb->description.'</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-info pluginSettingsModal" data-plugin-name="'.$key.'" data-plugin-title="'.$value->name.'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>Settings</button>';
+                  <button type="button" class="btn btn-sm btn-info pluginSettingsModal" data-plugin-name="'.$key.'" data-plugin-title="'.$value->name.'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
     if(!file_exists(BASEDIR . "plugins/".$key))
-        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal">Install</button>';
+        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
     else
-        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal">Remove</button>';
+        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
     echo '
                 </div>
               </div>
@@ -42,24 +42,23 @@ foreach($all_plugins as $key=>$value) {
         </div>';
 }
 echo "</div>";
-?>
-
+echo '
     <div class="modal fade" id="pluginModal" tabindex="-1" role="dialog" aria-labelledby="pluginModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                 </div>
                 <div class="modal-body">
                     <form id="pluginSettings">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary closeModal">Close</button>
-                    <button type="button" class="btn btn-primary confirmPluginSettngs">Save changes</button>
+                    <button type="button" class="btn btn-secondary closeModal">'.$lang["PARTNER"]["PLUGINS"]["CLOSE"].'</button>
+                    <button type="button" class="btn btn-primary confirmPluginSettngs">'.$lang["PARTNER"]["PLUGINS"]["SAVE"].'</button>
                 </div>
             </div>
         </div>
     </div>
-<?php
+';
 echo foot();

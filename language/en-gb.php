@@ -88,4 +88,10 @@ $lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"] = "Change password";
 $lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Add new User";
 $lang["PARTNER"]["USERS_ADD"]["EMAIL"] = "Email:";
 $lang["PARTNER"]["USERS_ADD"]["PASSWORD"] = "Password:";
-$lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create USer";
+$lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create User";
+
+$lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Settings";
+$lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Install";
+$lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
+$lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
+$lang["PARTNER"]["PLUGINS"]["SAVE"] = "Save";
