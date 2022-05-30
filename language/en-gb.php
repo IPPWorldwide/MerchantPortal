@@ -27,3 +27,29 @@ $lang["PARTNER"]["COMPANIES"]["MODAL_REPEAT_PASSWORD"] = "Repeat Password:";
 $lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
 $lang["PARTNER"]["COMPANIES"]["MODAL_CLOSE"] = "Close";
 $lang["PARTNER"]["COMPANIES"]["MODAL_SUBMIT_BTN"] = "Change password";
+
+$lang["PARTNER"]["INVOICES"]["HEADER"] = "Company Invoices";
+$lang["PARTNER"]["INVOICES"]["ADD_NEW"] = "Issue new Invoice";
+$lang["PARTNER"]["INVOICES"]["ID"] = "ID";
+$lang["PARTNER"]["INVOICES"]["COMPANY"] = "Company";
+$lang["PARTNER"]["INVOICES"]["PACKAGE"] = "Package";
+$lang["PARTNER"]["INVOICES"]["AMOUNT"] = "Amount";
+$lang["PARTNER"]["INVOICES"]["VAT"] = "VAT";
+$lang["PARTNER"]["INVOICES"]["PERIOD_END"] = "Period end";
+$lang["PARTNER"]["INVOICES"]["PAID"] = "Paid";
+$lang["PARTNER"]["INVOICES"]["FUNCTIONS"] = "#";
+$lang["PARTNER"]["INVOICES"]["CANCELLED"] = "Cancelled";
+$lang["PARTNER"]["INVOICES"]["PAID_TXT"] = "Paid";
+$lang["PARTNER"]["INVOICES"]["UNPAID"] = "Unpaid";
+$lang["PARTNER"]["INVOICES"]["SHOW"] = "Show";
+
+
+$lang["PARTNER"]["INVOICES_PLAN"]["HEADER"] = "Invoice Plans";
+$lang["PARTNER"]["INVOICES_PLAN"]["ADD_NEW"] = "Issue new Scheme";
+$lang["PARTNER"]["INVOICES_PLAN"]["ID"] = "ID";
+$lang["PARTNER"]["INVOICES_PLAN"]["NAME"] = "Name";
+$lang["PARTNER"]["INVOICES_PLAN"]["CURRENCY"] = "Currency";
+$lang["PARTNER"]["INVOICES_PLAN"]["MONTHLY_FEE"] = "Monthly Subscription";
+$lang["PARTNER"]["INVOICES_PLAN"]["TNX_FEE"] = "Tnx Fee";
+$lang["PARTNER"]["INVOICES_PLAN"]["STATUS"] = "Status";
+$lang["PARTNER"]["INVOICES_PLAN"]["INFO"] = "Info";
