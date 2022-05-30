@@ -78,7 +78,7 @@ include("../ipp-config-sample.php");
                             <div class="form-row">
                                 <label class="form-label">Menu string</label>
                                 <div class="form-flex">
-                                    <input type="text" name="menu" id="menu" value="<?php echo $IPP_CONFIG["MENU"]; ?>" />
+                                    <input type="text" name="menu" id="menu" value="<?php echo htmlentities($IPP_CONFIG["MENU"]); ?>" />
                                 </div>
                             </div>
                         </div>
