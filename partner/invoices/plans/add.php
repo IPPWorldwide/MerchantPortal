@@ -24,11 +24,11 @@ echo head();
                 </div>
                 <div class="col themed-grid-col">Currency:<br />
                     <select class="form-control" name="currency_id">
-                        <option value="zzMq-stjY-qKx1">DKK</option>
-                        <option value="PW1a-Ru1v-LCxL" selected>EUR</option>
-                        <option value="KNKH-hzjJ-N7Qs">USD</option>
-                        <option value="iEI0-sn0A-P5a1">NOK</option>
-                        <option value="DVeG-lcB7-pCRn">SEK</option>
+                        <?php
+                        foreach($currency->currency_list() as $value) {
+                            echo "<option value='$value' "; if($value===$IPP_CONFIG["CURRENCY"]) { echo "selected"; } echo ">".$currency->currency($value)[0]."</option>";
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="col themed-grid-col">Fixed Monthly Fee:<br /><input name="amount" class="form-control"></div>
