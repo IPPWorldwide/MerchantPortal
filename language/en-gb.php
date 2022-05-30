@@ -95,3 +95,24 @@ $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Install";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Save";
+
+
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Communication Templates";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"] = "Get all new templates from IPP";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"] = "Add new Template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HOOK"] = "Hook";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TYPE"] = "Communication Type";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TITLE"] = "Title";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ACTIVE"] = "Active";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["FUNCTION"] = "#";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["EDIT"] = "Edit";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["CLOSE"] = "Remove Template";
+
+
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"] = "Communication Template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"] = "Communication Hook";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TYPE"] = "Type";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TITLE"] = "Title";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["CONTENT"] = "Content";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["ACTIVE"] = "Active";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["RECEIVER"] = "Receiver";

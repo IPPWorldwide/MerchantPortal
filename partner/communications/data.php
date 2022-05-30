@@ -37,16 +37,16 @@ echo '
         <form action="?" method="POST" class="form">
             <input type="hidden" name="method" value="'.$method.'">
             <input type="hidden" name="template_id" value="'.$template_id.'">
-            <h2>Communication Template</h2>
+            <h2>'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"].'</h2>
             <div class="row row-cols-md-1 mb-1">
-                <div class="col themed-grid-col">Communication Hook:<br /><input name="hook" class="form-control" value="'.$hook.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"].'<br /><input name="hook" class="form-control" value="'.$hook.'"></div>
             </div>
             <div class="row row-cols-md-1 mb-1">
-                <div class="col themed-grid-col">Type:<br /><input name="type" class="form-control" value="'.$type.'"></div>
-                <div class="col themed-grid-col">Title:<br /><input name="title" class="form-control" value="'.$title.'"></div>
-                <div class="col themed-grid-col">Content:<br /><textarea class="form-control" name="content">'.$content.'</textarea></div>
-                <div class="col themed-grid-col">Active:<br /><input name="active" class="form-control" value="'.$active.'"></div>
-                <div class="col themed-grid-col">Receiver:<br /><input name="receiver" class="form-control" value="'.$receiver.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TYPE"].'<br /><input name="type" class="form-control" value="'.$type.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TITLE"].'<br /><input name="title" class="form-control" value="'.$title.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["CONTENT"].'<br /><textarea class="form-control" name="content">'.$content.'</textarea></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["ACTIVE"].'<br /><input name="active" class="form-control" value="'.$active.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["RECEIVER"].'<br /><input name="receiver" class="form-control" value="'.$receiver.'"></div>
             </div>
             <div class="row row-cols-md-1 mb-1">
                 <div class="d-flex justify-content-end">
