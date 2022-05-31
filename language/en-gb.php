@@ -294,5 +294,37 @@ $lang["COMPANY"]["INVOICES_SHOW"]["POSTAL"] = "Postal";
 $lang["COMPANY"]["INVOICES_SHOW"]["CITY"] = "City";
 $lang["COMPANY"]["INVOICES_SHOW"]["COUNTRY"] = "Country";
 
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["HEADER"] = "Subscriptions";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["RESULT"] = "Subscription Result:";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["ALL"] = "ALL";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["ACK"] = "ACK";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["NOK"] = "NOK";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["TRANSACTION_ID"] = "Transaction ID";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["CARDHOLDER"] = "Card holder";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["CARD_HASHED"] = "Card hashed";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["EXPIRY"] = "Expmonth / Year";
+$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["STATUS"] = "Status";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
