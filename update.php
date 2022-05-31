@@ -53,7 +53,7 @@ function folder_copy($src,$dst) {
     rmdir($src);
 }
 $current_files = listFolderFiles('.');
-/*
+
 file_put_contents("update/".$REQ["version"].".zip", fopen("https://github.com/IPPWorldwide/MerchantPortal/archive/refs/tags/".$REQ["version"].".zip", 'r'));
 
 $zip = new ZipArchive();
@@ -65,7 +65,7 @@ if ($res === TRUE) {
     throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
 }
 unlink("update/".$REQ["version"].".zip");
-*/
+
 $new_files = listFolderFiles("update/MerchantPortal-".$REQ["version"]);
 $ignored_files = explode("\n", file_get_contents("update/MerchantPortal-".$REQ["version"]."/.gitignore"));
 foreach($ignored_files as $file_to_ignore) {
