@@ -1,7 +1,7 @@
 <?php
 include("b.php");
 if(isset($REQ["update"]) && $REQ["update"] == "true") {
-    header( "url=/update/?version=".$ipp->version()->content->version);
+    header( "Location: url=/update/?version=".$ipp->version()->content->version);
     die();
 }
 echo head();
