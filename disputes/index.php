@@ -1,7 +1,7 @@
 <?php
 include("../base.php");
 $state   = $REQ["dispute_state"] ?? "ALL";
-$status         = $REQ["dispute_status"] ?? "ALL";
+$status  = $REQ["dispute_status"] ?? "ALL";
 
 echo head();
 echo '
@@ -9,14 +9,14 @@ echo '
     <form action="/disputes" method="GET">
         <div class="form-group">
             <label for="payment_type">'.$lang["COMPANY"]["DISPUTES"]["TYPE"].'</label>
-            <select id="dispute_status" name="dispute_status">
+            <select id="dispute_state" name="dispute_state">
                 <option>'.$lang["COMPANY"]["DISPUTES"]["OPEN"].'</option>
                 <option>'.$lang["COMPANY"]["DISPUTES"]["CLOSED"].'</option>
             </select>
         </div>
         <div class="form-group">
             <label for="payment_result">'.$lang["COMPANY"]["DISPUTES"]["STATUS"].'</label>
-            <select id="dispute_state" name="dispute_state">
+            <select id="dispute_status" name="dispute_status">
                 <option>'.$lang["COMPANY"]["DISPUTES"]["RECEIVED"].'</option>
                 <option>'.$lang["COMPANY"]["DISPUTES"]["REPRESENTED"].'</option>
                 <option>'.$lang["COMPANY"]["DISPUTES"]["FIRST"].'</option>
