@@ -1,3 +1,7 @@
+(function () {
+    'use strict'
+    feather.replace({ 'aria-hidden': 'true' })
+})();
 $(".btnAcquirerSettings").on("click",function(event) {
     event.preventDefault();
     $('#settingsAcquirerModal .modal-title').text($(this).data("title"));
@@ -35,7 +39,7 @@ $("#settingsAcquirerModal .confirm").on("click",function() {
 
 function addField(label,id,text,value) {
     return "<div class=\"form-group stdFormsSetup\" data-label=\"" + label + "\">\n" +
-            "<label for=\"" + id + "\" class=\"col-form-label\">" + text + "</label>\n" +
-            "<input type=\"text\" class=\"form-control\"  name=\"" + label + "\" id=\"" + id + "\" value=\"" + value + "\">\n" +
+        "<label for=\"" + id + "\" class=\"col-form-label\">" + text + "</label>\n" +
+        "<input type=\"text\" class=\"form-control\"  name=\"" + label + "\" id=\"" + id + "\" value=\"" + value + "\">\n" +
         "</div>";
 }
