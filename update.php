@@ -81,7 +81,6 @@ $files_to_remove = array_diff($current_files, $new_files);
 
 foreach($files_to_remove as $key=>$value) {
     unlink($key);
-    die();
 }
 
 folder_copy("update/MerchantPortal-".$REQ["version"],".");
