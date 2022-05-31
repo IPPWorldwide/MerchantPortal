@@ -17,4 +17,13 @@ class IPPUtils
             rmdir($dir);
         }
     }
+    public function in_object($value,$object) {
+        if (is_object($object)) {
+            foreach($object as $key => $item) {
+                if ($value==$key) return "true";
+            }
+        }
+        return "false";
+    }
+
 }
