@@ -9,14 +9,14 @@ echo head();
     <h2>Disputes</h2>
     <form action="/disputes" method="GET">
         <div class="form-group">
-            <label for="payment_type">Payment Type:</label>
+            <label for="payment_type">Dispute Type:</label>
             <select id="dispute_status" name="dispute_status">
                 <option>OPEN</option>
                 <option>CLOSED</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="payment_result">Payment Result:</label>
+            <label for="payment_result">Dispute Status:</label>
             <select id="dispute_state" name="dispute_state">
                 <option>Received</option>
                 <option>Represented</option>
