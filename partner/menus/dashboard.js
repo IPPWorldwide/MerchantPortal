@@ -1,4 +1,8 @@
-$(document).ready(function() {
+(function () {
+    'use strict'
+    feather.replace({ 'aria-hidden': 'true' })
+})();
+    $(document).ready(function() {
 
     function updateMenus(section, menus) {
         $.ajax({

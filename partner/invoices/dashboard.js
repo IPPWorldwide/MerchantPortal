@@ -1,3 +1,7 @@
+(function () {
+    'use strict'
+    feather.replace({ 'aria-hidden': 'true' })
+})();
 $('.SelectCustomer').on('change', function () {
     console.log($(this));
     $.ajax({

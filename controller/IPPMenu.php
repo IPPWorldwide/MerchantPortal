@@ -43,7 +43,12 @@ class IPPMenu {
 
     public function partner_menu() {
         global $IPP_CONFIG;
-        return json_decode($IPP_CONFIG["MENU"])->PARTNER;
+        $menu = json_decode($IPP_CONFIG["MENU"])->PARTNER;
+        if(is_array($menu)) {
+            $menu = new stdClass();
+            $menu->menus = "Menu Administration";
+        }
+        return $menu;
     }
 
     public function menu($section) {
