@@ -5,7 +5,7 @@ class IPPConfig {
         global $IPP_CONFIG;
 
         if(is_string($key)) {
-            $IPP_CONFIG[$key] = $value;
+            $IPP_CONFIG[strtoupper($key)] = $value;
         }
         return $IPP_CONFIG;
     }
