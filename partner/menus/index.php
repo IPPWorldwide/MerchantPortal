@@ -35,7 +35,7 @@ echo '
             <ul>
             <?php
             foreach($menu->std_menu["PARTNER"] as $key=>$value) {
-                echo "<li class='add-element' data-url='".$key."'><span class='menuitem'>".$value."</span></li>";
+                echo "<li class='add-element "; echo $utils->in_object($key,$MENU->PARTNER); echo "' data-url='".$key."'><span class='menuitem'>".$value."</span></li>";
             }
             echo '
             </ul>
@@ -60,7 +60,7 @@ echo '
             <ul>
                 <?php
                 foreach($menu->std_menu["COMPANY"] as $key=>$value) {
-                    echo "<li class='add-element' data-url='".$key."'><span class='menuitem'>".$value."</span></li>";
+                    echo "<li class='add-element "; echo $utils->in_object($key,$MENU->COMPANY); echo "'' data-url='".$key."'><span class='menuitem'>".$value."</span></li>";
                 }
                 ?>
             </ul>
