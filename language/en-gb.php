@@ -226,6 +226,12 @@ $lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"] = "Password did not contain a
 $lang["COMPANY"]["USERS"]["CLOSE"] = "Close";
 $lang["COMPANY"]["USERS"]["CHANGE_PASSWORD"] = "Change Password";
 
+$lang["COMPANY"]["USERS_ADD"]["HEADER"] = "Add new User";
+$lang["COMPANY"]["USERS_ADD"]["NAME"] = "Name:";
+$lang["COMPANY"]["USERS_ADD"]["EMAIL"] = "Email:";
+$lang["COMPANY"]["USERS_ADD"]["PHONENO"] = "Phone number:";
+$lang["COMPANY"]["USERS_ADD"]["PASSWORD"] = "Password:";
+$lang["COMPANY"]["USERS_ADD"]["CREATE_USER"] = "Create user";
 
 
 
