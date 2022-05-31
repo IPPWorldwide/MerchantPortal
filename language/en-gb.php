@@ -266,3 +266,33 @@ $lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_AMOUNT_PAID"] = "Amount to be pai
 $lang["COMPANY"]["PAYMENT_LINKS"]["AMOUNT_PAID"] = "Amount to be paid";
 $lang["COMPANY"]["PAYMENT_LINKS"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["PAYMENT_LINKS"]["SUBMIT"] = "Send Payment Link";
+
+
+$lang["COMPANY"]["INVOICES"]["HEADER"] = "Issued Invoices";
+$lang["COMPANY"]["INVOICES"]["ID"] = "ID";
+$lang["COMPANY"]["INVOICES"]["AMOUNT"] = "Amount";
+$lang["COMPANY"]["INVOICES"]["VAT"] = "VAT";
+$lang["COMPANY"]["INVOICES"]["PERIOD_END"] = "Period End";
+$lang["COMPANY"]["INVOICES"]["PAID"] = "Paid";
+$lang["COMPANY"]["INVOICES"]["FUNCTION"] = "#";
+$lang["COMPANY"]["INVOICES"]["SHOW"] = "Show";
+$lang["COMPANY"]["INVOICES"]["CANCELLED"] = "Cancelled";
+$lang["COMPANY"]["INVOICES"]["PAID_TEXT"] = "Paid";
+$lang["COMPANY"]["INVOICES"]["UNPAID"] = "Unpaid";
+
+$lang["COMPANY"]["INVOICES_SHOW"]["HEADER"] = "Invoice";
+$lang["COMPANY"]["INVOICES_SHOW"]["DATES"] = "Dates";
+$lang["COMPANY"]["INVOICES_SHOW"]["ISSUING_DATE"] = "Issuing Date";
+$lang["COMPANY"]["INVOICES_SHOW"]["PERIOD_START"] = "Period Start";
+$lang["COMPANY"]["INVOICES_SHOW"]["PERIOD_END"] = "Period End";
+$lang["COMPANY"]["INVOICES_SHOW"]["PURCHASED_PRODUCTS"] = "Purchased Products";
+$lang["COMPANY"]["INVOICES_SHOW"]["BILLING"] = "Billing";
+$lang["COMPANY"]["INVOICES_SHOW"]["COMPANY_NAME"] = "Company Name";
+$lang["COMPANY"]["INVOICES_SHOW"]["VAT"] = "VAT";
+$lang["COMPANY"]["INVOICES_SHOW"]["ADDRESS"] = "Address";
+$lang["COMPANY"]["INVOICES_SHOW"]["POSTAL"] = "Postal";
+$lang["COMPANY"]["INVOICES_SHOW"]["CITY"] = "City";
+$lang["COMPANY"]["INVOICES_SHOW"]["COUNTRY"] = "Country";
+
+
+
