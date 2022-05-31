@@ -123,3 +123,11 @@ $lang["PARTNER"]["MENUS"]["REMOVE"] = "(Remove)";
 
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdmin is outdated!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
+
+$lang["PARTNER"]["PAYOUTS"]["HEADER"] = "Payouts";
+$lang["PARTNER"]["PAYOUTS"]["DATE"] = "Date";
+$lang["PARTNER"]["PAYOUTS"]["GROSS_VOLUME"] = "Gross Volume";
+$lang["PARTNER"]["PAYOUTS"]["CALCULATED_FEE"] = "Calculated Fee";
+$lang["PARTNER"]["PAYOUTS"]["SETTLEMENT"] = "Settlement";
+$lang["PARTNER"]["PAYOUTS"]["SETTLED"] = "Settled";
+$lang["PARTNER"]["PAYOUTS"]["INFO"] = "Info";
