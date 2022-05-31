@@ -137,6 +137,7 @@ $lang["COMPANY"]["DASHBOARD"]["CRYPT"] = "CRYPT";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"] = "Resultat for transaktion";
 $lang["COMPANY"]["DASHBOARD"]["ACK"] = "Godkendt";
 $lang["COMPANY"]["DASHBOARD"]["NOK"] = "Afvist";
+$lang["COMPANY"]["DASHBOARD"]["CHANGE_VIEW"] = "Skift visning";
 $lang["COMPANY"]["DASHBOARD"]["FUNCTION"] = "#";
 $lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"] = "Tidsstempel";
 $lang["COMPANY"]["DASHBOARD"]["METHOD"] = "Metode";

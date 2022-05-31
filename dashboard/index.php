@@ -10,23 +10,23 @@ echo '
             <div class="form-group">
                 <label for="payment_type">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"].'</label>
                 <select id="payment_type" name="payment_type">
-                    <option>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
-                    <option>'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
-                    <option>'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
-                    <option>'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
-                    <option>'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
-                    <option>'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
+                    <option value="ALL">'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                    <option value="AUTH">'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
+                    <option value="CAPTURE">'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
+                    <option value="REFUND">'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
+                    <option value="SECURE">'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
+                    <option value="CRYPT">'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="payment_result">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"].'</label>
                 <select id="payment_result" name="payment_result">
-                <option>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
-                <option>'.$lang["COMPANY"]["DASHBOARD"]["ACK"].'</option>
-                <option>'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
+                <option value="ALL">'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                <option value="ACK">'.$lang["COMPANY"]["DASHBOARD"]["ACK"].'</option>
+                <option value="NOK">'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
             </select>
             </div>
-            <input type="submit" value="Change view" class="btn btn-primary">
+            <input type="submit" value="'.$lang["COMPANY"]["DASHBOARD"]["CHANGE_VIEW"].'" class="btn btn-primary">
         </form>
 
       <div class="table-responsive">

@@ -137,6 +137,7 @@ $lang["COMPANY"]["DASHBOARD"]["CRYPT"] = "CRYPT";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"] = "Payment Result";
 $lang["COMPANY"]["DASHBOARD"]["ACK"] = "ACK";
 $lang["COMPANY"]["DASHBOARD"]["NOK"] = "NOK";
+$lang["COMPANY"]["DASHBOARD"]["CHANGE_VIEW"] = "Change View";
 $lang["COMPANY"]["DASHBOARD"]["FUNCTION"] = "#";
 $lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"] = "Timestamp";
 $lang["COMPANY"]["DASHBOARD"]["METHOD"] = "Method";
