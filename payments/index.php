@@ -6,9 +6,10 @@ echo head();
 echo '
         <h2>'.$lang["COMPANY"]["PAYMENT"]["HEADER"].'</h2>
         <div class="row row-cols-md-3 mb-3">
-            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["STATUS"]; echo  $transaction_data->status; echo '</div>
-            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["TIMESTAMP"]; echo  date("Y-m-d H:i:s", $transaction_data->timestamp); echo '</div>
-            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["ACTION"]; echo  $transaction_data->method; echo '</div>
+            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["TOP_STATUS"]." "; echo  $transaction_data->status; echo '</div>
+            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["TIMESTAMP"]." "; echo  date("Y-m-d H:i:s", $transaction_data->timestamp); echo '</div>
+            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["ACTION"]." "; echo  $transaction_data->method; echo '</div>
+            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["TRANSACTION_ID"]." "; echo  $transaction_data->transaction_id; echo '</div>
         </div>
         <div class="col-6"></div>
         <div class="row row-cols-md-3 mb-3">

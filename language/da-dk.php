@@ -310,11 +310,12 @@ $lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["STATUS"] = "Status";
 
 
 $lang["COMPANY"]["PAYMENT"]["HEADER"] = "Betalingsdata";
-$lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status:";
+$lang["COMPANY"]["PAYMENT"]["TOP_STATUS"] = "Status:";
 $lang["COMPANY"]["PAYMENT"]["TIMESTAMP"] = "Tidsstempel:";
 $lang["COMPANY"]["PAYMENT"]["ACTION"] = "Handling:";
 $lang["COMPANY"]["PAYMENT"]["AMOUNT"] = "Beløb:";
 $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Valuta:";
+$lang["COMPANY"]["PAYMENT"]["TRANSACTION_ID"] = "Transaktions ID:";
 $lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Indløser svar";
 $lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Relaterede betalinger";
 $lang["COMPANY"]["PAYMENT"]["FUNCTION"] = "#";
