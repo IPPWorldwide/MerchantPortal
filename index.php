@@ -77,7 +77,11 @@ if(
     <main class="form-signin">
       <form method="post" action="index.php">
         <h3 class="h3 mb-3 fw-normal"><?php echo $lang["LOGIN"]["HEADLINE"]; ?></h3>
-
+          <?php
+          if(isset($login->code) && $login->code === 4020) {
+              echo '<div class="alert alert-danger" role="alert">'.$lang["LOGIN"]["ACCOUNT_UNAVAILABLE"].'</div>';
+          }
+          ?>
         <div class="form-floating">
           <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
           <label for="floatingInput"><?php echo $lang["LOGIN"]["EMAIL"]; ?></label>
@@ -86,7 +90,6 @@ if(
           <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
           <label for="floatingPassword"><?php echo $lang["LOGIN"]["PASSWORD"]; ?></label>
         </div>
-
         <div class="checkbox mb-3">
           <label>
             <input name="administrator" type="checkbox" value="1"> <?php echo $lang["LOGIN"]["AS_PAYFAC"]; ?>

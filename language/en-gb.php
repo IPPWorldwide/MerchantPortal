@@ -5,6 +5,7 @@ $lang["LOGIN"]["EMAIL"] = "Email address";
 $lang["LOGIN"]["PASSWORD"] = "Password";
 $lang["LOGIN"]["AS_PAYFAC"] = "Login as Payfac";
 $lang["LOGIN"]["SIGN_IN"] = "Sign in";
+$lang["LOGIN"]["ACCOUNT_UNAVAILABLE"] = "The account is blocked for 24 hours, due to incorrect login credentials.";
 
 
 $lang["PARTNER"]["COMPANIES"]["HEADER"] = "Companies";
