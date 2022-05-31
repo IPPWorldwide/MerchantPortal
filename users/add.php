@@ -2,8 +2,6 @@
 include("../base.php");
 if(isset($REQ["email"])) {
     $data = $ipp->AddUser($REQ);
-    var_dump($data);
-    die();
     header("Location: /users");
     die();
 }

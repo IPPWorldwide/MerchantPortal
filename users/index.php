@@ -42,7 +42,7 @@ echo '
                 <td>".$value->admin."</td>
                 <td>
                     <button type='button' class='btn btn-info ResetPasswordModal' data-username='".$value->email."' data-id='".$value->id."'>".$lang["COMPANY"]["USERS"]["RESET_PASSWORD"]."</button>
-                    <a href='/partner/users/?close=1&user_id=".$value->id."' class='btn btn-warning'>".$lang["COMPANY"]["USERS"]["CLOSE_ACCOUNT"]."</a>
+                    <a href='/users/?close=1&user_id=".$value->id."' class='btn btn-warning'>".$lang["COMPANY"]["USERS"]["CLOSE_ACCOUNT"]."</a>
                 </td>
             </tr>
             ";
