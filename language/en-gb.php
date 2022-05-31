@@ -131,3 +131,25 @@ $lang["PARTNER"]["PAYOUTS"]["CALCULATED_FEE"] = "Calculated Fee";
 $lang["PARTNER"]["PAYOUTS"]["SETTLEMENT"] = "Settlement";
 $lang["PARTNER"]["PAYOUTS"]["SETTLED"] = "Settled";
 $lang["PARTNER"]["PAYOUTS"]["INFO"] = "Info";
+
+
+
+$lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Tranactions";
+$lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Payment Type";
+$lang["COMPANY"]["DASHBOARD"]["ALL"] = "ALL";
+$lang["COMPANY"]["DASHBOARD"]["AUTH"] = "AUTH";
+$lang["COMPANY"]["DASHBOARD"]["CAPTURE"] = "CAPTURE";
+$lang["COMPANY"]["DASHBOARD"]["REFUND"] = "REFUND";
+$lang["COMPANY"]["DASHBOARD"]["SECURE"] = "SECURE";
+$lang["COMPANY"]["DASHBOARD"]["CRYPT"] = "CRYPT";
+$lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"] = "Payment Result";
+$lang["COMPANY"]["DASHBOARD"]["ACK"] = "ACK";
+$lang["COMPANY"]["DASHBOARD"]["NOK"] = "NOK";
+$lang["COMPANY"]["DASHBOARD"]["FUNCTION"] = "#";
+$lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"] = "Timestamp";
+$lang["COMPANY"]["DASHBOARD"]["METHOD"] = "Method";
+$lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"] = "Cardholder";
+$lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Amount";
+$lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Currency";
+$lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
+$lang["COMPANY"]["DASHBOARD"]["INFO"] = "Info";

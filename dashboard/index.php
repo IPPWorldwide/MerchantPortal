@@ -4,28 +4,26 @@ $payment_type   = $REQ["payment_type"] ?? "ALL";
 $result         = $REQ["payment_result"] ?? "ALL";
 
 echo head();
-?>
-<!doctype html>
-      <h2>Transactions</h2>
-
+echo '
+      <h2>'.$lang["COMPANY"]["DASHBOARD"]["HEADER"].'</h2>
         <form action="/dashboard" method="GET">
             <div class="form-group">
-                <label for="payment_type">Payment Type:</label>
+                <label for="payment_type">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"].'</label>
                 <select id="payment_type" name="payment_type">
-                    <option>ALL</option>
-                    <option>AUTH</option>
-                    <option>CAPTURE</option>
-                    <option>REFUND</option>
-                    <option>SECURE</option>
-                    <option>CRYPT</option>
+                    <option>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                    <option>'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
+                    <option>'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
+                    <option>'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
+                    <option>'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
+                    <option>'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="payment_result">Payment Result:</label>
+                <label for="payment_result">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"].'</label>
                 <select id="payment_result" name="payment_result">
-                <option>ALL</option>
-                <option>ACK</option>
-                <option>NOK</option>
+                <option>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                <option>'.$lang["COMPANY"]["DASHBOARD"]["ACK"].'</option>
+                <option>'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
             </select>
             </div>
             <input type="submit" value="Change view" class="btn btn-primary">
@@ -35,18 +33,18 @@ echo head();
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Timestamp</th>
-              <th scope="col">Method</th>
-              <th scope="col">Cardholder</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Currency</th>
-              <th scope="col">Status</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["FUNCTION"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["METHOD"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["AMOUNT"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CURRENCY"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["STATUS"].'</th>
             </tr>
           </thead>
           <tbody>
-          <?php
-          foreach($ipp->TransactionsList($payment_type, $result) as $value) {
+          ';
+foreach($ipp->TransactionsList($payment_type, $result) as $value) {
               echo "<tr ";
               if($value->result == "WAIT") {
                   echo "class='bg-info'";
@@ -55,7 +53,7 @@ echo head();
                   echo "class='bg-danger'";
               }
               echo ">
-              <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>Info</a></td>
+              <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>".$lang["COMPANY"]["DASHBOARD"]["INFO"]."</a></td>
               <td>".date("Y-m-d H:i:s",$value->unixtimestamp)."</td>
               <td>".$value->method."</td>
               <td>".$value->cardholder."</td>
@@ -64,9 +62,9 @@ echo head();
               <td>".$value->result."</td>
             </tr>";
           }
-          ?>
+echo '
           </tbody>
         </table>
       </div>
-<?php
+';
 echo foot();
