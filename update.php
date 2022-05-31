@@ -86,6 +86,7 @@ foreach($files_to_remove as $key=>$value) {
 folder_copy("update/MerchantPortal-".$REQ["version"],".");
 rmdir("update/MerchantPortal-".$REQ["version"]);
 
+include("controller/IPPConfig.php");
 $config = new IPPConfig();
 $new_config = $config->UpdateConfig("version",$REQ["version"]);
 $config = $config->WriteConfig();
