@@ -212,6 +212,19 @@ $lang["COMPANY"]["PAYOUTS"]["INFO"] = "Info";
 $lang["COMPANY"]["ONBOARDING"]["HEADER"] = "Merchant Onboarding";
 
 
+$lang["COMPANY"]["USERS"]["HEADER"] = "Users";
+$lang["COMPANY"]["USERS"]["ADD_NEW"] = "Add new User";
+$lang["COMPANY"]["USERS"]["ID"] = "ID";
+$lang["COMPANY"]["USERS"]["USER_NAME"] = "User name";
+$lang["COMPANY"]["USERS"]["ADMINISTRATOR"] = "Administrator";
+$lang["COMPANY"]["USERS"]["FUNCTION"] = "#";
+$lang["COMPANY"]["USERS"]["RESET_PASSWORD"] = "Reset Password";
+$lang["COMPANY"]["USERS"]["CLOSE_ACCOUNT"] = "Close Account";
+$lang["COMPANY"]["USERS"]["PASSWORD"] = "Password";
+$lang["COMPANY"]["USERS"]["REPEAT_PASSWORD"] = "Repeat Password";
+$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"] = "Password did not contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+$lang["COMPANY"]["USERS"]["CLOSE"] = "Close";
+$lang["COMPANY"]["USERS"]["CHANGE_PASSWORD"] = "Change Password";
 
 
 
