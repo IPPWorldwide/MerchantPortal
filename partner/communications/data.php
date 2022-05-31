@@ -31,7 +31,7 @@ if(isset($REQ["template_id"])) {
     $receiver   = "";
     $method     = "add";
 }
-
+$communication_types = ["email","webhook"];
 echo head();
 echo '
         <form action="?" method="POST" class="form">
@@ -42,7 +42,14 @@ echo '
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"].'<br /><input name="hook" class="form-control" value="'.$hook.'"></div>
             </div>
             <div class="row row-cols-md-1 mb-1">
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TYPE"].'<br /><input name="type" class="form-control" value="'.$type.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TYPE"].'<br />
+                <select class="form-control" name="type">
+                ';
+                foreach($communication_types as $value) {
+                    echo "<option value='$value' "; if($value == $type) { echo "selected"; } echo ">".$value."</option>";
+                }
+                echo '
+                </select></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TITLE"].'<br /><input name="title" class="form-control" value="'.$title.'"></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["CONTENT"].'<br /><textarea class="form-control" name="content">'.$content.'</textarea></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["ACTIVE"].'<br /><input name="active" class="form-control" value="'.$active.'"></div>
