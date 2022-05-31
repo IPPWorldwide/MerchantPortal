@@ -14,7 +14,6 @@
             }
         })
             .done(function( msg ) {
-                //console.log( "Data Saved: " + msg );
             });
     }
 
@@ -37,17 +36,17 @@
         cursor: "move",
         containment: "document"
     });
+    $(".add-element.true").each(function() {
+        $(this).draggable({disabled: true}).css("opacity","0.5");
+    });
     $(".canvas").droppable({
         accept: ".add-element",
         drop: function(event, ui) {
             if (!ui.draggable.hasClass("dropped")) {
+                ui.draggable.draggable({disabled: true}).css("opacity","0.5");
                 $(this).find("ul").append($(ui.draggable).clone().removeClass("ui-draggable").removeClass("dropped"));
                 var menus = [];
-
-                console.log($(this));
-
                 $(this).find("ul").find("li").each(function() {
-//                    menus[$(this).attr("data-url")] = $(this).html();
                     menus.push({url:$(this).attr("data-url"), value:$(this).find(".menuitem").html()});
 
                 });
