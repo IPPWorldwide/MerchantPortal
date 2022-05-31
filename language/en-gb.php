@@ -156,3 +156,32 @@ $lang["COMPANY"]["DASHBOARD"]["INFO"] = "Info";
 
 
 $lang["COMPANY"]["CHARTS"]["HEADER"] = "Charts";
+
+
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["HEADER"] = "Virtual Terminal";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["FAILED_PAYMENT"] = "Betalingen fejlede, forsøg venligst igen.";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDHOLDER"] = "Kortholder";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDNO"] = "Kortnummer";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPMONTH"] = "Udløbsmåned";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPYEAR"] = "Udløbsår";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CVV"] = "CVV";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED"] = "Knap";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED_BTN"] = "Gennemfør";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CURRENCY"] = "Currency:";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["AMOUNT"] = "Amount:";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["ORDER_ID"] = "Order ID:";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["STORE_CARD"] = "Store Card for later use:";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["TYPE"] = "Type:";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["MOTO"] = "MOTO";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["ECOM"] = "ECOM";
+$lang["COMPANY"]["VIRTUAL_TERMINAL"]["START_TERMINAL"] = "Start Virtual Terminal";
+
+$lang["COMPANY"]["DATA"]["HEADER"] = "Virtual Terminal";
+
+
+
+
+
+
+
+

@@ -22,61 +22,60 @@ if(isset($REQ["start_terminal"])) {
 
 echo head();
 if(!isset($_POST["start_terminal"])) {
-?>
-      <h2>Virtual Terminal</h2>
+echo '
+      <h2>'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["HEADER"].'</h2>
     <script>
         var payment_settings = {
-            "payw_failed_payment"       :   "Betalingen fejlede, forsøg venligst igen.",
-            "payw_cardholder"           :   "Kortholder",
-            "payw_cardno"               :   "Kortnummer",
-            "payw_expmonth"             :   "Udløbsmåned",
-            "payw_expyear"              :   "Udløbsår",
-            "payw_cvv"                  :   "CVV",
-            "payw_confirmPayment"       :   "Knap",
-            "payw_confirmPayment_btn"   :   "Gennemfør",
+            "payw_failed_payment"       :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["FAILED_PAYMENT"].'",
+            "payw_cardholder"           :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDHOLDER"].'",
+            "payw_cardno"               :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDNO"].'",
+            "payw_expmonth"             :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPMONTH"].'",
+            "payw_expyear"              :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPYEAR"].'",
+            "payw_cvv"                  :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CVV"].'",
+            "payw_confirmPayment"       :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED"].'",
+            "payw_confirmPayment_btn"   :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED_BTN"].'",
             "waiting_icon"              :   "https://icon-library.com/images/waiting-icon-png/waiting-icon-png-19.jpg",
         };
     </script>
     <form action="#" method="POST" class="">
         <div class="class="row row-cols-md-3 mb-3">
             <div class="col themed-grid-col">
-                Currency:<br>
+                '.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CURRENCY"].'<br>
                 <select name="currency" class="form-control" >
-                    <?php
+                    ';
                         foreach($currency->currency_list() as $value) {
                             echo "<option>".$currency->currency($value)[0]."</option>";
                         }
-                    ?>
+                    echo '
                 </select>
             </div>
             <div class="col themed-grid-col">
-                Amount:<br>
+                '.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["AMOUNT"].'<br>
                 <input name="amount" class="form-control">
             </div>
             <div class="col themed-grid-col">
-                Order ID:<br>
+                '.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["ORDER_ID"].'<br>
                 <input name="order_id" class="form-control">
             </div>
             <div class="col themed-grid-col">
-                Store Card for later use:<br>
+                '.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["STORE_CARD"].'<br>
                 <input name="rebill" type="checkbox" class="form-check-input" >
             </div>
             <div class="col themed-grid-col">
-                Type:<br>
+                '.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["TYPE"].'<br>
                 <select name="type" class="form-control">
-                    <option>MOTO</option>
-                    <option>ECOM</option>
+                    <option>'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["MOTO"].'</option>
+                    <option>'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["ECOM"].'</option>
                 </select>
             </div>
             <div class="col themed-grid-col">
-                <input type="submit" value="Start Virtual Terminal" name="start_terminal">
+                <input type="submit" value="'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["START_TERMINAL"].'" name="start_terminal">
             </div>
         </div>
     </form>
-<?php
+';
 }
 elseif(isset($_POST["start_terminal"])) {
     echo "<script src='https://pay.ippeurope.com/pay.js?checkoutId=".$data_url."&cryptogram=".$cryptogram."'></script><form action='#' class='search-form paymentWidgets' data-brands='VISA MASTER' data-theme='divs'></form>";
 }
-
 echo foot();
