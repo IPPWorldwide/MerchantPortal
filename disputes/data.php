@@ -3,8 +3,6 @@ include("../base.php");
 $dispute_id   = $REQ["id"];
 $dispute_data = $ipp->DisputesData($dispute_id);
 
-var_dump($dispute_data);
-
 echo head();
 ?>
     <form action="?" method="POST" class="form">
