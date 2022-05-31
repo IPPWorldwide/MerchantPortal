@@ -7,6 +7,9 @@ function head() {
             $hook_header .= $value;
         }
     }
+    $extra_css = "";
+    if(file_exists("css.css"))
+        $extra_css = "<link href=\"css.css\" rel=\"stylesheet\">";
 
     return '<html lang="en">
   <head>
@@ -43,6 +46,7 @@ function head() {
     
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
+    '.$extra_css.'
     '.$hook_header.'
   </head>
   <body>
