@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $folder_level = "./";
 while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
 define("BASEDIR", $folder_level);
@@ -64,5 +64,7 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
 }
 $plugins->loadPlugins();
 
-
-require_once(BASEDIR . "language/en-gb.php");
+if(!isset($_SESSION['language']))
+    require_once(BASEDIR . "language/en-gb.php");
+else
+    require_once(BASEDIR . "language/".$_SESSION['language'].".php");
