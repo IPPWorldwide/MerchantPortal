@@ -118,6 +118,10 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/related/", "POST", [], $data)->content;
     }
 
+    public function ListPayouts() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payouts/list/", "POST", [], $data)->content;
+    }
     public function ListDisputes($state = "ALL", $status = "ALL") {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "state" => $state, "status" => $status];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/disputes/list/", "POST", [], $data)->content;
