@@ -116,3 +116,10 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TITLE"] = "Title";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["CONTENT"] = "Content";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["ACTIVE"] = "Active";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["RECEIVER"] = "Receiver";
+
+$lang["PARTNER"]["MENUS"]["HEADER_PARTNER"] = "Partner Menu";
+$lang["PARTNER"]["MENUS"]["HEADER_COMPANY"] = "Company Menu";
+$lang["PARTNER"]["MENUS"]["REMOVE"] = "(Remove)";
+
+$lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdmin is outdated!";
+$lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";

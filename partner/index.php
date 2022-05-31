@@ -7,7 +7,7 @@ if(isset($REQ["update"]) && $REQ["update"] == "true") {
 echo head();
 
 if($ipp->version()->content->version != $_ENV["VERSION"]) {
-    echo "<div class=\"alert alert-warning\" role=\"alert\">Your version of MerchantAdmin is outdated!<a href='?update=true'>Click here to update</a></div>";
+    echo "<div class=\"alert alert-warning\" role=\"alert\">".$lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"]."<a href='?update=true'>".$lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"]."</a></div>";
 }
 
 echo foot();

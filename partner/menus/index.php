@@ -16,15 +16,15 @@ if(isset($REQ["section"])) {
 $MENU = json_decode($IPP_CONFIG["MENU"]);
 
 echo head();
-?>
-<h2>Menu Partners</h2>
+echo '
+<h2>'.$lang["PARTNER"]["MENUS"]["HEADER_PARTNER"].'</h2>
 <div class="row">
     <div class="col-6">
         <div class="canvas dropzone" data-menu="partner">
             <ul>
-                <?php
+                ';
                 foreach($MENU->PARTNER as $key=>$value) {
-                    echo "<li class='add-element' data-url='".$key."'><span class='menuitem'>".$value."</span>  <span class='removeItem'>(Remove)</span></li>";
+                    echo "<li class='add-element' data-url='".$key."'><span class='menuitem'>".$value."</span>  <span class='removeItem'>".$lang["PARTNER"]["MENUS"]["REMOVE"]."</span></li>";
                 }
                 ?>
             </ul>
@@ -37,20 +37,19 @@ echo head();
             foreach($menu->std_menu["PARTNER"] as $key=>$value) {
                 echo "<li class='add-element' data-url='".$key."'><span class='menuitem'>".$value."</span></li>";
             }
-            ?>
+            echo '
             </ul>
         </div>
     </div>
 </div>
-
-<h2>Menu Companies</h2>
+<h2>'.$lang["PARTNER"]["MENUS"]["HEADER_COMPANY"].'</h2>
 <div class="row">
     <div class="col-6">
         <div class="canvas dropzone" data-menu="company">
             <ul>
-                <?php
+                ';
                 foreach($MENU->COMPANY as $key=>$value) {
-                    echo "<li class='add-element' data-url='".$key."'><span class='menuitem'>".$value."</span>  <span class='removeItem'>(Remove)</span></li>";
+                    echo "<li class='add-element' data-url='".$key."'><span class='menuitem'>".$value."</span>  <span class='removeItem'>".$lang["PARTNER"]["MENUS"]["REMOVE"]."</span></li>";
                 }
                 ?>
             </ul>
