@@ -176,7 +176,39 @@ $lang["COMPANY"]["VIRTUAL_TERMINAL"]["MOTO"] = "MOTO";
 $lang["COMPANY"]["VIRTUAL_TERMINAL"]["ECOM"] = "ECOM";
 $lang["COMPANY"]["VIRTUAL_TERMINAL"]["START_TERMINAL"] = "Start Virtual Terminal";
 
-$lang["COMPANY"]["DATA"]["HEADER"] = "Virtual Terminal";
+$lang["COMPANY"]["DATA"]["HEADER"] = "Merchant Data";
+$lang["COMPANY"]["DATA"]["MERCHANT_ID"] = "Merchant ID:";
+$lang["COMPANY"]["DATA"]["API_PASSWORD"] = "API Password:";
+$lang["COMPANY"]["DATA"]["PAYMENT_PASSWORD"] = "Payment Password:";
+$lang["COMPANY"]["DATA"]["HEADER_SESSION"] = "Session Data";
+$lang["COMPANY"]["DATA"]["USER_ID"] = "User ID:";
+$lang["COMPANY"]["DATA"]["SESSION_KEY"] = "Session Key:";
+$lang["COMPANY"]["DATA"]["HEADER_COMPANY"] = "Company Details";
+$lang["COMPANY"]["DATA"]["COMPANY_NAME"] = "Company Name:";
+$lang["COMPANY"]["DATA"]["REGNO"] = "Company Registration No:";
+$lang["COMPANY"]["DATA"]["EUVAT"] = "EU VAT Number:";
+$lang["COMPANY"]["DATA"]["ADDRESS"] = "Street Address:";
+$lang["COMPANY"]["DATA"]["POSTAL"] = "Postal:";
+$lang["COMPANY"]["DATA"]["CITY"] = "City:";
+$lang["COMPANY"]["DATA"]["COUNTRY"] = "Country:";
+$lang["COMPANY"]["DATA"]["PHONE"] = "Phone number:";
+$lang["COMPANY"]["DATA"]["CARDHOLDER_DESCRIPTION"] = "Cardholder Description:";
+$lang["COMPANY"]["DATA"]["ACQUIRERS"] = "Acquirers";
+$lang["COMPANY"]["DATA"]["NAME"] = "Name";
+$lang["COMPANY"]["DATA"]["ID"] = "ID";
+$lang["COMPANY"]["DATA"]["WEBSITE"] = "Website";
+$lang["COMPANY"]["DATA"]["ACQUIRER_RULES"] = "Acquirers Rules";
+$lang["COMPANY"]["DATA"]["ROUND_ROBIN"] = "Round Robin";
+$lang["COMPANY"]["DATA"]["ROUND_ROBIN_WITH_MAX"] = "Round Robin with max limit";
+$lang["COMPANY"]["DATA"]["ACQUIRER_WITH_LOWEST_VOLUME"] = "Acquirer with lowest processing volume today";
+$lang["COMPANY"]["DATA"]["ACQUIRER_WITH_LOWEST_VOLUME_MAX"] = "Acquirer with lowest processing volume, with max limit";
+$lang["COMPANY"]["DATA"]["RULE_SETTINGS"] = "Rule Settings";
+$lang["COMPANY"]["DATA"]["DAILY_MAX"] = "Daily max volume";
+$lang["COMPANY"]["DATA"]["SUPPORTED_BRANDS"] = "Supported Brands";
+$lang["COMPANY"]["DATA"]["DATA"] = "Data";
+$lang["COMPANY"]["DATA"]["SETTINGS"] = "Settings";
+$lang["COMPANY"]["DATA"]["SAVE"] = "Save";
+$lang["COMPANY"]["DATA"]["CLOSE"] = "Close";
 
 
 
