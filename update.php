@@ -28,30 +28,27 @@ function flatten($array, $prefix = '') {
     }
     return $result;
 }
-function folder_copy($src,$dst) {
-    $array = [];
-    $dir = opendir($src);
-    while(false !== ( $file = readdir($dir)) ) {
-        if (( $file != '.' ) && ( $file != '..' )) {
-            if ( is_dir($src . '/' . $file)) {
-                folder_copy($src . '/' . $file, $dst."/".$file);
-            }
-            if ( !is_dir($src . '/' . $file)) {
-                if(file_exists($dst."/".$file) && !is_dir($dst . '/' . $file))
-                    unlink($dst."/".$file);
-                if(!is_dir(dirname($dst."/".$file))) {
-                    if (!mkdir($concurrentDirectory = dirname($dst . "/" . $file)) && !is_dir($concurrentDirectory)) {
-                        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+function cpy($source, $dest){
+    if(is_dir($source)) {
+        $dir_handle=opendir($source);
+        while($file=readdir($dir_handle)){
+            if($file!="." && $file!=".."){
+                if(is_dir($source."/".$file)){
+                    if(!is_dir($dest."/".$file)){
+                        mkdir($dest."/".$file);
                     }
+                    cpy($source."/".$file, $dest."/".$file);
+                } else {
+                    copy($source."/".$file, $dest."/".$file);
                 }
-                if(!is_dir($dst . '/' . $file))
-                    rename( $src . '/' . $file,  $dst."/".$file);
             }
         }
+        closedir($dir_handle);
+    } else {
+        copy($source, $dest);
     }
-    closedir($dir);
-    rmdir($src);
 }
+
 $current_files = listFolderFiles('.');
 
 file_put_contents("update/".$REQ["version"].".zip", fopen("https://github.com/IPPWorldwide/MerchantPortal/archive/refs/tags/".$REQ["version"].".zip", 'r'));
@@ -82,8 +79,7 @@ $files_to_remove = array_diff($current_files, $new_files);
 foreach($files_to_remove as $key=>$value) {
     unlink($key);
 }
-
-folder_copy("update/MerchantPortal-".$REQ["version"],".");
+cpy("update/MerchantPortal-".$REQ["version"],".");
 rmdir("update/MerchantPortal-".$REQ["version"]);
 
 include("controller/IPPConfig.php");
