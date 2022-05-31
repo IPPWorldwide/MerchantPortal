@@ -71,7 +71,7 @@ unlink($src.$REQ["version"].".zip");
 
 $ignored_files = explode("\n", file_get_contents($src."MerchantPortal-".$REQ["version"]."/.gitignore"));
 
-$updated_version = recurse_copy($src."MerchantPortal-".$REQ["version"],"update/MerchantPortal-0.1.4/",$ignored_files);
+$updated_version = recurse_copy($src."MerchantPortal-".$REQ["version"],"update/MerchantPortal-".$REQ["version"]."/",$ignored_files);
 $original_version = recurse_copy("../","../",$ignored_files);
 $result = array_diff($original_version, $updated_version);
 foreach($result as $value) {
