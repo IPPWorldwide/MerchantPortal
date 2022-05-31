@@ -2,8 +2,8 @@
 include("../base.php");
 
 echo head();
-?>
-      <h2>Charts</h2>
+echo '
+      <h2>'.$lang["COMPANY"]["CHARTS"]["HEADER"].'</h2>
         <div class="card chart-container">
             <canvas id="chart_tnx"></canvas>
         </div>
@@ -13,7 +13,7 @@ echo head();
     </main>
   </div>
 </div>
-<?php
+';
 $inline_css = ["
     .chart-container {
         width: 50%;

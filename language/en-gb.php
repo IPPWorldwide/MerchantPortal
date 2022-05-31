@@ -153,3 +153,6 @@ $lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Amount";
 $lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
 $lang["COMPANY"]["DASHBOARD"]["INFO"] = "Info";
+
+
+$lang["COMPANY"]["CHARTS"]["HEADER"] = "Charts";
