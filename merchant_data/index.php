@@ -12,34 +12,34 @@ if(isset($REQ["acquirer_id"]) && isset($REQ["acquirer_data"])) {
 }
 $merchant_data = $ipp->MerchantData();
 echo head();
-?>
+echo '
         <form action="?" method="POST" class="form">
             <h2>Merchant Data</h2>
             <div class="row row-cols-md-3 mb-3">
-                <div class="col themed-grid-col">Merchant ID:<br /><input name="id" class="form-control" value="<?php echo $merchant_data->id; ?>" readonly></div>
-                <div class="col themed-grid-col">API Password:<br /><input name="security[key1]" class="form-control" value="<?php echo $merchant_data->security->key1; ?>"></div>
-                <div class="col themed-grid-col">Payment Password:<br /><input name="security[key2]" class="form-control" value="<?php echo $merchant_data->security->key2; ?>"></div>
+                <div class="col themed-grid-col">Merchant ID:<br /><input name="id" class="form-control" value="'.$merchant_data->id.'" readonly></div>
+                <div class="col themed-grid-col">API Password:<br /><input name="security[key1]" class="form-control" value="'.$merchant_data->security->key1.'"></div>
+                <div class="col themed-grid-col">Payment Password:<br /><input name="security[key2]" class="form-control" value="'.$merchant_data->security->key2.'"></div>
             </div>
             <h2>Session Data</h2>
             <div class="row row-cols-md-3 mb-3">
-                <div class="col themed-grid-col">User ID :<br /><input name="id" class="form-control" value="<?php echo $ipp->getSession()["user_id"]; ?>" readonly></div>
-                <div class="col themed-grid-col">Session Key:<br /><input name="security[key1]" class="form-control" value="<?php echo $ipp->getSession()["session_id"]; ?>"></div>
+                <div class="col themed-grid-col">User ID :<br /><input name="id" class="form-control" value="'.$ipp->getSession()["user_id"].'" readonly></div>
+                <div class="col themed-grid-col">Session Key:<br /><input name="security[key1]" class="form-control" value="'.$ipp->getSession()["session_id"].'"></div>
             </div>
             <h2>Company Details</h2>
             <div class="row row-cols-md-3 mb-3">
-                <div class="col themed-grid-col">Company Name:<br /><input name="meta[company][name]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->name) ? $merchant_data->meta_data->company->name : ""; ?>"></div>
-                <div class="col themed-grid-col">Company Registration No:<br /><input name="meta[company][reg_id]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->reg_id) ? $merchant_data->meta_data->company->reg_id : ""; ?>"></div>
-                <div class="col themed-grid-col">EU VAT Number:<br /><input name="meta[company][vat]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->vat) ? $merchant_data->meta_data->company->vat : ""; ?>"></div>
+                <div class="col themed-grid-col">Company Name:<br /><input name="meta[company][name]" class="form-control" value="'; echo isset($merchant_data->meta_data->company->name) ? $merchant_data->meta_data->company->name : ""; echo '"></div>
+                <div class="col themed-grid-col">Company Registration No:<br /><input name="meta[company][reg_id]" class="form-control" value="'; echo isset($merchant_data->meta_data->company->reg_id) ? $merchant_data->meta_data->company->reg_id : ""; echo '"></div>
+                <div class="col themed-grid-col">EU VAT Number:<br /><input name="meta[company][vat]" class="form-control" value="'; echo isset($merchant_data->meta_data->company->vat) ? $merchant_data->meta_data->company->vat : ""; echo '"></div>
             </div>
             <div class="row row-cols-md-3 mb-3">
-                <div class="col themed-grid-col">Street Address:<br /><input name="meta[address][address]" class="form-control" value="<?php echo isset($merchant_data->meta_data->address->address) ? $merchant_data->meta_data->address->address : ""; ?>"></div>
-                <div class="col themed-grid-col">Postal:<br /><input name="meta[address][postal]" class="form-control" value="<?php echo isset($merchant_data->meta_data->address->postal) ? $merchant_data->meta_data->address->postal : ""; ?>"></div>
-                <div class="col themed-grid-col">City:<br /><input name="meta[address][city]" class="form-control" value="<?php echo isset($merchant_data->meta_data->address->city) ? $merchant_data->meta_data->address->city : ""; ?>"></div>
+                <div class="col themed-grid-col">Street Address:<br /><input name="meta[address][address]" class="form-control" value="'; echo isset($merchant_data->meta_data->address->address) ? $merchant_data->meta_data->address->address : ""; echo '"></div>
+                <div class="col themed-grid-col">Postal:<br /><input name="meta[address][postal]" class="form-control" value="'; echo isset($merchant_data->meta_data->address->postal) ? $merchant_data->meta_data->address->postal : ""; echo '"></div>
+                <div class="col themed-grid-col">City:<br /><input name="meta[address][city]" class="form-control" value="'; echo isset($merchant_data->meta_data->address->city) ? $merchant_data->meta_data->address->city : ""; echo '"></div>
             </div>
             <div class="row row-cols-md-3 mb-3">
-                <div class="col themed-grid-col">Country:<br /><input name="meta[address][country]" class="form-control" value="<?php echo isset($merchant_data->meta_data->address->country) ? $merchant_data->meta_data->address->country : ""; ?>"></div>
-                <div class="col themed-grid-col">Phone number:<br /><input name="meta[company][phone]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->phone) ? $merchant_data->meta_data->company->phone : ""; ?>"></div>
-                <div class="col themed-grid-col">Cardholder Description:<br /><input name="meta[processing][descriptor]" class="form-control" value="<?php echo isset($merchant_data->meta_data->processing->descriptor) ? $merchant_data->meta_data->processing->descriptor : ""; ?>"></div>
+                <div class="col themed-grid-col">Country:<br /><input name="meta[address][country]" class="form-control" value="'; echo isset($merchant_data->meta_data->address->country) ? $merchant_data->meta_data->address->country : ""; echo '"></div>
+                <div class="col themed-grid-col">Phone number:<br /><input name="meta[company][phone]" class="form-control" value="'; echo isset($merchant_data->meta_data->company->phone) ? $merchant_data->meta_data->company->phone : ""; echo '"></div>
+                <div class="col themed-grid-col">Cardholder Description:<br /><input name="meta[processing][descriptor]" class="form-control" value="'; echo isset($merchant_data->meta_data->processing->descriptor) ? $merchant_data->meta_data->processing->descriptor : ""; echo '"></div>
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">
@@ -53,9 +53,11 @@ echo head();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($merchant_data->acquirers as $key=>$value) {
+                        ';
+                        foreach($merchant_data->acquirers as $key=>$value) {
                             echo "<tr><td>".$value->name."</td><td>".$value->id."</td><td></td><td><a href='".$value->url."' target='_BLANK'>".$value->url."</a></td></tr>";
-                        } ?>
+                        }
+                        echo '
                         </tbody>
                     </table>
                 </div>
@@ -68,7 +70,8 @@ echo head();
                             <div class="col-sm-6">
                                 <div class="radio">
                                     <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="AABB-ABCD-ABCD" <?php if($merchant_data->rules->id == "AABB-ABCD-ABCD") { echo "checked"; } ?>>
+                                        <input type="radio" name="rule_type" value="AABB-ABCD-ABCD"';
+                                        if($merchant_data->rules->id == "AABB-ABCD-ABCD") { echo "checked"; } echo '>
                                         <i class="dark-white"></i>
                                         Round Robin
                                     </label>
@@ -77,7 +80,8 @@ echo head();
                             <div class="col-sm-6">
                                 <div class="radio">
                                     <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="BBBB-CCCC-DDDD" <?php if($merchant_data->rules->id == "BBBB-CCCC-DDDD") { echo "checked"; } ?>>
+                                        <input type="radio" name="rule_type" value="BBBB-CCCC-DDDD" ';
+                                        if($merchant_data->rules->id == "BBBB-CCCC-DDDD") { echo "checked"; } echo '>
                                         <i class="dark-white"></i>
                                         Round Robin with max limit
                                     </label>
@@ -86,7 +90,7 @@ echo head();
                             <div class="col-sm-6">
                                 <div class="radio">
                                     <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="CCCC-DDDD-EEEE" <?php if($merchant_data->rules->id == "CCCC-DDDD-EEEE") { echo "checked"; } ?>>
+                                        <input type="radio" name="rule_type" value="CCCC-DDDD-EEEE" '; if($merchant_data->rules->id == "CCCC-DDDD-EEEE") { echo "checked"; } echo '>
                                         <i class="dark-white"></i>
                                         Acquirer with lowest processing volume today
                                     </label>
@@ -95,7 +99,7 @@ echo head();
                             <div class="col-sm-6">
                                 <div class="radio">
                                     <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="DDDD-EEEE-FFFF" <?php if($merchant_data->rules->id == "DDDD-EEEE-FFFF") { echo "checked"; } ?>>
+                                        <input type="radio" name="rule_type" value="DDDD-EEEE-FFFF" '; if($merchant_data->rules->id == "DDDD-EEEE-FFFF") { echo "checked"; } echo '>
                                         <i class="dark-white"></i>
                                         Acquirer with lowest processing volume, with max limit
                                     </label>
@@ -118,7 +122,7 @@ echo head();
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
+                                        ';
                                         foreach($merchant_data->acquirers as $value) {
                                             $settings = ((bool)$value->settings == NULL) ? "{}" : $value->settings;
                                             echo "<tr>";
@@ -146,7 +150,7 @@ echo head();
                                                 echo "</td>";
                                             echo "</tr>";
                                         }
-                                        ?>
+                                        echo '
                                         </tbody></table>
                                 </div>
                             </div>
@@ -180,5 +184,5 @@ echo head();
             </div>
         </div>
     </div>
-<?php
+';
 echo foot();
