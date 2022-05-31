@@ -126,7 +126,7 @@ $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdm
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
 
 
-$lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Tranactions";
+$lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Transactions";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Payment Type";
 $lang["COMPANY"]["DASHBOARD"]["ALL"] = "ALL";
 $lang["COMPANY"]["DASHBOARD"]["AUTH"] = "AUTH";
