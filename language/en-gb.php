@@ -124,15 +124,6 @@ $lang["PARTNER"]["MENUS"]["REMOVE"] = "(Remove)";
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdmin is outdated!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
 
-$lang["PARTNER"]["PAYOUTS"]["HEADER"] = "Payouts";
-$lang["PARTNER"]["PAYOUTS"]["DATE"] = "Date";
-$lang["PARTNER"]["PAYOUTS"]["GROSS_VOLUME"] = "Gross Volume";
-$lang["PARTNER"]["PAYOUTS"]["CALCULATED_FEE"] = "Calculated Fee";
-$lang["PARTNER"]["PAYOUTS"]["SETTLEMENT"] = "Settlement";
-$lang["PARTNER"]["PAYOUTS"]["SETTLED"] = "Settled";
-$lang["PARTNER"]["PAYOUTS"]["INFO"] = "Info";
-
-
 
 $lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Tranactions";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Payment Type";
@@ -210,7 +201,15 @@ $lang["COMPANY"]["DATA"]["SETTINGS"] = "Settings";
 $lang["COMPANY"]["DATA"]["SAVE"] = "Save";
 $lang["COMPANY"]["DATA"]["CLOSE"] = "Close";
 
+$lang["COMPANY"]["PAYOUTS"]["HEADER"] = "Payouts";
+$lang["COMPANY"]["PAYOUTS"]["DATE"] = "Date";
+$lang["COMPANY"]["PAYOUTS"]["GROSS_VOLUME"] = "Gross Volume";
+$lang["COMPANY"]["PAYOUTS"]["CALCULATED_FEE"] = "Calculated Fee";
+$lang["COMPANY"]["PAYOUTS"]["SETTLEMENT"] = "Settlement";
+$lang["COMPANY"]["PAYOUTS"]["SETTLED"] = "Settled";
+$lang["COMPANY"]["PAYOUTS"]["INFO"] = "Info";
 
+$lang["COMPANY"]["ONBOARDING"]["HEADER"] = "Merchant Onboarding";
 
 
 
