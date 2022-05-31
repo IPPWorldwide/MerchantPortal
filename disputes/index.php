@@ -4,46 +4,44 @@ $state   = $REQ["dispute_state"] ?? "ALL";
 $status         = $REQ["dispute_status"] ?? "ALL";
 
 echo head();
-?>
-    <!doctype html>
-    <h2>Disputes</h2>
+echo '
+    <h2>'.$lang["COMPANY"]["DISPUTES"]["HEADER"].'</h2>
     <form action="/disputes" method="GET">
         <div class="form-group">
-            <label for="payment_type">Dispute Type:</label>
+            <label for="payment_type">'.$lang["COMPANY"]["DISPUTES"]["TYPE"].'</label>
             <select id="dispute_status" name="dispute_status">
-                <option>OPEN</option>
-                <option>CLOSED</option>
+                <option>'.$lang["COMPANY"]["DISPUTES"]["OPEN"].'</option>
+                <option>'.$lang["COMPANY"]["DISPUTES"]["CLOSED"].'</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="payment_result">Dispute Status:</label>
+            <label for="payment_result">'.$lang["COMPANY"]["DISPUTES"]["STATUS"].'</label>
             <select id="dispute_state" name="dispute_state">
-                <option>Received</option>
-                <option>Represented</option>
-                <option>1st Chargeback</option>
-                <option>2nd Chargeback</option>
-                <option>Lost</option>
+                <option>'.$lang["COMPANY"]["DISPUTES"]["RECEIVED"].'</option>
+                <option>'.$lang["COMPANY"]["DISPUTES"]["REPRESENTED"].'</option>
+                <option>'.$lang["COMPANY"]["DISPUTES"]["FIRST"].'</option>
+                <option>'.$lang["COMPANY"]["DISPUTES"]["SECOND"].'</option>
+                <option>'.$lang["COMPANY"]["DISPUTES"]["LOST"].'</option>
             </select>
         </div>
-        <input type="submit" value="Change view" class="btn btn-primary">
+        <input type="submit" value="'.$lang["COMPANY"]["DISPUTES"]["CHANGE_VIEW"].'" class="btn btn-primary">
     </form>
 
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">Dispute ID</th>
-            <th scope="col">Transaction ID</th>
-            <th scope="col">Disputed Amount</th>
-            <th scope="col">Order Amount</th>
-            <th scope="col">Currency</th>
-            <th scope="col">Status</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["ID"].'</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["TRANSACTION_ID"].'</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["DISPUTED_AMOUNT"].'</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["ORDER_AMOUNT"].'</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["CURRENCY"].'</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["STATUS"].'</th>
         </tr>
         </thead>
-        <tbody>
-        <?php
+        <tbody>';
         foreach($ipp->ListDisputes($state, $status) as $value) {
             echo "<tr class='align-middle'>";
-            echo "<td><a href='/disputes/data.php?id=".$value->id."' class='btn btn-dark'>Info</a></td>";
+            echo "<td><a href='/disputes/data.php?id=".$value->id."' class='btn btn-dark'>".$lang["COMPANY"]["DISPUTES"]["INFO"]."</a></td>";
             echo "<td>".$value->transaction->id."</td>";
             echo "<td>".$value->amount_readable."</td>";
             echo "<td>".$value->transaction->amount_readable."</td>";
@@ -61,9 +59,9 @@ echo head();
             echo "'></td>";
             echo "</tr>";
         }
-        ?>
+        echo '
         </tbody>
     </table>
     </div>
-<?php
+';
 echo foot();

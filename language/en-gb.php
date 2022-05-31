@@ -234,4 +234,35 @@ $lang["COMPANY"]["USERS_ADD"]["PASSWORD"] = "Password:";
 $lang["COMPANY"]["USERS_ADD"]["CREATE_USER"] = "Create user";
 
 
+$lang["COMPANY"]["DISPUTES"]["HEADER"] = "Disputes";
+$lang["COMPANY"]["DISPUTES"]["TYPE"] = "Dispute Type:";
+$lang["COMPANY"]["DISPUTES"]["OPEN"] = "OPEN";
+$lang["COMPANY"]["DISPUTES"]["CLOSED"] = "CLOSED";
+$lang["COMPANY"]["DISPUTES"]["STATUS"] = "Dispute Status";
+$lang["COMPANY"]["DISPUTES"]["RECEIVED"] = "Received";
+$lang["COMPANY"]["DISPUTES"]["REPRESENTED"] = "Represented";
+$lang["COMPANY"]["DISPUTES"]["FIRST"] = "1st Chargeback";
+$lang["COMPANY"]["DISPUTES"]["SECOND"] = "2nd Chargeback";
+$lang["COMPANY"]["DISPUTES"]["LOST"] = "Lost";
+$lang["COMPANY"]["DISPUTES"]["CHANGE_VIEW"] = "Change View";
+$lang["COMPANY"]["DISPUTES"]["ID"] = "Dispute ID";
+$lang["COMPANY"]["DISPUTES"]["TRANSACTION_ID"] = "Transaction ID";
+$lang["COMPANY"]["DISPUTES"]["DISPUTED_AMOUNT"] = "Disputed Amount";
+$lang["COMPANY"]["DISPUTES"]["ORDER_AMOUNT"] = "Order Amount";
+$lang["COMPANY"]["DISPUTES"]["CURRENCY"] = "Currency";
+$lang["COMPANY"]["DISPUTES"]["STATUS"] = "Status";
+$lang["COMPANY"]["DISPUTES"]["INFO"] = "Info";
 
+$lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"] = "Payment Links";
+$lang["COMPANY"]["PAYMENT_LINKS"]["LINK_SENT"] = "Your payment link have been sent";
+$lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_SENDER"] = "Sender";
+$lang["COMPANY"]["PAYMENT_LINKS"]["SENDER"] = "Sender";
+$lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_RECIPIENT"] = "Recipient";
+$lang["COMPANY"]["PAYMENT_LINKS"]["RECIPIENT"] = "Recipient";
+$lang["COMPANY"]["PAYMENT_LINKS"]["EXPIRY"] = "Expiry Time for Link";
+$lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_ORDER_ID"] = "Order ID of Payment Link";
+$lang["COMPANY"]["PAYMENT_LINKS"]["ORDER_ID"] = "Order ID";
+$lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_AMOUNT_PAID"] = "Amount to be paid";
+$lang["COMPANY"]["PAYMENT_LINKS"]["AMOUNT_PAID"] = "Amount to be paid";
+$lang["COMPANY"]["PAYMENT_LINKS"]["CURRENCY"] = "Currency";
+$lang["COMPANY"]["PAYMENT_LINKS"]["SUBMIT"] = "Send Payment Link";
