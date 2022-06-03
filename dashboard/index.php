@@ -3,6 +3,12 @@ include("../base.php");
 $payment_type   = $REQ["payment_type"] ?? "AUTH";
 $result         = $REQ["payment_result"] ?? "ALL";
 
+if(isset($REQ["userid"])) {
+}
+if($company_data->content->user->password) {
+    $inline_script[] = "$( document ).ready(function() { $('#passwordModal').modal('show'); });     $('#passwordModal .modal-title').text('New password');
+    $('#passwordModal #user-id').val('" . $_COOKIE["ipp_id"] .  "');";
+}
 echo head();
 echo '
       <h2>'.$lang["COMPANY"]["DASHBOARD"]["HEADER"].'</h2>
@@ -66,5 +72,32 @@ echo '
           </tbody>
         </table>
       </div>
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" name="user_id" id="user-id" readonly>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">'.$lang["COMPANY"]["USERS"]["PASSWORD"].'</label>
+                            <input type="password" class="form-control checkPasswordUser" name="password" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">'.$lang["COMPANY"]["USERS"]["REPEAT_PASSWORD"].'</label>
+                            <input type="password" class="form-control checkPasswordUser" id="repeat-password">
+                            <small id="PasswordRequirements">'.$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"].'</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeModal">'.$lang["COMPANY"]["USERS"]["CLOSE"].'</button>
+                    <button type="button" class="btn btn-primary confirm" disabled>'.$lang["COMPANY"]["USERS"]["CHANGE_PASSWORD"].'</button>
+                </div>
+            </div>
+        </div>
+    </div>
 ';
 echo foot();

@@ -1,0 +1,2 @@
+- Forgot password
+- Updated Company Collection to contain new User Password identification

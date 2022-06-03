@@ -102,6 +102,9 @@ class IPP {
     }
     public function ResetUserPassword($update_user_id,$password) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id, "password" => $password];
+
+        var_dump($_ENV["GLOBAL_BASE_URL"]."/company/users/password/reset/" . http_build_query($data));
+
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/password/reset/", "POST", [], $data);
     }
     public function UserData($merchant_id) {

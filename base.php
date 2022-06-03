@@ -41,6 +41,7 @@ $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"]);
 $inline_css = [];
 $inline_script = [];
 $load_script = [];
+$company_data = new stdClass();
 
 if(isset($partner_page) && $partner_page == 1) {
     $data = $partner->checkLogin();
@@ -53,8 +54,8 @@ if(isset($partner_page) && $partner_page == 1) {
     require_once("theme/".$_ENV["THEME"]."/partner/foot.php");
 }
 elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
-    $data = $ipp->checkLogin();
-    if(!$data->success) {
+    $company_data = $ipp->checkLogin();
+    if(!$company_data->success) {
         header("Location: /");
         die();
     }

@@ -7,6 +7,9 @@ $lang["LOGIN"]["AS_PAYFAC"] = "Login as Payfac";
 $lang["LOGIN"]["SIGN_IN"] = "Sign in";
 $lang["LOGIN"]["ACCOUNT_UNAVAILABLE"] = "The account is blocked for 24 hours, due to incorrect login credentials.";
 
+$lang["LOGIN"]["CLOSE"] = "Close";
+$lang["LOGIN"]["RESET_PASSWORD"] = "Send reset request";
+$lang["LOGIN"]["SENT_RESET_EMAIL"] = "You will receive a reset e-mail within the next few minutes.";
 
 $lang["PARTNER"]["COMPANIES"]["HEADER"] = "Companies";
 $lang["PARTNER"]["COMPANIES"]["ADD_NEW"] = "Add new Company";
