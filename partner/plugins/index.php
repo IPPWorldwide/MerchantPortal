@@ -10,7 +10,8 @@ if(isset($REQ["plugin_slug"])) {
         fwrite($myfile, $txt);
     }
     fclose($myfile);
-    $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
+    if(method_exists($plugins,"hookUpdate"))
+        $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
     echo json_encode($REQ);
     die();
 }

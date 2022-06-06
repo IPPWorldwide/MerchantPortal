@@ -13,7 +13,6 @@ if(isset($REQ["close"])) {
 }
 
 $templates = $partner->ListTemplates();
-
 echo head();
 echo '
     <div class="row">

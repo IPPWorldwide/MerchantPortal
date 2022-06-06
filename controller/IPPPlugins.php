@@ -74,11 +74,6 @@ class IPPPlugins
         if(method_exists($this->available_plugins[$plugin_name],"hook_login"))
             $this->hook_login[] = $this->available_plugins[$plugin_name]->hook_login();
     }
-    public function hookUpdate($plugin_name,$plugin_id,$params) {
-        $method = new ReflectionMethod($this->available_plugins[$plugin_name], 'hookUpdate');
-        if($method->class == $plugin_name)
-            $this->hook_footer[] = $this->available_plugins[$plugin_name]->hookUpdate($plugin_name,$plugin_id,$params);
-    }
     public function getSettingsValues($plugin_name, $value) {
         if(isset($this->values[$value]))
             return $this->values[$value];
@@ -91,6 +86,15 @@ class IPPPlugins
     }
     public function getId($plugin_name) {
         return $this->available_plugins[$plugin_name]->id;
+    }
+    public function getStandardConfigs($plugin_name) {
+        $this->setFields();
+        $standard_values = [];
+        foreach($this->fields() as $value) {
+            if(isset($value["standard"]))
+                $standard_values[] = $value;
+        }
+        return $standard_values;
     }
     private function loadPlugin($plugin_name) {
         $this->available_plugins[$plugin_name] = new $plugin_name();
