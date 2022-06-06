@@ -42,8 +42,6 @@ echo '
         </thead>
         <tbody>';
         foreach($ipp->ListDisputes($state, $status) as $value) {
-            var_dump($value);
-
             echo "<tr class='align-middle'>";
             echo "<td><a href='/disputes/data.php?id=".$value->id."' class='btn btn-dark'>".$lang["COMPANY"]["DISPUTES"]["INFO"]."</a></td>";
             echo "<td>".$value->timestamp->received_readable."</td>";
