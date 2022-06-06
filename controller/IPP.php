@@ -111,6 +111,17 @@ class IPP {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/data/", "POST", [], $data)->content;
     }
+    public function RequestResetUserPassword($partner_id,$email, $portal) {
+        $data = ["partner_id" => $partner_id,"email" => $email,"portal" => $portal];
+
+        var_dump($_ENV["GLOBAL_BASE_URL"]."/company/users/password/request/?".http_build_query($data));
+
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/password/request/", "POST", [], $data);
+    }
+    public function ConfirmResetUserPassword($partner_id,$user_id,$initialization_time,$hash) {
+        $data = ["partner_id" => $partner_id,"user_id" => $user_id,"initialization_time" => $initialization_time,"hash" => $hash];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/password/request/confirm.php", "POST", [], $data);
+    }
 
     public function DisputesData($dispute_id) {
         $data = ["dispute_id" => $dispute_id,"user_id" => $this->user_id, "session_id" => $this->session_id];

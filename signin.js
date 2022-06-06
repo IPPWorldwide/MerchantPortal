@@ -28,12 +28,10 @@ $("#passwordModal .confirm").on("click", function() {
         }
     }).done(function () {
         setTimeout(function () {
-            if (newState == -1) {
-                $('#passwordModal').modal('hide');
-                $('#passwordModal .ResetEmailSent').css('display','none');
-                $('#passwordModal .form-group').css('display','inline');
-                $('#passwordModal').modal('hide');
-            }
+            $('#passwordModal').modal('hide');
+            $('#passwordModal .ResetEmailSent').css('display','none');
+            $('#passwordModal .form-group').css('display','inline');
+            $('#passwordModal').modal('hide');
         }, 10000);
 
     });

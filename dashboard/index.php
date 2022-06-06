@@ -4,8 +4,10 @@ $payment_type   = $REQ["payment_type"] ?? "AUTH";
 $result         = $REQ["payment_result"] ?? "ALL";
 
 if(isset($REQ["userid"])) {
+    $ipp->ResetUserPassword($_COOKIE["ipp_id"],$REQ["password"]);
+    die();
 }
-if($company_data->content->user->password) {
+if($company_data->content->user->password->new) {
     $inline_script[] = "$( document ).ready(function() { $('#passwordModal').modal('show'); });     $('#passwordModal .modal-title').text('New password');
     $('#passwordModal #user-id').val('" . $_COOKIE["ipp_id"] .  "');";
 }

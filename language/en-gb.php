@@ -260,6 +260,7 @@ $lang["COMPANY"]["DISPUTES"]["INFO"] = "Info";
 
 $lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"] = "Payment Links";
 $lang["COMPANY"]["PAYMENT_LINKS"]["LINK_SENT"] = "Your payment link have been sent";
+$lang["COMPANY"]["PAYMENT_LINKS"]["LINK_NOT_SENT"] = "Your payment link have NOT been sent. Please contact us for more information.";
 $lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_SENDER"] = "Sender";
 $lang["COMPANY"]["PAYMENT_LINKS"]["SENDER"] = "Sender";
 $lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_RECIPIENT"] = "Recipient";

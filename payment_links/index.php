@@ -3,15 +3,18 @@ include("../base.php");
 $merchant_data = $ipp->MerchantData();
 if(isset($REQ["send_link"])) {
     $acquirer_data = array();
-    $ipp->SendPaymentLink($REQ["sender"],$REQ["recipient"],$REQ["expiry_time"],$REQ["order_id"],$REQ["amount"],$REQ["currency"]);
-    header("Location: ?sent=1");
+    $links = $ipp->SendPaymentLink($REQ["sender"],$REQ["recipient"],$REQ["expiry_time"],$REQ["order_id"],$REQ["amount"],$REQ["currency"])->content->sent_links;
+    header("Location: ?sent=".$links);
     die();
 }
 echo head();
 echo "<h2>".$lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"]."</h2>";
 
-if(isset($REQ["sent"]) && $REQ["sent"] == 1) {
+if(isset($REQ["sent"]) && $REQ["sent"] >= 1) {
     echo "<div class=\"col md-12 alert-warning rounded text-muted alert\">".$lang["COMPANY"]["PAYMENT_LINKS"]["LINK_SENT"]."</div>";
+}
+if(isset($REQ["sent"]) && $REQ["sent"] == 0) {
+    echo "<div class=\"col md-12 alert-warning rounded text-muted alert\">".$lang["COMPANY"]["PAYMENT_LINKS"]["LINK_NOT_SENT"]."</div>";
 }
 echo '
     <form action="?" method="POST">

@@ -10,7 +10,7 @@ if(isset($REQ["reset"])) {
     }
 }
 if(isset($REQ["reset_email"])) {
-    var_dump($ipp->RequestResetUserPassword($IPP_CONFIG["PARTNER_ID"],$REQ["reset_email"],$IPP_CONFIG["PORTAL_URL"]));
+    $ipp->RequestResetUserPassword($IPP_CONFIG["PARTNER_ID"],$REQ["reset_email"],$IPP_CONFIG["PORTAL_URL"]);
     die();
 }
 if(isset($REQ["language"])) {

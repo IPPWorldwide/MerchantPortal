@@ -260,6 +260,7 @@ $lang["COMPANY"]["DISPUTES"]["INFO"] = "Info";
 
 $lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"] = "Betalingslinks";
 $lang["COMPANY"]["PAYMENT_LINKS"]["LINK_SENT"] = "Dit betalingslink er blevet sendt";
+$lang["COMPANY"]["PAYMENT_LINKS"]["LINK_NOT_SENT"] = "Dit betalingslink blev ikke sendt. Kontakt os for mere information.";
 $lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_SENDER"] = "Afsender email";
 $lang["COMPANY"]["PAYMENT_LINKS"]["SENDER"] = "Afsender";
 $lang["COMPANY"]["PAYMENT_LINKS"]["PLACEHOLDER_RECIPIENT"] = "Modtager email";
