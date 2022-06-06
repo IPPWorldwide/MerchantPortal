@@ -31,6 +31,8 @@ echo '
         <thead>
         <tr>
             <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["ID"].'</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["RECEIVED_DATE"].'</th>
+            <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["RESPOND_DAYS_LEFT"].'</th>
             <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["TRANSACTION_ID"].'</th>
             <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["DISPUTED_AMOUNT"].'</th>
             <th scope="col">'.$lang["COMPANY"]["DISPUTES"]["ORDER_AMOUNT"].'</th>
@@ -40,8 +42,12 @@ echo '
         </thead>
         <tbody>';
         foreach($ipp->ListDisputes($state, $status) as $value) {
+            var_dump($value);
+
             echo "<tr class='align-middle'>";
             echo "<td><a href='/disputes/data.php?id=".$value->id."' class='btn btn-dark'>".$lang["COMPANY"]["DISPUTES"]["INFO"]."</a></td>";
+            echo "<td>".$value->timestamp->received_readable."</td>";
+            echo "<td>".$value->timestamp->next_update_days." ".$lang["COMPANY"]["DISPUTES"]["DAYS"]."</td>";
             echo "<td>".$value->transaction->id."</td>";
             echo "<td>".$value->amount_readable."</td>";
             echo "<td>".$value->transaction->amount_readable."</td>";

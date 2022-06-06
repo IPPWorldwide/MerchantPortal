@@ -257,6 +257,11 @@ $lang["COMPANY"]["DISPUTES"]["ORDER_AMOUNT"] = "Ordre beløb";
 $lang["COMPANY"]["DISPUTES"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["DISPUTES"]["STATUS"] = "Status";
 $lang["COMPANY"]["DISPUTES"]["INFO"] = "Info";
+$lang["COMPANY"]["DISPUTES"]["RECEIVED_DATE"] = "Modtagelsesdato";
+$lang["COMPANY"]["DISPUTES"]["RESPOND_DAYS_LEFT"] = "Afsluttes om";
+$lang["COMPANY"]["DISPUTES"]["DAYS"] = "dage";
+
+
 
 $lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"] = "Betalingslinks";
 $lang["COMPANY"]["PAYMENT_LINKS"]["LINK_SENT"] = "Dit betalingslink er blevet sendt";

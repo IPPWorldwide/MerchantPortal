@@ -257,6 +257,9 @@ $lang["COMPANY"]["DISPUTES"]["ORDER_AMOUNT"] = "Order Amount";
 $lang["COMPANY"]["DISPUTES"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["DISPUTES"]["STATUS"] = "Status";
 $lang["COMPANY"]["DISPUTES"]["INFO"] = "Info";
+$lang["COMPANY"]["DISPUTES"]["RECEIVED_DATE"] = "Received";
+$lang["COMPANY"]["DISPUTES"]["RESPOND_DAYS_LEFT"] = "Days before closure";
+$lang["COMPANY"]["DISPUTES"]["DAYS"] = "days";
 
 $lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"] = "Payment Links";
 $lang["COMPANY"]["PAYMENT_LINKS"]["LINK_SENT"] = "Your payment link have been sent";
