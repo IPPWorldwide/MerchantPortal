@@ -7,6 +7,7 @@ if(isset($REQ["send_link"])) {
     header("Location: ?sent=".$links);
     die();
 }
+$sent_payment_links = $ipp->ListPaymentLinks();
 echo head();
 echo "<h2>".$lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"]."</h2>";
 
@@ -55,4 +56,66 @@ echo '
         </div>
     </form>
 ';
+
+echo "<div class='table-responsive'>";
+    echo "<table class='table table-striped table-sm'>";
+        echo "<thead>";
+            echo "<tr>";
+                echo "<td>";
+                    echo "Link ID";
+                echo "</td>";
+                echo "<td>";
+                    echo "Recipient";
+                echo "</td>";
+                echo "<td>";
+                    echo "Created";
+                echo "</td>";
+                echo "<td>";
+                    echo "Expiry";
+                echo "</td>";
+                echo "<td>";
+                    echo "Amount";
+                echo "</td>";
+                echo "<td>";
+                    echo "Currency";
+                echo "</td>";
+                echo "<td>";
+                    echo "Paid";
+                echo "</td>";
+            echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
+        foreach($sent_payment_links as $value) {
+            echo "<tr>";
+                echo "<td>";
+                    echo $value->id;
+                echo "</td>";
+                echo "<td>";
+                    echo $value->recipient;
+                echo "</td>";
+                echo "<td>";
+                    echo $value->dates->created->readable;
+                echo "</td>";
+                echo "<td>";
+                    echo $value->dates->expiry->readable;
+                echo "</td>";
+                echo "<td>";
+                    echo $value->amount->readable;
+                echo "</td>";
+                echo "<td>";
+                    echo $value->currency->text;
+                echo "</td>";
+                echo "<td>";
+                echo "<img src='";
+                    if($value->paid)
+                        echo "/theme/".$_ENV["THEME"]."/assets/img/yes.png";
+                    else
+                        echo "/theme/".$_ENV["THEME"]."/assets/img/no.png";
+                echo "'>";
+            echo "</tr>";
+        }
+        echo "</tbody>";
+    echo "</table>";
+echo "</div>";
+
 echo foot();

@@ -148,6 +148,10 @@ class IPP {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/invoice/list/", "POST", [], $data)->content;
     }
+    public function ListPaymentLinks() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/links/list/", "POST", [], $data)->content;
+    }
     public function version() {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/version.php");
     }
