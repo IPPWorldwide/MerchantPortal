@@ -1,3 +1,4 @@
 - Adding days left in Disputes
 - Fix missing MCC list
 - Bugfix in Invoices
+- Requires SMTP Plugin to be installed before showing Forgot Password
