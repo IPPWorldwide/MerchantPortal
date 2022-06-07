@@ -2,3 +2,4 @@
 - Fix missing MCC list
 - Bugfix in Invoices
 - Requires SMTP Plugin to be installed before showing Forgot Password
+- Bugfix in Dashboard view, SELECT had incorrect selectoin

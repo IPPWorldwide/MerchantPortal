@@ -18,20 +18,20 @@ echo '
             <div class="form-group">
                 <label for="payment_type">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"].'</label>
                 <select id="payment_type" name="payment_type">
-                    <option value="ALL">'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
-                    <option value="AUTH">'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
-                    <option value="CAPTURE">'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
-                    <option value="REFUND">'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
-                    <option value="SECURE">'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
-                    <option value="CRYPT">'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
+                    <option value="ALL"'; if($payment_type === "ALL") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                    <option value="AUTH"'; if($payment_type === "AUTH") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
+                    <option value="CAPTURE"'; if($payment_type === "CAPTURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
+                    <option value="REFUND"'; if($payment_type === "REFUND") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
+                    <option value="SECURE"'; if($payment_type === "SECURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
+                    <option value="CRYPT"'; if($payment_type === "CRYPT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="payment_result">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"].'</label>
                 <select id="payment_result" name="payment_result">
-                <option value="ALL">'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
-                <option value="ACK">'.$lang["COMPANY"]["DASHBOARD"]["ACK"].'</option>
-                <option value="NOK">'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
+                <option value="ALL"'; if($result === "ALL") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                <option value="ACK"'; if($result === "ACK") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ACK"].'</option>
+                <option value="NOK"'; if($result === "NOK") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
             </select>
             </div>
             <input type="submit" value="'.$lang["COMPANY"]["DASHBOARD"]["CHANGE_VIEW"].'" class="btn btn-primary">
