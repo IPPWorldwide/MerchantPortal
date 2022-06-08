@@ -23,6 +23,7 @@ echo '
                     <option value="SALE"'; if($payment_type === "SALE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SALE"].'</option>
                     <option value="CAPTURE"'; if($payment_type === "CAPTURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
                     <option value="REFUND"'; if($payment_type === "REFUND") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
+                    <option value="CREDIT"'; if($payment_type === "CREDIT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CREDIT"].'</option>
                     <option value="SECURE"'; if($payment_type === "SECURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
                     <option value="CRYPT"'; if($payment_type === "CRYPT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
                 </select>

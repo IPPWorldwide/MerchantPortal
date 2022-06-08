@@ -1,1 +1,5 @@
+- Structural design change on Payment Data Page
 - Implemented new authorization method, "Sale"
+- Implemented new Credit method, "Credit"
+- Implemented Refund functionality
+- Implemented Capture functionality

@@ -136,6 +136,7 @@ $lang["COMPANY"]["DASHBOARD"]["AUTH"] = "Reservationer";
 $lang["COMPANY"]["DASHBOARD"]["SALE"] = "Strakssalg";
 $lang["COMPANY"]["DASHBOARD"]["CAPTURE"] = "Opkrævninger";
 $lang["COMPANY"]["DASHBOARD"]["REFUND"] = "Refunderinger";
+$lang["COMPANY"]["DASHBOARD"]["CREDIT"] = "Kontant kreditering";
 $lang["COMPANY"]["DASHBOARD"]["SECURE"] = "SECURE";
 $lang["COMPANY"]["DASHBOARD"]["CRYPT"] = "CRYPT";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"] = "Resultat for transaktion";
