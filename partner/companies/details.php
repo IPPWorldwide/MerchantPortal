@@ -14,6 +14,7 @@ foreach($merchant_data->acquirers as $key=>$value) {
 }
 
 $invoices = $partner->ListCompanyInvoices($REQ["id"]);
+$pos_devices = $partner->ListPOSDevices($REQ["id"]);
 $subscription_plans = $partner->ListSubscriptionPlans();
 
 $mcc_list = $mcc->list();
@@ -187,6 +188,37 @@ echo head();
                 </div>
             </div>
             <div class="col themed-grid-col">
+                <h2>Terminal Devices</h2>
+                <table class="table table-striped table-sm" id="terminal_devices">
+                    <thead>
+                    <tr>
+                        <th scope="col">Device ID</th>
+                        <th scope="col">Gateway MID</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Registered name</th>
+                        <th>#</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach($pos_devices as $value) {
+                        echo "<tr>";
+                        echo "
+                  <td>".$value->id."</td>
+                  <td>".$value->gateway_mid."</td>
+                  <td>".$value->type."</td>
+                  <td>".$value->name."</td>
+                  <td><input type='checkbox' name='pos_device[".$value->id."]' ";
+                        if($value->company_id == $REQ["id"]) {
+                            echo "checked";
+                        }
+                        echo ">
+                  </td>
+                </tr>";
+                    }
+                    ?>
+                    </tbody>
+                </table>
                 <h2>Invoices</h2>
                  <table class="table table-striped table-sm">
                         <thead>
@@ -201,8 +233,8 @@ echo head();
                         </thead>
                         <tbody>
                         <?php
-                        echo "<tr>";
                         foreach($invoices as $value) {
+                            echo "<tr>";
                             echo "
               <td>".$value->id."</td>
               <td>".$value->package_id."</td>
@@ -237,4 +269,38 @@ echo head();
 
 <?php
 
+$load_script[] = "https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js";
+$load_css[] = "https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css";
+$inline_script[] = "$( document ).ready(function() {
+var table = $('#terminal_devices').DataTable({        
+    lengthMenu: [
+            [3, 5, 10, -1],
+            [3, 5, 10, 'All']
+        ]
+        });
+        
+        
+        $('.form').on('submit', function(e){
+      var form = this;
+
+      // Encode a set of form elements from all pages as an array of names and values
+      var params = table.$('input,select,textarea').serializeArray();
+
+      // Iterate over all form elements
+      $.each(params, function(){
+         // If element doesn't exist in DOM
+         if(!$.contains(document, form[this.name])){
+            // Create a hidden element
+            $(form).append(
+               $('<input>')
+                  .attr('type', 'hidden')
+                  .attr('name', this.name)
+                  .val(this.value)
+            );
+         }
+      });
+   });
+
+});
+";
 echo foot();

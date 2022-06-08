@@ -54,6 +54,14 @@ class IPPPartner {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/", "POST", [], $data)->content;
     }
     public function MerchantDataUpdate($all_data = []) {
+        if(isset($all_data["pos_device"])) {
+            $pos = [];
+            $pos["user_id"] = $this->user_id;
+            $pos["session_id"] = $this->session_id;
+            $pos["company_id"] = $all_data["id"];
+            $pos["devices"] = $all_data["pos_device"];
+            $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/pos/update/", "POST", [], $pos);
+        }
         $security_data = [];
         $security_data["user_id"] = $this->user_id;
         $security_data["session_id"] = $this->session_id;
@@ -73,7 +81,7 @@ class IPPPartner {
         if(isset($all_data["rules"]))
             $meta_data["rules"] = $all_data["rules"];
 
-        $meta_data["acquirers"] = $all_data["acquirers"];
+        $meta_data["acquirers"] = $all_data["acquirers"] ?? [];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update/", "POST", [], $meta_data)->content;
     }
 
@@ -191,6 +199,10 @@ class IPPPartner {
     public function ListCompanyInvoices($company_id) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $company_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/invoices/company.php", "POST", [], $data)->content;
+    }
+    public function ListPOSDevices($company_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $company_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/pos_devices.php", "POST", [], $data)->content;
     }
     public function ListAcquirers() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
