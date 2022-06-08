@@ -134,6 +134,7 @@ $lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Transaktions type";
 $lang["COMPANY"]["DASHBOARD"]["ALL"] = "Alle";
 $lang["COMPANY"]["DASHBOARD"]["AUTH"] = "Reservationer";
 $lang["COMPANY"]["DASHBOARD"]["SALE"] = "Strakssalg";
+$lang["COMPANY"]["DASHBOARD"]["AUTHANDSALE"] = "Reservationer og Strakssalg";
 $lang["COMPANY"]["DASHBOARD"]["CAPTURE"] = "Opkrævninger";
 $lang["COMPANY"]["DASHBOARD"]["REFUND"] = "Refunderinger";
 $lang["COMPANY"]["DASHBOARD"]["CREDIT"] = "Kontant kreditering";

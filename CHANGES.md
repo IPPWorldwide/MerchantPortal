@@ -8,3 +8,4 @@
 - Implementation of POS Devices
 - Removed buggy Partner Search bar
 - Prepared minor fixes on Charts page.
+- Added AUTH+SALE display method

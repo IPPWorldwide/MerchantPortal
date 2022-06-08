@@ -1,6 +1,6 @@
 <?php
 include("../base.php");
-$payment_type   = $REQ["payment_type"] ?? "AUTH";
+$payment_type   = $REQ["payment_type"] ?? "AUTH+SALE";
 $result         = $REQ["payment_result"] ?? "ALL";
 
 if(isset($REQ["userid"])) {
@@ -21,6 +21,7 @@ echo '
                     <option value="ALL"'; if($payment_type === "ALL") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
                     <option value="AUTH"'; if($payment_type === "AUTH") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
                     <option value="SALE"'; if($payment_type === "SALE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SALE"].'</option>
+                    <option value="AUTH+SALE"'; if($payment_type === "AUTH+SALE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["AUTHANDSALE"].'</option>
                     <option value="CAPTURE"'; if($payment_type === "CAPTURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
                     <option value="REFUND"'; if($payment_type === "REFUND") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
                     <option value="CREDIT"'; if($payment_type === "CREDIT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CREDIT"].'</option>
