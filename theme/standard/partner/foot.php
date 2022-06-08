@@ -1,10 +1,13 @@
 <?php
 function foot() {
-    global $inline_css, $inline_script,$load_script,$plugins;
+    global $inline_css, $inline_script,$load_script,$plugins,$load_css;
     $css = "";
     $script = "";
     foreach($inline_css as $value) {
         $css .= "<style>".$value."</style>";
+    }
+    foreach($load_css as $value) {
+        $css .= '<link href="'.$value.'" rel="stylesheet">';
     }
     foreach($inline_script as $value) {
         $script .= "<script>".$value."</script>";

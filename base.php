@@ -41,6 +41,7 @@ $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"]);
 $inline_css = [];
 $inline_script = [];
 $load_script = [];
+$load_css = [];
 $company_data = new stdClass();
 
 if(isset($partner_page) && $partner_page == 1) {
