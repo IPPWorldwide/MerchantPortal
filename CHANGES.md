@@ -6,3 +6,4 @@
 - MCC Bugfix
 - Load external CSS
 - Implementation of POS Devices
+- Removed buggy Partner Search bar
