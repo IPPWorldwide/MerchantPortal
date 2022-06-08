@@ -7,3 +7,4 @@
 - Load external CSS
 - Implementation of POS Devices
 - Removed buggy Partner Search bar
+- Prepared minor fixes on Charts page.

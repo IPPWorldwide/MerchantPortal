@@ -5,10 +5,10 @@ echo head();
 echo '
       <h2>'.$lang["COMPANY"]["CHARTS"]["HEADER"].'</h2>
         <div class="card chart-container">
-            <canvas id="chart_tnx"></canvas>
+            <canvas id="chart_amount"></canvas>
         </div>
         <div class="card chart-container">
-            <canvas id="chart_amount"></canvas>
+            <canvas id="chart_tnx"></canvas>
         </div>
     </main>
   </div>
@@ -22,6 +22,7 @@ $inline_css = ["
     }"];
 
 $charts = $ipp->Charts();
+
 $ch_count = count((array)$charts);
 $i = 1;
 $tnx_labels = "";
@@ -31,8 +32,7 @@ foreach ($charts as $value) {
         $tnx_labels .= ",";
     $i++;
 }
-$charts = $ipp->Charts();
-$ch_count = count((array)$charts);
+
 $i = 1;
 $tnx_data_set = "";
 foreach ($charts as $value) {
@@ -42,8 +42,6 @@ foreach ($charts as $value) {
     $i++;
 }
 
-$charts = $ipp->Charts();
-$ch_count = count((array)$charts);
 $i = 1;
 $amount_label = "";
 foreach ($charts as $value) {
@@ -52,8 +50,7 @@ foreach ($charts as $value) {
         $amount_label .= ",";
     $i++;
 }
-$charts = $ipp->Charts();
-$ch_count = count((array)$charts);
+
 $i = 1;
 $amount_data_set = "";
 foreach ($charts as $value) {
@@ -62,8 +59,7 @@ foreach ($charts as $value) {
         $amount_data_set .= ",";
     $i++;
 }
-$charts = $ipp->Charts();
-$ch_count = count((array)$charts);
+
 $i = 1;
 $amount_data_set_decline = "";
 foreach ($charts as $value) {
