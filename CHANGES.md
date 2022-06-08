@@ -1,0 +1,1 @@
+- Implemented new authorization method, "Sale"

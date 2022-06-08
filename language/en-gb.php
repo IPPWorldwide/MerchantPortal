@@ -133,6 +133,7 @@ $lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Transactions";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Payment Type";
 $lang["COMPANY"]["DASHBOARD"]["ALL"] = "ALL";
 $lang["COMPANY"]["DASHBOARD"]["AUTH"] = "AUTH";
+$lang["COMPANY"]["DASHBOARD"]["SALE"] = "SALE";
 $lang["COMPANY"]["DASHBOARD"]["CAPTURE"] = "CAPTURE";
 $lang["COMPANY"]["DASHBOARD"]["REFUND"] = "REFUND";
 $lang["COMPANY"]["DASHBOARD"]["SECURE"] = "SECURE";
