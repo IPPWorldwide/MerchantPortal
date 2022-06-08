@@ -3,3 +3,4 @@
 - Implemented new Credit method, "Credit"
 - Implemented Refund functionality
 - Implemented Capture functionality
+- MCC Bugfix
