@@ -1,1 +1,2 @@
 - Minor bugfix on display error at Partner Data
+- Bugfix in Payouts

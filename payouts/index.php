@@ -18,11 +18,19 @@ echo '
 ';
         foreach($ipp->ListPayouts() as $value) {
             echo "<tr class='align-middle'>";
-                echo "<td><a href='/payouts/data.php?id=".$value->id."' class='btn btn-dark'>".$lang["COMPANY"]["PAYOUTS"]["INFO"]."</a></td>";
+//                echo "<td><a href='/payouts/data.php?id=".$value->id."' class='btn btn-dark'>".$lang["COMPANY"]["PAYOUTS"]["INFO"]."</a></td>";
+                echo "<td>".date("Y-m-d",$value->dates->release->time)."</td>";
                 echo "<td>".$value->amount->gross->amount_readable."</td>";
                 echo "<td>".$value->amount->fee->amount_readable."</td>";
                 echo "<td>".$value->amount->expected_settlement->amount_readable."</td>";
-                echo "<td>".$value->settled."</td>";
+                echo "<td>";
+                echo "<img src='";
+                if($value->settled)
+                    echo "/theme/".$_ENV["THEME"]."/assets/img/yes.png";
+                else
+                    echo "/theme/".$_ENV["THEME"]."/assets/img/no.png";
+                echo "'>";
+                echo "</td>";
             echo "</tr>";
         }
         ?>
