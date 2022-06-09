@@ -1,0 +1,1 @@
+- Minor bugfix on display error at Partner Data

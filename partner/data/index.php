@@ -34,7 +34,7 @@ echo '
             </div>
             <h2>'.$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"].'</h2>
             <div class="row row-cols-md-12 mb-12">
-                <div class="col themed-grid-col"'.$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"].'<br /><input name="meta[invoicetext]" class="form-control" value="'; echo $partner_data->meta_data->meta->invoicetext ?: ""; echo '">
+                <div class="col themed-grid-col"'.$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"].'<br /><input name="meta[invoicetext]" class="form-control" value="'; echo $partner_data->meta_data->meta->invoicetext ?? ""; echo '">
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">
