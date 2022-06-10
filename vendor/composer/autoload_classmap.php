@@ -11,4 +11,5 @@ return array(
     'IPPGateway' => $vendorDir . '/ippworldwide/php-sdk/Gateway.php',
     'MCC' => $vendorDir . '/ippworldwide/component-mcc-list/mcc.php',
     'RequestParams' => $vendorDir . '/ippworldwide/component-request-params/RequestParams.php',
+    'Shuchkin\\SimpleXLSXGen' => $vendorDir . '/shuchkin/simplexlsxgen/src/SimpleXLSXGen.php',
 );

@@ -14,34 +14,42 @@ if($company_data->content->user->password->new) {
 echo head();
 echo '
       <h2>'.$lang["COMPANY"]["DASHBOARD"]["HEADER"].'</h2>
-        <form action="/dashboard" method="GET">
-            <div class="form-group">
-                <label for="payment_type">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"].'</label>
-                <select id="payment_type" name="payment_type">
-                    <option value="ALL"'; if($payment_type === "ALL") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
-                    <option value="AUTH"'; if($payment_type === "AUTH") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
-                    <option value="SALE"'; if($payment_type === "SALE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SALE"].'</option>
-                    <option value="AUTH+SALE"'; if($payment_type === "AUTH+SALE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["AUTHANDSALE"].'</option>
-                    <option value="CAPTURE"'; if($payment_type === "CAPTURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
-                    <option value="REFUND"'; if($payment_type === "REFUND") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
-                    <option value="CREDIT"'; if($payment_type === "CREDIT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CREDIT"].'</option>
-                    <option value="SECURE"'; if($payment_type === "SECURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
-                    <option value="CRYPT"'; if($payment_type === "CRYPT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
-                </select>
+        <div class="row row-cols-md-2 mb-2">
+            <div class="col themed-grid-col">
+                <form action="/dashboard" method="GET">
+                    <table>
+                        <tr>
+                            <td>'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"].'</td>
+                            <td><select id="payment_type" name="payment_type">
+                                    <option value="ALL"'; if($payment_type === "ALL") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                                    <option value="AUTH"'; if($payment_type === "AUTH") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["AUTH"].'</option>
+                                    <option value="SALE"'; if($payment_type === "SALE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SALE"].'</option>
+                                    <option value="AUTH+SALE"'; if($payment_type === "AUTH+SALE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["AUTHANDSALE"].'</option>
+                                    <option value="CAPTURE"'; if($payment_type === "CAPTURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CAPTURE"].'</option>
+                                    <option value="REFUND"'; if($payment_type === "REFUND") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["REFUND"].'</option>
+                                    <option value="CREDIT"'; if($payment_type === "CREDIT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CREDIT"].'</option>
+                                    <option value="SECURE"'; if($payment_type === "SECURE") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["SECURE"].'</option>
+                                    <option value="CRYPT"'; if($payment_type === "CRYPT") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["CRYPT"].'</option>
+                                </select></td>        
+                        </tr>
+                        <tr>
+                            <td>'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"].'</td>
+                            <td><select id="payment_result" name="payment_result">
+                                <option value="ALL"'; if($result === "ALL") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
+                                <option value="ACK"'; if($result === "ACK") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ACK"].'</option>
+                                <option value="NOK"'; if($result === "NOK") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
+                            </select></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="'.$lang["COMPANY"]["DASHBOARD"]["CHANGE_VIEW"].'" class="btn btn-primary">
+                </form>
             </div>
-            <div class="form-group">
-                <label for="payment_result">'.$lang["COMPANY"]["DASHBOARD"]["PAYMENT_RESULT"].'</label>
-                <select id="payment_result" name="payment_result">
-                <option value="ALL"'; if($result === "ALL") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ALL"].'</option>
-                <option value="ACK"'; if($result === "ACK") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["ACK"].'</option>
-                <option value="NOK"'; if($result === "NOK") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
-            </select>
+            <div class="col themed-grid-col d-flex flex-row-reverse">
+                <input type="button" class="btn btn-secondary " onclick="array2excel()" value="Export table" />
             </div>
-            <input type="submit" value="'.$lang["COMPANY"]["DASHBOARD"]["CHANGE_VIEW"].'" class="btn btn-primary">
-        </form>
-
+        </div>
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm" id="tnx_list">
           <thead>
             <tr>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["FUNCTION"].'</th>

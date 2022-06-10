@@ -12,6 +12,7 @@ class ComposerStaticInitef54d450e2853b652eec553891888791
         'IPPGateway' => __DIR__ . '/..' . '/ippworldwide/php-sdk/Gateway.php',
         'MCC' => __DIR__ . '/..' . '/ippworldwide/component-mcc-list/mcc.php',
         'RequestParams' => __DIR__ . '/..' . '/ippworldwide/component-request-params/RequestParams.php',
+        'Shuchkin\\SimpleXLSXGen' => __DIR__ . '/..' . '/shuchkin/simplexlsxgen/src/SimpleXLSXGen.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

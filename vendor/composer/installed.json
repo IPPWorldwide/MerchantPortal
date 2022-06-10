@@ -42,8 +42,8 @@
         },
         {
             "name": "ippworldwide/component-mcc-list",
-            "version": "dev-main",
-            "version_normalized": "dev-main",
+            "version": "1.0.0",
+            "version_normalized": "1.0.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/IPPWorldwide/component-mcc-list.git",
@@ -56,7 +56,6 @@
                 "shasum": ""
             },
             "time": "2022-06-06T22:32:23+00:00",
-            "default-branch": true,
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -77,7 +76,7 @@
             "description": "Commmons Class for MCC List",
             "support": {
                 "issues": "https://github.com/IPPWorldwide/component-mcc-list/issues",
-                "source": "https://github.com/IPPWorldwide/component-mcc-list/tree/main"
+                "source": "https://github.com/IPPWorldwide/component-mcc-list/tree/1.0.0"
             },
             "install-path": "../ippworldwide/component-mcc-list"
         },
@@ -161,6 +160,61 @@
                 "source": "https://github.com/IPPWorldwide/PHP-SDK/tree/0.1.2"
             },
             "install-path": "../ippworldwide/php-sdk"
+        },
+        {
+            "name": "shuchkin/simplexlsxgen",
+            "version": "1.2.14",
+            "version_normalized": "1.2.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shuchkin/simplexlsxgen.git",
+                "reference": "0bf38275d7853dfdef2b1b704db9658a25b9af35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shuchkin/simplexlsxgen/zipball/0bf38275d7853dfdef2b1b704db9658a25b9af35",
+                "reference": "0bf38275d7853dfdef2b1b704db9658a25b9af35",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-zlib": "*",
+                "php": ">=5.4"
+            },
+            "time": "2022-06-10T06:11:00+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src/SimpleXLSXGen.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Shuchkin (SMSPILOT)",
+                    "email": "sergey.shuchkin@gmail.com",
+                    "homepage": "https://shuchkin.ru/"
+                }
+            ],
+            "description": "Export data to Excel XLSx file. PHP XLSX generator.",
+            "homepage": "https://github.com/shuchkin/simplexlsxgen",
+            "keywords": [
+                "backend",
+                "creator",
+                "excel",
+                "generator",
+                "php",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/shuchkin/simplexlsxgen/issues",
+                "source": "https://github.com/shuchkin/simplexlsxgen/tree/1.2.14"
+            },
+            "install-path": "../shuchkin/simplexlsxgen"
         }
     ],
     "dev": true,
