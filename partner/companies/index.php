@@ -76,7 +76,7 @@ echo '
                         <input type="hidden" name="user_id" id="user-id" readonly>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">'.$lang["PARTNER"]["COMPANIES"]["MODAL_USERNAME"].'</label>
-                            <input type="text" class="form-control"  name="username" id="username" readonly>
+                            <input type="text" class="form-control"  name="username" id="username">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">'.$lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD"].'</label>
