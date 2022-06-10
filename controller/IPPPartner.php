@@ -45,8 +45,8 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "company_id" => $company_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/close/", "POST", [], $data);
     }
-    public function ResetMerchantPassword($company_id,$company_user_id,$password) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "company_id" => $company_id, "company_user_id" => $company_user_id, "password" => $password];
+    public function ResetMerchantPassword($company_id,$company_user_id,$email,$password) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "company_id" => $company_id, "company_user_id" => $company_user_id, "email" => $email, "password" => $password];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/password/reset/", "POST", [], $data);
     }
     public function MerchantData($merchant_id) {
