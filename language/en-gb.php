@@ -339,6 +339,8 @@ $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
 
 
+$lang["PARTNER"]["ONBOARDING"]["FUNCTION"] = "#";
+$lang["PARTNER"]["ONBOARDING"]["ACCESS_DATA"] = "ACCESS";
 $lang["PARTNER"]["ONBOARDING"]["WAITING_FOR_APPROVAL"] = "Waiting for Approval";
 $lang["PARTNER"]["ONBOARDING"]["WAITING_FOR_MERCHANT"] = "Waiting for Merchant";
 $lang["PARTNER"]["ONBOARDING"]["APPROVED"] = "Approved";

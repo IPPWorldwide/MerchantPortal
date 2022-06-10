@@ -47,6 +47,7 @@ $inline_script = [];
 $load_script = [];
 $load_css = [];
 $company_data = new stdClass();
+$yes_no_select   = ["No","Yes"];
 
 if(isset($partner_page) && $partner_page == 1) {
     $data = $partner->checkLogin();

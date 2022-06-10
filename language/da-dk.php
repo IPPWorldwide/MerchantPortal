@@ -339,6 +339,23 @@ $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
 
+$lang["PARTNER"]["ONBOARDING"]["FUNCTION"] = "#";
+$lang["PARTNER"]["ONBOARDING"]["ACCESS_DATA"] = "Åbn Ansøgning";
+$lang["PARTNER"]["ONBOARDING"]["WAITING_FOR_APPROVAL"] = "Afventer godkendelse";
+$lang["PARTNER"]["ONBOARDING"]["WAITING_FOR_MERCHANT"] = "Afventer kunden";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED"] = "godkendte";
+$lang["PARTNER"]["ONBOARDING"]["CHANGE_VIEW"] = "Skift visning";
+
+$lang["PARTNER"]["ONBOARDING"]["COMPANY_ID"] = "ID";
+$lang["PARTNER"]["ONBOARDING"]["COMPANY_NAME"] = "Virksomhedens navn";
+$lang["PARTNER"]["ONBOARDING"]["KEY_STAKEHOLDERS"] = "Antal nøglepersoner";
+$lang["PARTNER"]["ONBOARDING"]["LATEST_CHANGE_BY_MERCHANT"] = "Senest opdateret";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED_MERCHANT"] = "Afsluttet af Kunden";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED_PARTNER"] = "Afsluttet af Partner";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED_ACQUIRER"] = "Afsluttet af Indløser";
+
+
+
 
 
 

@@ -4,3 +4,4 @@
 - Optimization of Theme usage
 - Capabilities to handle Translations locally
 - Bugfix in Partner Data
+- Fixed Onboarding Flows, so they are available from the Partner Portal
