@@ -230,9 +230,6 @@ class IPPPartner {
     }
     public function ListOnboardings($onboarding_status) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"status" => $onboarding_status];
-
-        echo $_ENV["GLOBAL_BASE_URL"]."/partner/list/onboarding.php?" . http_build_query($data);
-
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/onboarding.php", "POST", [], $data)->content;
     }
 
