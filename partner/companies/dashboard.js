@@ -31,7 +31,8 @@ $("#passwordModal .confirm").on("click", function() {
         data: {
             company_id: $('#passwordModal #company-id').val(),
             userid: $('#passwordModal #user-id').val(),
-            password: $( "#password" ).val()
+            email: $('#passwordModal #username').val(),
+            password: $("#passwordModal #password").val()
         }
     }).done(function () {
         $('#passwordModal').modal('hide');
