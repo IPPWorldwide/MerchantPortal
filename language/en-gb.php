@@ -28,7 +28,7 @@ $lang["PARTNER"]["COMPANIES"]["STATUS"] = "Status";
 $lang["PARTNER"]["COMPANIES"]["MODAL_USERNAME"] = "Username:";
 $lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD"] = "Password:";
 $lang["PARTNER"]["COMPANIES"]["MODAL_REPEAT_PASSWORD"] = "Repeat Password:";
-$lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+$lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must have a length of minimum 12 chars, contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
 $lang["PARTNER"]["COMPANIES"]["MODAL_CLOSE"] = "Close";
 $lang["PARTNER"]["COMPANIES"]["MODAL_SUBMIT_BTN"] = "Change password";
 
@@ -85,7 +85,7 @@ $lang["PARTNER"]["USERS"]["CLOSE_ACCOUNT"] = "Close Account";
 $lang["PARTNER"]["USERS"]["MODAL_USERNAME"] = "Username:";
 $lang["PARTNER"]["USERS"]["MODAL_PASSWORD"] = "Password:";
 $lang["PARTNER"]["USERS"]["MODAL_REPEAT_PASSWORD"] = "Repeat Password:";
-$lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+$lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must have a length of minimum 12 chars, contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
 $lang["PARTNER"]["USERS"]["MODAL_CLOSE"] = "Close";
 $lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"] = "Change password";
 
@@ -230,7 +230,7 @@ $lang["COMPANY"]["USERS"]["RESET_PASSWORD"] = "Reset Password";
 $lang["COMPANY"]["USERS"]["CLOSE_ACCOUNT"] = "Close Account";
 $lang["COMPANY"]["USERS"]["PASSWORD"] = "Password";
 $lang["COMPANY"]["USERS"]["REPEAT_PASSWORD"] = "Repeat Password";
-$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"] = "Password did not contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"] = "Password must have a length of minimum 12 chars, contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
 $lang["COMPANY"]["USERS"]["CLOSE"] = "Close";
 $lang["COMPANY"]["USERS"]["CHANGE_PASSWORD"] = "Change Password";
 
@@ -339,7 +339,18 @@ $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
 
 
+$lang["PARTNER"]["ONBOARDING"]["WAITING_FOR_APPROVAL"] = "Waiting for Approval";
+$lang["PARTNER"]["ONBOARDING"]["WAITING_FOR_MERCHANT"] = "Waiting for Merchant";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED"] = "Approved";
+$lang["PARTNER"]["ONBOARDING"]["CHANGE_VIEW"] = "Change view";
 
+$lang["PARTNER"]["ONBOARDING"]["COMPANY_ID"] = "Company ID";
+$lang["PARTNER"]["ONBOARDING"]["COMPANY_NAME"] = "Company Name";
+$lang["PARTNER"]["ONBOARDING"]["KEY_STAKEHOLDERS"] = "Number of Key Personel";
+$lang["PARTNER"]["ONBOARDING"]["LATEST_CHANGE_BY_MERCHANT"] = "Last Updated";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED_MERCHANT"] = "Completed by Merchant";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED_PARTNER"] = "Completed by Partner";
+$lang["PARTNER"]["ONBOARDING"]["APPROVED_ACQUIRER"] = "Completed by Acquirer";
 
 
 

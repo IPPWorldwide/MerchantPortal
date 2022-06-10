@@ -28,7 +28,7 @@ $lang["PARTNER"]["COMPANIES"]["STATUS"] = "Status";
 $lang["PARTNER"]["COMPANIES"]["MODAL_USERNAME"] = "Brugernavn:";
 $lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD"] = "Adgangskode:";
 $lang["PARTNER"]["COMPANIES"]["MODAL_REPEAT_PASSWORD"] = "Gentag adgangskode:";
-$lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD_DESCRIPTION"] = "Adgangskoden skal være minimum 16 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
+$lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD_DESCRIPTION"] = "Adgangskoden skal være minimum 12 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
 $lang["PARTNER"]["COMPANIES"]["MODAL_CLOSE"] = "Luk";
 $lang["PARTNER"]["COMPANIES"]["MODAL_SUBMIT_BTN"] = "Skift adgangskode";
 
@@ -85,7 +85,7 @@ $lang["PARTNER"]["USERS"]["CLOSE_ACCOUNT"] = "Luk konto";
 $lang["PARTNER"]["USERS"]["MODAL_USERNAME"] = "Brugernavn:";
 $lang["PARTNER"]["USERS"]["MODAL_PASSWORD"] = "Adgangskode:";
 $lang["PARTNER"]["USERS"]["MODAL_REPEAT_PASSWORD"] = "Gentag adgangaskode:";
-$lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Adgangskoden skal være minimum 16 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
+$lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Adgangskoden skal være minimum 12 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
 $lang["PARTNER"]["USERS"]["MODAL_CLOSE"] = "Luk";
 $lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"] = "Skift adgangskode";
 
@@ -230,7 +230,7 @@ $lang["COMPANY"]["USERS"]["RESET_PASSWORD"] = "Nulstil adgangskode";
 $lang["COMPANY"]["USERS"]["CLOSE_ACCOUNT"] = "Luk konto";
 $lang["COMPANY"]["USERS"]["PASSWORD"] = "Adgangskode";
 $lang["COMPANY"]["USERS"]["REPEAT_PASSWORD"] = "Gentag adgangskode";
-$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"] = "Adgangskoden skal være minimum 16 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
+$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"] = "Adgangskoden skal være minimum 12 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
 $lang["COMPANY"]["USERS"]["CLOSE"] = "Luk konto";
 $lang["COMPANY"]["USERS"]["CHANGE_PASSWORD"] = "Skift adgangskode";
 

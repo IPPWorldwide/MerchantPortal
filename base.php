@@ -25,6 +25,9 @@ $id             = isset($_COOKIE["ipp_id"]) ? $_COOKIE["ipp_id"] : "";
 $session_id     = isset($_COOKIE["ipp_session_id"]) ? $_COOKIE["ipp_session_id"] : "";
 $login_type     = isset($_COOKIE["ipp_type"]) ? $_COOKIE["ipp_type"] : "";
 
+define("THEME", BASEDIR . "theme/".$_ENV["THEME"]);
+
+
 $request    = new IPPRequest();
 $ipp        = new IPP($request,$id,$session_id);
 $partner    = new IPPPartner($request,$id,$session_id);
@@ -35,6 +38,7 @@ $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
 $menu       = new IPPMenu();
 $utils      = new IPPUtils();
+$language   = $_SESSION['language'] ?? "en-gb";
 
 $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"]);
 
@@ -50,9 +54,9 @@ if(isset($partner_page) && $partner_page == 1) {
         header("Location: /");
         die();
     }
-    require_once("theme/".$_ENV["THEME"]."/functions.php");
-    require_once("theme/".$_ENV["THEME"]."/partner/head.php");
-    require_once("theme/".$_ENV["THEME"]."/partner/foot.php");
+    require_once(THEME."/functions.php");
+    require_once(THEME."/partner/head.php");
+    require_once(THEME."/partner/foot.php");
 }
 elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
     $company_data = $ipp->checkLogin();
@@ -66,7 +70,7 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
 }
 $plugins->loadPlugins();
 
-if(!isset($_SESSION['language']))
-    require_once(BASEDIR . "language/en-gb.php");
+if(file_exists(THEME . "/language/$language.php"))
+    require_once(THEME . "/language/$language.php");
 else
-    require_once(BASEDIR . "language/".$_SESSION['language'].".php");
+    require_once(BASEDIR . "language/".$language.".php");

@@ -1,2 +1,6 @@
 - Minor bugfix on display error at Partner Data
 - Bugfix in Payouts
+- Fixed missing typo in Password requirements
+- Optimization of Theme usage
+- Capabilities to handle Translations locally
+- Bugfix in Partner Data

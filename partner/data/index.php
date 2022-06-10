@@ -17,7 +17,7 @@ echo '
             </div>
             <h2>'.$lang["PARTNER"]["DATA"]["DETAILS"].'</h2>
             <div class="row row-cols-md-3 mb-3">
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["NAME"].'<br /><input name="meta[name]" class="form-control" value="'; echo $partner_data->meta_data->name ?: ""; echo '"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["NAME"].'<br /><input name="meta[name]" class="form-control" value="'; echo $partner_data->meta_data->name ?? ""; echo '"></div>
             </div>
             <div class="row row-cols-md-3 mb-3">
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["COUNTRY"].'<br />

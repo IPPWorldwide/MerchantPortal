@@ -19,6 +19,7 @@ class IPPMenu {
         $menu["PARTNER"]["plugins"] = "Plugins";
         $menu["PARTNER"]["communications"] = "Outbound Communications";
         $menu["PARTNER"]["menus"] = "Menu Administration";
+        $menu["PARTNER"]["onboarding"] = "Merchant Onboardings";
 
         $menu["COMPANY"]["dashboard"] = "Dashboard";
         $menu["COMPANY"]["charts"] = "Charts";
