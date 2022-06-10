@@ -121,9 +121,17 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id, "password" => $password];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/users/password/reset/", "POST", [], $data);
     }
-    public function UserData($merchant_id) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
+    public function UserData() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/users/data/", "POST", [], $data)->content;
+    }
+    public function SetUserSettings($update_user_id,$compliance_admin) {
+        if($compliance_admin == "true")
+            $compliance_admin = 1;
+        else
+            $compliance_admin = 0;
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id,"compliance_admin" => $compliance_admin];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/users/update/", "POST", [], $data);
     }
 
 

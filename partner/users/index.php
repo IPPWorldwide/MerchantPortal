@@ -1,7 +1,11 @@
 <?php
 include("../b.php");
 
-if(isset($REQ["userid"])) {
+if(isset($REQ["userid"]) && isset($REQ["compliance"])) {
+    $partner->SetUserSettings($REQ["userid"],$REQ["compliance"]);
+    die();
+}
+elseif(isset($REQ["userid"])) {
     $partner->ResetUserPassword($REQ["userid"],$REQ["password"]);
     die();
 }
@@ -42,7 +46,8 @@ echo '
                 <td>".$value->admin."</td>
                 <td>
                     <button type='button' class='btn btn-info ResetPasswordModal' data-username='".$value->email."' data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["RESET_PASSWORD"]."</button>
-                    <a href='/partner/users/?close=1&user_id=".$value->id."' class='btn btn-warning'>".$lang["PARTNER"]["USERS"]["CLOSE_ACCOUNT"]."</a>
+                    <button type='button' class='btn btn-warning AccessRights' data-compliance='".$value->compliance."' data-username='".$value->email."'  data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"]."</button>
+                    <a href='/partner/users/?close=1&user_id=".$value->id."' class='btn btn-danger'>".$lang["PARTNER"]["USERS"]["CLOSE_ACCOUNT"]."</a>
                 </td>
             </tr>
             ";
@@ -79,6 +84,30 @@ echo '
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary closeModal">'.$lang["PARTNER"]["USERS"]["MODAL_CLOSE"].'</button>
                     <button type="button" class="btn btn-primary confirm" disabled>'.$lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"].'</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="accessModal" tabindex="-1" role="dialog" aria-labelledby="accessModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" name="user_id" id="user-id" readonly>
+                        <div class="form-group form-check form-switch">
+                            <input type="checkbox" class="form-check-input"  name="compliance_admin" id="compliance_admin" value="1">
+                            <label for="compliance_admin" class="form-check-label">'.$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN"].'</label><br />
+                            <small>'.$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN_DESCRIPTION"].'</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeModal">'.$lang["PARTNER"]["USERS"]["MODAL_CLOSE"].'</button>
+                    <button type="button" class="btn btn-primary confirm">'.$lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN_SAVE"].'</button>
                 </div>
             </div>
         </div>

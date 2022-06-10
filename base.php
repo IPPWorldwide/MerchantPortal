@@ -55,6 +55,7 @@ if(isset($partner_page) && $partner_page == 1) {
         header("Location: /");
         die();
     }
+    $user_data = $partner->UserData();
     require_once(THEME."/functions.php");
     require_once(THEME."/partner/head.php");
     require_once(THEME."/partner/foot.php");

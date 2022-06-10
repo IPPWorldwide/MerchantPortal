@@ -15,6 +15,35 @@ $("#passwordModal .closeModal").on('click', function() {
     $('#passwordModal').modal('hide');
 });
 
+$('.AccessRights').on('click', function () {
+    var button = $(this);
+    $('#accessModal').modal('show');
+    $('#accessModal .modal-title').text('New access rights for ' + button.data('username'));
+    $('#accessModal #user-id').val(button.data('id'));
+    $('#passwordModal #compliance_admin').val(button.data('compliance'));
+
+
+});
+
+$("#accessModal .closeModal").on('click', function() {
+    $('#accessModal').modal('hide');
+});
+
+
+$("#accessModal .confirm").on("click", function() {
+    $.ajax({
+        method: "POST",
+        url: "?",
+        data: {
+            userid: $('#accessModal #user-id').val(),
+            compliance: $( "#compliance_admin" ).is(":checked")
+        }
+    }).done(function () {
+        $('#accessModal').modal('hide');
+    });
+});
+
+
 $( ".checkPasswordUser" ).keyup(function() {
     if($( "#password" ).val() == $( "#repeat-password" ).val()) {
         CheckPassword($( "#password" ).val());

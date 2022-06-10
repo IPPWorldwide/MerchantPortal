@@ -88,6 +88,10 @@ $lang["PARTNER"]["USERS"]["MODAL_REPEAT_PASSWORD"] = "Gentag adgangaskode:";
 $lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Adgangskoden skal være minimum 12 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
 $lang["PARTNER"]["USERS"]["MODAL_CLOSE"] = "Luk";
 $lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"] = "Skift adgangskode";
+$lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN_SAVE"] = "Gem";
+$lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"] = "Adgangsrettigheder";
+$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN"] = "Gør bruger til Compliance Administrator";
+$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN_DESCRIPTION"] = "En Compliance Administrator kan tilgå tidligere ansøgninger og personoplysninger.";
 
 $lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Tilføj ny bruger";
 $lang["PARTNER"]["USERS_ADD"]["EMAIL"] = "Email:";

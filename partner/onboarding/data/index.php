@@ -6,10 +6,10 @@ if(isset($REQ["ApproveApplication"]) || isset($REQ["DeclineApplication"])) {
     $state = 0;
     if(isset($REQ["ApproveApplication"]))
         $state = 1;
-    $data = (object)$REQ;
-    $data->personel = new StdClass;
-    $data->personel = $onboarding_data->key_personnel;
-    $partner->OnboardingPartnerData($REQ["company_id"],$REQ,$state);
+    $dataApproval = (object)$REQ;
+    $dataApproval->personel = new StdClass;
+    $dataApproval->personel = $onboarding_data->key_personnel;
+    $partner->OnboardingPartnerData($REQ["company_id"],$dataApproval,$state);
     header("Location: /partner/onboarding/");
     die();
 }
@@ -18,8 +18,8 @@ echo head();
 echo '
 <h1>'.$onboarding_data->{"name"}.'</h1>
 ';
-if($onboarding_data->validated->partner) {
-    echo "Application have already been approved.";
+if($onboarding_data->validated->partner && !$user_data->super_admin && !$user_data->compliance_admin) {
+    echo "Application have already been approved. Contact your Compliance Administrator or Super Administrator for more information.";
     die();
 }
 echo '
@@ -228,11 +228,16 @@ echo '
             </div>
         </div>
     </div>
+    ';
+    if(!$onboarding_data->validated->partner) {
+        echo '
     <div class="tab-pane" name="digital-signature" role="tabpanel" aria-labelledby="settings-tab"><br>
         <h2>Finalize</h2>
         <input type="submit" class="w-100 btn btn-lg btn-primary" name="ApproveApplication" value="Approve Application">
         <input type="submit" class="w-100 btn btn-lg btn-primary" name="DeclineApplication" value="Decline Application">
-    </div>
+    </div>';
+    }
+    echo '
 </div>
 </form>
 ';

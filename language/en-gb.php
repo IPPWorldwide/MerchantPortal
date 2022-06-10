@@ -88,6 +88,10 @@ $lang["PARTNER"]["USERS"]["MODAL_REPEAT_PASSWORD"] = "Repeat Password:";
 $lang["PARTNER"]["USERS"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must have a length of minimum 12 chars, contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
 $lang["PARTNER"]["USERS"]["MODAL_CLOSE"] = "Close";
 $lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN"] = "Change password";
+$lang["PARTNER"]["USERS"]["MODAL_SUBMIT_BTN_SAVE"] = "Save";
+$lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"] = "Access Rights";
+$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN"] = "Make user Compliance Administrator";
+$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN_DESCRIPTION"] = "An Compliance Administrator can access earlier onboardings and see their personal data.";
 
 $lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Add new User";
 $lang["PARTNER"]["USERS_ADD"]["EMAIL"] = "Email:";
