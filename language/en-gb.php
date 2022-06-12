@@ -6,6 +6,7 @@ $lang["LOGIN"]["PASSWORD"] = "Password";
 $lang["LOGIN"]["AS_PAYFAC"] = "Login as Payfac";
 $lang["LOGIN"]["SIGN_IN"] = "Sign in";
 $lang["LOGIN"]["ACCOUNT_UNAVAILABLE"] = "The account is blocked for 24 hours, due to incorrect login credentials.";
+$lang["LOGIN"]["INCORRECT_USER_OR_PASSWORD"] = "Username and/or password was incorrect. Please try again.";
 
 $lang["LOGIN"]["CLOSE"] = "Close";
 $lang["LOGIN"]["RESET_PASSWORD"] = "Send reset request";

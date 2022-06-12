@@ -9,6 +9,7 @@ $lang["LOGIN"]["ACCOUNT_UNAVAILABLE"] = "Kontoen er midlertidigt blokeret grunde
 $lang["LOGIN"]["CLOSE"] = "Luk";
 $lang["LOGIN"]["RESET_PASSWORD"] = "Anmodning om nulstilling af adgangskode";
 $lang["LOGIN"]["SENT_RESET_EMAIL"] = "Du vil indenfor få sekunder modtage en ny adgangskode på e-mail.";
+$lang["LOGIN"]["INCORRECT_USER_OR_PASSWORD"] = "Brugernavn og/eller adgangskode var forkert. Forsøg igen.";
 
 
 $lang["PARTNER"]["COMPANIES"]["HEADER"] = "Virksomheder";

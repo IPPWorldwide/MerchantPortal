@@ -92,6 +92,9 @@ if(
       <form method="post" action="index.php">
         <h3 class="h3 mb-3 fw-normal"><?php echo $lang["LOGIN"]["HEADLINE"]; ?></h3>
           <?php
+          if(isset($login->code) && $login->code === 401) {
+              echo '<div class="alert alert-danger" role="alert">'.$lang["LOGIN"]["INCORRECT_USER_OR_PASSWORD"].'</div>';
+          }
           if(isset($login->code) && $login->code === 4020) {
               echo '<div class="alert alert-danger" role="alert">'.$lang["LOGIN"]["ACCOUNT_UNAVAILABLE"].'</div>';
           }
