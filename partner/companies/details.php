@@ -278,27 +278,25 @@ var table = $('#terminal_devices').DataTable({
             [3, 5, 10, 'All']
         ]
         });
-        
-        
         $('.form').on('submit', function(e){
-      var form = this;
-
-      // Encode a set of form elements from all pages as an array of names and values
-      var params = table.$('input,select,textarea').serializeArray();
-
-      // Iterate over all form elements
-      $.each(params, function(){
-         // If element doesn't exist in DOM
-         if(!$.contains(document, form[this.name])){
-            // Create a hidden element
-            $(form).append(
-               $('<input>')
-                  .attr('type', 'hidden')
-                  .attr('name', this.name)
-                  .val(this.value)
-            );
-         }
-      });
+        var form = this;
+        
+        // Encode a set of form elements from all pages as an array of names and values
+        var params = table.$('input,select,textarea').serializeArray();
+        
+        // Iterate over all form elements
+        $.each(params, function(){
+            // If element doesn't exist in DOM
+            if(!$.contains(document, form[this.name])){
+                // Create a hidden element
+                $(form).append(
+                   $('<input>')
+                      .attr('type', 'hidden')
+                      .attr('name', this.name)
+                      .val(this.value)
+                );
+            }
+        });
    });
 
 });

@@ -1,1 +1,2 @@
 - Setup of Compliance Administrator as Privileged User
+- Search for Card Details
