@@ -2,3 +2,5 @@
 - Search for Card Details
 - Bugfix: Did not show errorcode on incorrect login
 - Change language of portal to browser-language
+- Increased Cookie Security
+- Changed Language from Session to Cookie

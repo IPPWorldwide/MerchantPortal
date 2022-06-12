@@ -40,7 +40,7 @@ $menu       = new IPPMenu();
 $utils      = new IPPUtils();
 
 $langs = $utils->prefered_language(["da","en","da-dk","en-gb"], $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-$language   = $_SESSION['language'] ?? array_key_first($langs);
+$language   = $_COOKIE['language'] ?? array_key_first($langs);
 $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"]);
 
 $inline_css = [];
