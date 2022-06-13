@@ -34,17 +34,22 @@ $('.pluginSettingsModal').on('click', function () {
             input_value = value.standard;
         if(typeof plugin_values[value.id] !== 'undefined')
             input_value = plugin_values[value.id];
-
-        console.log(input_value);
-        $("#pluginModal form").append(plugin_fields(value.title,value.name,value.id,input_value,value.hidden));
+        if(typeof value.type === 'undefined')
+            input_type = ["input"];
+        else
+            input_type = [value.type, value.html];
+        $("#pluginModal form").append(plugin_fields(input_type,value.title,value.name,value.id,input_value,value.hidden));
     });
 });
 
-function plugin_fields(text,name,id,value,hidden) {
+function plugin_fields(field_type,text,name,id,value,hidden) {
     var css = "";
     if(typeof hidden !== 'undefined' && hidden === true)
         css = "display:none";
-    return "<div class=\"form-group\" style='" + css +  "'><label for=\""+id+"\" class=\"col-form-label\">"+text+":</label><input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\"></div>";
+    if(field_type[0] == "html")
+        return "<div class=\"form-group\" style='" + css +  "'>" + field_type[1] + "</div>";
+    else
+        return "<div class=\"form-group\" style='" + css +  "'><label for=\""+id+"\" class=\"col-form-label\">"+text+":</label><input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\"></div>";
 }
 $(".confirmPluginSettngs").on("click", function() {
     $.post( "?", $("#pluginModal form").serialize())
