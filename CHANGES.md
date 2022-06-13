@@ -1,7 +1,1 @@
-- Setup of Compliance Administrator as Privileged User
-- Search for Card Details
-- Bugfix: Did not show errorcode on incorrect login
-- Change language of portal to browser-language
-- Increased Cookie Security
-- Changed Language from Session to Cookie
-- Multi-timezone, supporting both UTC and local timezones
+- Bugfix on Outdated version display of changes.
