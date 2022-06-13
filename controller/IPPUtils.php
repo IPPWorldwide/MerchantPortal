@@ -60,4 +60,10 @@ class IPPUtils
         return $langs;
     }
 
+    public function getTimezoneBasedOnOffsetMinutes($offset) {
+        $tz = timezone_name_from_abbr('', $offset*60, 1);
+        if($tz === false) $tz = timezone_name_from_abbr('', $offset, 0);
+        return $tz;
+    }
+
 }

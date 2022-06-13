@@ -2,6 +2,10 @@
 $public_page = true;
 include("base.php");
 
+if(isset($REQ["timezone"])) {
+    setcookie("timezone", $REQ["timezone"],strtotime("+1 day"),"",$_SERVER['SERVER_NAME'],true,true);
+    die();
+}
 if(isset($REQ["reset"])) {
     $data = $ipp->ConfirmResetUserPassword($IPP_CONFIG["PARTNER_ID"],$REQ["id"],$REQ["initialization"],$REQ["hash"]);
     if(isset($data->content->username)) {
@@ -14,7 +18,7 @@ if(isset($REQ["reset_email"])) {
     die();
 }
 if(isset($REQ["language"])) {
-    setcookie("language", $REQ["language"],false,"",$_SERVER['SERVER_NAME'],true,true);
+    setcookie("language", $REQ["language"],strtotime("+1 year"),"",$_SERVER['SERVER_NAME'],true,true);
     header("Location: /");
     exit;
 }
@@ -149,5 +153,15 @@ if(
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <script src="signin.js"></script>
+    <script>
+      $( document ).ready(function() {
+          var timezone_offset_minutes = new Date().getTimezoneOffset();
+          timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
+          $.post( "?", { timezone: timezone_offset_minutes })
+          .done(function( data ) {
+              console.log( "Timezone locked at " + timezone_offset_minutes + " minutes");
+          });
+      });
+    </script>
   </body>
 </html>

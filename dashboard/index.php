@@ -1,5 +1,6 @@
 <?php
 include("../base.php");
+
 $payment_type   = $REQ["payment_type"] ?? "AUTH+SALE";
 $result         = $REQ["payment_result"] ?? "ALL";
 

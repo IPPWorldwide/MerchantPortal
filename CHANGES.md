@@ -4,3 +4,4 @@
 - Change language of portal to browser-language
 - Increased Cookie Security
 - Changed Language from Session to Cookie
+- Multi-timezone, supporting both UTC and local timezones

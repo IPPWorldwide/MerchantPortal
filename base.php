@@ -38,6 +38,9 @@ $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
 $menu       = new IPPMenu();
 $utils      = new IPPUtils();
+if(isset($_COOKIE["timezone"])) {
+    date_default_timezone_set($utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]));
+}
 
 $langs = $utils->prefered_language(["da","en","da-dk","en-gb"], $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 $language   = $_COOKIE['language'] ?? array_key_first($langs);
