@@ -2,6 +2,13 @@
 include("../b.php");
 
 if(isset($REQ["submit"])) {
+    foreach($REQ["IPPCONFIG"] as $key=>$value) {
+        include(BASEDIR . "controller/IPPConfig.php");
+        $config = new IPPConfig();
+        $new_config = $config->UpdateConfig($key,$value);
+    }
+    $config = $config->WriteConfig();
+    unset($REQ["IPPCONFIG"]);
     $partner->UpdateData($REQ);
 }
 $partner_data = $partner->PartnerData();
@@ -56,7 +63,32 @@ echo '
                         </tbody>
                     </table>
                 </div>
-            </div>
+                <div class="col themed-grid-col">
+                    <h2>'.$lang["PARTNER"]["DATA"]["PORTAL_SETTINGS"].'</h2>
+                    <table class="table v-middle p-0 m-0 box" data-plugin="dataTable">
+                        <thead>
+                        <tr>
+                            <th>'.$lang["PARTNER"]["DATA"]["SETTING_NAME"].'</th>
+                            <th>'.$lang["PARTNER"]["DATA"]["SETTING_VALUE"].'</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"].'</td>
+                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_TITLE]" value="'.$IPP_CONFIG["PORTAL_TITLE"].'"></td>
+                            </tr>
+                            <tr>
+                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"].'</td>
+                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_DEACTIVATE_SEARCH]" value="'; echo $IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"] ?? ""; echo  '"></td>
+                            </tr>
+                            <tr>
+                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"].'</td>
+                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_DEACTIVATE_VIRTUAL_TERMINAL]" value="'; echo $IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"] ?? ""; echo  '"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>            
             <div class="row row-cols-md-1 mb-1">
                 <div class="d-flex justify-content-end">
                     <button type="submit" name="submit" class="btn btn-primary mb-3">'.$lang["PARTNER"]["DATA"]["SAVE"].'</button>

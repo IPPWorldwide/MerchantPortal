@@ -74,6 +74,14 @@ $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_WEBSITE"] = "Website";
 $lang["PARTNER"]["DATA"]["SAVE"] = "Gem";
 
+$lang["PARTNER"]["DATA"]["PORTAL_SETTINGS"] = "Portal Indstilling";
+$lang["PARTNER"]["DATA"]["SETTING_NAME"] = "Indstillinger";
+$lang["PARTNER"]["DATA"]["SETTING_VALUE"] = "Værdi";
+
+$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"] = "Portal Titel:";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"] = "Deaktiver Søgning";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deaktiver Virtual Terminal";
+
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Brugere";
 $lang["PARTNER"]["USERS"]["ADD_NEW"] = "Tilføj ny bruger";

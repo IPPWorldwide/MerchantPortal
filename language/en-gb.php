@@ -74,6 +74,14 @@ $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_WEBSITE"] = "Website";
 $lang["PARTNER"]["DATA"]["SAVE"] = "Save";
 
+$lang["PARTNER"]["DATA"]["PORTAL_SETTINGS"] = "Portal Settings";
+$lang["PARTNER"]["DATA"]["SETTING_NAME"] = "Setting";
+$lang["PARTNER"]["DATA"]["SETTING_VALUE"] = "Value";
+
+$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"] = "Portal Title";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"] = "Deactivate Search";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deactivate Virtual Terminal";
+
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Users";
 $lang["PARTNER"]["USERS"]["ADD_NEW"] = "Add new User";
