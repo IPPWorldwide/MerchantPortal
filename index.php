@@ -3,7 +3,7 @@ $public_page = true;
 include("base.php");
 
 if(isset($REQ["timezone"])) {
-    setcookie("timezone", $REQ["timezone"],strtotime("+1 day"),"",$_SERVER['SERVER_NAME'],true,true);
+    setcookie("timezone", $REQ["timezone"],strtotime("+1 day"));
     die();
 }
 if(isset($REQ["reset"])) {
@@ -18,7 +18,7 @@ if(isset($REQ["reset_email"])) {
     die();
 }
 if(isset($REQ["language"])) {
-    setcookie("language", $REQ["language"],strtotime("+1 year"),"",$_SERVER['SERVER_NAME'],true,true);
+    setcookie("language", $REQ["language"],strtotime("+1 year"));
     header("Location: /");
     exit;
 }
@@ -39,9 +39,9 @@ if(
         $login_type = "customer";
     }
     if($login->success) {
-        setcookie("ipp_type",  $login_type, time()+3600,"",$_SERVER['SERVER_NAME'],true,true);  /* expire in 1 hour */
-        setcookie("ipp_id", $login->content->user_id, time()+3600,"",$_SERVER['SERVER_NAME'],true,true);  /* expire in 1 hour */
-        setcookie("ipp_session_id", $login->content->session_id, time()+3600,"",$_SERVER['SERVER_NAME'],true,true);  /* expire in 1 hour */
+        setcookie("ipp_type",  $login_type, time()+3600);  /* expire in 1 hour */
+        setcookie("ipp_id", $login->content->user_id, time()+3600);  /* expire in 1 hour */
+        setcookie("ipp_session_id", $login->content->session_id, time()+3600,);  /* expire in 1 hour */
         header("location: $url");
         exit;
     }
