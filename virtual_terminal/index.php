@@ -5,7 +5,7 @@ if(isset($REQ["start_terminal"])) {
     $gateway    = new IPPGateway($merchant_data->id,$merchant_data->security->key2);
     $data   = [];
     $data["currency"] = $REQ["currency"];
-    $data["amount"] = number_format($REQ["amount"],2,"","");
+    $data["amount"] = number_format(str_replace(",",".",$REQ["amount"]),2,"","");
     $data["order_id"] = $REQ["order_id"];
     if(isset($REQ["rebill"]))
         $data["rebill"] = $REQ["rebill"];

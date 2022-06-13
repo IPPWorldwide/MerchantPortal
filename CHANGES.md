@@ -1,1 +1,2 @@
 - Bugfix on Outdated version display of changes.
+- Bugfix in Virtual Terminal in cents values
