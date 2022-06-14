@@ -62,50 +62,7 @@ echo '
                     </table>
                 </div>
                 <div class="col themed-grid-col">
-                    <div class="box-header">
-                        <h2>'.$lang["COMPANY"]["DATA"]["ACQUIRER_RULES"].'</h2>
-                    </div>
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="radio">
-                                    <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="AABB-ABCD-ABCD"';
-                                        if($merchant_data->rules->id == "AABB-ABCD-ABCD") { echo "checked"; } echo '>
-                                        <i class="dark-white"></i>
-                                        '.$lang["COMPANY"]["DATA"]["ROUND_ROBIN"].'
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="radio">
-                                    <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="BBBB-CCCC-DDDD" ';
-                                        if($merchant_data->rules->id == "BBBB-CCCC-DDDD") { echo "checked"; } echo '>
-                                        <i class="dark-white"></i>
-                                        '.$lang["COMPANY"]["DATA"]["ROUND_ROBIN_WITH_MAX"].'
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="radio">
-                                    <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="CCCC-DDDD-EEEE" '; if($merchant_data->rules->id == "CCCC-DDDD-EEEE") { echo "checked"; } echo '>
-                                        <i class="dark-white"></i>
-                                        '.$lang["COMPANY"]["DATA"]["ACQUIRER_WITH_LOWEST_VOLUME"].'
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="radio">
-                                    <label class="ui-check ui-check-lg">
-                                        <input type="radio" name="rule_type" value="DDDD-EEEE-FFFF" '; if($merchant_data->rules->id == "DDDD-EEEE-FFFF") { echo "checked"; } echo '>
-                                        <i class="dark-white"></i>
-                                        '.$lang["COMPANY"]["DATA"]["ACQUIRER_WITH_LOWEST_VOLUME_MAX"].'
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="box-header">
                             <h2>'.$lang["COMPANY"]["DATA"]["RULE_SETTINGS"].'</h2>
                         </div>
