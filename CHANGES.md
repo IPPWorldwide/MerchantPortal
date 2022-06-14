@@ -1,1 +1,3 @@
-- Bugfix in Login
+- Make Theme Changeable
+- Disable Search functionality
+- Disable Virtual Terminal functionality

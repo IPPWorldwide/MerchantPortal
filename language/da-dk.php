@@ -81,6 +81,7 @@ $lang["PARTNER"]["DATA"]["SETTING_VALUE"] = "Værdi";
 $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"] = "Portal Titel:";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"] = "Deaktiver Søgning";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deaktiver Virtual Terminal";
+$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"] = "Tema";
 
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Brugere";

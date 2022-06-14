@@ -81,6 +81,7 @@ $lang["PARTNER"]["DATA"]["SETTING_VALUE"] = "Value";
 $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"] = "Portal Title";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"] = "Deactivate Search";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deactivate Virtual Terminal";
+$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"] = "Theme";
 
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Users";

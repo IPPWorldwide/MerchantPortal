@@ -2,9 +2,9 @@
 include("../b.php");
 
 if(isset($REQ["submit"])) {
+    include(BASEDIR . "controller/IPPConfig.php");
+    $config = new IPPConfig();
     foreach($REQ["IPPCONFIG"] as $key=>$value) {
-        include(BASEDIR . "controller/IPPConfig.php");
-        $config = new IPPConfig();
         $new_config = $config->UpdateConfig($key,$value);
     }
     $config = $config->WriteConfig();
@@ -12,7 +12,7 @@ if(isset($REQ["submit"])) {
     $partner->UpdateData($REQ);
 }
 $partner_data = $partner->PartnerData();
-
+$theme_dirs = array_filter(glob(THEME), 'is_dir');
 echo head();
 echo '
         <form action="?" method="POST" class="form">
@@ -76,6 +76,16 @@ echo '
                             <tr>
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"].'</td>
                                 <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_TITLE]" value="'.$IPP_CONFIG["PORTAL_TITLE"].'"></td>
+                            </tr>
+                            <tr>
+                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"].'</td>
+                                <td>
+                                <select class="form form-control" name="IPPCONFIG[THEME]" value="'.$IPP_CONFIG["THEME"].'">
+                                ';
+                                foreach($theme_dirs as $value)
+                                    echo "<option>".basename($value)."</option>";
+                                echo '
+                                </select></td>
                             </tr>
                             <tr>
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"].'</td>
