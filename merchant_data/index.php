@@ -73,8 +73,6 @@ echo '
                                         <thead>
                                         <tr>
                                             <th>'.$lang["COMPANY"]["DATA"]["NAME"].'</th>
-                                            <th>'.$lang["COMPANY"]["DATA"]["DAILY_MAX"].'</th>
-                                            <th>'.$lang["COMPANY"]["DATA"]["SUPPORTED_BRANDS"].'</th>
                                             <th>'.$lang["COMPANY"]["DATA"]["DATA"].'</th>
                                         </tr>
                                         </thead>
@@ -86,22 +84,6 @@ echo '
                                             echo "<td>";
                                             echo $value->name;
                                             echo "</td>";
-                                            if ($merchant_data->rules->id == "BBBB-CCCC-DDDD" || $merchant_data->rules->id == "DDDD-EEEE-FFFF") {
-                                                echo "<td>";
-                                                echo "<input name=\"rules[".$value->id."][daily_limit]\" type=\"text\" class=\"form-control\"";
-                                                if(isset($merchant_data->rules->acquirer_rules->{$value->id}->max_limit)) {
-                                                    echo " value=\"".$merchant_data->rules->acquirer_rules->{$value->id}->max_limit."\"";
-                                                } else {
-                                                    echo "";
-                                                }
-                                                echo ">";
-                                                echo "</td>";
-                                            } else {
-                                                echo "<td>";
-                                                echo "</td>";
-                                                echo "<td>";
-                                                echo "</td>";
-                                            }
                                                 echo "<td>";
                                                     echo "<button class='btn btn-info btnAcquirerSettings' data-id='".$value->id."' data-title='".$value->name."' data-fields='".json_encode($value->fields)."' data-field-values='".($settings)."'>".$lang["COMPANY"]["DATA"]["SETTINGS"]."</button>";
                                                 echo "</td>";
