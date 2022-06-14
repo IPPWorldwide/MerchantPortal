@@ -40,8 +40,8 @@ if(
     }
     if($login->success) {
         setcookie("ipp_type",  $login_type, time()+3600);  /* expire in 1 hour */
-        setcookie("ipp_id", $login->content->user_id, time()+3600);  /* expire in 1 hour */
-        setcookie("ipp_session_id", $login->content->session_id, time()+3600,);  /* expire in 1 hour */
+        setcookie("ipp_user_id", $login->content->user_id, time()+3600);  /* expire in 1 hour */
+        setcookie("ipp_user_session_id", $login->content->session_id, time()+3600,);  /* expire in 1 hour */
         header("location: $url");
         exit;
     }

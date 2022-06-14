@@ -21,8 +21,8 @@ if (file_exists(BASEDIR . "ipp-config.php")) {
     die();
 }
 $_ENV           = $IPP_CONFIG;
-$id             = isset($_COOKIE["ipp_id"]) ? $_COOKIE["ipp_id"] : "";
-$session_id     = isset($_COOKIE["ipp_session_id"]) ? $_COOKIE["ipp_session_id"] : "";
+$id             = isset($_COOKIE["ipp_user_id"]) ? $_COOKIE["ipp_user_id"] : "";
+$session_id     = isset($_COOKIE["ipp_user_session_id"]) ? $_COOKIE["ipp_user_session_id"] : "";
 $login_type     = isset($_COOKIE["ipp_type"]) ? $_COOKIE["ipp_type"] : "";
 
 define("THEME", BASEDIR . "theme/".$_ENV["THEME"]);
