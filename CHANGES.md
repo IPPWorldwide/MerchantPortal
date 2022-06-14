@@ -5,4 +5,6 @@
 - Bugfix in Translation
 - Deactivate Refunds
 - Deactivate Voids
+- Fixed missing Export table on Payouts
+- Option to hide Gross Amount in Payouts
 - 

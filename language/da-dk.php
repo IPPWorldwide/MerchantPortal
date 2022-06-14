@@ -1,5 +1,7 @@
 <?php
 $lang["SIGN_OUT"] = "Log ud";
+$lang["COMPANY"]["EXPORT_TABLE"] = "Exporter tabel";
+
 $lang["LOGIN"]["HEADLINE"] = "Log på";
 $lang["LOGIN"]["EMAIL"] = "Brugernavn";
 $lang["LOGIN"]["PASSWORD"] = "Adgangskode";
@@ -84,6 +86,8 @@ $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deaktiver Virtu
 $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"] = "Tema";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_REFUNDS"] = "Deaktiver alle refunderinger";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"] = "Deaktiver anullering";
+$lang["PARTNER"]["DATA"]["LOCAL_HIDE_TOTAL_VOLUME"] = "Skjul Total omsætning på Udbetalinger";
+
 
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Brugere";

@@ -56,7 +56,7 @@ echo '
                 </form>
             </div>
             <div class="col themed-grid-col d-flex flex-row-reverse">
-                <input type="button" class="btn btn-secondary " onclick="array2excel()" value="Export table" />
+                <input type="button" class="btn btn-secondary " onclick="array2excel()" value="'.$lang["COMPANY"]["EXPORT_TABLE"].'" />
             </div>
         </div>
       <div class="table-responsive">

@@ -103,6 +103,10 @@ echo '
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"].'</td>
                                 <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_VOID]" value="'; echo $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] ?? ""; echo  '"></td>
                             </tr>
+                            <tr>
+                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_HIDE_TOTAL_VOLUME"].'</td>
+                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_LOCAL_HIDE_TOTAL_VOLUME]" value="'; echo $IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"] ?? ""; echo  '"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

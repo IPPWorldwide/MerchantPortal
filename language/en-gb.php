@@ -1,5 +1,7 @@
 <?php
 $lang["SIGN_OUT"] = "Sign out";
+$lang["COMPANY"]["EXPORT_TABLE"] = "Export Table";
+
 $lang["LOGIN"]["HEADLINE"] = "Please sign in";
 $lang["LOGIN"]["EMAIL"] = "Email address";
 $lang["LOGIN"]["PASSWORD"] = "Password";
@@ -84,7 +86,7 @@ $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deactivate Virt
 $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"] = "Theme";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_REFUNDS"] = "Deactivate Refunds";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"] = "Deactivate Voids";
-
+$lang["PARTNER"]["DATA"]["LOCAL_HIDE_TOTAL_VOLUME"] = "Hide Total Volume on Payout";
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Users";
 $lang["PARTNER"]["USERS"]["ADD_NEW"] = "Add new User";
