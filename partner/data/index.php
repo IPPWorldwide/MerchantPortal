@@ -95,6 +95,14 @@ echo '
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"].'</td>
                                 <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_DEACTIVATE_VIRTUAL_TERMINAL]" value="'; echo $IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"] ?? ""; echo  '"></td>
                             </tr>
+                            <tr>
+                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_REFUNDS"].'</td>
+                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_REFUNDS]" value="'; echo $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"] ?? ""; echo  '"></td>
+                            </tr>
+                            <tr>
+                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"].'</td>
+                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_VOID]" value="'; echo $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] ?? ""; echo  '"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

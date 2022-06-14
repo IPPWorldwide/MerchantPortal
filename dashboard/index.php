@@ -3,6 +3,8 @@ include("../base.php");
 
 $payment_type   = $REQ["payment_type"] ?? "AUTH+SALE";
 $result         = $REQ["payment_result"] ?? "ALL";
+$payment_start  = $REQ["payment_start"] ?? date("Y-m-d\TH:i", (time()-86400*30));
+$payment_end    = $REQ["payment_end"] ?? date("Y-m-d\TH:i", (time()));
 
 if(isset($REQ["userid"])) {
     $ipp->ResetUserPassword($_COOKIE["ipp_user_id"],$REQ["password"]);
@@ -41,6 +43,14 @@ echo '
                                 <option value="NOK"'; if($result === "NOK") { echo " selected"; } echo '>'.$lang["COMPANY"]["DASHBOARD"]["NOK"].'</option>
                             </select></td>
                         </tr>
+                        <tr>
+                            <td>'.$lang["COMPANY"]["DASHBOARD"]["STARTING_DATE"].'</td>
+                            <td><input type="datetime-local" id="payment_start" name="payment_start" value="'.$payment_start.'"></td>
+                        </tr>
+                        <tr>
+                            <td>'.$lang["COMPANY"]["DASHBOARD"]["ENDING_DATE"].'</td>
+                            <td><input type="datetime-local" id="payment_end" name="payment_end" value="'.$payment_end.'"></td>
+                        </tr>
                     </table>
                     <input type="submit" value="'.$lang["COMPANY"]["DASHBOARD"]["CHANGE_VIEW"].'" class="btn btn-primary">
                 </form>
@@ -64,7 +74,7 @@ echo '
           </thead>
           <tbody>
           ';
-foreach($ipp->TransactionsList($payment_type, $result) as $value) {
+foreach($ipp->TransactionsList($payment_type, $result,$payment_start,$payment_end) as $value) {
               echo "<tr ";
               if($value->result == "WAIT") {
                   echo "class='bg-info'";

@@ -1,3 +1,8 @@
 - Make Theme Changeable
 - Disable Search functionality
 - Disable Virtual Terminal functionality
+- Set search timeframe of transactions
+- Bugfix in Translation
+- Deactivate Refunds
+- Deactivate Voids
+- 

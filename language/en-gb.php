@@ -82,6 +82,8 @@ $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"] = "Portal Title";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"] = "Deactivate Search";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deactivate Virtual Terminal";
 $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"] = "Theme";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_REFUNDS"] = "Deactivate Refunds";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"] = "Deactivate Voids";
 
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Users";
@@ -145,6 +147,8 @@ $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
 
 $lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Transactions";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Payment Type";
+$lang["COMPANY"]["DASHBOARD"]["STARTING_DATE"] = "Payments from";
+$lang["COMPANY"]["DASHBOARD"]["ENDING_DATE"] = "Payments to";
 $lang["COMPANY"]["DASHBOARD"]["ALL"] = "ALL";
 $lang["COMPANY"]["DASHBOARD"]["AUTH"] = "AUTH";
 $lang["COMPANY"]["DASHBOARD"]["SALE"] = "SALE";
@@ -350,6 +354,10 @@ $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
+$lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Capture";
+$lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Incremental Auth";
+$lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refund";
+$lang["COMPANY"]["PAYMENT"]["VOID"] = "Void";
 
 
 

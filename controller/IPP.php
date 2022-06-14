@@ -32,8 +32,8 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/cards/stored/", "POST", [], $data)->content;
     }
 
-    public function TransactionsList($list_type = "ALL", $result = "ALL") {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "type" => $list_type, "result" => $result];
+    public function TransactionsList($list_type,$result,$payment_start,$payment_end) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "type" => $list_type, "result" => $result,"payment_earliest" => (strtotime($payment_start)-$_COOKIE["timezone"]),"payment_latest"=>(strtotime($payment_end)-$_COOKIE["timezone"])];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/list/", "POST", [], $data)->content;
     }
     public function TransactionsData($action_id) {
@@ -45,6 +45,9 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/related/", "POST", [], $data)->content;
     }
     public function TransactionsAction($action,$transaction_id,$action_id,$amount = 0) {
+        global $IPP_CONFIG;
+        if(($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] === "1" && $action === "void") || ($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUND"] === "1" && $action === "refund"))
+            return false;
         $data = ["action" => $action,"transaction_id" => $transaction_id,"action_id"=>$action_id,"amount" => $amount,"user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/$action/", "POST", [], $data);
     }

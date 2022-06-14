@@ -76,7 +76,7 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
 }
 $plugins->loadPlugins();
 
+require_once(BASEDIR . "language/".$language.".php");
 if(file_exists(THEME . "/language/$language.php"))
     require_once(THEME . "/language/$language.php");
-else
-    require_once(BASEDIR . "language/".$language.".php");
+

@@ -82,6 +82,8 @@ $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_TITLE"] = "Portal Titel:";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"] = "Deaktiver Søgning";
 $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"] = "Deaktiver Virtual Terminal";
 $lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"] = "Tema";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_REFUNDS"] = "Deaktiver alle refunderinger";
+$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"] = "Deaktiver anullering";
 
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Brugere";
@@ -145,6 +147,8 @@ $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Klik her for at opdatere";
 
 $lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Transaktioner";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Transaktions type";
+$lang["COMPANY"]["DASHBOARD"]["STARTING_DATE"] = "Betalinger fra";
+$lang["COMPANY"]["DASHBOARD"]["ENDING_DATE"] = "Betalinger til";
 $lang["COMPANY"]["DASHBOARD"]["ALL"] = "Alle";
 $lang["COMPANY"]["DASHBOARD"]["AUTH"] = "Reservationer";
 $lang["COMPANY"]["DASHBOARD"]["SALE"] = "Strakssalg";
@@ -352,6 +356,10 @@ $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
+$lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Opkræv";
+$lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Forsøg reservation";
+$lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refunder";
+$lang["COMPANY"]["PAYMENT"]["VOID"] = "Anuller handlingen";
 
 $lang["PARTNER"]["ONBOARDING"]["FUNCTION"] = "#";
 $lang["PARTNER"]["ONBOARDING"]["ACCESS_DATA"] = "Åbn Ansøgning";

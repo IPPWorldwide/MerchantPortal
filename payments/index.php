@@ -41,26 +41,30 @@ echo '
             echo '
                 <div class="row row-cols-md-2 mb-2">
                     <div class="col themed-grid-col"><input type="number" id="amountCapture" class="form-control" value="'; echo  $transaction_data->amount; echo '"></div>
-                    <div class="col themed-grid-col"><button data-type="Capture" class="btnCapture btnAction btn btn-success">Capture</button></div>
+                    <div class="col themed-grid-col"><button data-type="Capture" class="btnCapture btnAction btn btn-success">'.$lang["COMPANY"]["PAYMENT"]["CAPTURE"].'</button></div>
                 </div>
                 <div class="row row-cols-md-2 mb-2">
                     <div class="col themed-grid-col"><input type="number" id="amountIncremental" class="form-control" value="'; echo  $transaction_data->amount; echo '"></div>
-                    <div class="col themed-grid-col"><button data-type="Incremental" class="btnIncremental btnAction btn btn-success">Incremental Auth</button></div>
+                    <div class="col themed-grid-col"><button data-type="Incremental" class="btnIncremental btnAction btn btn-success">'.$lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"].'</button></div>
                 </div>
             ';
         }
-        if($transaction_data->method == "CAPTURE" || $transaction_data->method == "SALE") {
-        echo '
+        if(($transaction_data->method === "CAPTURE") || ($transaction_data->method === "SALE")) {
+            if(!isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"]) || ($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"] !== "1")) {
+                echo '
                 <div class="row row-cols-md-2 mb-2">
                     <div class="col themed-grid-col"><input type="number" id="amountRefund" class="form-control" value="'; echo  $transaction_data->amount; echo '"></div>
-                    <div class="col themed-grid-col"><button data-type="Refund" class="btnRefund btnAction btn btn-warning">Refund</button></div>
+                    <div class="col themed-grid-col"><button data-type="Refund" class="btnRefund btnAction btn btn-warning">'.$lang["COMPANY"]["PAYMENT"]["REFUND"].'</button></div>
                 </div>        
             ';
+            }
+        }
+        if(!isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"]) || ($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] !== "1")) {
+            echo '<div class="row row-cols-md-2 mb-2">
+            <div class="col themed-grid-col"><button data-type="Void" class="btnAction btnVoid btn btn-warning">'.$lang["COMPANY"]["PAYMENT"]["VOID"].'</button></div>
+        </div>';
         }
         echo '
-        <div class="row row-cols-md-2 mb-2">
-            <div class="col themed-grid-col"><button data-type="Void" class="btnAction btnVoid btn btn-warning">Void</button></div>
-        </div>        
     </div>
     <div class="col-6 related_payments">
         <h2>Related Payments</h2>
