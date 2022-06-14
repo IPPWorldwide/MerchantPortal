@@ -1,5 +1,1 @@
-- Bugfix on Outdated version display of changes.
-- Bugfix in Virtual Terminal in cents values
-- Enable HTML as Plugin response content
-- Bugfix of Cookie issue
-- Enable Partner Settings
+- Bugfix in Login
