@@ -1,10 +1,4 @@
-- Make Theme Changeable
-- Disable Search functionality
-- Disable Virtual Terminal functionality
-- Set search timeframe of transactions
-- Bugfix in Translation
-- Deactivate Refunds
-- Deactivate Voids
-- Fixed missing Export table on Payouts
-- Option to hide Gross Amount in Payouts
-- Removed complex Acquirer Rules for Standard Merchants
+- Fixed minor bug in Partner Plugins
+- Fixed bug in Onboarding Flow
+- Fixed bug in Request element
+- Fixed bug in Partner Dashboard

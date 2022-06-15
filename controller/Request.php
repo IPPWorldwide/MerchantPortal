@@ -64,6 +64,6 @@ class IPPRequest {
         if (json_last_error() == JSON_ERROR_NONE) {
             return $json;
         }
-        return $json;
+        return $server_output;
     }
 }

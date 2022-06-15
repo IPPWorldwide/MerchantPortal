@@ -25,7 +25,6 @@ $('.pluginSettingsModal').on('click', function () {
     $('#pluginModal').modal('show');
     $('#pluginModal .modal-title').text($(this).data('plugin-title'));
     var plugin_values = JSON.parse($(this).attr("data-values"));
-    console.log(plugin_values.plugin_id);
     $("#pluginModal form").empty().append('<input type="hidden" id="plugin_slug" name="plugin_slug" value="' + $(this).data("plugin-name") + '"/><input type="hidden" id="plugin_id" name="plugin_id" value="' + plugin_values.plugin_id + '"/>');
     $( $(this).data("fields")).each(function(key,value) {
         if(typeof value.standard === 'undefined')
@@ -55,7 +54,7 @@ $(".confirmPluginSettngs").on("click", function() {
     $.post( "?", $("#pluginModal form").serialize())
         .done(function( data ) {
             if(data !== "") {
-                $("div").find("[data-plugin-id='" + $("#pluginModal form #plugin_id").val() + "']").find(".pluginSettingsModal").attr("data-values",data);
+                $("div").find("[data-plugin-id='" + $("#pluginModal form #plugin_slug").val() + "']").find(".pluginSettingsModal").attr("data-values",data);
                 $('#pluginModal').modal('hide');
             }
         });
