@@ -2,18 +2,19 @@
 include("../../b.php");
 $onboarding_data = $partner->OnboardingData($REQ["id"]);
 
-if(isset($REQ["ApproveApplication"]) || isset($REQ["DeclineApplication"])) {
+if(isset($REQ["ApproveApplication"])) {
     $state = 0;
-    if(isset($REQ["ApproveApplication"]))
+    if($REQ["ApproveApplication"] === "Approve")
         $state = 1;
+
     $dataApproval = (object)$REQ;
     $dataApproval->personel = new StdClass;
     $dataApproval->personel = $onboarding_data->key_personnel;
-    $partner->OnboardingPartnerData($REQ["company_id"],$dataApproval,$state);
-    header("Location: /partner/onboarding/");
+    echo json_encode($partner->OnboardingPartnerData($REQ["company_id"],$dataApproval,$state));
     die();
 }
 
+$all_onboarding_files_available = true;
 echo head();
 echo '
 <h1>'.$onboarding_data->{"name"}.'</h1>
@@ -23,7 +24,7 @@ if($onboarding_data->validated->partner && !$user_data->super_admin && !$user_da
     die();
 }
 echo '
-<form method="POST" action="?">
+<form method="POST" action="?" name="OnboardingForm" id="OnboardingForm">
 <input type="hidden" name="id" value="'.$REQ["id"].'">
 <input type="hidden" name="company_id" value="'.$REQ["id"].'">
 <div>
@@ -138,20 +139,61 @@ echo '
             <tbody>
             ';
                 foreach($onboarding_data->key_personnel as $value) {
-                    echo '<tr name="1s1ZtAvPtWXd">';
+                    echo '<tr>';
                     echo '<td>'.$value->name.'</td>';
                     echo '<td>'.$value->date_of_birth.'</td>';
 
                     echo "<td>";
-                        if(!$value->files->passport)
+                        if(!$value->files->passport) {
                             echo "Not available";
-                        else
+                            if($all_onboarding_files_available)
+                                $all_onboarding_files_available = false;
+                        }
+                        else {
                             echo "<a target='_NEW' href=\"data:image/jpg;base64,".$value->files->data->passport."\">Validate</a>";
+                            echo "<table>";
+                                echo "<tr>";
+                                    echo "<td>";
+                                        echo "Personal code number:";
+                                    echo "</td>";
+                                    echo "<td>";
+                                        echo "<input type='text' name='KEY_PERSONNEL[".$value->id."][passport_personal_code_number]' value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->passport_personal_code_number ?? ""; echo "'>";
+                                    echo "</td>";
+                                echo "</tr>";
+                                echo "<tr>";
+                                    echo "<td>";
+                                        echo "Nationality:";
+                                    echo "</td>";
+                                    echo "<td>";
+                                        echo "<input type='text' name='KEY_PERSONNEL[".$value->id."][passport_nationality]' value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->passport_nationality ?? ""; echo "'>";
+                                    echo "</td>";
+                                echo "</tr>";
+                                echo "<tr>";
+                                    echo "<td>";
+                                        echo "Passport Number:";
+                                    echo "</td>";
+                                    echo "<td>";
+                                        echo "<input type='text' name='KEY_PERSONNEL[".$value->id."][passport_no]' value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->passport_no ?? ""; echo "'>";
+                                    echo "</td>";
+                                echo "</tr>";
+                                echo "<tr>";
+                                    echo "<td>";
+                                    echo "Passport Expiry:";
+                                    echo "</td>";
+                                    echo "<td>";
+                                    echo "<input type='date' name='KEY_PERSONNEL[".$value->id."][passport_expiry]' value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->passport_expiry ?? ""; echo "'>";
+                                    echo "</td>";
+                                echo "</tr>";
+                            echo "</table>";
+                        }
                     echo "</td>";
 
                     echo "<td>";
-                    if(!$value->files->driving_license_front)
+                    if(!$value->files->driving_license_front) {
+                        if($all_onboarding_files_available)
+                            $all_onboarding_files_available = false;
                         echo "Not available";
+                    }
                     else
                         echo "<a target='_NEW' href=\"data:image/jpg;base64,".$value->files->data->driving_license_front."\">Validate</a>";
 
@@ -159,8 +201,11 @@ echo '
 
                     echo "<td>";
 
-                    if(!$value->files->driving_license_back)
+                    if(!$value->files->driving_license_back) {
+                        if($all_onboarding_files_available)
+                            $all_onboarding_files_available = false;
                         echo "Not available";
+                    }
                     else
                         echo "<a target='_NEW' href=\"data:image/jpg;base64,".$value->files->data->driving_license_back."\">Validate</a>";
 
@@ -168,14 +213,41 @@ echo '
 
                     echo "<td>";
 
-                    if(!$value->files->address)
+                    if(!$value->files->address) {
+                        if($all_onboarding_files_available)
+                            $all_onboarding_files_available = false;
                         echo "Not available";
-                    else
+                    }
+                    else {
                         echo "<a target='_NEW' href=\"data:image/jpg;base64,".$value->files->data->address."\">Validate</a>";
-
+                        echo "<table>";
+                            echo "<tr>";
+                                echo "<td>";
+                                    echo "Address:";
+                                echo "</td>";
+                                echo "<td>";
+                                    echo "<input type='text' name='KEY_PERSONNEL[".$value->id."][address]' value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->address ?? ""; echo "'>";
+                                echo "</td>";
+                            echo "</tr>";
+                            echo "<tr>";
+                                echo "<td>";
+                                    echo "Postal:";
+                                echo "</td>";
+                                echo "<td>";
+                                    echo "<input type='text' name='KEY_PERSONNEL[".$value->id."][postal]'value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->postal ?? ""; echo "'>";
+                                echo "</td>";
+                            echo "</tr>";
+                            echo "<tr>";
+                                echo "<td>";
+                                    echo "City:";
+                                echo "</td>";
+                                echo "<td>";
+                                    echo "<input type='text' name='KEY_PERSONNEL[".$value->id."][city]'value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->city ?? ""; echo "'>";
+                                echo "</td>";
+                            echo "</tr>";
+                        echo "</table>";
+                    }
                     echo "</td>";
-
-
                     echo '</tr>';
                 }
             echo '
@@ -233,12 +305,57 @@ echo '
         echo '
     <div class="tab-pane" name="digital-signature" role="tabpanel" aria-labelledby="settings-tab"><br>
         <h2>Finalize</h2>
-        <input type="submit" class="w-100 btn btn-lg btn-primary" name="ApproveApplication" value="Approve Application">
-        <input type="submit" class="w-100 btn btn-lg btn-primary" name="DeclineApplication" value="Decline Application">
+        <div class="row row-cols-md-2 mb-2">
+            <div class="col themed-grid-col">
+                <button type="button" class="w-100 btn btn-lg btn-success ApproveApplication" name="ApproveApplication" ';
+        if(!$all_onboarding_files_available)
+            echo "disabled";
+        echo '>Check Key Personnel & Approve Application</button><br /><br />
+            </div>
+            <div class="col themed-grid-col">
+                <button type="button" class="w-100 btn btn-lg btn-warning DeclineApplication" name="DeclineApplication">Decline Application</button>
+            </div>
+        </div>
+    </div>
     </div>';
     }
     echo '
 </div>
 </form>
+    <div class="modal fade" id="onboardingApplicationModal" tabindex="-1" role="dialog" aria-labelledby="onboardingApplicationModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="onboardingApplicationModalTitle">Handling Application</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="dataLoading">One moment please.</div>
+                    <div class="IssueIdentified">An issue have been identified. Please confirm you wish to continue</div>                    
+                    <table class="table DeclinedPersons" style="display:none;">
+                        <thead>
+                            <tr>
+                                <td>Name</td>    
+                                <td>Reason</td>    
+                            </tr>                    
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>    
+                                <td></td>    
+                            </tr>                    
+                        </tbody>
+                    </table>
+                    <div class="NoIssuesFound">No issues was identified. The application have now been confirmed.<br />
+                    <a href="../" class="btn btn-success">Click here to see the Onbaording Overview</a></div>
+                    <div class="Declined">The application have now been declined.<br />
+                    <a href="../" class="btn btn-success">Click here to see the Onbaording Overview</a></div>
+                </div>
+                <div class="modal-footer" style="display:none;">
+                    <button type="button" class="btn btn-success closeModal">'.$lang["PARTNER"]["ONBOARDING"]["CLOSE"].'</button>
+                    <button type="button" class="btn btn-danger confirmOnboarding">'.$lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"].'</button>
+                </div>
+            </div>
+        </div>
+    </div>
 ';
 echo foot();

@@ -2,3 +2,7 @@
 - Fixed bug in Onboarding Flow
 - Fixed bug in Request element
 - Fixed bug in Partner Dashboard
+- Made INPUT change on frontpage, to support LDAP Connectivities
+- Minor language changes
+- Massive Improvements in Onboardingflow for automatically confirmation of CPR-numbers
+- 

@@ -104,7 +104,7 @@ if(
           }
           ?>
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+          <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
           <label for="floatingInput"><?php echo $lang["LOGIN"]["EMAIL"]; ?></label>
         </div>
         <div class="form-floating">

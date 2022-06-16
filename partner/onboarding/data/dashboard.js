@@ -2,62 +2,58 @@
     'use strict'
     feather.replace({ 'aria-hidden': 'true' })
 })();
-    $(document).ready(function() {
-
-    function updateMenus(section, menus) {
-        $.ajax({
-            method: "POST",
-            url: "?",
-            data: {
-                menus: menus,
-                section: section
-            }
-        })
-            .done(function( msg ) {
-            });
-    }
-
-    $(".removeItem").click(function () {
-        var this_menu = $(this);
-        var this_parent = this_menu.parent().parent();
-        this_menu.parent().remove();
-        var menus = [];
-        this_parent.find("li").each(function() {
-            menus.push({url:$(this).attr("data-url"), value:$(this).find(".menuitem").html()});
-        });
-        updateMenus(this_parent.parent().data("menu"),menus);
-    })
-    $(".add-element").draggable({
-        helper: function() {
-            return $(this).clone().removeClass("add-element").appendTo(".canvas").css({
-                "zIndex": 5
-            }).show();
-        },
-        cursor: "move",
-        containment: "document"
+$(document).ready(function() {
+    $(".ApproveApplication").on("click",function(e) {
+        HandleApplication(e,"Approve");
     });
-    $(".add-element.true").each(function() {
-        $(this).draggable({disabled: true}).css("opacity","0.5");
+    $(".DeclineApplication").on("click",function(e) {
+        HandleApplication(e, "Decline");
     });
-    $(".canvas").droppable({
-        accept: ".add-element",
-        drop: function(event, ui) {
-            if (!ui.draggable.hasClass("dropped")) {
-                ui.draggable.draggable({disabled: true}).css("opacity","0.5");
-                $(this).find("ul").append($(ui.draggable).clone().removeClass("ui-draggable").removeClass("dropped"));
-                var menus = [];
-                $(this).find("ul").find("li").each(function() {
-                    menus.push({url:$(this).attr("data-url"), value:$(this).find(".menuitem").html()});
-
-                });
-                updateMenus($(this).data("menu"),menus);
-            }
-        }
-    }).sortable({
-        placeholder: "sort-placer",
-        cursor: "move",
-        helper: function (evt, ui) {
-            return $(ui).clone().appendTo(".canvas ul").show();
-        }
+    $(".closeModal").on("click", function() {
+        $(".modal").modal("hide");
+    });
+    $(".confirmOnboarding").on("click", function(e) {
+        HandleApplication(e, "Approve",true)
     });
 });
+
+function HandleApplication(e, state, overwrite=false) {
+    $(".DeclinedPersons").css("display","none");
+    $("#onboardingApplicationModal .NoIssuesFound").css("display","none");
+    $("#onboardingApplicationModal .Declined").css("display","none");
+    $("#onboardingApplicationModal .modal-footer").css("display","none");
+    $("#onboardingApplicationModal .modal-body .IssueIdentified").css("display","none");
+    $("#onboardingApplicationModal .dataLoading").css("display","block");
+    $("#onboardingApplicationModal").modal("show");
+    var data = $("#OnboardingForm").serialize() + '&ApproveApplication=' + state;
+
+    if(overwrite)
+        data += "&continue_with_errors=true"
+
+    $.ajax({
+        type: "POST",
+        url: "?",
+        dataType: "json",
+        data: data,
+        success: function(data)
+        {
+            $("#onboardingApplicationModal .dataLoading").css("display","none");
+            if(state === "Decline") {
+                $("#onboardingApplicationModal .Declined").css("display","");
+            } else if(data.content.invalid_keypersonel) {
+                $("#onboardingApplicationModal .modal-body .IssueIdentified").css("display","");
+                $("#onboardingApplicationModal .modal-footer").css("display","");
+                $(".DeclinedPersons tbody").empty();
+                $.each(data.content.persons, function (key, data) {
+                    $(".DeclinedPersons tbody").append("<tr><td>" + data.name + "</td><td>" + data.reason + "</td></tr>");
+                });
+                $(".DeclinedPersons").css("display","inline-table");
+            } else {
+                $("#onboardingApplicationModal .NoIssuesFound").css("display","");
+            }
+            console.log(data);
+        }
+    });
+    e.preventDefault();
+    return false;
+}
