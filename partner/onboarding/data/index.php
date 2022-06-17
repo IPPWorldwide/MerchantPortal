@@ -4,7 +4,7 @@ $onboarding_data = $partner->OnboardingData($REQ["id"]);
 
 if(isset($REQ["ApproveApplication"])) {
     $state = 0;
-    if($REQ["ApproveApplication"] === "Approve")
+    if($REQ["ApproveApplication"] === "Approve" || $REQ["ApproveApplication"] === "ApproveCompany")
         $state = 1;
 
     $dataApproval = (object)$REQ;
@@ -322,40 +322,79 @@ echo '
     echo '
 </div>
 </form>
-    <div class="modal fade" id="onboardingApplicationModal" tabindex="-1" role="dialog" aria-labelledby="onboardingApplicationModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="onboardingApplicationModalTitle">Handling Application</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="dataLoading">One moment please.</div>
-                    <div class="IssueIdentified">An issue have been identified. Please confirm you wish to continue</div>                    
-                    <table class="table DeclinedPersons" style="display:none;">
-                        <thead>
+<div class="modal fade" id="onboardingApplicationModal" tabindex="-1" role="dialog" aria-labelledby="onboardingApplicationModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="onboardingApplicationModalTitle">Handling Application</h5>
+            </div>
+            <div class="modal-body">
+                <div class="dataLoading">One moment please.</div>
+                <div class="IssueIdentified">An issue have been identified. Please confirm you wish to continue</div>                    
+                <table class="table DeclinedPersons" style="display:none;">
+                    <thead>
+                        <tr>
+                            <td>Name</td>    
+                            <td>Reason</td>    
+                        </tr>                    
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>    
+                            <td></td>    
+                        </tr>                    
+                    </tbody>
+                </table>
+                <div class="NoIssuesFound">No issues was identified. The application have now been confirmed.<br />
+                <a href="../" class="btn btn-success">Click here to see the Onbaording Overview</a></div>
+                <div class="Declined">The application have now been declined.<br />
+                <a href="../" class="btn btn-success">Click here to see the Onbaording Overview</a></div>
+                
+                <div id="OnboardingCompanyFinancials">
+                    <div class="warning"></div>
+                    <div class="Charts">
+                        <div>
+                            <canvas id="liquidity"></canvas>
+                        </div>
+                        <div>
+                            <canvas id="returnAssets"></canvas>                    
+                        </div>
+                        <div>
+                            <canvas id="returnEquity"></canvas>                    
+                        </div>
+                        <div>
+                            <canvas id="solidity"></canvas>                    
+                        </div>
+                    </div>
+                    <div class="ProfitData">
+                        <table class="table">
                             <tr>
-                                <td>Name</td>    
-                                <td>Reason</td>    
-                            </tr>                    
-                        </thead>
-                        <tbody>
+                                <td>Gross volume</td>        
+                                <td class="GrossVolume"></td>
+                            </tr>
                             <tr>
-                                <td></td>    
-                                <td></td>    
-                            </tr>                    
-                        </tbody>
-                    </table>
-                    <div class="NoIssuesFound">No issues was identified. The application have now been confirmed.<br />
-                    <a href="../" class="btn btn-success">Click here to see the Onbaording Overview</a></div>
-                    <div class="Declined">The application have now been declined.<br />
-                    <a href="../" class="btn btn-success">Click here to see the Onbaording Overview</a></div>
+                                <td>Profit after Tax</td>        
+                                <td class="ProfitAfterTax"></td>
+                            </tr>
+                            <tr>
+                                <td>Free cash (After shortterm debt)</td>        
+                                <td class="FreeCashAfterDebt"></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="modal-footer" style="display:none;">
-                    <button type="button" class="btn btn-success closeModal">'.$lang["PARTNER"]["ONBOARDING"]["CLOSE"].'</button>
-                    <button type="button" class="btn btn-danger confirmOnboarding">'.$lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"].'</button>
-                </div>
+                
+            </div>
+            <div class="modal-footer withErrors" style="display:none;">
+                <button type="button" class="btn btn-success closeModal">'.$lang["PARTNER"]["ONBOARDING"]["CLOSE"].'</button>
+                <button type="button" class="btn btn-danger confirmOnboardingAllDataSeen">'.$lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"].'</button>
+            </div>
+            <div class="modal-footer modal-footer-all-good" style="display:none;">
+                <button type="button" class="btn btn-danger closeModal">'.$lang["PARTNER"]["ONBOARDING"]["CLOSE"].'</button>
+                <button type="button" class="btn btn-success confirmOnboardingAllDataSeen">'.$lang["PARTNER"]["ONBOARDING"]["CONTINUE"].'</button>
             </div>
         </div>
     </div>
+</div>
 ';
 echo foot();

@@ -386,6 +386,7 @@ $lang["PARTNER"]["ONBOARDING"]["APPROVED_ACQUIRER"] = "Afsluttet af Indløser";
 
 $lang["PARTNER"]["ONBOARDING"]["CLOSE"] = "Afbryd gå gå tilbage";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Forsæt trods fejlen";
+$lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Forsæt";
 
 
 

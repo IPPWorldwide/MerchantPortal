@@ -381,6 +381,7 @@ $lang["PARTNER"]["ONBOARDING"]["APPROVED_ACQUIRER"] = "Completed by Acquirer";
 
 $lang["PARTNER"]["ONBOARDING"]["CLOSE"] = "Cancel and go back";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Continue anyway";
+$lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Continue";
 
 
 

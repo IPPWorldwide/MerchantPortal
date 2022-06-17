@@ -1,6 +1,14 @@
 
-.canvas.dropzone {
-  background-color: lightgray;
-  min-height: 200px;
-  min-width: 200px;
+
+
+.chartBox {
+  width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.Charts div {
+  width: 50%;
+  position: relative;
+  float: left;
 }
