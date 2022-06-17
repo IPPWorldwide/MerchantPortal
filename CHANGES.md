@@ -5,4 +5,3 @@
 - Made INPUT change on frontpage, to support LDAP Connectivities
 - Minor language changes
 - Massive Improvements in Onboardingflow for automatically confirmation of CPR-numbers
-- 
