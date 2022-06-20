@@ -47,9 +47,9 @@ echo '
             echo "<td>".$value->timestamp->received_readable."</td>";
             echo "<td>".$value->timestamp->next_update_days." ".$lang["COMPANY"]["DISPUTES"]["DAYS"]."</td>";
             echo "<td>".$value->transaction->id."</td>";
-            echo "<td>".$value->amount_readable."</td>";
+            echo "<td>".$value->amount->amount_readable."</td>";
             echo "<td>".$value->transaction->amount_readable."</td>";
-            echo "<td>".$value->transaction->currency->id."</td>";
+            echo "<td>".$currency->currency($value->transaction->currency->id)[0]."</td>";
             echo "<td><img class='small-icon' src='";
             if($value->status == "lost") {
                 echo "/theme/".$_ENV["THEME"]."/assets/img/chargeback_lost.png";
