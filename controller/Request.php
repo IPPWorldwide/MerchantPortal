@@ -34,7 +34,7 @@ class IPPRequest {
         return $this->curl($_ENV["GLOBAL_BASE_URL"]."/".$url, "POST", [], $data);
     }
 
-    public function curl($url, $type = 'POST', $query = [], $data = [], $headers = []){
+    public function curl($url, $type = 'POST', $query = [], $data = [], $headers = [],$file=false){
         global $_SESSION,$IPP_CONFIG;
         if(isset($this->user_id) && $this->user_id != "")
             $data["user_id"] = $this->user_id;
@@ -46,14 +46,18 @@ class IPPRequest {
             $data["key1"] = $_ENV["PARTNER_KEY1"];
             $data["key2"] = $_ENV["PARTNER_KEY2"];
         }
+        if($file) {
+            $data["attached_file"] = new CURLFile($file['tmp_name'], $file['type'], $file['name']);
+        }
         $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if($type == "POST") {
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, ($data));
         }
         if (is_array($headers) && sizeof($headers) > 0) {
             curl_setopt($ch, CURLOPT_HEADER, $headers);
