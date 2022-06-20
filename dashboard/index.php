@@ -4,7 +4,7 @@ include("../base.php");
 $payment_type   = $REQ["payment_type"] ?? "AUTH+SALE";
 $result         = $REQ["payment_result"] ?? "ALL";
 $payment_start  = $REQ["payment_start"] ?? date("Y-m-d\TH:i", (time()-86400*30));
-$payment_end    = $REQ["payment_end"] ?? date("Y-m-d\TH:i", (time()));
+$payment_end    = $REQ["payment_end"] ?? date("Y-m-d\TH:i", (time()+600));
 
 if(isset($REQ["userid"])) {
     $ipp->ResetUserPassword($_COOKIE["ipp_user_id"],$REQ["password"]);

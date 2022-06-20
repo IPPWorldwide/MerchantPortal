@@ -1,1 +1,2 @@
 - Company Data in Onboarding Flow
+- Bugfix in Dashboard on Display of inbound Transactions
