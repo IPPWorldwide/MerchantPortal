@@ -110,9 +110,6 @@ class IPP {
     }
     public function ResetUserPassword($update_user_id,$password) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id, "password" => $password];
-
-        var_dump($_ENV["GLOBAL_BASE_URL"]."/company/users/password/reset/" . http_build_query($data));
-
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/password/reset/", "POST", [], $data);
     }
     public function UserData($merchant_id) {
@@ -121,9 +118,6 @@ class IPP {
     }
     public function RequestResetUserPassword($partner_id,$email, $portal) {
         $data = ["partner_id" => $partner_id,"email" => $email,"portal" => $portal];
-
-        var_dump($_ENV["GLOBAL_BASE_URL"]."/company/users/password/request/?".http_build_query($data));
-
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/password/request/", "POST", [], $data);
     }
     public function ConfirmResetUserPassword($partner_id,$user_id,$initialization_time,$hash) {

@@ -5,11 +5,7 @@ class IPPRequest {
     }
 
     public function download($url, $dest, $fileName) {
-
         $fr = @fopen($url, 'r');
-        if ($fr === false) {
-            throw new Primage_Proxy_Storage_SourceNotFound($url);
-        }
 
         $fw = fopen($dest, 'w');
         if ($fw === false) {
