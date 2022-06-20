@@ -35,7 +35,7 @@ class IPPRequest {
     }
 
     public function curl($url, $type = 'POST', $query = [], $data = [], $headers = []){
-        global $_SESSION;
+        global $_SESSION,$IPP_CONFIG;
         if(isset($this->user_id) && $this->user_id != "")
             $data["user_id"] = $this->user_id;
         if(isset($this->session_id) && $this->session_id != "")
@@ -46,6 +46,7 @@ class IPPRequest {
             $data["key1"] = $_ENV["PARTNER_KEY1"];
             $data["key2"] = $_ENV["PARTNER_KEY2"];
         }
+        $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
