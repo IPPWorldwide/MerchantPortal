@@ -53,7 +53,10 @@ class IPPRequest {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if($type == "POST") {
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            if($file) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            } else
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         }
         if (is_array($headers) && sizeof($headers) > 0) {
             curl_setopt($ch, CURLOPT_HEADER, $headers);
