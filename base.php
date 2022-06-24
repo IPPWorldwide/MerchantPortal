@@ -38,9 +38,8 @@ $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
 $menu       = new IPPMenu();
 $utils      = new IPPUtils();
-
 $timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
-if(isset($_COOKIE["timezone"]) && $timezoneoffset !== "") {
+if(isset($_COOKIE["timezone"]) && $timezoneoffset <> "") {
         date_default_timezone_set($timezoneoffset);
 }
 
