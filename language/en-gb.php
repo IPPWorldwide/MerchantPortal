@@ -113,6 +113,7 @@ $lang["PARTNER"]["USERS_ADD"]["PASSWORD"] = "Password:";
 $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create User";
 
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Settings";
+$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "View More";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Install";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
