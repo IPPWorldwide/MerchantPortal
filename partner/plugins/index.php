@@ -33,6 +33,11 @@ foreach($all_plugins as $key=>$value) {
               <p class="card-text">'.substr($value->description->en_gb->description, 0, 199); if(strlen($value->description->en_gb->description) > 199){ echo '...'; } echo '</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">';
+                if(!file_exists(BASEDIR . "plugins/".$key))
+                        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal me-2">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
+                else
+                    echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger me-2 removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+                ;
                 echo
                   "<button type='button' class='btn btn-sm btn-info text-white' data-bs-toggle='modal' data-bs-target='#pluginViewMoreModal".$i."'>".$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"]."</button>";
                 echo '
@@ -45,12 +50,13 @@ foreach($all_plugins as $key=>$value) {
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                '.$value->name.'
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                 </div>
                 <div class="modal-body" id="pluginViewMoreContent">
                 <div class="col">
                 <div class="card shadow-sm">
-                    <p class="card-header">'.$value->name.'</p>
+                    
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                     <div class="card-body">
                     <p class="card-text">'.$value->description->en_gb->description.'</p>
@@ -64,7 +70,9 @@ foreach($all_plugins as $key=>$value) {
                     if(!file_exists(BASEDIR . "plugins/".$key))
                         echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
                     else
-                        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+                        echo '<button type="button" class="btn btn-sm btn-info text-white pluginSettingsModal me-2" data-plugin-name="'.$key.'" data-plugin-title="'.$value->name.'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>
+
+                        <button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
                     echo '
                 </div>
             </div>
