@@ -38,9 +38,11 @@ $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
 $menu       = new IPPMenu();
 $utils      = new IPPUtils();
-$timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
-if(isset($_COOKIE["timezone"]) && $timezoneoffset <> "") {
+if(isset($_COOKIE["timezone"])) {
+    $timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
+    if($timezoneoffset <> "") {
         date_default_timezone_set($timezoneoffset);
+    }
 }
 
 $langs = $utils->prefered_language(["da","en","da-dk","en-gb"], $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
@@ -79,5 +81,5 @@ $plugins->loadPlugins();
 
 require_once(BASEDIR . "language/".$language.".php");
 if(file_exists(THEME . "/language/$language.php"))
-    require_once(THEME . "/language/$language.php");
+require_once(THEME . "/language/$language.php");
 
