@@ -135,7 +135,7 @@ class IPP {
     }
     public function DisputesRelated($transaction_id) {
         $data = ["transaction_id" => $transaction_id,"user_id" => $this->user_id, "session_id" => $this->session_id];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/related/", "POST", [], $data)->content;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/disputes/related/", "POST", [], $data)->content;
     }
 
     public function Search($search_term) {
