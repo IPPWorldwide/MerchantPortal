@@ -46,7 +46,7 @@ class IPP {
     }
     public function TransactionsAction($action,$transaction_id,$action_id,$amount = 0) {
         global $IPP_CONFIG;
-        if(($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] === "1" && $action === "void") || ($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUND"] === "1" && $action === "refund"))
+        if((isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] === "1" && $action === "void") || (isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUND"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUND"] === "1" && $action === "refund"))
             return false;
         $data = ["action" => $action,"transaction_id" => $transaction_id,"action_id"=>$action_id,"amount" => $amount,"user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/$action/", "POST", [], $data);
