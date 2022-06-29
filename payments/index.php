@@ -67,7 +67,7 @@ echo '
         echo '
     </div>
     <div class="col-6 related_payments">
-        <h2>Related Payments</h2>
+        <h2>'.$lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"].'</h2>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
@@ -104,7 +104,7 @@ echo '
                 </tbody>
             </table>
         </div>
-        <h2>Acquirer Response</h2>
+        <h2>'.$lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"].'</h2>
         <textarea class="form-control" rows="3">'; echo  $transaction_data->acquirer_data->response; echo '</textarea>
     </div>
 </div>        

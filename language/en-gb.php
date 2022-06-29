@@ -356,6 +356,10 @@ $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
+$lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Related Payments";
+$lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Acquirer Response";
+
+
 $lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Capture";
 $lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Incremental Auth";
 $lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refund";
