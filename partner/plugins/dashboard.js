@@ -2,21 +2,25 @@
     'use strict'
     feather.replace({ 'aria-hidden': 'true' })
 })();
-    $('.installModal').on('click', function () {
+$('.installModal').on('click', function () {
     var btn = $(this);
+    var btn2 = $('.plugin-btn-'+$(this).data("plugin-key"));
     $.post( "install.php", { plugin: $(this).data("plugin-name"), file: $(this).data("plugin-file") })
         .done(function( data ) {
             if(data === "") {
-                btn.removeClass("btn-success").removeClass("installModal").addClass("btn-danger").addClass("removeModal").html("Remove");
+                btn.removeClass("btn-success").removeClass("installModal").addClass("btn-danger").addClass("removeModal").html("Uninstall");
+                btn2.removeClass("btn-success").removeClass("installModal").addClass("btn-danger").addClass("removeModal").html("Uninstall");
             }
         });
 });
 $('.removeModal').on('click', function () {
     var btn = $(this);
+    var btn2 = $('.plugin-btn-'+$(this).data("plugin-key"));
     $.post( "remove.php", { id: $(this).data("plugin-id"), plugin: $(this).data("plugin-name") })
         .done(function( data ) {
             if(data === "") {
                 btn.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
+                btn2.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
             }
         });
 });

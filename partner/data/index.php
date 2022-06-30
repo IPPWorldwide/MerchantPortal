@@ -146,7 +146,7 @@ echo '
                                 <span class="slider round" ></span>
                                 </label>
                                 </td>
-                            </tr>
+                            </tr> 
                         </tbody>
                     </table>
                 </div>
