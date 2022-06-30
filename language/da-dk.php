@@ -239,6 +239,7 @@ $lang["COMPANY"]["PAYOUTS"]["CALCULATED_FEE"] = "Beregnet gebyr";
 $lang["COMPANY"]["PAYOUTS"]["SETTLEMENT"] = "Til udbetaling";
 $lang["COMPANY"]["PAYOUTS"]["SETTLED"] = "Udbetalt";
 $lang["COMPANY"]["PAYOUTS"]["INFO"] = "Info";
+$lang["COMPANY"]["PAYMENT_LINKS"]["INFO"] = "For at bruge denne funktion skal du have en e-handelskonto. Kontakt venligst vores support for yderligere information.";
 
 $lang["COMPANY"]["ONBOARDING"]["HEADER"] = "Merchant Onboarding";
 

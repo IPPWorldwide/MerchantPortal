@@ -237,6 +237,7 @@ $lang["COMPANY"]["PAYOUTS"]["CALCULATED_FEE"] = "Calculated Fee";
 $lang["COMPANY"]["PAYOUTS"]["SETTLEMENT"] = "Settlement";
 $lang["COMPANY"]["PAYOUTS"]["SETTLED"] = "Settled";
 $lang["COMPANY"]["PAYOUTS"]["INFO"] = "Info";
+$lang["COMPANY"]["PAYMENT_LINKS"]["INFO"] = "To use this function, you need an eCommerce account. Please reach our support for further information.";
 
 $lang["COMPANY"]["ONBOARDING"]["HEADER"] = "Merchant Onboarding";
 
