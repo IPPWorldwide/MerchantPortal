@@ -115,7 +115,6 @@ $lang["PARTNER"]["USERS_ADD"]["PASSWORD"] = "Adgangskode:";
 $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Opret bruger";
 
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Indstillinger";
-$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Se mere";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Installer";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Afinstaller";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Luk";
@@ -361,6 +360,9 @@ $lang["COMPANY"]["PAYMENT"]["AMOUNT"] = "Beløb";
 $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
+
+$lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Relaterede transaktioner";
+$lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Svar fra indløseren";
 
 $lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Opkræv";
 $lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Forsøg reservation";

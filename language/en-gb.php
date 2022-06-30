@@ -113,7 +113,6 @@ $lang["PARTNER"]["USERS_ADD"]["PASSWORD"] = "Password:";
 $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create User";
 
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Settings";
-$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "View More";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Install";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
@@ -357,6 +356,10 @@ $lang["COMPANY"]["PAYMENT"]["AMOUNT"] = "Amount";
 $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
+
+$lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Related Payments";
+$lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Acquirer Response";
+
 
 $lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Capture";
 $lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Incremental Auth";
