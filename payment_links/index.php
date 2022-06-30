@@ -65,8 +65,8 @@ echo '
     </form>
 ';
 }else{
-    echo '<div class="col alert alert-warning h-100 d-flex justify-content-center align-items-center">
-        <h5 class="text-dark">To use this function, you need an eCommerce account. Please reach our support for further information.</h5> 
+    echo '<div class="col alert alert-warning d-flex justify-content-center align-items-center">
+        <h5 class="text-dark">'.$lang["COMPANY"]["PAYMENT_LINKS"]["INFO"].'</h5> 
   </div>';
 }
 echo "<div class='table-responsive'>";

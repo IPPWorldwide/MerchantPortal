@@ -17,7 +17,7 @@ include(BASEDIR . "controller/IPPUtils.php");
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
 } else {
-    header("Location: /ippWorldWide/MerchantPortal/setup");
+    header("Location: /setup");
     die();
 }
 $_ENV           = $IPP_CONFIG;

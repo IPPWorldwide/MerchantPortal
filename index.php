@@ -1,5 +1,4 @@
 <?php
-//echo 'hi';die;
 $public_page = true;
 include("base.php");
 
