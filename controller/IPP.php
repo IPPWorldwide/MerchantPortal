@@ -170,4 +170,9 @@ class IPP {
     public function version() {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/version.php");
     }
+    public function GetAllAccessRights()
+    {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/list/", "GET", $data);
+    }
 }
