@@ -170,10 +170,23 @@ class IPP {
     public function version() {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/version.php");
     }
-    
+
     public function GetAllAccessRights()
     {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/list/", "GET", $data);
+    }
+
+    public function PageLevelAccess($check_access)
+    {
+        $logged_in_data = $this->CheckLogin();
+        $all_rules = $this->GetAllAccessRights();
+
+        foreach($logged_in_data->content->user->acccess_rights as $idx=>$right){
+            if($right === "ALL" OR $all_rules->content->all_rules->{$right}->name === $check_access){
+                return true;
+            }
+        }
+        return false;
     }
 }
