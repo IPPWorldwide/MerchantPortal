@@ -261,4 +261,8 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/plugins/list.json", "POST", [], $data);
     }
+    public function ListThemes() {
+        $theme_dirs = array_filter(glob(THEMES."*"), 'is_dir');
+        return$theme_dirs;
+    }
 }
