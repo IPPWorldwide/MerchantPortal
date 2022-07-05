@@ -44,7 +44,7 @@ echo '
             </div>
             <div class="row row-cols-md-6 mb-6">
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["MERCHANT_ID"].'<br /><input name="partner_merchant_id" class="form-control" value="'; echo $partner_data->merchant_id ?? ""; echo '"></div>
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["MERCHANY_KEY2"].'<br /><input name="partner_merchant_key2" class="form-control" value="'; echo $partner_data->merchant_key2 ?? ""; echo '"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["MERCHANT_KEY2"].'<br /><input name="partner_merchant_key2" class="form-control" value="'; echo $partner_data->merchant_key2 ?? ""; echo '"></div>
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">
