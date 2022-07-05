@@ -13,6 +13,7 @@ include(BASEDIR . "controller/IPPPartner.php");
 include(BASEDIR . "controller/IPPPlugins.php");
 include(BASEDIR . "controller/IPPMenu.php");
 include(BASEDIR . "controller/IPPUtils.php");
+include(BASEDIR . "controller/IPPPartnerGraph.php");
 
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
@@ -31,6 +32,8 @@ define("THEME", BASEDIR . "theme/".$_ENV["THEME"]);
 $request    = new IPPRequest();
 $ipp        = new IPP($request,$id,$session_id);
 $partner    = new IPPPartner($request,$id,$session_id);
+
+$partner_graph = new IPPPartnerGraph($partner, $request,$id,$session_id);
 
 $plugins    = new IPPPlugins($request);
 $currency   = new IPPCurrency();

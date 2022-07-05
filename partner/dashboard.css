@@ -98,3 +98,17 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+
+/* Charts CSS */
+.chart-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.card {
+  width: 50rem;
+  height: 25rem;
+  cursor: move;
+}
