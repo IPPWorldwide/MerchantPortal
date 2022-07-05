@@ -4,3 +4,5 @@
 - Optimization of Disputes
 - Minor cleanup
 - Move the Theme administration into its own menu section.
+- Added Merchant Key
+- Bugfix in Payment Search
