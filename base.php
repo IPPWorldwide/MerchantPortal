@@ -25,7 +25,8 @@ $id             = isset($_COOKIE["ipp_user_id"]) ? $_COOKIE["ipp_user_id"] : "";
 $session_id     = isset($_COOKIE["ipp_user_session_id"]) ? $_COOKIE["ipp_user_session_id"] : "";
 $login_type     = isset($_COOKIE["ipp_type"]) ? $_COOKIE["ipp_type"] : "";
 
-define("THEME", BASEDIR . "theme/".$_ENV["THEME"]);
+define("THEMES", BASEDIR . "theme/");
+define("THEME", THEMES . $_ENV["THEME"]);
 
 
 $request    = new IPPRequest();
@@ -38,9 +39,11 @@ $RequestP   = new RequestParams($request);
 $mcc        = new MCC();
 $menu       = new IPPMenu();
 $utils      = new IPPUtils();
-$timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
-if(isset($_COOKIE["timezone"]) && $timezoneoffset <> "") {
+if(isset($_COOKIE["timezone"])) {
+    $timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
+    if($timezoneoffset <> "") {
         date_default_timezone_set($timezoneoffset);
+    }
 }
 
 $langs = $utils->prefered_language(["da","en","da-dk","en-gb"], $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
@@ -79,5 +82,5 @@ $plugins->loadPlugins();
 
 require_once(BASEDIR . "language/".$language.".php");
 if(file_exists(THEME . "/language/$language.php"))
-    require_once(THEME . "/language/$language.php");
+require_once(THEME . "/language/$language.php");
 

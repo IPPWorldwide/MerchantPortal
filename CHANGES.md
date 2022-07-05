@@ -3,3 +3,4 @@
 - Enhanced Request Security
 - Optimization of Disputes
 - Minor cleanup
+- Move the Theme administration into its own menu section.
