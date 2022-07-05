@@ -39,9 +39,12 @@ echo '
                     </div>
             </div>
             <h2>'.$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"].'</h2>
-            <div class="row row-cols-md-6 mb-6">
+            <div class="row row-cols-md-12 mb-12">
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"].'<br /><input name="meta[invoicetext]" class="form-control" value="'; echo $partner_data->meta_data->meta->invoicetext ?? ""; echo '"></div>
+            </div>
+            <div class="row row-cols-md-6 mb-6">
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["MERCHANT_ID"].'<br /><input name="partner_merchant_id" class="form-control" value="'; echo $partner_data->merchant_id ?? ""; echo '"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["MERCHANY_KEY2"].'<br /><input name="partner_merchant_key2" class="form-control" value="'; echo $partner_data->merchant_key2 ?? ""; echo '"></div>
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">

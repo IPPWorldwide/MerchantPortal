@@ -71,6 +71,7 @@ $lang["PARTNER"]["DATA"]["COUNTRY"] = "Land:";
 $lang["PARTNER"]["DATA"]["PARTNER_INVOICES"] = "Partner fakturaer";
 $lang["PARTNER"]["DATA"]["PAYMENT_SLIP"] = "Faktura notits til manuel betaling:";
 $lang["PARTNER"]["DATA"]["MERCHANT_ID"] = "Merchant ID til egen konto:";
+$lang["PARTNER"]["DATA"]["MERCHANT_KEY2"] = "Merchant Key 2:";
 $lang["PARTNER"]["DATA"]["ACQUIRERS"] = "Indløsere";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_NAME"] = "Navn";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
