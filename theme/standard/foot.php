@@ -33,9 +33,10 @@ function foot() {
     $(function() {
         function log(message) {
             console.log(message);
-        }
-    
-        $("#CustomerSearch").autocomplete({
+        }';
+        if(!isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) || (isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) && !$IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"])){
+
+        echo '$("#CustomerSearch").autocomplete({
             html:true,
             source: function(request, response) {
                 $.ajax({
@@ -81,8 +82,9 @@ function foot() {
     .append( "<a href=\''.$IPP_CONFIG["PORTAL_URL"].'/payments/?id=" + item.action_id + "\'>" + item.date + " - " + item.cardno + " - " + item.holder + " " + item.amount + " " + item.currency + "</a>" )
     .appendTo( ul );
 };
-    });
-    </script>
+    });';
+};
+ echo '</script>
   </body>
 </html>
 ';
