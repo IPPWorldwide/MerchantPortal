@@ -129,6 +129,7 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ACTIVE"] = "Active";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["FUNCTION"] = "#";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["EDIT"] = "Edit";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["CLOSE"] = "Remove Template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] = "plugin missing";
 
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"] = "Communication Template";
