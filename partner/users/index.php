@@ -32,7 +32,6 @@ echo '
             <tr>
                 <th scope="col">'.$lang["PARTNER"]["USERS"]["ID"].'</th>
                 <th scope="col">'.$lang["PARTNER"]["USERS"]["USERNAME"].'</th>
-                <th scope="col">'.$lang["PARTNER"]["USERS"]["ADMINISTRATOR"].'</th>
                 <th scope="col">'.$lang["PARTNER"]["USERS"]["FUNCTIONS"].'</th>
             </tr>
           </thead>
@@ -43,7 +42,6 @@ echo '
             <tr>
                 <td>".$value->id."</td>
                 <td>".$value->email."</td>
-                <td>".$value->admin."</td>
                 <td>
                     <button type='button' class='btn btn-info ResetPasswordModal' data-username='".$value->email."' data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["RESET_PASSWORD"]."</button>
                     <button type='button' class='btn btn-warning AccessRights' data-compliance='".$value->compliance."' data-username='".$value->email."'  data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"]."</button>
