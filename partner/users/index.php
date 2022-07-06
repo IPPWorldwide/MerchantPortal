@@ -43,9 +43,17 @@ echo '
                 <td>".$value->id."</td>
                 <td>".$value->email."</td>
                 <td>
+                ";
+            if($value->active === "1") {
+                echo "
                     <button type='button' class='btn btn-info ResetPasswordModal' data-username='".$value->email."' data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["RESET_PASSWORD"]."</button>
                     <button type='button' class='btn btn-warning AccessRights' data-compliance='".$value->compliance."' data-username='".$value->email."'  data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"]."</button>
                     <a href='/partner/users/?close=1&user_id=".$value->id."' class='btn btn-danger'>".$lang["PARTNER"]["USERS"]["CLOSE_ACCOUNT"]."</a>
+            ";
+            } else {
+                echo ICON_INFO . " This account have been disabled.";
+            }
+            echo "
                 </td>
             </tr>
             ";
