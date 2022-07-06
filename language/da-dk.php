@@ -119,6 +119,7 @@ $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Opret bruger";
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Indstillinger";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Installer";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Afinstaller";
+$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Vis mere";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Luk";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Gem";
 

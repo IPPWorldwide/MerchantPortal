@@ -117,6 +117,7 @@ $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create User";
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Settings";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Install";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
+$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Show more";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Save";
 
