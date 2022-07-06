@@ -1,6 +1,5 @@
 <?php
 include("../b.php");
-
 if(isset($REQ["update"])) {
     $partner->CommunicationTemplateCopyMissing();
     header("Location: /partner/communications");
@@ -11,7 +10,12 @@ if(isset($REQ["close"])) {
     header("Location: /partner/communications");
     die();
 }
-
+$available_communication = [];
+if(!is_null($plugins->available_plugins))
+    foreach($plugins->available_plugins as $value) {
+        if(isset($value->communication->type) && !in_array($value->communication->type,$available_communication))
+            $available_communication[] = $value->communication->type;
+    }
 $templates = $partner->ListTemplates();
 echo head();
 echo '
@@ -40,7 +44,14 @@ echo '
           foreach($templates as $value) {
               echo "
               <td>".$value->hook."</td>
-              <td>".$value->type."</td>
+              ";
+              echo "<td>";
+              if(is_null($available_communication) || (isset($available_communication) && !in_array($value->type,$available_communication))) {
+                  echo ICON_INFO . " " .  $value->type . " " . $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] . "<br />";
+              }
+              echo $value->type;
+              echo "</td>";
+              echo "
               <td>".$value->title."</td>
               <td>".$value->active."</td>
               <td>
