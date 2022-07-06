@@ -99,7 +99,7 @@ echo '
                     <form>
                         <input type="hidden" name="user_id" id="user-id" readonly>
                         <div class="form-group form-check form-switch">
-                            <input type="checkbox" class="form-check-input"  name="compliance_admin" id="compliance_admin" value="1">
+                            <input type="checkbox" class="form-check-input" name="compliance_admin" id="compliance_admin" value="1">
                             <label for="compliance_admin" class="form-check-label">'.$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN"].'</label><br />
                             <small>'.$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN_DESCRIPTION"].'</small>
                         </div>
