@@ -33,6 +33,7 @@ class IPPMenu {
         $menu["COMPANY"]["disputes"] = "Disputes";
         $menu["COMPANY"]["payment_links"] = "Payment Links";
         $menu["COMPANY"]["invoices"] = "Invoices";
+        $menu["COMPANY"]["company_access_rights"] = "Company Access Rights";
 
         return json_encode($menu);
     }
