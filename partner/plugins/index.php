@@ -49,7 +49,6 @@ foreach($all_plugins as $key=>$value) {
 if(!is_null($all_available_plugins)){
   // Loop throug all locally installed plugins that are not in api call!
   foreach($all_available_plugins as $key=>$value) {
-      $informations = $value->getFields()[0];
       echo '
           <div class="col" data-plugin-id="'.$key.'">
             <div class="card shadow-sm">
