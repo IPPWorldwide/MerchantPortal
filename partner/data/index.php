@@ -5,8 +5,10 @@ if(isset($REQ["submit"])) {
     include(BASEDIR . "controller/IPPConfig.php");
     $config = new IPPConfig();
     foreach($REQ["IPPCONFIG"] as $key=>$value) {
-        $new_config = $config->UpdateConfig($key,$value);
+        $config->UpdateConfig($key,$value);
     }
+    $config->UpdateConfig("partner_company_id",$REQ["partner_merchant_id"]);
+    $config->UpdateConfig("partner_company_key2", $REQ["partner_merchant_key2"]);
     $config = $config->WriteConfig();
     unset($REQ["IPPCONFIG"]);
     $partner->UpdateData($REQ);
