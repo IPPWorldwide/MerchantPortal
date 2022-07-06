@@ -1,4 +1,3 @@
-
 <?php
 include("../b.php");
 if(isset($REQ["plugin_slug"])) {
