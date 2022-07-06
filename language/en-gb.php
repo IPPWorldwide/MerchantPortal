@@ -310,9 +310,11 @@ $lang["COMPANY"]["INVOICES"]["PERIOD_END"] = "Period End";
 $lang["COMPANY"]["INVOICES"]["PAID"] = "Paid";
 $lang["COMPANY"]["INVOICES"]["FUNCTION"] = "#";
 $lang["COMPANY"]["INVOICES"]["SHOW"] = "Show";
+$lang["COMPANY"]["INVOICES"]["PAY_INVOICE"] = "Pay invoice";
 $lang["COMPANY"]["INVOICES"]["CANCELLED"] = "Cancelled";
 $lang["COMPANY"]["INVOICES"]["PAID_TEXT"] = "Paid";
 $lang["COMPANY"]["INVOICES"]["UNPAID"] = "Unpaid";
+$lang["COMPANY"]["INVOICES"]["RECEIVED_PAYMENT"] = "Invoice have been paid. May take up to 60 seconds for the registration to complete.";
 
 $lang["COMPANY"]["INVOICES_SHOW"]["HEADER"] = "Invoice";
 $lang["COMPANY"]["INVOICES_SHOW"]["DATES"] = "Dates";

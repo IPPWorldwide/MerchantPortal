@@ -6,4 +6,6 @@
 - Move the Theme administration into its own menu section.
 - Added Merchant Key
 - Bugfix in Payment Search
+- Bugfix in Partner Data
 - Bugfix Invoices
+- Appended Invoice Payments by Card
