@@ -34,18 +34,17 @@ echo head();
         </div>
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">Purchased Products</span>
-            <span class="badge bg-primary rounded-pill"><?php echo count($invoice->products) ?></span>
+            <span class="badge bg-primary rounded-pill"><?php echo count((array)$invoice->products) ?></span>
         </h4>
         <ul class="list-group mb-3">
             <?php
-
             foreach($invoice->products as $value) {
                 echo "<li class=\"list-group-item d-flex justify-content-between lh-sm\">
                 <div>
                     <h6 class=\"my-0\">".$value->name."</h6>
                     <small class=\"text-muted\">".$value->subname."</small>
                 </div>
-                <span class=\"text-muted\">".$value->price."</span>
+                <span class=\"text-muted\">".$value->price_readable."</span>
             </li>";
             }
             ?>
