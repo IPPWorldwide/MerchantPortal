@@ -1,5 +1,5 @@
 /* @extend display-flex; */
-display-flex, .form-flex, .form-date-group, .steps ul, .title, .title .step-number, .actions ul li a, .form-radio-flex, .form-find {
+display-flex, .form-flex, .steps ul, .title, .title .step-number, .actions ul li a, .form-radio-flex, .form-find {
   display: flex;
   display: -webkit-flex; }
 
@@ -171,14 +171,14 @@ input {
   margin-bottom: 18px;
   position: relative; }
 
-.form-date-group {
+.form-select-group {
   border: 1px solid transparent;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px; }
-  .form-date-group select {
+  .form-select-group select {
     border: 1px solid #ebebeb;
     width: 100%;
     box-sizing: border-box;
@@ -538,7 +538,7 @@ input.error {
   #slider-margin .noUi-pips {
     width: 94%; } }
 @media screen and (max-width: 480px) {
-  .form-date-group, .form-find {
+  .form-select-group, .form-find {
     flex-direction: column;
     -moz-flex-direction: column;
     -webkit-flex-direction: column;
