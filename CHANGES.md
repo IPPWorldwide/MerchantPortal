@@ -1,0 +1,1 @@
+- Added section for Company Access Rights
