@@ -91,5 +91,5 @@ echo '
             </div>
         </div>
     </div>
-';
+</div>';
 echo foot();

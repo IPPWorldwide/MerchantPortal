@@ -2,12 +2,14 @@
     'use strict'
     feather.replace({ 'aria-hidden': 'true' })
 })();
-    $('.installModal').on('click', function () {
+$('.installModal').on('click', function () {
     var btn = $(this);
+    var btn2 = $('.plugin-btn-'+$(this).data("plugin-key"));
     $.post( "install.php", { plugin: $(this).data("plugin-name"), file: $(this).data("plugin-file") })
         .done(function( data ) {
             if(data === "") {
-                btn.removeClass("btn-success").removeClass("installModal").addClass("btn-danger").addClass("removeModal").html("Remove");
+                btn.removeClass("btn-success").removeClass("installModal").addClass("btn-danger").addClass("removeModal").html("Uninstall");
+                btn2.removeClass("btn-success").removeClass("installModal").addClass("btn-danger").addClass("removeModal").html("Uninstall");
             }
         });
 });
@@ -15,13 +17,12 @@ $('.removeModal').on('click', function () {
     let plugin_type = $(this).data("local-plugin");
     let plugin_div = $(`[data-plugin-id="${$(this).data("plugin-name")}"]`);
     var btn = $(this);
+    var btn2 = $('.plugin-btn-'+$(this).data("plugin-key"));
     $.post( "remove.php", { id: $(this).data("plugin-id"), plugin: $(this).data("plugin-name") })
     .done(function( data ) {
-        if(plugin_type === 1){
-            plugin_div.remove();
-        }
         if(data === "") {
             btn.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
+            btn2.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
         }
     });
 });
@@ -59,7 +60,7 @@ $(".confirmPluginSettngs").on("click", function() {
     $.post( "?", $("#pluginModal form").serialize())
         .done(function( data ) {
             if(data !== "") {
-                $("div").find("[data-plugin-id='" + $("#pluginModal form #plugin_slug").val() + "']").find(".pluginSettingsModal").attr("data-values",data);
+                $(".modal.fade").find("[data-plugin-name='" + $("#pluginModal form #plugin_slug").val() + "']").first().attr("data-values",data);
                 $('#pluginModal').modal('hide');
             }
         });

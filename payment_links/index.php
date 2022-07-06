@@ -67,7 +67,7 @@ echo '
 }else{
     echo '<div class="col alert alert-warning d-flex justify-content-center align-items-center">
         <h5 class="text-dark">'.$lang["COMPANY"]["PAYMENT_LINKS"]["INFO"].'</h5> 
-  </div>';
+  </div>'; 
 }
 echo "<div class='table-responsive'>";
     echo "<table class='table table-striped table-sm'>";
