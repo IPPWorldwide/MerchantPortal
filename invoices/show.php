@@ -34,7 +34,7 @@ echo '
         </div>
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">'.$lang["COMPANY"]["INVOICES_SHOW"]["PURCHASED_PRODUCTS"].'</span>
-            <span class="badge bg-primary rounded-pill">'; echo count($invoice->products); echo '</span>
+            <span class="badge bg-primary rounded-pill">'; echo count((array)$invoice->products); echo '</span>
         </h4>
         <ul class="list-group mb-3">
             ';
@@ -44,7 +44,7 @@ echo '
                     <h6 class=\"my-0\">".$value->name."</h6>
                     <small class=\"text-muted\">".$value->subname."</small>
                 </div>
-                <span class=\"text-muted\">".$value->price."</span>
+                <span class=\"text-muted\">".$value->price_readable."</span>
             </li>";
             }
            echo '
@@ -86,7 +86,7 @@ echo '
     </div>
 </div>
 ';
-if(isset($invoice->billing->payment_slip)) {
+if(isset($invoice->billing->payment_slip) && $invoice->billing->payment_slip !== "") {
     echo "<div class='col-md-12 alert  alert-info'>
         ".$invoice->billing->payment_slip."</div>";
 }

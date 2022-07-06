@@ -17,7 +17,7 @@ include(BASEDIR . "controller/IPPUtils.php");
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
 } else {
-    header("Location: /setup");
+    header("Location: ".BASEDIR."setup");
     die();
 }
 $_ENV           = $IPP_CONFIG;
@@ -25,7 +25,8 @@ $id             = isset($_COOKIE["ipp_user_id"]) ? $_COOKIE["ipp_user_id"] : "";
 $session_id     = isset($_COOKIE["ipp_user_session_id"]) ? $_COOKIE["ipp_user_session_id"] : "";
 $login_type     = isset($_COOKIE["ipp_type"]) ? $_COOKIE["ipp_type"] : "";
 
-define("THEME", BASEDIR . "theme/".$_ENV["THEME"]);
+define("THEMES", BASEDIR . "theme/");
+define("THEME", THEMES . $_ENV["THEME"]);
 
 
 $request    = new IPPRequest();
