@@ -19,6 +19,16 @@ $currency   = new IPPCurrency();
 $request    = new IPPRequest();
 $ipp        = new IPP($request,null, null);
 ?>
+<?php 
+    $basedir = "../";
+    if(file_exists($basedir . "ipp-config.php")){
+    include $basedir . "ipp-config.php";
+?>
+    <script>
+        confirm("The platform is already setup!");
+        window.location = "<?php echo $IPP_CONFIG["PORTAL_URL"]; ?>"
+    </script>
+<?php die(); } ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
