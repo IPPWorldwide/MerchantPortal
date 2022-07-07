@@ -105,7 +105,8 @@ if(!is_null($all_available_plugins)){
                   <div>Only local</div>
                 </div>
               </div>
-            </div>';
+            </div>
+        </div>';
 }
 }
 echo '
