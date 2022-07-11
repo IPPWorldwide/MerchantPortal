@@ -50,6 +50,11 @@ $lang["PARTNER"]["INVOICES"]["PAID_TXT"] = "Betalt";
 $lang["PARTNER"]["INVOICES"]["UNPAID"] = "Ikke betalt";
 $lang["PARTNER"]["INVOICES"]["SHOW"] = "Vis";
 
+$lang["PARTNER"]["INVOICES"]["BOOKING_SYSTEM_HEADER"] = "Ikke matchet regninger fra regnskabsprogram";
+$lang["PARTNER"]["INVOICES"]["IMPORT"] = "Importér regning";
+$lang["PARTNER"]["INVOICES"]["CONNECT_WITH"] = "Sammenkobl med";
+$lang["PARTNER"]["INVOICES"]["IMPORT_HEADER"] = "Vælg konto at forbinde regningen med";
+
 
 $lang["PARTNER"]["INVOICES_PLAN"]["HEADER"] = "Månedabonnementer";
 $lang["PARTNER"]["INVOICES_PLAN"]["ADD_NEW"] = "Opret nyt månedsskema";

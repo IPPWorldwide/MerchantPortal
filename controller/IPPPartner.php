@@ -155,10 +155,11 @@ class IPPPartner {
         $data = array_merge($all_data, $data);
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/add/", "POST", [], $data);
     }
-    public function AddInvoiceProvider($company,$issuing,$product,$address,$currency,$data_provider,$data_provider_id) {
+    public function AddInvoiceProvider($company_id,$company,$issuing,$product,$address,$currency,$data_provider,$data_provider_id) {
         $data = [
             "user_id" => $this->user_id,
             "session_id" => $this->session_id,
+            "company_id"=>$company_id,
             "issuing" => $issuing,
             "product" => $product,
             "currency" => $currency,

@@ -31,6 +31,10 @@ class IPPPlugins
         $this->available_plugins[] = $slug;
     }
 
+    public function setBookeeping($slug) {
+        $this->bookkeeping[] = $slug;
+    }
+
     public function getAvailablePlugins() {
         return $this->available_plugins;
     }
@@ -126,5 +130,51 @@ class IPPPlugins
     }
     private function loadPlugin($plugin_name) {
         $this->available_plugins[$plugin_name] = new $plugin_name();
+
+        if(isset($this->available_plugins[$plugin_name]->bookkeeping))
+            $this->bookkeeping = $this->available_plugins[$plugin_name]->bookkeeping;
+
     }
+
+
+
+
+
+
+
+
+
+
+
+    // BOOKEEPING
+    public function ListInvoices() {
+        $invoice_lists = new stdClass();
+        if(is_array($this->bookkeeping)) {
+            foreach($this->bookkeeping as $value) {
+                $bookkeeping = new $value();
+                $invoices = json_decode(json_encode($bookkeeping->getInvoices()));
+                foreach($invoices as $invoice) {
+                    $invoice_lists->{$invoice->guid} = $invoice;
+                }
+            }
+        }
+
+        return $invoice_lists;
+    }
+
+    public function ListSpecificInvoice($provider,$guid) {
+        $bookkeeping = new $provider();
+        $data = $bookkeeping->getInvoice($guid);
+
+        return $data;
+    }
+
+
+
+
+
+
+
+
+
 }
