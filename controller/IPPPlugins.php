@@ -138,6 +138,10 @@ class IPPPlugins
 
 
 
+    public function loadPage($plugin_name,$page,$REQ) {
+        $this->available_plugins[$plugin_name] = new $plugin_name();
+        return (array)$this->available_plugins[$plugin_name]->{"pages_".$page}($REQ);
+    }
 
 
 
@@ -168,13 +172,6 @@ class IPPPlugins
 
         return $data;
     }
-
-
-
-
-
-
-
 
 
 }

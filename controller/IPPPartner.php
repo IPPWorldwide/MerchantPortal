@@ -174,6 +174,20 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"id" => $invoice_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/data/", "POST", [], $data)->content;
     }
+    public function AddInvoiceProviderPayment($invoice_id,$company_id,$status,$transaction_id,$provider,$provider_guid) {
+        $data = [
+            "user_id" => $this->user_id,
+            "session_id" => $this->session_id,
+            "company_id"=>$company_id,
+            "invoice_id" => $invoice_id,
+            "status" => $status,
+            "transaction_id" => $transaction_id,
+            "provider" => $provider,
+            "provider_guid" => $provider_guid
+        ];
+        var_dump($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/update/payment/provider/add/?".http_build_query($data));
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/update/payment/provider/add/", "POST", [], $data);
+    }
 
     public function AddCommunicationTemplate($hook,$type,$title,$content,$receiver,$active) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "hook" => $hook, "type" => $type, "title"=> $title, "content" => $content, "receiver" => $receiver,"active" => $active];
@@ -251,8 +265,8 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/subscription_plans.php", "POST", [], $data)->content;
     }
-    public function Listinvoices() {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+    public function ListInvoices($filter=[]) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"filter"=>$filter];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/invoices.php", "POST", [], $data)->content;
     }
     public function ListTemplates() {

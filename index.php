@@ -46,6 +46,17 @@ if(
         exit;
     }
 }
+if(isset($REQ["pages"])) {
+    try {
+        $page = new $REQ["pages"]();
+        if(in_array($REQ["page"],$page->public_pages)) {
+            $plugins->loadPage($REQ["pages"],$REQ["page"],$REQ);
+        }
+    } catch (Error $e) {
+        var_dump($e);
+        die();
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
