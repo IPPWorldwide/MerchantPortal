@@ -114,6 +114,15 @@ class IPPPlugins
             return false;
 
     }
+    public function hasExternalCommunication($plugin_name,$method,$request) {
+        if(
+            isset($this->available_plugins[$plugin_name]) &&
+            is_object($this->available_plugins[$plugin_name]) &&
+            method_exists($this->available_plugins[$plugin_name],"externalFeedback"))
+            return (array)$this->available_plugins[$plugin_name]->externalFeedback($method,$request);
+        else
+            return [];
+    }
     private function loadPlugin($plugin_name) {
         $this->available_plugins[$plugin_name] = new $plugin_name();
     }

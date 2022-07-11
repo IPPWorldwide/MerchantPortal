@@ -1,5 +1,23 @@
 <?php
 include("../b.php");
+if(isset($REQ["external"])) {
+    if($plugins->hasExternalLogin($REQ["plugin_slug"])) {
+        $REQ = array_merge($REQ, $plugins->hasExternalCommunication($REQ["plugin_slug"],"initial",$REQ));
+        $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($REQ as $key=>$value) {
+            $partner->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
+            $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        fclose($myfile);
+        if(method_exists($plugins,"hookUpdate"))
+            $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
+    }
+    header("Location: ".$REQ["return"]);
+    die();
+}
 if(isset($REQ["plugin_slug"])) {
     $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
     $txt = "<?php\n";
@@ -108,7 +126,8 @@ if(!is_null($all_available_plugins)){
                   <div>Only local</div>
                 </div>
               </div>
-            </div>';
+            </div>
+          </div>';
 }
 }
 echo '
