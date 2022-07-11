@@ -84,13 +84,15 @@ echo head();
                     </thead>
                     <tbody>
                     <?php
-                    foreach($partner_acquirers as $key=>$value) {
-                        echo "<tr><td><input name='acquirers[$key]' type='checkbox'";
-                        if(isset($merchant_acquirers[$key])) {
-                            echo " checked ";
+                    if(isset($partner_acquirers)) {
+                        foreach($partner_acquirers as $key=>$value) {
+                            echo "<tr><td><input name='acquirers[$key]' type='checkbox'";
+                            if(isset($merchant_acquirers[$key])) {
+                                echo " checked ";
+                            }
+                            echo ">";
+                            echo "</td><td>".$value->name."</td><td>".$value->id."</td><td></td></tr>";
                         }
-                        echo ">";
-                        echo "</td><td>".$value->name."</td><td>".$value->id."</td><td></td></tr>";
                     }
                     ?>
                     </tbody>
