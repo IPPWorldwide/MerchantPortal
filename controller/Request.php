@@ -1,7 +1,11 @@
 <?php
 class IPPRequest {
-    function __construct() {
-
+    private $user_id;
+    private $session_id;
+    
+    function __construct($user_id,$session_id) {
+        $this->user_id = $user_id;
+        $this->session_id = $session_id;
     }
 
     public function download($url, $dest, $fileName) {
