@@ -58,7 +58,7 @@ if(isset($REQ["add_invoice"])) {
     die();
 }
 $companies = $partner->ListCompany();
-$invoices = $partner->Listinvoices();
+$invoices = $partner->ListInvoices();
 $bookeeping = $plugins->ListInvoices();
 $bookeeping_providers = [];
 $known_invoices = [];
