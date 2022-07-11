@@ -7,6 +7,7 @@ class IPPPlugins
     public $hook_footer;
     public $hook_header;
     public $hook_login;
+    public $bookkeeping;
 
     public function loadPlugins() {
         if ($handle = opendir(BASEDIR . 'plugins')) {
