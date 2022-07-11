@@ -55,6 +55,14 @@ class IPPPlugins
         if($this->getFields())
             return $this->getFields();
     }
+    public function GetPluginFields($entry)
+    {
+        $settings = [];
+        if(file_exists(BASEDIR . "plugins/".$entry."/settings.php")) {
+            include(BASEDIR . "plugins/".$entry."/settings.php");
+        }
+        return $settings;
+    }
     public function getSettingsFields($plugin_name) {
         if(isset($this->available_plugins[$plugin_name])) {
             return json_encode($this->available_plugins[$plugin_name]->getFields());
@@ -95,6 +103,16 @@ class IPPPlugins
                 $standard_values[] = $value;
         }
         return $standard_values;
+    }
+    public function hasExternalLogin($plugin_name) {
+        if(
+            isset($this->available_plugins[$plugin_name]) &&
+            is_object($this->available_plugins[$plugin_name]) &&
+            method_exists($this->available_plugins[$plugin_name],"externalLogin"))
+            return $this->available_plugins[$plugin_name]->externalLogin();
+        else
+            return false;
+
     }
     private function loadPlugin($plugin_name) {
         $this->available_plugins[$plugin_name] = new $plugin_name();

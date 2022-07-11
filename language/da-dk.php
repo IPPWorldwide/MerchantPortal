@@ -122,6 +122,7 @@ $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Afinstaller";
 $lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Vis mere";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Luk";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Gem";
+$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Udgående kommunikation";
