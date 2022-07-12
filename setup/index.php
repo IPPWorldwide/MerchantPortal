@@ -16,7 +16,7 @@ include("../controller/IPP.php");
 include("../controller/Request.php");
 include("../controller/IPPCurrency.php");
 $currency   = new IPPCurrency();
-$request    = new IPPRequest();
+$request    = new IPPRequest("","");
 $ipp        = new IPP($request,null, null);
 ?>
 <!DOCTYPE html>
