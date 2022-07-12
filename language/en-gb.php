@@ -50,6 +50,10 @@ $lang["PARTNER"]["INVOICES"]["PAID_TXT"] = "Paid";
 $lang["PARTNER"]["INVOICES"]["UNPAID"] = "Unpaid";
 $lang["PARTNER"]["INVOICES"]["SHOW"] = "Show";
 
+$lang["PARTNER"]["INVOICES"]["BOOKING_SYSTEM_HEADER"] = "Non matched invoices";
+$lang["PARTNER"]["INVOICES"]["IMPORT"] = "Import Inovoice";
+$lang["PARTNER"]["INVOICES"]["CONNECT_WITH"] = "Connect account with ";
+$lang["PARTNER"]["INVOICES"]["IMPORT_HEADER"] = "Select account to connect invoice with";
 
 $lang["PARTNER"]["INVOICES_PLAN"]["HEADER"] = "Invoice Plans";
 $lang["PARTNER"]["INVOICES_PLAN"]["ADD_NEW"] = "Issue new Scheme";
