@@ -133,6 +133,7 @@ $lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Udgående kommunikation";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"] = "Hent en kopi af alle templates";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"] = "Tilføj template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SENT_OUT"] = "Sendt kommunikation";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HOOK"] = "Hook";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TYPE"] = "Kommunikationsform";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TITLE"] = "Titel";
@@ -142,6 +143,14 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["EDIT"] = "Rediger";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["CLOSE"] = "Fjern template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] = "plugin mangler";
 
+$lang["PARTNER"]["OUTBOUND_SENT"]["HEADER"] = "Udgående kommunikation";
+$lang["PARTNER"]["OUTBOUND_SENT"]["FUNCTION"] = "#";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TIMESTAMP"] = "Tidsstempel";
+$lang["PARTNER"]["OUTBOUND_SENT"]["RECEIVER"] = "Modtager";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TITLE"] = "Titel";
+$lang["PARTNER"]["OUTBOUND_SENT"]["MESSAGE"] = "Besked";
+$lang["PARTNER"]["OUTBOUND_SENT"]["ATTACHMENTS"] = "Vedhæftninger";
+$lang["PARTNER"]["OUTBOUND_SENT"]["STATUS"] = "Status";
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"] = "Template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"] = "Hook";
