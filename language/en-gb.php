@@ -140,6 +140,14 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["EDIT"] = "Edit";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["CLOSE"] = "Remove Template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] = "plugin missing";
 
+$lang["PARTNER"]["OUTBOUND_SENT"]["HEADER"] = "Outbound communication";
+$lang["PARTNER"]["OUTBOUND_SENT"]["FUNCTION"] = "#";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TIMESTAMP"] = "Timestamp";
+$lang["PARTNER"]["OUTBOUND_SENT"]["RECEIVER"] = "Receiver";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TITLE"] = "Title";
+$lang["PARTNER"]["OUTBOUND_SENT"]["MESSAGE"] = "Message";
+$lang["PARTNER"]["OUTBOUND_SENT"]["ATTACHMENTS"] = "Attachments";
+$lang["PARTNER"]["OUTBOUND_SENT"]["STATUS"] = "Status";
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"] = "Communication Template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"] = "Communication Hook";
