@@ -20,6 +20,7 @@ class IPPMenu {
         $menu["PARTNER"]["communications"] = "Outbound Communications";
         $menu["PARTNER"]["menus"] = "Menu Administration";
         $menu["PARTNER"]["onboarding"] = "Merchant Onboardings";
+        $menu["PARTNER"]["apperance"] = "Apperance";
 
         $menu["COMPANY"]["dashboard"] = "Dashboard";
         $menu["COMPANY"]["charts"] = "Charts";
@@ -32,6 +33,7 @@ class IPPMenu {
         $menu["COMPANY"]["disputes"] = "Disputes";
         $menu["COMPANY"]["payment_links"] = "Payment Links";
         $menu["COMPANY"]["invoices"] = "Invoices";
+        $menu["COMPANY"]["company_access_rights"] = "Company Access Rights";
 
         return json_encode($menu);
     }

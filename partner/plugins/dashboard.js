@@ -14,15 +14,17 @@ $('.installModal').on('click', function () {
         });
 });
 $('.removeModal').on('click', function () {
+    let plugin_type = $(this).data("local-plugin");
+    let plugin_div = $(`[data-plugin-id="${$(this).data("plugin-name")}"]`);
     var btn = $(this);
     var btn2 = $('.plugin-btn-'+$(this).data("plugin-key"));
     $.post( "remove.php", { id: $(this).data("plugin-id"), plugin: $(this).data("plugin-name") })
-        .done(function( data ) {
-            if(data === "") {
-                btn.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
-                btn2.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
-            }
-        });
+    .done(function( data ) {
+        if(data === "") {
+            btn.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
+            btn2.removeClass("btn-danger").removeClass("removeModal").addClass("btn-success").addClass("installModal").html("Install");
+        }
+    });
 });
 $('.pluginSettingsModal').on('click', function () {
     var button = $(this);
@@ -58,7 +60,7 @@ $(".confirmPluginSettngs").on("click", function() {
     $.post( "?", $("#pluginModal form").serialize())
         .done(function( data ) {
             if(data !== "") {
-                $("div").find("[data-plugin-id='" + $("#pluginModal form #plugin_slug").val() + "']").find(".pluginSettingsModal").attr("data-values",data);
+                $(".modal.fade").find("[data-plugin-name='" + $("#pluginModal form #plugin_slug").val() + "']").first().attr("data-values",data);
                 $('#pluginModal').modal('hide');
             }
         });

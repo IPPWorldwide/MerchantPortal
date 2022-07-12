@@ -11,6 +11,8 @@ function head() {
     if(file_exists(THEME . "/assets/css/")) {
         $css = glob(THEME . "/assets/css/*.css");
         foreach($css as $css_path){
+            if(basename($_SERVER['REQUEST_URI']) !== pathinfo($css_path)['filename'])
+                continue;
             $extra_css .= '<link rel="stylesheet" href="'.$css_path.'">';
         }
     }
@@ -63,7 +65,7 @@ function head() {
         <span class="navbar-toggler-icon"></span>
     </button>
     ';
-    if(!isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) || (isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) && $IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]))
+    if(!isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) || (isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) && !$IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]))
         $html .= '<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search for customer" id="CustomerSearch">';
     $html .= '<div class="navbar-nav">
         <div class="nav-item text-nowrap">
