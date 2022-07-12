@@ -1,86 +1,47 @@
 <?php
 include("../b.php");
-if(isset($REQ["plugin_slug"])):
+if(isset($REQ["external"])) {
+    if($plugins->hasExternalLogin($REQ["plugin_slug"])) {
+        $REQ = array_merge($REQ, $plugins->hasExternalCommunication($REQ["plugin_slug"],"initial",$REQ));
+        $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($REQ as $key=>$value) {
+            $partner->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
+            $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        fclose($myfile);
+        if(method_exists($plugins,"hookUpdate"))
+            $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
+    }
+    header("Location: ".$REQ["return"]);
+    die();
+}
+if(isset($REQ["plugin_slug"])) {
     $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
     $txt = "<?php\n";
     fwrite($myfile, $txt);
-    foreach($REQ as $key=>$value):
+    foreach($REQ as $key=>$value) {
         $partner->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
         $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
         fwrite($myfile, $txt);
-    endforeach;
+    }
     fclose($myfile);
     if(method_exists($plugins,"hookUpdate"))
         $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
     echo json_encode($REQ);
     die();
-endif;
+}
 $all_plugins = $partner->ListPlugins();
 $all_available_plugins = $plugins->getAvailablePlugins();
 echo head();
-echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">';
+
+echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+';
 $i=1;
-?>
-    <div class="col" data-plugin-id="smtp_server">
-        <div class="card shadow-sm">
-            <p class="card-header">Add new plugin</p>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body plugin-card-body">
-                <p class="card-text">Use your own SMTP server to send out emails and pay-by-links, instead of using our shared SMTP-service.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group"><form id="add-new-plugin" action="#" method="POST" enctype='multipart/form-data'><input type="file" name="new-plugin" id="plugin-file" accept=".zip"></form><button type="button" class="btn btn-sm btn-info text-white" id="upload-plugin-file">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script>
-     $(document).ready(function (){
-         $('#upload-plugin-file').click(function (){
-             var vidFileLength = $("#plugin-file")[0].files.length;
-             if(vidFileLength === 0){
-                 swal({
-                     title: "Error!",
-                     text: "Please choose a file!",
-                     icon: "error",
-                 });
-             }else{
-                 var fd = new FormData();
-                 var files = $('#plugin-file')[0].files;
-                 fd.append('new-plugin',files[0]);
-                 $.ajax({
-                     url: 'plugin-validation.php',
-                     type: 'post',
-                     data: fd,
-                     contentType: false,
-                     processData: false,
-                     success: function(response){
-                         var d = JSON.parse(response);
-                         if(d.error){
-                             swal({
-                                 title: "Error!",
-                                 text: d.message,
-                                 icon: "error",
-                             });
-                         }else{
-                             swal({
-                                 title: "Success!",
-                                 text: d.message,
-                                 icon: "success",
-                             }).then(function (){
-                                 window.location.reload();
-                             });
-                         }
-                     },
-                 });
-             }
-         });
-     });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<?php
-foreach($all_plugins as $key=>$value):
+foreach($all_plugins as $key=>$value) {
+    // removing plugnings that are stored in remote api.
     unset($all_available_plugins[$key]);
 
     echo '
@@ -126,6 +87,9 @@ foreach($all_plugins as $key=>$value):
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">'.$lang["PARTNER"]["PLUGINS"]["CLOSE"].'</button>';
     $plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
+    if($plugins->hasExternalLogin($key)) {
+        echo '<a href="'.$plugins->hasExternalLogin($key).'" class="btn btn-sm btn-info text-white me-2">'.$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"].'</a>';
+    }
     if(!file_exists(BASEDIR . "plugins/".$key))
         echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal plugin-btn-'.$i.'">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
     else
@@ -138,11 +102,11 @@ foreach($all_plugins as $key=>$value):
         </div>
     </div>';
     $i++;
-endforeach;
+}
 // Check if any plugins are locally installed!
-if(!is_null($all_available_plugins)):
+if(!is_null($all_available_plugins)){
     // Loop throug all locally installed plugins that are not in api call!
-    foreach($all_available_plugins as $key=>$value):
+    foreach($all_available_plugins as $key=>$value) {
         echo '
           <div class="col" data-plugin-id="'.$key.'">
             <div class="card shadow-sm">
@@ -153,19 +117,19 @@ if(!is_null($all_available_plugins)):
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-info pluginSettingsModal" data-plugin-name="'.$key.'" data-plugin-title="'.$value->id.'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
-        if(!file_exists(BASEDIR . "plugins/".$key)):
+        if(!file_exists(BASEDIR . "plugins/".$key))
             echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="" class="btn btn-sm btn-success installModal">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
-        else:
+        else
             echo '<button type="button" data-local-plugin="1" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
-            echo '
+        echo '
                   </div>
                   <div>Only local</div>
                 </div>
               </div>
-            </div>';
-        endif;
-    endforeach;
-endif;
+            </div>
+          </div>';
+    }
+}
 echo '
     <div class="modal fade" id="pluginModal" tabindex="-1" role="dialog" aria-labelledby="pluginModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -185,7 +149,4 @@ echo '
         </div>
     </div>';
 echo "</div>";
-?>
-
-<?php
 echo foot();

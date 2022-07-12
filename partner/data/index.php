@@ -101,7 +101,7 @@ echo '
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"].'</td>
                                 <td>
                                 <label class="switch">
-                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_DEACTIVATE_SEARCH]" value="1"';if($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"] == 1){ echo 'checked'; }; echo '>
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_DEACTIVATE_SEARCH]" value="1"';if(isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) && $IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"] === "1"){ echo 'checked'; }; echo '>
                                 <span class="slider round" ></span>
                                 </label>
                                 </td>
@@ -110,7 +110,7 @@ echo '
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"].'</td>
                                 <td>
                                 <label class="switch">
-                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_DEACTIVATE_VIRTUAL_TERMINAL]" value="1"';if($IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"] == 1){ echo 'checked'; }; echo '>
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_DEACTIVATE_VIRTUAL_TERMINAL]" value="1"';if(isset($IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"]) && $IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"] === "1"){ echo 'checked'; }; echo '>
                                 <span class="slider round" ></span>
                                 </label>
                                 </td>
@@ -119,7 +119,7 @@ echo '
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_REFUNDS"].'</td>
                                 <td>
                                 <label class="switch">
-                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_REFUNDS]" value="1"';if($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"] == 1){ echo 'checked'; }; echo '>
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_REFUNDS]" value="1"';if(isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"] === "1"){ echo 'checked'; }; echo '>
                                 <span class="slider round" ></span>
                                 </label>
                                 </td>
@@ -128,7 +128,7 @@ echo '
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"].'</td>
                                 <td>
                                 <label class="switch">
-                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_VOID]" value="1"';if($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] == 1){ echo 'checked'; }; echo '>
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_VOID]" value="1"';if(isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] === "1"){ echo 'checked'; }; echo '>
                                 <span class="slider round" ></span>
                                 </label>
                                 </td>
@@ -137,7 +137,7 @@ echo '
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_HIDE_TOTAL_VOLUME"].'</td>
                                 <td>
                                 <label class="switch">
-                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_HIDE_TOTAL_VOLUME]" value="1"';if($IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"] == 1){ echo 'checked'; }; echo '>
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_HIDE_TOTAL_VOLUME]" value="1"';if(isset($IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"]) && $IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"] === "1"){ echo 'checked'; }; echo '>
                                 <span class="slider round" ></span>
                                 </label>
                                 </td>
