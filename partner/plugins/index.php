@@ -163,24 +163,27 @@ foreach($all_plugins as $key=>$value) {
     </div>';
     $i++;
 }
+
 // Check if any plugins are locally installed!
 if(!is_null($all_available_plugins)){
     // Loop throug all locally installed plugins that are not in api call!
     foreach($all_available_plugins as $key=>$value) {
+
+        $fields = $value->fields[0];
         echo '
           <div class="col" data-plugin-id="'.$key.'">
             <div class="card shadow-sm">
-                <p class="card-header">'.$value->id.'</p>
+                <p class="card-header">'.$fields['name'].'</p>
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
               <div class="card-body">
-                <p class="card-text"></p>
+                <p class="card-text">'.$fields['description'].'</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-info pluginSettingsModal" data-plugin-name="'.$key.'" data-plugin-title="'.$value->id.'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
+                    <button type="button" class="btn btn-sm btn-info pluginSettingsModal" data-plugin-name="'.$fields['name'].'" data-plugin-title="'.$fields['title'].'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
         if(!file_exists(BASEDIR . "plugins/".$key))
             echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="" class="btn btn-sm btn-success installModal">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
         else
-            echo '<button type="button" data-local-plugin="1" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+            echo '<button type="button" data-local-plugin="1" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$fields['name'].'" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
         echo '
                   </div>
                   <div>Only local</div>
