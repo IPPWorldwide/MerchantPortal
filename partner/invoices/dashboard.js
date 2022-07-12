@@ -65,7 +65,7 @@ $("#invoiceSettingsModal .confirm").on("click",function() {
         dataType: "json",
         cache: false,
         success: function (data) {
-
+            $("#invoiceSettingsModal").modal("hide");
         }
     });
 });
