@@ -26,6 +26,7 @@ echo '
         <div class="col-6 text-end">
             <a class="btn btn-success" href="?update=all">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"].'</a>
             <a class="btn btn-success" href="data.php">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"].'</a>
+            <a class="btn btn-success" href="communication.php">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SENT_OUT"].'</a>
         </div>
     </div>
       <div class="table-responsive">

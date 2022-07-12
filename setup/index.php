@@ -1,6 +1,9 @@
 <?php
 include("../ipp-config-sample.php");
     if(isset($_POST["portal_title"])) {
+        $folder_level = "./";
+        while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
+        define("BASEDIR", $folder_level);
         $myfile = fopen("../ipp-config.php", "w") or die("Unable to open file!");
         fclose($myfile);
         include("../controller/IPPConfig.php");
@@ -16,7 +19,7 @@ include("../controller/IPP.php");
 include("../controller/Request.php");
 include("../controller/IPPCurrency.php");
 $currency   = new IPPCurrency();
-$request    = new IPPRequest();
+$request    = new IPPRequest("","");
 $ipp        = new IPP($request,null, null);
 ?>
 <!DOCTYPE html>

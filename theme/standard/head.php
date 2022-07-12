@@ -11,6 +11,8 @@ function head() {
     if(file_exists(THEME . "/assets/css/")) {
         $css = glob(THEME . "/assets/css/*.css");
         foreach($css as $css_path){
+            if(basename($_SERVER['REQUEST_URI']) !== pathinfo($css_path)['filename'])
+                continue;
             $extra_css .= '<link rel="stylesheet" href="'.$css_path.'">';
         }
     }

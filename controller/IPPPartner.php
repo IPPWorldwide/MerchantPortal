@@ -277,6 +277,10 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"status" => $onboarding_status];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/onboarding.php", "POST", [], $data)->content;
     }
+    public function ListOutboundCommunication() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/communication_outbound.php", "POST", [], $data)->content;
+    }
 
     public function ListTypes() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];

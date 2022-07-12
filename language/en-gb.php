@@ -58,6 +58,11 @@ $lang["PARTNER"]["INVOICES"]["MODAL_SUBMIT_BTN"] = "Confirm settings";
 $lang["PARTNER"]["INVOICES"]["MODAL_CLOSE"] = "Close";
 
 
+$lang["PARTNER"]["INVOICES"]["BOOKING_SYSTEM_HEADER"] = "Non matched invoices";
+$lang["PARTNER"]["INVOICES"]["IMPORT"] = "Import Inovoice";
+$lang["PARTNER"]["INVOICES"]["CONNECT_WITH"] = "Connect account with ";
+$lang["PARTNER"]["INVOICES"]["IMPORT_HEADER"] = "Select account to connect invoice with";
+
 $lang["PARTNER"]["INVOICES_PLAN"]["HEADER"] = "Invoice Plans";
 $lang["PARTNER"]["INVOICES_PLAN"]["ADD_NEW"] = "Issue new Scheme";
 $lang["PARTNER"]["INVOICES_PLAN"]["ID"] = "ID";
@@ -129,6 +134,7 @@ $lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Communication Templates";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"] = "Get all new templates from IPP";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"] = "Add new Template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SENT_OUT"] = "Sent communication";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HOOK"] = "Hook";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TYPE"] = "Communication Type";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TITLE"] = "Title";
@@ -138,6 +144,14 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["EDIT"] = "Edit";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["CLOSE"] = "Remove Template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] = "plugin missing";
 
+$lang["PARTNER"]["OUTBOUND_SENT"]["HEADER"] = "Outbound communication";
+$lang["PARTNER"]["OUTBOUND_SENT"]["FUNCTION"] = "#";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TIMESTAMP"] = "Timestamp";
+$lang["PARTNER"]["OUTBOUND_SENT"]["RECEIVER"] = "Receiver";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TITLE"] = "Title";
+$lang["PARTNER"]["OUTBOUND_SENT"]["MESSAGE"] = "Message";
+$lang["PARTNER"]["OUTBOUND_SENT"]["ATTACHMENTS"] = "Attachments";
+$lang["PARTNER"]["OUTBOUND_SENT"]["STATUS"] = "Status";
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"] = "Communication Template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"] = "Communication Hook";

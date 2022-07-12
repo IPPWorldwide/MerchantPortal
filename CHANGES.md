@@ -1,12 +1,6 @@
-- Added section for Company Access Rights
-- Show if a user account have been disabled
-- Check page level access
-- Changes in login-page
-- Bugfix in Compliance Admin
-- Outbound Communication Fix
-- Language bar movement
-- Bugfix in Partner Users
-- Setup Guide improvements
-- Access Rights Improvements
-- Disabled Search Fix
-- Disable Buttons fix
+- Show which Outbound communication have happened
+- Minor bugfixes
+- Plugins with External Communication and External Login Mechnicsm
+- Add Public Plugin Pages Functionality
+- Minor bugfixes in Standard Theme
+
