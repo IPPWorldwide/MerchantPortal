@@ -133,6 +133,7 @@ $lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Udgående kommunikation";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"] = "Hent en kopi af alle templates";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"] = "Tilføj template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SENT_OUT"] = "Sendt kommunikation";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HOOK"] = "Hook";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TYPE"] = "Kommunikationsform";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TITLE"] = "Titel";

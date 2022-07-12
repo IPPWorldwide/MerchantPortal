@@ -130,6 +130,7 @@ $lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Communication Templates";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"] = "Get all new templates from IPP";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"] = "Add new Template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SENT_OUT"] = "Sent communication";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HOOK"] = "Hook";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TYPE"] = "Communication Type";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TITLE"] = "Title";
