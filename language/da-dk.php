@@ -50,6 +50,13 @@ $lang["PARTNER"]["INVOICES"]["PAID_TXT"] = "Betalt";
 $lang["PARTNER"]["INVOICES"]["UNPAID"] = "Ikke betalt";
 $lang["PARTNER"]["INVOICES"]["SHOW"] = "Vis";
 
+$lang["PARTNER"]["INVOICES"]["PARTNER_INVOICES"] = "Partner fakturaer";
+$lang["PARTNER"]["INVOICES"]["PAYMENT_SLIP"] = "Faktura notits til manuel betaling:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_ID"] = "Merchant ID til egen konto:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_KEY2"] = "Merchant Key 2:";
+$lang["PARTNER"]["INVOICES"]["MODAL_SUBMIT_BTN"] = "Gem";
+$lang["PARTNER"]["INVOICES"]["MODAL_CLOSE"] = "Close";
+
 $lang["PARTNER"]["INVOICES"]["BOOKING_SYSTEM_HEADER"] = "Ikke matchet regninger fra regnskabsprogram";
 $lang["PARTNER"]["INVOICES"]["IMPORT"] = "Importér regning";
 $lang["PARTNER"]["INVOICES"]["CONNECT_WITH"] = "Sammenkobl med";
@@ -73,10 +80,6 @@ $lang["PARTNER"]["DATA"]["KEY_2"] = "Nøgle 2:";
 $lang["PARTNER"]["DATA"]["DETAILS"] = "Partner detaljer";
 $lang["PARTNER"]["DATA"]["NAME"] = "Partner navn:";
 $lang["PARTNER"]["DATA"]["COUNTRY"] = "Land:";
-$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"] = "Partner fakturaer";
-$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"] = "Faktura notits til manuel betaling:";
-$lang["PARTNER"]["DATA"]["MERCHANT_ID"] = "Merchant ID til egen konto:";
-$lang["PARTNER"]["DATA"]["MERCHANT_KEY2"] = "Merchant Key 2:";
 $lang["PARTNER"]["DATA"]["ACQUIRERS"] = "Indløsere";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_NAME"] = "Navn";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
