@@ -50,3 +50,22 @@ $(".connectInvoice").on("click", function() {
         }
     });
 });
+
+$(".btnSettings").on("click",function() {
+    $("#invoiceSettingsModal").modal("show");
+});
+
+$("#invoiceSettingsModal .closeModal").on("click",function() {
+    $("#invoiceSettingsModal").modal("hide");
+});
+$("#invoiceSettingsModal .confirm").on("click",function() {
+    $.ajax({
+        url: '?',
+        data: $("#invoiceSettingsModal form").serialize(),
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            $("#invoiceSettingsModal").modal("hide");
+        }
+    });
+});

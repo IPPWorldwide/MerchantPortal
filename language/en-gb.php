@@ -50,6 +50,14 @@ $lang["PARTNER"]["INVOICES"]["PAID_TXT"] = "Paid";
 $lang["PARTNER"]["INVOICES"]["UNPAID"] = "Unpaid";
 $lang["PARTNER"]["INVOICES"]["SHOW"] = "Show";
 
+$lang["PARTNER"]["INVOICES"]["PARTNER_INVOICES"] = "Partner Invoices";
+$lang["PARTNER"]["INVOICES"]["PAYMENT_SLIP"] = "Invoice Payment Slip:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_ID"] = "Partners own Merchant Account ID:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_KEY2"] = "Merchant Key 2:";
+$lang["PARTNER"]["INVOICES"]["MODAL_SUBMIT_BTN"] = "Confirm settings";
+$lang["PARTNER"]["INVOICES"]["MODAL_CLOSE"] = "Close";
+
+
 $lang["PARTNER"]["INVOICES"]["BOOKING_SYSTEM_HEADER"] = "Non matched invoices";
 $lang["PARTNER"]["INVOICES"]["IMPORT"] = "Import Inovoice";
 $lang["PARTNER"]["INVOICES"]["CONNECT_WITH"] = "Connect account with ";
@@ -72,10 +80,6 @@ $lang["PARTNER"]["DATA"]["KEY_2"] = "Key 2:";
 $lang["PARTNER"]["DATA"]["DETAILS"] = "Partner Details";
 $lang["PARTNER"]["DATA"]["NAME"] = "Partner Name:";
 $lang["PARTNER"]["DATA"]["COUNTRY"] = "Country:";
-$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"] = "Partner Invoices";
-$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"] = "Invoice Payment Slip:";
-$lang["PARTNER"]["DATA"]["MERCHANT_ID"] = "Partners own Merchant Account ID:";
-$lang["PARTNER"]["DATA"]["MERCHANT_KEY2"] = "Merchant Key 2:";
 $lang["PARTNER"]["DATA"]["ACQUIRERS"] = "Acquirers";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_NAME"] = "Name";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
