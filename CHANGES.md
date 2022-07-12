@@ -1,1 +1,12 @@
 - Added section for Company Access Rights
+- Show if a user account have been disabled
+- Check page level access
+- Changes in login-page
+- Bugfix in Compliance Admin
+- Outbound Communication Fix
+- Language bar movement
+- Bugfix in Partner Users
+- Setup Guide improvements
+- Access Rights Improvements
+- Disabled Search Fix
+- Disable Buttons fix

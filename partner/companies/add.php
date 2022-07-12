@@ -1,7 +1,7 @@
 <?php
 include("../b.php");
 if(isset($REQ["company"])) {
-    $partner->AddMerchant($REQ);
+    $data = $partner->AddMerchant($REQ);
     header("Location: /partner/companies");
     die();
 }

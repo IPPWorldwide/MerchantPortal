@@ -1,5 +1,23 @@
 <?php
 include("../b.php");
+if(isset($REQ["external"])) {
+    if($plugins->hasExternalLogin($REQ["plugin_slug"])) {
+        $REQ = array_merge($REQ, $plugins->hasExternalCommunication($REQ["plugin_slug"],"initial",$REQ));
+        $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($REQ as $key=>$value) {
+            $partner->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
+            $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        fclose($myfile);
+        if(method_exists($plugins,"hookUpdate"))
+            $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
+    }
+    header("Location: ".$REQ["return"]);
+    die();
+}
 if(isset($REQ["plugin_slug"])) {
     $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
     $txt = "<?php\n";
@@ -69,6 +87,9 @@ foreach($all_plugins as $key=>$value) {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">'.$lang["PARTNER"]["PLUGINS"]["CLOSE"].'</button>';
     $plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
+    if($plugins->hasExternalLogin($key)) {
+        echo '<a href="'.$plugins->hasExternalLogin($key).'" class="btn btn-sm btn-info text-white me-2">'.$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"].'</a>';
+    }
     if(!file_exists(BASEDIR . "plugins/".$key))
         echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal plugin-btn-'.$i.'">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
     else
@@ -106,7 +127,7 @@ if(!is_null($all_available_plugins)){
                 </div>
               </div>
             </div>
-        </div>';
+          </div>';
 }
 }
 echo '

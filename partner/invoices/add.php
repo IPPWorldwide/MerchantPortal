@@ -8,7 +8,7 @@ if(isset($REQ["action"])) {
 }
 
 if(isset($REQ["add_invoice"])) {
-    $partner->AddInvoice($REQ);
+    $data = $partner->AddInvoice($REQ);
     header("Location: /partner/invoices");
     die();
 }

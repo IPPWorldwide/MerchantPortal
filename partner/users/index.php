@@ -32,7 +32,6 @@ echo '
             <tr>
                 <th scope="col">'.$lang["PARTNER"]["USERS"]["ID"].'</th>
                 <th scope="col">'.$lang["PARTNER"]["USERS"]["USERNAME"].'</th>
-                <th scope="col">'.$lang["PARTNER"]["USERS"]["ADMINISTRATOR"].'</th>
                 <th scope="col">'.$lang["PARTNER"]["USERS"]["FUNCTIONS"].'</th>
             </tr>
           </thead>
@@ -43,11 +42,18 @@ echo '
             <tr>
                 <td>".$value->id."</td>
                 <td>".$value->email."</td>
-                <td>".$value->admin."</td>
                 <td>
+                ";
+            if($value->active === "1") {
+                echo "
                     <button type='button' class='btn btn-info ResetPasswordModal' data-username='".$value->email."' data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["RESET_PASSWORD"]."</button>
                     <button type='button' class='btn btn-warning AccessRights' data-compliance='".$value->compliance."' data-username='".$value->email."'  data-id='".$value->id."'>".$lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"]."</button>
                     <a href='/partner/users/?close=1&user_id=".$value->id."' class='btn btn-danger'>".$lang["PARTNER"]["USERS"]["CLOSE_ACCOUNT"]."</a>
+            ";
+            } else {
+                echo ICON_INFO . " This account have been disabled.";
+            }
+            echo "
                 </td>
             </tr>
             ";
@@ -99,7 +105,7 @@ echo '
                     <form>
                         <input type="hidden" name="user_id" id="user-id" readonly>
                         <div class="form-group form-check form-switch">
-                            <input type="checkbox" class="form-check-input"  name="compliance_admin" id="compliance_admin" value="1">
+                            <input type="checkbox" class="form-check-input" name="compliance_admin" id="compliance_admin" value="1">
                             <label for="compliance_admin" class="form-check-label">'.$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN"].'</label><br />
                             <small>'.$lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN_DESCRIPTION"].'</small>
                         </div>

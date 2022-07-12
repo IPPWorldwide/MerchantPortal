@@ -120,6 +120,7 @@ $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
 $lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Show more";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Save";
+$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Communication Templates";
