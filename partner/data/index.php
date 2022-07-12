@@ -22,11 +22,9 @@ if(isset($REQ["submit"])) {
     foreach($REQ["IPPCONFIG"] as $key=>$value) {
         $config->UpdateConfig($key,$value);
     }
-    $config->UpdateConfig("partner_company_id",$REQ["partner_merchant_id"]);
-    $config->UpdateConfig("partner_company_key2", $REQ["partner_merchant_key2"]);
     $config = $config->WriteConfig();
     unset($REQ["IPPCONFIG"]);
-    $partner->UpdateData($REQ);
+    $partner->UpdateData($REQ,$REQ["meta"]["name"]);
 }
 $partner_data = $partner->PartnerData();
 echo head();
@@ -54,14 +52,6 @@ echo '
                         echo '
                     </select>
                     </div>
-            </div>
-            <h2>'.$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"].'</h2>
-            <div class="row row-cols-md-12 mb-12">
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"].'<br /><input name="meta[invoicetext]" class="form-control" value="'; echo $partner_data->meta_data->meta->invoicetext ?? ""; echo '"></div>
-            </div>
-            <div class="row row-cols-md-6 mb-6">
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["MERCHANT_ID"].'<br /><input name="partner_merchant_id" class="form-control" value="'; echo $partner_data->merchant_id ?? ""; echo '"></div>
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["MERCHANT_KEY2"].'<br /><input name="partner_merchant_key2" class="form-control" value="'; echo $partner_data->merchant_key ?? ""; echo '"></div>
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">
