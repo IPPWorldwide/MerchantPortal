@@ -25,6 +25,8 @@ if(isset($REQ["action"])) {
     die();
 }
 $transaction_data = $ipp->TransactionsData($REQ["id"]);
+$merchant_data = $ipp->MerchantData();
+
 echo head();
 echo '
 <div class="row row-cols-md-2 mb-2">
