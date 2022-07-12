@@ -93,8 +93,8 @@ if(isset($REQ["pages"])) {
 
     
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-    <?php
+      <?php
+      echo '<link href="'.THEME.'/assets/css/signin.css" rel="stylesheet">';
     if(!is_null($plugins->hook_login)) {
         foreach($plugins->hook_login as $value) {
             echo $value;
