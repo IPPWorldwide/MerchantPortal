@@ -33,8 +33,9 @@ if(isset($REQ["plugin_slug"])) {
     echo json_encode($REQ);
     die();
 }
-$all_plugins = $partner->ListPlugins();
-$all_available_plugins = $plugins->getAvailablePlugins();
+$all_plugins = array_merge((array)$plugins->getAvailablePlugins(),(array)$partner->ListPlugins());
+
+
 echo head();
 
 echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -42,35 +43,41 @@ echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 $i=1;
 foreach($all_plugins as $key=>$value) {
     // removing plugnings that are stored in remote api.
-    unset($all_available_plugins[$key]);
-
+    $name = $value->name ?? $value->id;
+    $description = $value->description->en_gb->description ?? "";
+    $file = $value->file ?? "";
     echo '
         <div class="col" data-plugin-id="'.$key.'">
           <div class="card shadow-sm">
-              <p class="card-header">'.$value->name.'</p>
+              <p class="card-header">'.$name.'</p>
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
             <div class="card-body plugin-card-body">
-              <p class="card-text">'.substr($value->description->en_gb->description, 0, 199); if(strlen($value->description->en_gb->description) > 199){ echo '...'; } echo '</p>
+              <p class="card-text">'.substr($description, 0, 199); if(strlen($description) > 199){ echo '...'; } echo '</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">';
-    if(!file_exists(BASEDIR . "plugins/".$key))
-        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-key="'.$i.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal me-2 plugin-btn-'.$i.'">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
-    else
-        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger me-2 removeModal plugin-btn-'.$i.'">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
-    ;
+        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-key="'.$i.'" data-plugin-file="'.$file.'"'; if(file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-success installModal me-2">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
+        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-danger me-2 removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+
     echo
-        "<button type='button' class='btn btn-sm btn-info text-white' data-bs-toggle='modal' data-bs-target='#pluginViewMoreModal".$i."'>".$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"]."</button>";
+        '<button type="button" class="btn btn-sm btn-info text-white btnShowMore" data-name="'.$name.'" data-slug="'.$key.'" data-plugin-file="'.$file.'" data-external-login="'.$plugins->hasExternalLogin($key).'" data-installed="'.file_exists(BASEDIR . "plugins/".$key).'" data-description="'.strip_tags($description).'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,'').'\' data-bs-toggle="modal" data-bs-target="#pluginViewMoreModal">'.$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"].'</button>';
     echo '
                 </div>
+    ';
+    if($description == "")
+        echo '<div>Only local</div>';
+    echo '
               </div>
             </div>
           </div>
         </div>
-        <div class="modal fade" id="pluginViewMoreModal'.$i.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+';
+    $i++;
+}
+echo '
+    <div class="modal fade" id="pluginViewMoreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                '.$value->name.'
                 <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                 </div>
                 <div class="modal-body" id="pluginViewMoreContent">
@@ -79,58 +86,26 @@ foreach($all_plugins as $key=>$value) {
                     
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                     <div class="card-body">
-                    <p class="card-text">'.$value->description->en_gb->description.'</p>
+                    <p class="card-text"></p>
                     </div>
                 </div>
                 </div>    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">'.$lang["PARTNER"]["PLUGINS"]["CLOSE"].'</button>';
-    $plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
-    if($plugins->hasExternalLogin($key)) {
-        echo '<a href="'.$plugins->hasExternalLogin($key).'" class="btn btn-sm btn-info text-white me-2">'.$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"].'</a>';
-    }
-    if(!file_exists(BASEDIR . "plugins/".$key))
-        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="'.$value->file.'" class="btn btn-sm btn-success installModal plugin-btn-'.$i.'">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
-    else
-        echo '<button type="button" class="btn btn-sm btn-info text-white pluginSettingsModal me-2" data-plugin-name="'.$key.'" data-plugin-title="'.$value->name.'" data-bs-dismiss="modal" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>
 
-                        <button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal plugin-btn-'.$i.'">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
-    echo '
+    echo '<a href="" class="btn btn-sm btn-info text-white me-2 ExternalLogin">'.$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"].'</a>';
+
+echo '<button type="button" class="btn btn-sm btn-info text-white pluginSettingsModal me-2" data-plugin-name="" data-plugin-title="" data-bs-dismiss="modal" data-fields=\'\' data-values=\'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
+
+    echo '<button type="button" data-plugin-name="" data-plugin-file="" class="btn btn-sm btn-success installModal">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
+
+echo '<button type="button" data-plugin-id="" data-plugin-key="" data-plugin-name="" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+echo '
                 </div>
             </div>
         </div>
-    </div>';
-    $i++;
-}
-// Check if any plugins are locally installed!
-if(!is_null($all_available_plugins)){
-    // Loop throug all locally installed plugins that are not in api call!
-    foreach($all_available_plugins as $key=>$value) {
-        echo '
-          <div class="col" data-plugin-id="'.$key.'">
-            <div class="card shadow-sm">
-                <p class="card-header">'.$value->id.'</p>
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text"></p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-info pluginSettingsModal" data-plugin-name="'.$key.'" data-plugin-title="'.$value->id.'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,"").'\'>'.$lang["PARTNER"]["PLUGINS"]["SETTINGS"].'</button>';
-        if(!file_exists(BASEDIR . "plugins/".$key))
-            echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-file="" class="btn btn-sm btn-success installModal">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
-        else
-            echo '<button type="button" data-local-plugin="1" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-name="'.$key.'" class="btn btn-sm btn-danger removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
-        echo '
-                  </div>
-                  <div>Only local</div>
-                </div>
-              </div>
-            </div>
-          </div>';
-}
-}
-echo '
+    </div>
     <div class="modal fade" id="pluginModal" tabindex="-1" role="dialog" aria-labelledby="pluginModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
