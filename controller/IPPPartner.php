@@ -226,7 +226,28 @@ class IPPPartner {
     }
     public function InstallPlugin($slug) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/add/", "POST", [], $data)->content;
+        $install = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/add/", "POST", [], $data)->content;
+        require_once BASEDIR . "plugins/".$slug."/init.php";
+        $new_pugin = new $slug();
+        if(method_exists($new_pugin,"hookInstall"))
+            $new_pugin->hookInstall($install->plugin_id,$this->user_id,$this->session_id);
+
+        $standard_configs = $new_pugin->getStandardConfigs($slug);
+        $std_settings = [];
+        foreach($standard_configs as $value)
+            $std_settings[$value["name"]] = $value["standard"];
+
+        $myfile = fopen(BASEDIR . "plugins/".$slug."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        $txt .= "\$settings[\"plugin_id\"] = '" . $install->plugin_id . "';\n";
+        foreach($std_settings as $key=>$value) {
+            $txt .= "\$settings[\"".$key."\"] = '" . $value . "';\n";
+        }
+        fwrite($myfile, $txt);
+        fclose($myfile);
+        if(method_exists($new_pugin,"hookUpdate"))
+            $new_pugin->hookUpdate($slug,$install->plugin_id,$std_settings);
+        return $install;
     }
     public function UpdatePluginSettings($plugin_id,$key,$value) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
