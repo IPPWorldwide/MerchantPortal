@@ -103,9 +103,11 @@ class IPPPlugins
     public function getStandardConfigs($plugin_name) {
         $this->setFields();
         $standard_values = [];
-        foreach($this->fields() as $value) {
-            if(isset($value["standard"]))
-                $standard_values[] = $value;
+        if(is_object($this->fields()) || is_array($this->fields())) {
+            foreach($this->fields() as $value) {
+                if(isset($value["standard"]))
+                    $standard_values[] = $value;
+            }
         }
         return $standard_values;
     }

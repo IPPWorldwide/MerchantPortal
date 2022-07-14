@@ -1,5 +1,6 @@
 <?php
-error_reporting(0);
+include("../b.php");
+
 function recurseRmdir($dir) {
     $files = array_diff(scandir($dir), array('.','..'));
     foreach ($files as $file):
@@ -31,10 +32,10 @@ if(move_uploaded_file($_FILES['new-plugin']['tmp_name'],$path)):
     $za->open($path);
     for( $i = 0; $i < $za->numFiles; $i++ ):
         $stat = $za->statIndex( $i );
-        if($stat['name']==$name.'/index.php'):
+        if($stat['name']=='index.php'):
             $isIndex = true;
         endif;
-        if($stat['name']==$name.'/init.php'):
+        if($stat['name']=='init.php'):
             $isInit  = true;
         endif;
     endfor;
@@ -46,7 +47,8 @@ if(move_uploaded_file($_FILES['new-plugin']['tmp_name'],$path)):
     endif;
     switch($isValid):
         case 0:
-            $za->extractTo('tmp');
+            mkdir('tmp/'.$name, 0777, true);
+            $za->extractTo('tmp/'.$name);
             $file = 'tmp/'.$name.'/init.php';
             $fp = fopen($file, 'r');
             $class = $buffer = '';
@@ -80,7 +82,8 @@ if(move_uploaded_file($_FILES['new-plugin']['tmp_name'],$path)):
             }
                 if($classes[0] == $name):
                     if(count($extends)==1 && $extends[0] == 'IPPPlugins'):
-                        $za->extractTo('../../plugins');
+                        $za->extractTo('../../plugins/'.$name);
+                        $partner->InstallPlugin($name);
                         $response['error']   = false;
                         $response['message'] = "$name plugin uploaded successfully";
                     else:
@@ -105,5 +108,6 @@ else:
 endif;
 $za->close();
 recurseRmdir('tmp');
-unlink($path);
+if(file_exists($path))
+    unlink($path);
 echo json_encode($response);
