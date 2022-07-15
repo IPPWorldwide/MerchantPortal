@@ -12,6 +12,7 @@ class IPPUtils
             $todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
             $todo($fileinfo->getRealPath());
         }
+        rmdir($dir);
     }
     public function in_object($value,$object) {
         if (is_object($object)) {
