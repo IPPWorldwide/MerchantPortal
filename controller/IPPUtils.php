@@ -4,17 +4,13 @@ class IPPUtils
 {
     public function rrmdir($dir) {
         $dir = BASEDIR . $dir;
-        if (is_dir($dir)) {
-            $objects = scandir($dir);
-            foreach ($objects as $object) {
-                if ($object != "." && $object != "..") {
-                    if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
-                        $this->rrmdir($dir. DIRECTORY_SEPARATOR .$object);
-                    else
-                        unlink($dir. DIRECTORY_SEPARATOR .$object);
-                }
-            }
-            rmdir($dir);
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::CHILD_FIRST
+        );
+        foreach ($files as $fileinfo) {
+            $todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
+            $todo($fileinfo->getRealPath());
         }
     }
     public function in_object($value,$object) {
