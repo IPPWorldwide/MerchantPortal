@@ -1,7 +1,7 @@
 - Number of minor bugfixes
 - Improved functionality in removal of Plugins
 - Upload of Themes
-- Rebase of Plugins functinoality
+- Rebase of Plugins functionality
 - Optimizations of Setup screens
 - Improvements of Partner Data
 - Upload of Plugins
