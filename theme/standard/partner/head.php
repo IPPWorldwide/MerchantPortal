@@ -26,7 +26,7 @@ function head() {
 
     <!-- Bootstrap core CSS -->
 <link href=\"/assets/dist/css/bootstrap.min.css\" rel=\"stylesheet\">
-
+<script src=\"https://code.jquery.com/jquery-3.3.1.min.js\" crossorigin=\"anonymous\"></script>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;

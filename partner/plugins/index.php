@@ -54,7 +54,6 @@ echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             </div>
         </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function (){
             $('#upload-plugin-file').click(function (){

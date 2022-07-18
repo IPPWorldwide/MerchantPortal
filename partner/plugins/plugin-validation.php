@@ -1,6 +1,6 @@
 <?php
+error_reporting(0);
 include("../b.php");
-
 function recurseRmdir($dir) {
     $files = array_diff(scandir($dir), array('.','..'));
     foreach ($files as $file):
