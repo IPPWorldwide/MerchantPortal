@@ -130,9 +130,18 @@ if(isset($REQ["pages"])) {
           <label for="floatingPassword"><?php echo $lang["LOGIN"]["PASSWORD"]; ?></label>
         </div>
         <div class="checkbox mb-3">
+            <?php if(isset($IPP_CONFIG["IS_PAYFAC"])):
+                if($IPP_CONFIG["IS_PAYFAC"]==True): ?>
           <label>
             <input name="administrator" type="checkbox" value="1"> <?php echo $lang["LOGIN"]["AS_PAYFAC"]; ?>
           </label>
+            <?php
+            endif;
+            else: ?>
+            <label>
+                <input name="administrator" type="checkbox" value="1"> <?php echo $lang["LOGIN"]["AS_PAYFAC"]; ?>
+            </label>
+            <?php endif; ?>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit"><?php echo $lang["LOGIN"]["SIGN_IN"]; ?></button>
       </form><br />

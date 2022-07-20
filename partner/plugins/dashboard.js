@@ -38,6 +38,7 @@ $(".btnShowMore").on("click", function() {
     $("#pluginViewMoreModal .card-body .card-text").html($this.attr("data-description"));
     $("#pluginViewMoreModal .pluginSettingsModal").attr("data-fields", $this.attr("data-fields"));
     $("#pluginViewMoreModal .pluginSettingsModal").attr("data-values", $this.attr("data-values"));
+    $("#pluginViewMoreModal .pluginSettingsModal").attr("data-plugin-name", $this.attr("data-slug"));
     $("#pluginViewMoreModal .installModal").attr("data-plugin-file", $this.attr("data-plugin-file"));
     $("#pluginViewMoreModal .installModal").attr("data-plugin-name", $this.attr("data-slug"));
     $("#pluginViewMoreModal .removeModal").attr("data-plugin-name", $this.attr("data-slug"));
