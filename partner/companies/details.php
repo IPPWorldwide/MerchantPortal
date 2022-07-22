@@ -84,17 +84,17 @@ echo head();
             <div class="col themed-grid-col">Doing business as (Cardholder Description):<br /><input name="meta[processing][descriptor]" class="form-control" value="<?php echo isset($merchant_data->meta_data->processing->descriptor) ? $merchant_data->meta_data->processing->descriptor : ""; ?>"></div>
            
             <div class="col themed-grid-col mt-3"><?php echo 'Deactivate Refunds'; ?>:<br /><label class="switch">
-            <input type="checkbox" class="form form-control"  name="meta[company][refund]" value="1" <?php if($merchant_data->meta_data->company->refund == 1){ echo 'checked'; };?>>
+            <input type="checkbox" class="form form-control"  name="meta[company][refund]" value="1" <?php if(isset($merchant_data->meta_data->company->refund) && $merchant_data->meta_data->company->refund === "1"){ echo 'checked'; };?>>
             <span class="slider round" ></span>
             </label></div>
 
             <div class="col themed-grid-col mt-3"><?php echo 'Deactivate Voids'; ?>:<br /><label class="switch">
-            <input type="checkbox" class="form form-control"  name="meta[company][void]" value="1" <?php if($merchant_data->meta_data->company->void == 1){ echo 'checked'; };?>>
+            <input type="checkbox" class="form form-control"  name="meta[company][void]" value="1" <?php if(isset($merchant_data->meta_data->company->void) && $merchant_data->meta_data->company->void === "1"){ echo 'checked'; };?>>
             <span class="slider round" ></span>
             </label></div>
 
             <div class="col themed-grid-col mt-3"><?php echo 'Deactivate Capture'; ?>:<br /><label class="switch">
-            <input type="checkbox" class="form form-control"  name="meta[company][capture]" value="1" <?php if($merchant_data->meta_data->company->capture == 1){ echo 'checked'; };?>>
+            <input type="checkbox" class="form form-control"  name="meta[company][capture]" value="1" <?php if(isset($merchant_data->meta_data->company->capture) && $merchant_data->meta_data->company->capture === "1"){ echo 'checked'; };?>>
             <span class="slider round" ></span>
             </label></div>
         </div>
