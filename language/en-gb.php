@@ -164,6 +164,13 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["RECEIVER"] = "Receiver";
 $lang["PARTNER"]["MENUS"]["HEADER_PARTNER"] = "Partner Menu";
 $lang["PARTNER"]["MENUS"]["HEADER_COMPANY"] = "Company Menu";
 $lang["PARTNER"]["MENUS"]["REMOVE"] = "(Remove)";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU"] = "Select menu you wish to edit:";
+$lang["PARTNER"]["MENUS"]["MENU_COMPANY"] = "Company";
+$lang["PARTNER"]["MENUS"]["MENU_PARTNER"] = "Partner";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU_BUTTON"] = "Select";
+$lang["PARTNER"]["MENUS"]["ADD_ELEMENTS"] = "Add elements";
+$lang["PARTNER"]["MENUS"]["MENU_STRUCTURE"] = "Menu structure";
+$lang["PARTNER"]["MENUS"]["ADD_TO_MENU"] = "Add to menu";
 
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdmin is outdated!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
