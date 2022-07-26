@@ -415,8 +415,10 @@ $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Continue";
 $lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Activate Theme";
 $lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Delete Theme";
 $lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Purchase";
-
-
+$lang["PARTNER"]["APPEARANCE"]["CLOSE"] = "Close";
+$lang["PARTNER"]["APPEARANCE"]["PURCHASE"] = "Purchase";
+$lang["PARTNER"]["APPEARANCE"]["BTN_PURCHASE"] = "Purchase and install";
+$lang["PARTNER"]["APPEARANCE"]["MONTHLY_COST"] = "Monthly cost:";
 
 
 

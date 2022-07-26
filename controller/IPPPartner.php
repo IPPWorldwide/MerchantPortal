@@ -253,6 +253,11 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/update/", "POST", [], $data);
     }
+    public function purchaseTheme($theme_slug) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"themes"=>$theme_slug];
+        echo $_ENV["GLOBAL_BASE_URL"]."/themes/add.php?".http_build_query($data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/themes/add.php", "POST", [], $data);
+    }
 
     public function ListCountry() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
