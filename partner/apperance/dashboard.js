@@ -2,9 +2,29 @@
     'use strict'
     feather.replace({ 'aria-hidden': 'true' })
 })();
+$('.purchaseModal').on('click', function () {
+    var btn = $(this);
+    $("#purchaseModal h5.modal-title").html(btn.attr("data-theme-name"));
+    $("#purchaseModal .modal-header .monthly_price").html(btn.attr("data-theme-monthly-cost"));
+    $("#purchaseModal .modal-body").html(btn.parent().parent().parent().find(".card-text").attr("data-description"));
+    $("#purchaseModal .modal-footer .confirmPurchase").attr("data-slug",btn.attr("data-slug"));
+    $("#purchaseModal").modal("show");
+});
+$(".confirmPurchase").on("click", function() {
+    $.post( "install.php", { themes: $(this).attr("data-slug") })
+        .done(function( data ) {
+            swal({
+                title: "Success!",
+                text: "",
+                icon: "success",
+            }).then(function (){
+                window.location.reload();
+            });
+        });
+});
 $('.installModal').on('click', function () {
-var btn = $(this);
-$.post( "install.php", { plugin: $(this).data("plugin-name"), file: $(this).data("plugin-file") })
+    var btn = $(this);
+    $.post( "activate.php", { themes: $(this).data("plugin-name") })
     .done(function( data ) {
         $(".btnHidden").removeClass("btnHidden");
         btn.addClass("btnHidden");

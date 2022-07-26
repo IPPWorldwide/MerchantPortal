@@ -425,6 +425,7 @@ $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Forsæt";
 
 $lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Aktiver tema";
 $lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Slet tema";
+$lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Køb og Aktiver";
 
 
 
