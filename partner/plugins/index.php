@@ -54,51 +54,6 @@ echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             </div>
         </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script>
-        $(document).ready(function (){
-            $('#upload-plugin-file').click(function (){
-                var vidFileLength = $("#plugin-file")[0].files.length;
-                if(vidFileLength === 0){
-                    swal({
-                        title: "Error!",
-                        text: "Please choose a file!",
-                        icon: "error",
-                    });
-                }else{
-                    var fd = new FormData();
-                    var files = $('#plugin-file')[0].files;
-                    fd.append('new-plugin',files[0]);
-                    $.ajax({
-                        url: 'plugin-validation.php',
-                        type: 'post',
-                        data: fd,
-                        contentType: false,
-                        processData: false,
-                        success: function(response){
-                            var d = JSON.parse(response);
-                            if(d.error){
-                                swal({
-                                    title: "Error!",
-                                    text: d.message,
-                                    icon: "error",
-                                });
-                            }else{
-                                swal({
-                                    title: "Success!",
-                                    text: d.message,
-                                    icon: "success",
-                                }).then(function (){
-                                    window.location.reload();
-                                });
-                            }
-                        },
-                    });
-                }
-            });
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <?php
 $i=1;
 foreach($all_plugins as $key=>$value) {
@@ -184,4 +139,5 @@ echo '
         </div>
     </div>';
 echo "</div>";
+$load_script[] = "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js";
 echo foot();

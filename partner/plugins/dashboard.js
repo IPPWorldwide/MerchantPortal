@@ -2,6 +2,47 @@
     'use strict'
     feather.replace({ 'aria-hidden': 'true' })
 })();
+$(document).ready(function (){
+    $('#upload-plugin-file').click(function (){
+        var vidFileLength = $("#plugin-file")[0].files.length;
+        if(vidFileLength === 0){
+            swal({
+                title: "Error!",
+                text: "Please choose a file!",
+                icon: "error",
+            });
+        }else{
+            var fd = new FormData();
+            var files = $('#plugin-file')[0].files;
+            fd.append('new-plugin',files[0]);
+            $.ajax({
+                url: 'plugin-validation.php',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    var d = JSON.parse(response);
+                    if(d.error){
+                        swal({
+                            title: "Error!",
+                            text: d.message,
+                            icon: "error",
+                        });
+                    }else{
+                        swal({
+                            title: "Success!",
+                            text: d.message,
+                            icon: "success",
+                        }).then(function (){
+                            window.location.reload();
+                        });
+                    }
+                },
+            });
+        }
+    });
+});
 $('.installModal').on('click', function () {
     let plugin_div = $(`[data-plugin-id="${$(this).data("plugin-name")}"]`);
     plugin_div.find(".btnShowMore").attr("data-installed","1");
