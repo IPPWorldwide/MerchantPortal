@@ -137,6 +137,7 @@ $(".confirmPluginSettngs").on("click", function() {
     $.post( "?", $("#pluginModal form").serialize())
         .done(function( data ) {
             if(data !== "") {
+                $(".allplugins").find("[data-plugin-id='" + $("#pluginModal form #plugin_slug").val() + "']").find(".btnShowMore").attr("data-values",data);
                 $(".modal.fade").find("[data-plugin-name='" + $("#pluginModal form #plugin_slug").val() + "']").first().attr("data-values",data);
                 $('#pluginModal').modal('hide');
             }
