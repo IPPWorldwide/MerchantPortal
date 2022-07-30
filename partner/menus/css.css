@@ -1,6 +1,52 @@
-
+/*
 .canvas.dropzone {
   background-color: lightgray;
   min-height: 200px;
   min-width: 200px;
+}
+
+*/
+
+div.add-element {
+  position: relative;
+  min-height: 30px;
+  line-height: 30px;
+  margin: 3px;
+  padding: 0 10px 0 10px;
+  border: 1px lightgray solid;
+  max-width: 300px;
+}
+
+.list {
+  position: relative;
+}
+.draggable {
+  cursor: move;
+  margin-bottom: 1rem;
+  user-select: none;
+
+  /* Center the content */
+  align-items: center;
+  justify-content: center;
+
+  /* Misc */
+  border: 1px solid #cbd5e0;
+}
+.placeholder {
+  background-color: #edf2f7;
+  border: 2px dashed #cbd5e0;
+  margin-bottom: 1rem;
+}
+
+.removeItem {
+  position: absolute;
+  right:0;
+  top:0;
+  width:10px;
+  height:10px;
+}
+.removeItem img {
+  height: 10px;
+  width: 10px;
+  margin-top:-21px;
 }

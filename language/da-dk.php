@@ -166,6 +166,13 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["RECEIVER"] = "Modtager";
 $lang["PARTNER"]["MENUS"]["HEADER_PARTNER"] = "Partner Menu";
 $lang["PARTNER"]["MENUS"]["HEADER_COMPANY"] = "Virksomhedsmenu";
 $lang["PARTNER"]["MENUS"]["REMOVE"] = "(Fjern menupunkt)";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU"] = "Vælg en menu du vil redigere:";
+$lang["PARTNER"]["MENUS"]["MENU_COMPANY"] = "Virksomhed";
+$lang["PARTNER"]["MENUS"]["MENU_PARTNER"] = "Partner";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU_BUTTON"] = "Vælg";
+$lang["PARTNER"]["MENUS"]["ADD_ELEMENTS"] = "Tilføj menuelementer";
+$lang["PARTNER"]["MENUS"]["MENU_STRUCTURE"] = "Menustruktur";
+$lang["PARTNER"]["MENUS"]["ADD_TO_MENU"] = "Tilføj til menu";
 
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Du benytter ikke den nyeste version af Admin!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Klik her for at opdatere";
@@ -418,6 +425,7 @@ $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Forsæt";
 
 $lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Aktiver tema";
 $lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Slet tema";
+$lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Køb og Aktiver";
 
 
 
