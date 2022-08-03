@@ -11,6 +11,14 @@ body {
   background-color: #f5f5f5;
 }
 
+.language {
+  position: fixed;
+
+  padding: 20px;
+  text-align: right;
+  top: 0;
+  right: 0;
+}
 .form-signin {
   width: 100%;
   max-width: 330px;

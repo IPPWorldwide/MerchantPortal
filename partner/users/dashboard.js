@@ -21,8 +21,12 @@ $('.AccessRights').on('click', function () {
     $('#accessModal .modal-title').text('New access rights for ' + button.data('username'));
     $('#accessModal #user-id').val(button.data('id'));
     $('#passwordModal #compliance_admin').val(button.data('compliance'));
-
-
+    if(button.attr('data-compliance') === "1") {
+        $('#compliance_admin').attr("checked","checked")
+        console.log(button.attr('data-compliance'));
+    } else {
+        $('#compliance_admin').removeAttr("checked");
+    }
 });
 
 $("#accessModal .closeModal").on('click', function() {
@@ -40,6 +44,10 @@ $("#accessModal .confirm").on("click", function() {
         }
     }).done(function () {
         $('#accessModal').modal('hide');
+        if($( "#compliance_admin" ).is(":checked"))
+            $('body').find("[data-id=\"" + $('#accessModal #user-id').val() + "\"]").attr("data-compliance","1");
+        else
+            $('body').find("[data-id=\"" + $('#accessModal #user-id').val() + "\"]").attr("data-compliance","0");
     });
 });
 

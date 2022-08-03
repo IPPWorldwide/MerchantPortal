@@ -2,7 +2,18 @@
 include("../b.php");
 
 if(isset($REQ["id"]) && isset($REQ["meta"])) {
+    if(!isset($REQ["meta"]['company']['void'])){
+        $REQ["meta"]['company']['void'] = 0;    
+    }
+    if(!isset($REQ["meta"]['company']['refund'])){
+        $REQ["meta"]['company']['refund'] = 0;    
+    }
+    if(!isset($REQ["meta"]['company']['capture'])){
+        $REQ["meta"]['company']['capture'] = 0;    
+    }
     $partner->MerchantDataUpdate($REQ);
+     //echo '<pre>';
+ //print_r($REQ["meta"]);die;
 }
 
 $partner_acquirers = $partner->ListAcquirers();
@@ -16,12 +27,13 @@ foreach($merchant_data->acquirers as $key=>$value) {
 $invoices = $partner->ListCompanyInvoices($REQ["id"]);
 $pos_devices = $partner->ListPOSDevices($REQ["id"]);
 $subscription_plans = $partner->ListSubscriptionPlans();
-
+// echo '<pre>';
+// print_r($merchant_data);die;
 $mcc_list = $mcc->list();
 
 echo head();
 ?>
-            <h2>Company Data</h2>
+    <h2>Company Data</h2>
     <form action="?" method="POST" class="form">
         <div class="row row-cols-md-3 mb-3">
             <div class="col themed-grid-col">Merchant ID:<br /><input name="id" class="form-control" value="<?php echo $merchant_data->id; ?>" readonly></div>
@@ -70,6 +82,21 @@ echo head();
             <div class="col themed-grid-col">Country:<br /><input name="meta[address][country]" class="form-control" value="<?php echo isset($merchant_data->meta_data->address->country) ? $merchant_data->meta_data->address->country : ""; ?>"></div>
             <div class="col themed-grid-col">Phone number:<br /><input name="meta[company][phone]" class="form-control" value="<?php echo isset($merchant_data->meta_data->company->phone) ? $merchant_data->meta_data->company->phone : ""; ?>"></div>
             <div class="col themed-grid-col">Doing business as (Cardholder Description):<br /><input name="meta[processing][descriptor]" class="form-control" value="<?php echo isset($merchant_data->meta_data->processing->descriptor) ? $merchant_data->meta_data->processing->descriptor : ""; ?>"></div>
+           
+            <div class="col themed-grid-col mt-3"><?php echo 'Deactivate Refunds'; ?>:<br /><label class="switch">
+            <input type="checkbox" class="form form-control"  name="meta[company][refund]" value="1" <?php if(isset($merchant_data->meta_data->company->refund) && $merchant_data->meta_data->company->refund === "1"){ echo 'checked'; };?>>
+            <span class="slider round" ></span>
+            </label></div>
+
+            <div class="col themed-grid-col mt-3"><?php echo 'Deactivate Voids'; ?>:<br /><label class="switch">
+            <input type="checkbox" class="form form-control"  name="meta[company][void]" value="1" <?php if(isset($merchant_data->meta_data->company->void) && $merchant_data->meta_data->company->void === "1"){ echo 'checked'; };?>>
+            <span class="slider round" ></span>
+            </label></div>
+
+            <div class="col themed-grid-col mt-3"><?php echo 'Deactivate Capture'; ?>:<br /><label class="switch">
+            <input type="checkbox" class="form form-control"  name="meta[company][capture]" value="1" <?php if(isset($merchant_data->meta_data->company->capture) && $merchant_data->meta_data->company->capture === "1"){ echo 'checked'; };?>>
+            <span class="slider round" ></span>
+            </label></div>
         </div>
         <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">
@@ -84,13 +111,15 @@ echo head();
                     </thead>
                     <tbody>
                     <?php
-                    foreach($partner_acquirers as $key=>$value) {
-                        echo "<tr><td><input name='acquirers[$key]' type='checkbox'";
-                        if(isset($merchant_acquirers[$key])) {
-                            echo " checked ";
+                    if(isset($partner_acquirers)) {
+                        foreach($partner_acquirers as $key=>$value) {
+                            echo "<tr><td><input name='acquirers[$key]' type='checkbox'";
+                            if(isset($merchant_acquirers[$key])) {
+                                echo " checked ";
+                            }
+                            echo ">";
+                            echo "</td><td>".$value->name."</td><td>".$value->id."</td><td></td></tr>";
                         }
-                        echo ">";
-                        echo "</td><td>".$value->name."</td><td>".$value->id."</td><td></td></tr>";
                     }
                     ?>
                     </tbody>

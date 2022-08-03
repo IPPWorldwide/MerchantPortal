@@ -29,8 +29,8 @@ class IPPPartner {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/data/", "POST", [], $data)->content;
     }
 
-    public function UpdateData($all_data = []) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "value" => $all_data, "name" => $all_data["meta"]["name"]];
+    public function UpdateData($all_data = [],$name="") {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "value" => $all_data, "name" => $name];
         $data = array_merge($all_data, $data);
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/data/update/", "POST", [], $data)->content;
     }
@@ -155,9 +155,38 @@ class IPPPartner {
         $data = array_merge($all_data, $data);
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/add/", "POST", [], $data);
     }
+    public function AddInvoiceProvider($company_id,$company,$issuing,$product,$address,$currency,$data_provider,$data_provider_id) {
+        $data = [
+            "user_id" => $this->user_id,
+            "session_id" => $this->session_id,
+            "company_id"=>$company_id,
+            "issuing" => $issuing,
+            "product" => $product,
+            "currency" => $currency,
+            "company" => $company,
+            "address" => $address,
+            "data_provider" => $data_provider,
+            "data_provider_id" => $data_provider_id
+        ];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/add/", "POST", [], $data);
+    }
     public function InvoiceData($invoice_id) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"id" => $invoice_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/data/", "POST", [], $data)->content;
+    }
+    public function AddInvoiceProviderPayment($invoice_id,$company_id,$status,$transaction_id,$provider,$provider_guid) {
+        $data = [
+            "user_id" => $this->user_id,
+            "session_id" => $this->session_id,
+            "company_id"=>$company_id,
+            "invoice_id" => $invoice_id,
+            "status" => $status,
+            "transaction_id" => $transaction_id,
+            "provider" => $provider,
+            "provider_guid" => $provider_guid
+        ];
+        var_dump($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/update/payment/provider/add/?".http_build_query($data));
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/update/payment/provider/add/", "POST", [], $data);
     }
 
     public function AddCommunicationTemplate($hook,$type,$title,$content,$receiver,$active) {
@@ -197,11 +226,37 @@ class IPPPartner {
     }
     public function InstallPlugin($slug) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/add/", "POST", [], $data)->content;
+        $install = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/add/", "POST", [], $data)->content;
+        require_once BASEDIR . "plugins/".$slug."/init.php";
+        $new_pugin = new $slug();
+        if(method_exists($new_pugin,"hookInstall"))
+            $new_pugin->hookInstall($install->plugin_id,$this->user_id,$this->session_id);
+
+        $standard_configs = $new_pugin->getStandardConfigs($slug);
+        $std_settings = [];
+        foreach($standard_configs as $value)
+            $std_settings[$value["name"]] = $value["standard"];
+
+        $myfile = fopen(BASEDIR . "plugins/".$slug."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        $txt .= "\$settings[\"plugin_id\"] = '" . $install->plugin_id . "';\n";
+        foreach($std_settings as $key=>$value) {
+            $txt .= "\$settings[\"".$key."\"] = '" . $value . "';\n";
+        }
+        fwrite($myfile, $txt);
+        fclose($myfile);
+        if(method_exists($new_pugin,"hookUpdate"))
+            $new_pugin->hookUpdate($slug,$install->plugin_id,$std_settings);
+        return $install;
     }
     public function UpdatePluginSettings($plugin_id,$key,$value) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/update/", "POST", [], $data);
+    }
+    public function purchaseTheme($theme_slug) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"themes"=>$theme_slug];
+        echo $_ENV["GLOBAL_BASE_URL"]."/themes/add.php?".http_build_query($data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/themes/add.php", "POST", [], $data);
     }
 
     public function ListCountry() {
@@ -236,8 +291,8 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/subscription_plans.php", "POST", [], $data)->content;
     }
-    public function Listinvoices() {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+    public function ListInvoices($filter=[]) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"filter"=>$filter];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/invoices.php", "POST", [], $data)->content;
     }
     public function ListTemplates() {
@@ -247,6 +302,10 @@ class IPPPartner {
     public function ListOnboardings($onboarding_status) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"status" => $onboarding_status];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/onboarding.php", "POST", [], $data)->content;
+    }
+    public function ListOutboundCommunication() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/communication_outbound.php", "POST", [], $data)->content;
     }
 
     public function ListTypes() {
@@ -260,5 +319,13 @@ class IPPPartner {
     public function ListPlugins() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/plugins/list.json", "POST", [], $data);
+    }
+    public function ListThemes() {
+        $theme_dirs = array_filter(glob(THEMES."*"), 'is_dir');
+        return$theme_dirs;
+    }
+    public function ListPublicThemes() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/themes/list.json", "POST", [], $data);
     }
 }

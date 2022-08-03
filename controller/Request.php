@@ -1,7 +1,11 @@
 <?php
 class IPPRequest {
-    function __construct() {
-
+    private $user_id;
+    private $session_id;
+    
+    function __construct($user_id,$session_id) {
+        $this->user_id = $user_id;
+        $this->session_id = $session_id;
     }
 
     public function download($url, $dest, $fileName) {
@@ -37,7 +41,8 @@ class IPPRequest {
         if(isset($this->session_id) && $this->session_id != "")
             $data["session_id"] = $this->session_id;
 
-        $data["partner_id"] = $_ENV["PARTNER_ID"];
+        if(isset($_ENV["PARTNER_ID"]))
+            $data["partner_id"] = $_ENV["PARTNER_ID"];
         if(isset($_SESSION["ipp_type"]) && $_SESSION["ipp_type"] == "partner") {
             $data["key1"] = $_ENV["PARTNER_KEY1"];
             $data["key2"] = $_ENV["PARTNER_KEY2"];
@@ -46,7 +51,6 @@ class IPPRequest {
             $data["attached_file"] = new CURLFile($file['tmp_name'], $file['type'], $file['name']);
         }
         $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);

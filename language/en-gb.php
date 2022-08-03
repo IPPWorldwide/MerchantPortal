@@ -50,6 +50,18 @@ $lang["PARTNER"]["INVOICES"]["PAID_TXT"] = "Paid";
 $lang["PARTNER"]["INVOICES"]["UNPAID"] = "Unpaid";
 $lang["PARTNER"]["INVOICES"]["SHOW"] = "Show";
 
+$lang["PARTNER"]["INVOICES"]["PARTNER_INVOICES"] = "Partner Invoices";
+$lang["PARTNER"]["INVOICES"]["PAYMENT_SLIP"] = "Invoice Payment Slip:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_ID"] = "Partners own Merchant Account ID:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_KEY2"] = "Merchant Key 2:";
+$lang["PARTNER"]["INVOICES"]["MODAL_SUBMIT_BTN"] = "Confirm settings";
+$lang["PARTNER"]["INVOICES"]["MODAL_CLOSE"] = "Close";
+
+
+$lang["PARTNER"]["INVOICES"]["BOOKING_SYSTEM_HEADER"] = "Non matched invoices";
+$lang["PARTNER"]["INVOICES"]["IMPORT"] = "Import Inovoice";
+$lang["PARTNER"]["INVOICES"]["CONNECT_WITH"] = "Connect account with ";
+$lang["PARTNER"]["INVOICES"]["IMPORT_HEADER"] = "Select account to connect invoice with";
 
 $lang["PARTNER"]["INVOICES_PLAN"]["HEADER"] = "Invoice Plans";
 $lang["PARTNER"]["INVOICES_PLAN"]["ADD_NEW"] = "Issue new Scheme";
@@ -68,8 +80,6 @@ $lang["PARTNER"]["DATA"]["KEY_2"] = "Key 2:";
 $lang["PARTNER"]["DATA"]["DETAILS"] = "Partner Details";
 $lang["PARTNER"]["DATA"]["NAME"] = "Partner Name:";
 $lang["PARTNER"]["DATA"]["COUNTRY"] = "Country:";
-$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"] = "Partner Invoices";
-$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"] = "Invoice Payment Slip:";
 $lang["PARTNER"]["DATA"]["ACQUIRERS"] = "Acquirers";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_NAME"] = "Name";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
@@ -115,13 +125,16 @@ $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create User";
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Settings";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Install";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
+$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Show more";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Save";
+$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Communication Templates";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"] = "Get all new templates from IPP";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"] = "Add new Template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SENT_OUT"] = "Sent communication";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HOOK"] = "Hook";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TYPE"] = "Communication Type";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TITLE"] = "Title";
@@ -129,7 +142,16 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ACTIVE"] = "Active";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["FUNCTION"] = "#";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["EDIT"] = "Edit";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["CLOSE"] = "Remove Template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] = "plugin missing";
 
+$lang["PARTNER"]["OUTBOUND_SENT"]["HEADER"] = "Outbound communication";
+$lang["PARTNER"]["OUTBOUND_SENT"]["FUNCTION"] = "#";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TIMESTAMP"] = "Timestamp";
+$lang["PARTNER"]["OUTBOUND_SENT"]["RECEIVER"] = "Receiver";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TITLE"] = "Title";
+$lang["PARTNER"]["OUTBOUND_SENT"]["MESSAGE"] = "Message";
+$lang["PARTNER"]["OUTBOUND_SENT"]["ATTACHMENTS"] = "Attachments";
+$lang["PARTNER"]["OUTBOUND_SENT"]["STATUS"] = "Status";
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"] = "Communication Template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"] = "Communication Hook";
@@ -142,6 +164,13 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["RECEIVER"] = "Receiver";
 $lang["PARTNER"]["MENUS"]["HEADER_PARTNER"] = "Partner Menu";
 $lang["PARTNER"]["MENUS"]["HEADER_COMPANY"] = "Company Menu";
 $lang["PARTNER"]["MENUS"]["REMOVE"] = "(Remove)";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU"] = "Select menu you wish to edit:";
+$lang["PARTNER"]["MENUS"]["MENU_COMPANY"] = "Company";
+$lang["PARTNER"]["MENUS"]["MENU_PARTNER"] = "Partner";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU_BUTTON"] = "Select";
+$lang["PARTNER"]["MENUS"]["ADD_ELEMENTS"] = "Add elements";
+$lang["PARTNER"]["MENUS"]["MENU_STRUCTURE"] = "Menu structure";
+$lang["PARTNER"]["MENUS"]["ADD_TO_MENU"] = "Add to menu";
 
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdmin is outdated!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
@@ -236,6 +265,7 @@ $lang["COMPANY"]["PAYOUTS"]["CALCULATED_FEE"] = "Calculated Fee";
 $lang["COMPANY"]["PAYOUTS"]["SETTLEMENT"] = "Settlement";
 $lang["COMPANY"]["PAYOUTS"]["SETTLED"] = "Settled";
 $lang["COMPANY"]["PAYOUTS"]["INFO"] = "Info";
+$lang["COMPANY"]["PAYMENT_LINKS"]["INFO"] = "To use this function, you need an eCommerce account. Please reach our support for further information.";
 
 $lang["COMPANY"]["ONBOARDING"]["HEADER"] = "Merchant Onboarding";
 
@@ -308,9 +338,11 @@ $lang["COMPANY"]["INVOICES"]["PERIOD_END"] = "Period End";
 $lang["COMPANY"]["INVOICES"]["PAID"] = "Paid";
 $lang["COMPANY"]["INVOICES"]["FUNCTION"] = "#";
 $lang["COMPANY"]["INVOICES"]["SHOW"] = "Show";
+$lang["COMPANY"]["INVOICES"]["PAY_INVOICE"] = "Pay invoice";
 $lang["COMPANY"]["INVOICES"]["CANCELLED"] = "Cancelled";
 $lang["COMPANY"]["INVOICES"]["PAID_TEXT"] = "Paid";
 $lang["COMPANY"]["INVOICES"]["UNPAID"] = "Unpaid";
+$lang["COMPANY"]["INVOICES"]["RECEIVED_PAYMENT"] = "Invoice have been paid. May take up to 60 seconds for the registration to complete.";
 
 $lang["COMPANY"]["INVOICES_SHOW"]["HEADER"] = "Invoice";
 $lang["COMPANY"]["INVOICES_SHOW"]["DATES"] = "Dates";
@@ -356,6 +388,10 @@ $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
+$lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Related Payments";
+$lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Acquirer Response";
+
+
 $lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Capture";
 $lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Incremental Auth";
 $lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refund";
@@ -383,8 +419,13 @@ $lang["PARTNER"]["ONBOARDING"]["CLOSE"] = "Cancel and go back";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Continue anyway";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Continue";
 
-
-
+$lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Activate Theme";
+$lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Delete Theme";
+$lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Purchase";
+$lang["PARTNER"]["APPEARANCE"]["CLOSE"] = "Close";
+$lang["PARTNER"]["APPEARANCE"]["PURCHASE"] = "Purchase";
+$lang["PARTNER"]["APPEARANCE"]["BTN_PURCHASE"] = "Purchase and install";
+$lang["PARTNER"]["APPEARANCE"]["MONTHLY_COST"] = "Monthly cost:";
 
 
 

@@ -13,8 +13,6 @@ $('.SelectCustomer').on('change', function () {
         dataType: "json",
         cache: false,
         success: function (data) {
-            console.log(data);
-            console.log(typeof data.meta_data.company);
             $("#company_id").val(data.id);
             if(typeof data.meta_data.company !== "undefined") {
                 $("#companyname").val(data.meta_data.company.name);
@@ -27,6 +25,47 @@ $('.SelectCustomer').on('change', function () {
                 $("#addresscountry").val(data.meta_data.address.country);
                 $("#addressaddress").val(data.meta_data.address.address);
             }
+        }
+    });
+});
+$(".btnExternalInvoice").on("click", function() {
+    console.log("Solved");
+    $("#importModal").modal("show");
+    $("#importModal #invoiceId").val($(this).data("id"));
+})
+$(".connectInvoice").on("click", function() {
+    $(".connectInvoice").html("Wait ...").attr("disabled","disabled");
+    $.ajax({
+        url: '?',
+        data: {
+            provider: $(this).attr("data-provider"),
+            id: $("#invoiceId").val(),
+            customer: $("#customerId").val(),
+            add_invoice: 1
+        },
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            window.location.reload();
+        }
+    });
+});
+
+$(".btnSettings").on("click",function() {
+    $("#invoiceSettingsModal").modal("show");
+});
+
+$("#invoiceSettingsModal .closeModal").on("click",function() {
+    $("#invoiceSettingsModal").modal("hide");
+});
+$("#invoiceSettingsModal .confirm").on("click",function() {
+    $.ajax({
+        url: '?',
+        data: $("#invoiceSettingsModal form").serialize(),
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            $("#invoiceSettingsModal").modal("hide");
         }
     });
 });

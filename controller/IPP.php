@@ -46,7 +46,7 @@ class IPP {
     }
     public function TransactionsAction($action,$transaction_id,$action_id,$amount = 0) {
         global $IPP_CONFIG;
-        if(($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] === "1" && $action === "void") || ($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUND"] === "1" && $action === "refund"))
+        if((isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] === "1" && $action === "void") || (isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUND"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUND"] === "1" && $action === "refund"))
             return false;
         $data = ["action" => $action,"transaction_id" => $transaction_id,"action_id"=>$action_id,"amount" => $amount,"user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/$action/", "POST", [], $data);
@@ -135,7 +135,7 @@ class IPP {
     }
     public function DisputesRelated($transaction_id) {
         $data = ["transaction_id" => $transaction_id,"user_id" => $this->user_id, "session_id" => $this->session_id];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/related/", "POST", [], $data)->content;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/disputes/related/", "POST", [], $data)->content;
     }
 
     public function Search($search_term) {
@@ -168,6 +168,27 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/versions.php")->content->versions;
     }
     public function version() {
+        if(!isset($_ENV["GLOBAL_BASE_URL"]))
+            $_ENV["GLOBAL_BASE_URL"] = "https://api.ippeurope.com";
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/version.php");
+    }
+
+    public function GetAllAccessRights()
+    {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/list/", "GET", $data);
+    }
+
+    public function PageLevelAccess($check_access)
+    {
+        $logged_in_data = $this->CheckLogin();
+        $all_rules = $this->GetAllAccessRights();
+
+        foreach($logged_in_data->content->user->acccess_rights as $idx=>$right){
+            if($right === "ALL" OR $all_rules->content->all_rules->{$right}->name === $check_access){
+                return true;
+            }
+        }
+        return false;
     }
 }

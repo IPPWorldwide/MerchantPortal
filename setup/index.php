@@ -1,10 +1,12 @@
 <?php
 include("../ipp-config-sample.php");
     if(isset($_POST["portal_title"])) {
+        $folder_level = "./";
+        while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
+        define("BASEDIR", $folder_level);
         $myfile = fopen("../ipp-config.php", "w") or die("Unable to open file!");
         fclose($myfile);
-        define("BASEDIR", "../");
-        include(BASEDIR . "controller/IPPConfig.php");
+        include("../controller/IPPConfig.php");
         $config = new IPPConfig();
 
         foreach($_POST as $key=>$value) {
@@ -13,7 +15,23 @@ include("../ipp-config-sample.php");
         $config->WriteConfig();
         die();
     }
+include("../controller/IPP.php");
+include("../controller/Request.php");
+include("../controller/IPPCurrency.php");
+$currency   = new IPPCurrency();
+$request    = new IPPRequest("","");
+$ipp        = new IPP($request,null, null);
 ?>
+<?php 
+    $basedir = "../";
+    if(file_exists($basedir . "ipp-config.php")){
+    include $basedir . "ipp-config.php";
+?>
+    <script>
+        confirm("The platform is already setup!");
+        window.location = "<?php echo $IPP_CONFIG["PORTAL_URL"]; ?>"
+    </script>
+<?php die(); } ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,13 +46,12 @@ include("../ipp-config-sample.php");
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
     <div class="main">
-
         <div class="container">
             <form method="POST" id="signup-form" class="signup-form" action="#">
+                <input type="HIDDEN" name="theme" id="theme" value="standard" />
+                <input type="HIDDEN" name="version" id="version" value="<?php echo $ipp->version()->content->version; ?>" />
                 <div>
                     <h3>Merchant Portal</h3>
                     <fieldset>
@@ -42,33 +59,42 @@ include("../ipp-config-sample.php");
                         <p class="desc">You are now seconds away from starting your own Payment Processor.<br />Follow the guide below, and get live.</p>
                         <div class="fieldset-content">
                             <div class="form-row">
-                                <label class="form-label">Portal Title</label>
                                 <div class="form-flex">
                                     <div class="form-group">
+                                        <label class="form-label" for="portal_title">Portal Title</label>
                                         <input type="text" name="portal_title" id="portal_title" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label class="form-label">Administrative e-mail</label>
                                 <div class="form-flex">
                                     <div class="form-group">
+                                        <label class="form-label" for="administrator_email">Administrative e-mail</label>
                                         <input type="text" name="administrator_email" id="administrator_email" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label class="form-label">Standard Currency</label>
                                 <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="currency" id="currency" value="<?php echo $IPP_CONFIG["CURRENCY"]; ?>" />
+                                    <div class="form-group form-select-group">
+                                        <label class="form-label" for="currency">Standard Currency</label>
+                                        <select name="currency" id="currency" class="form-select form-select-lg mb-3">
+                                            <?php
+                                            foreach($currency->currency_list() as $value) {
+                                                echo "<option value='".$value."' ";
+                                                if($IPP_CONFIG["CURRENCY"] === $value) { echo "selected"; } echo ">".$currency->currency($value)[0]."</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label class="form-label">Portal URL</label>
                                 <div class="form-flex">
-                                    <input type="text" name="portal_url" id="portal_url" value="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]".str_replace("/setup","",$_SERVER["REQUEST_URI"]); ?>" />
+                                    <div class="form-group">
+                                        <label for="portal_url" class="form-label">Portal URL</label>
+                                        <input type="text" name="portal_url" id="portal_url" value="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]".str_replace("/setup","",$_SERVER["REQUEST_URI"]); ?>" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row" style="display: none;">
@@ -97,7 +123,7 @@ include("../ipp-config-sample.php");
                         <p class="desc">These details have been provided by IPP. Reach out to your representative if you aren't sure.</p>
                         <div class="fieldset-content">
                             <div class="form-row">
-                                <label class="form-label">IPP Partner ID</label>
+                                <label class="form-label">ID</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="partner_id" id="partner_id" />
@@ -105,7 +131,7 @@ include("../ipp-config-sample.php");
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label class="form-label">Partner Key 1</label>
+                                <label class="form-label">Key 1</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="partner_key1" id="partner_key1" />
@@ -113,26 +139,10 @@ include("../ipp-config-sample.php");
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label class="form-label">Partner Key 2</label>
+                                <label class="form-label">Key 2</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="partner_key2" id="partner_key2" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <label class="form-label">Theme used</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="theme" id="theme" value="standard" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <label class="form-label">Version</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="version" id="version" value="1.0.0" />
                                     </div>
                                 </div>
                             </div>

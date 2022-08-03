@@ -74,7 +74,9 @@ echo '
           </thead>
           <tbody>
           ';
-foreach($ipp->TransactionsList($payment_type, $result,$payment_start,$payment_end) as $value) {
+$transaction_list = $ipp->TransactionsList($payment_type, $result,$payment_start,$payment_end);
+if(is_array($transaction_list))
+    foreach($transaction_list as $value) {
               echo "<tr ";
               if($value->result == "WAIT") {
                   echo "class='bg-info'";

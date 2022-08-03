@@ -1,6 +1,13 @@
 <?php
 include("../base.php");
 $merchant_data = $ipp->MerchantData();
+$isEcommChannel = false;
+foreach($merchant_data->channels as $channels){
+    if($channels == 'ecom'){
+        $isEcommChannel = true;
+    }
+}
+//$isEcommChannel = false;
 if(isset($REQ["send_link"])) {
     $acquirer_data = array();
     $links = $ipp->SendPaymentLink($REQ["sender"],$REQ["recipient"],$REQ["expiry_time"],$REQ["order_id"],$REQ["amount"],$REQ["currency"])->content->sent_links;
@@ -17,6 +24,7 @@ if(isset($REQ["sent"]) && $REQ["sent"] >= 1) {
 if(isset($REQ["sent"]) && $REQ["sent"] == 0) {
     echo "<div class=\"col md-12 alert-warning rounded text-muted alert\">".$lang["COMPANY"]["PAYMENT_LINKS"]["LINK_NOT_SENT"]."</div>";
 }
+if($isEcommChannel == true){
 echo '
     <form action="?" method="POST">
         <div class="class="row row-cols-md-3 mb-3">
@@ -56,7 +64,11 @@ echo '
         </div>
     </form>
 ';
-
+}else{
+    echo '<div class="col alert alert-warning d-flex justify-content-center align-items-center">
+        <h5 class="text-dark">'.$lang["COMPANY"]["PAYMENT_LINKS"]["INFO"].'</h5> 
+  </div>'; 
+}
 echo "<div class='table-responsive'>";
     echo "<table class='table table-striped table-sm'>";
         echo "<thead>";

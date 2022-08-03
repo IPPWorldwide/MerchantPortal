@@ -7,6 +7,7 @@ class IPPPlugins
     public $hook_footer;
     public $hook_header;
     public $hook_login;
+    public $bookkeeping;
 
     public function loadPlugins() {
         if ($handle = opendir(BASEDIR . 'plugins')) {
@@ -28,6 +29,10 @@ class IPPPlugins
 
     public function setAvailablePlugin($slug) {
         $this->available_plugins[] = $slug;
+    }
+
+    public function setBookeeping($slug) {
+        $this->bookkeeping[] = $slug;
     }
 
     public function getAvailablePlugins() {
@@ -54,6 +59,14 @@ class IPPPlugins
     {
         if($this->getFields())
             return $this->getFields();
+    }
+    public function GetPluginFields($entry)
+    {
+        $settings = [];
+        if(file_exists(BASEDIR . "plugins/".$entry."/settings.php")) {
+            include(BASEDIR . "plugins/".$entry."/settings.php");
+        }
+        return $settings;
     }
     public function getSettingsFields($plugin_name) {
         if(isset($this->available_plugins[$plugin_name])) {
@@ -90,13 +103,77 @@ class IPPPlugins
     public function getStandardConfigs($plugin_name) {
         $this->setFields();
         $standard_values = [];
-        foreach($this->fields() as $value) {
-            if(isset($value["standard"]))
-                $standard_values[] = $value;
+        if(is_object($this->fields()) || is_array($this->fields())) {
+            foreach($this->fields() as $value) {
+                if(isset($value["standard"]))
+                    $standard_values[] = $value;
+            }
         }
         return $standard_values;
     }
+    public function hasExternalLogin($plugin_name) {
+        if(
+            isset($this->available_plugins[$plugin_name]) &&
+            is_object($this->available_plugins[$plugin_name]) &&
+            method_exists($this->available_plugins[$plugin_name],"externalLogin"))
+            return $this->available_plugins[$plugin_name]->externalLogin();
+        else
+            return false;
+
+    }
+    public function hasExternalCommunication($plugin_name,$method,$request) {
+        if(
+            isset($this->available_plugins[$plugin_name]) &&
+            is_object($this->available_plugins[$plugin_name]) &&
+            method_exists($this->available_plugins[$plugin_name],"externalFeedback"))
+            return (array)$this->available_plugins[$plugin_name]->externalFeedback($method,$request);
+        else
+            return [];
+    }
     private function loadPlugin($plugin_name) {
         $this->available_plugins[$plugin_name] = new $plugin_name();
+
+        if(isset($this->available_plugins[$plugin_name]->bookkeeping))
+            $this->bookkeeping = $this->available_plugins[$plugin_name]->bookkeeping;
+
     }
+
+
+
+    public function loadPage($plugin_name,$page,$REQ) {
+        $this->available_plugins[$plugin_name] = new $plugin_name();
+        return (array)$this->available_plugins[$plugin_name]->{"pages_".$page}($REQ);
+    }
+
+
+
+
+
+
+
+
+    // BOOKEEPING
+    public function ListInvoices() {
+        $invoice_lists = new stdClass();
+        if(is_array($this->bookkeeping)) {
+            foreach($this->bookkeeping as $value) {
+                $bookkeeping = new $value();
+                $invoices = json_decode(json_encode($bookkeeping->getInvoices()));
+                foreach($invoices as $invoice) {
+                    $invoice_lists->{$invoice->guid} = $invoice;
+                }
+            }
+        }
+
+        return $invoice_lists;
+    }
+
+    public function ListSpecificInvoice($provider,$guid) {
+        $bookkeeping = new $provider();
+        $data = $bookkeeping->getInvoice($guid);
+
+        return $data;
+    }
+
+
 }

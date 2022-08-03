@@ -4,15 +4,29 @@ include("../b.php");
 if(isset($REQ["submit"])) {
     include(BASEDIR . "controller/IPPConfig.php");
     $config = new IPPConfig();
+    if(!isset($REQ["IPPCONFIG"]['PORTAL_DEACTIVATE_SEARCH'])){
+        $REQ["IPPCONFIG"]['PORTAL_DEACTIVATE_SEARCH'] = 0;    
+    }
+    if(!isset($REQ["IPPCONFIG"]['PORTAL_DEACTIVATE_VIRTUAL_TERMINAL'])){
+        $REQ["IPPCONFIG"]['PORTAL_DEACTIVATE_VIRTUAL_TERMINAL'] = 0;    
+    }
+    if(!isset($REQ["IPPCONFIG"]['PORTAL_LOCAL_DEACTIVATE_REFUNDS'])){
+        $REQ["IPPCONFIG"]['PORTAL_LOCAL_DEACTIVATE_REFUNDS'] = 0;    
+    }
+    if(!isset($REQ["IPPCONFIG"]['PORTAL_LOCAL_DEACTIVATE_VOID'])){
+        $REQ["IPPCONFIG"]['PORTAL_LOCAL_DEACTIVATE_VOID'] = 0;    
+    }
+    if(!isset($REQ["IPPCONFIG"]['PORTAL_LOCAL_HIDE_TOTAL_VOLUME'])){
+        $REQ["IPPCONFIG"]['PORTAL_LOCAL_HIDE_TOTAL_VOLUME'] = 0;    
+    }
     foreach($REQ["IPPCONFIG"] as $key=>$value) {
-        $new_config = $config->UpdateConfig($key,$value);
+        $config->UpdateConfig($key,$value);
     }
     $config = $config->WriteConfig();
     unset($REQ["IPPCONFIG"]);
-    $partner->UpdateData($REQ);
+    $partner->UpdateData($REQ,$REQ["meta"]["name"]);
 }
 $partner_data = $partner->PartnerData();
-$theme_dirs = array_filter(glob(THEME), 'is_dir');
 echo head();
 echo '
         <form action="?" method="POST" class="form">
@@ -38,10 +52,6 @@ echo '
                         echo '
                     </select>
                     </div>
-            </div>
-            <h2>'.$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"].'</h2>
-            <div class="row row-cols-md-12 mb-12">
-                <div class="col themed-grid-col"'.$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"].'<br /><input name="meta[invoicetext]" class="form-control" value="'; echo $partner_data->meta_data->meta->invoicetext ?? ""; echo '">
             </div>
             <div class="row row-cols-md-2 mb-2">
                 <div class="col themed-grid-col">
@@ -78,35 +88,50 @@ echo '
                                 <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_TITLE]" value="'.$IPP_CONFIG["PORTAL_TITLE"].'"></td>
                             </tr>
                             <tr>
-                                <td>'.$lang["PARTNER"]["DATA"]["LOCAL_PORTAL_THEME"].'</td>
-                                <td>
-                                <select class="form form-control" name="IPPCONFIG[THEME]" value="'.$IPP_CONFIG["THEME"].'">
-                                ';
-                                foreach($theme_dirs as $value)
-                                    echo "<option>".basename($value)."</option>";
-                                echo '
-                                </select></td>
-                            </tr>
-                            <tr>
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_SEARCH"].'</td>
-                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_DEACTIVATE_SEARCH]" value="'; echo $IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"] ?? ""; echo  '"></td>
+                                <td>
+                                <label class="switch">
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_DEACTIVATE_SEARCH]" value="1"';if(isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) && $IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"] === "1"){ echo 'checked'; }; echo '>
+                                <span class="slider round" ></span>
+                                </label>
+                                </td>
                             </tr>
                             <tr>
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VIRTUAL_TERMINAL"].'</td>
-                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_DEACTIVATE_VIRTUAL_TERMINAL]" value="'; echo $IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"] ?? ""; echo  '"></td>
+                                <td>
+                                <label class="switch">
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_DEACTIVATE_VIRTUAL_TERMINAL]" value="1"';if(isset($IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"]) && $IPP_CONFIG["PORTAL_DEACTIVATE_VIRTUAL_TERMINAL"] === "1"){ echo 'checked'; }; echo '>
+                                <span class="slider round" ></span>
+                                </label>
+                                </td>
                             </tr>
                             <tr>
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_REFUNDS"].'</td>
-                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_REFUNDS]" value="'; echo $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"] ?? ""; echo  '"></td>
+                                <td>
+                                <label class="switch">
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_REFUNDS]" value="1"';if(isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_REFUNDS"] === "1"){ echo 'checked'; }; echo '>
+                                <span class="slider round" ></span>
+                                </label>
+                                </td>
                             </tr>
                             <tr>
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"].'</td>
-                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_VOID]" value="'; echo $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] ?? ""; echo  '"></td>
+                                <td>
+                                <label class="switch">
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_DEACTIVATE_VOID]" value="1"';if(isset($IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"]) && $IPP_CONFIG["PORTAL_LOCAL_DEACTIVATE_VOID"] === "1"){ echo 'checked'; }; echo '>
+                                <span class="slider round" ></span>
+                                </label>
+                                </td>
                             </tr>
                             <tr>
                                 <td>'.$lang["PARTNER"]["DATA"]["LOCAL_HIDE_TOTAL_VOLUME"].'</td>
-                                <td><input type="input" class="form form-control" name="IPPCONFIG[PORTAL_LOCAL_HIDE_TOTAL_VOLUME]" value="'; echo $IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"] ?? ""; echo  '"></td>
-                            </tr>
+                                <td>
+                                <label class="switch">
+                                <input type="checkbox" class="form form-control"  name="IPPCONFIG[PORTAL_LOCAL_HIDE_TOTAL_VOLUME]" value="1"';if(isset($IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"]) && $IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"] === "1"){ echo 'checked'; }; echo '>
+                                <span class="slider round" ></span>
+                                </label>
+                                </td>
+                            </tr> 
                         </tbody>
                     </table>
                 </div>

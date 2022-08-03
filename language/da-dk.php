@@ -50,6 +50,18 @@ $lang["PARTNER"]["INVOICES"]["PAID_TXT"] = "Betalt";
 $lang["PARTNER"]["INVOICES"]["UNPAID"] = "Ikke betalt";
 $lang["PARTNER"]["INVOICES"]["SHOW"] = "Vis";
 
+$lang["PARTNER"]["INVOICES"]["PARTNER_INVOICES"] = "Partner fakturaer";
+$lang["PARTNER"]["INVOICES"]["PAYMENT_SLIP"] = "Faktura notits til manuel betaling:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_ID"] = "Merchant ID til egen konto:";
+$lang["PARTNER"]["INVOICES"]["MERCHANT_KEY2"] = "Merchant Key 2:";
+$lang["PARTNER"]["INVOICES"]["MODAL_SUBMIT_BTN"] = "Gem";
+$lang["PARTNER"]["INVOICES"]["MODAL_CLOSE"] = "Close";
+
+$lang["PARTNER"]["INVOICES"]["BOOKING_SYSTEM_HEADER"] = "Ikke matchet regninger fra regnskabsprogram";
+$lang["PARTNER"]["INVOICES"]["IMPORT"] = "Importér regning";
+$lang["PARTNER"]["INVOICES"]["CONNECT_WITH"] = "Sammenkobl med";
+$lang["PARTNER"]["INVOICES"]["IMPORT_HEADER"] = "Vælg konto at forbinde regningen med";
+
 
 $lang["PARTNER"]["INVOICES_PLAN"]["HEADER"] = "Månedabonnementer";
 $lang["PARTNER"]["INVOICES_PLAN"]["ADD_NEW"] = "Opret nyt månedsskema";
@@ -68,8 +80,6 @@ $lang["PARTNER"]["DATA"]["KEY_2"] = "Nøgle 2:";
 $lang["PARTNER"]["DATA"]["DETAILS"] = "Partner detaljer";
 $lang["PARTNER"]["DATA"]["NAME"] = "Partner navn:";
 $lang["PARTNER"]["DATA"]["COUNTRY"] = "Land:";
-$lang["PARTNER"]["DATA"]["PARTNER_INVOICES"] = "Partner fakturaer";
-$lang["PARTNER"]["DATA"]["PAYMENT_SLIP"] = "Faktura notits til manuel betaling:";
 $lang["PARTNER"]["DATA"]["ACQUIRERS"] = "Indløsere";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_NAME"] = "Navn";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
@@ -117,13 +127,16 @@ $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Opret bruger";
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Indstillinger";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Installer";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Afinstaller";
+$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Vis mere";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Luk";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Gem";
+$lang["PARTNER"]["PLUGINS"]["PERFORM_EXTERNAL_LOGIN"] = "Login";
 
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HEADER"] = "Udgående kommunikation";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SYNC"] = "Hent en kopi af alle templates";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ADD_NEW"] = "Tilføj template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["SENT_OUT"] = "Sendt kommunikation";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["HOOK"] = "Hook";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TYPE"] = "Kommunikationsform";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["TITLE"] = "Titel";
@@ -131,7 +144,16 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["ACTIVE"] = "Aktiv";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["FUNCTION"] = "#";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["EDIT"] = "Rediger";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["CLOSE"] = "Fjern template";
+$lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] = "plugin mangler";
 
+$lang["PARTNER"]["OUTBOUND_SENT"]["HEADER"] = "Udgående kommunikation";
+$lang["PARTNER"]["OUTBOUND_SENT"]["FUNCTION"] = "#";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TIMESTAMP"] = "Tidsstempel";
+$lang["PARTNER"]["OUTBOUND_SENT"]["RECEIVER"] = "Modtager";
+$lang["PARTNER"]["OUTBOUND_SENT"]["TITLE"] = "Titel";
+$lang["PARTNER"]["OUTBOUND_SENT"]["MESSAGE"] = "Besked";
+$lang["PARTNER"]["OUTBOUND_SENT"]["ATTACHMENTS"] = "Vedhæftninger";
+$lang["PARTNER"]["OUTBOUND_SENT"]["STATUS"] = "Status";
 
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"] = "Template";
 $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"] = "Hook";
@@ -144,6 +166,13 @@ $lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["RECEIVER"] = "Modtager";
 $lang["PARTNER"]["MENUS"]["HEADER_PARTNER"] = "Partner Menu";
 $lang["PARTNER"]["MENUS"]["HEADER_COMPANY"] = "Virksomhedsmenu";
 $lang["PARTNER"]["MENUS"]["REMOVE"] = "(Fjern menupunkt)";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU"] = "Vælg en menu du vil redigere:";
+$lang["PARTNER"]["MENUS"]["MENU_COMPANY"] = "Virksomhed";
+$lang["PARTNER"]["MENUS"]["MENU_PARTNER"] = "Partner";
+$lang["PARTNER"]["MENUS"]["SELECT_MENU_BUTTON"] = "Vælg";
+$lang["PARTNER"]["MENUS"]["ADD_ELEMENTS"] = "Tilføj menuelementer";
+$lang["PARTNER"]["MENUS"]["MENU_STRUCTURE"] = "Menustruktur";
+$lang["PARTNER"]["MENUS"]["ADD_TO_MENU"] = "Tilføj til menu";
 
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Du benytter ikke den nyeste version af Admin!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Klik her for at opdatere";
@@ -238,6 +267,7 @@ $lang["COMPANY"]["PAYOUTS"]["CALCULATED_FEE"] = "Beregnet gebyr";
 $lang["COMPANY"]["PAYOUTS"]["SETTLEMENT"] = "Til udbetaling";
 $lang["COMPANY"]["PAYOUTS"]["SETTLED"] = "Udbetalt";
 $lang["COMPANY"]["PAYOUTS"]["INFO"] = "Info";
+$lang["COMPANY"]["PAYMENT_LINKS"]["INFO"] = "For at bruge denne funktion skal du have en e-handelskonto. Kontakt venligst vores support for yderligere information.";
 
 $lang["COMPANY"]["ONBOARDING"]["HEADER"] = "Merchant Onboarding";
 
@@ -312,9 +342,12 @@ $lang["COMPANY"]["INVOICES"]["PERIOD_END"] = "Periode afslutning";
 $lang["COMPANY"]["INVOICES"]["PAID"] = "Betalt";
 $lang["COMPANY"]["INVOICES"]["FUNCTION"] = "#";
 $lang["COMPANY"]["INVOICES"]["SHOW"] = "Vis";
+$lang["COMPANY"]["INVOICES"]["PAY_INVOICE"] = "Betal regning";
 $lang["COMPANY"]["INVOICES"]["CANCELLED"] = "Anulleret";
 $lang["COMPANY"]["INVOICES"]["PAID_TEXT"] = "Betalt";
 $lang["COMPANY"]["INVOICES"]["UNPAID"] = "Ubetalt";
+$lang["COMPANY"]["INVOICES"]["RECEIVED_PAYMENT"] = "Fakturaen er betalt. Der kan gå op til 60 sekunder inden betalingen kan ses her på siden.";
+
 
 $lang["COMPANY"]["INVOICES_SHOW"]["HEADER"] = "Faktura";
 $lang["COMPANY"]["INVOICES_SHOW"]["DATES"] = "Datoer";
@@ -360,6 +393,9 @@ $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
 
+$lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Relaterede transaktioner";
+$lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Svar fra indløseren";
+
 $lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Opkræv";
 $lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Forsøg reservation";
 $lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refunder";
@@ -381,15 +417,15 @@ $lang["PARTNER"]["ONBOARDING"]["APPROVED_PARTNER"] = "Afsluttet af Partner";
 $lang["PARTNER"]["ONBOARDING"]["APPROVED_ACQUIRER"] = "Afsluttet af Indløser";
 
 
-
-
-
 $lang["PARTNER"]["ONBOARDING"]["CLOSE"] = "Afbryd gå gå tilbage";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Forsæt trods fejlen";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Forsæt";
 
 
 
+$lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Aktiver tema";
+$lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Slet tema";
+$lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Køb og Aktiver";
 
 
 
