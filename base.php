@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_id() === "") {
+    session_start();
+}
 $folder_level = "./";
 while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
 define("BASEDIR", $folder_level);
