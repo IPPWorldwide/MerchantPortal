@@ -28,8 +28,9 @@ if(isset($REQ["plugin_slug"])) {
         fwrite($myfile, $txt);
     }
     fclose($myfile);
-    if(method_exists($plugins,"hookUpdate"))
-        $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
+    $update_plugin = new $REQ["plugin_slug"]();
+    if(method_exists($update_plugin,"hookUpdate"))
+        $update_plugin->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
     echo json_encode($REQ);
     die();
 }
@@ -38,7 +39,7 @@ $all_plugins = array_merge((array)$plugins->getAvailablePlugins(),(array)$partne
 
 echo head();
 
-echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
 ';
 ?>
     <div class="col">
