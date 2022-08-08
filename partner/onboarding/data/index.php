@@ -72,7 +72,8 @@ echo '
                 <select name="commercial-ewallet" class="form-control OnboardingUpdateFields">';
                 foreach($yes_no_select as $value) {
                     echo '<option';
-                    if($onboarding_data->data->{"commercial-ewallet"} == $value) { echo " selected"; }
+                    if(isset($onboarding_data->data->{"commercial-ewallet"}))
+                        if($onboarding_data->data->{"commercial-ewallet"} == $value) { echo " selected"; }
                     echo '>'.$value.'</option>';
                 }
                 echo '
@@ -84,7 +85,8 @@ echo '
                 <select name="commercial-recurring" class="form-control">';
                     foreach($yes_no_select as $value) {
                         echo '<option';
-                        if($onboarding_data->data->{"commercial-recurring"} == $value) { echo " selected"; }
+                        if(isset($onboarding_data->data->{"commercial-recurring"}))
+                            if($onboarding_data->data->{"commercial-recurring"} == $value) { echo " selected"; }
                         echo '>'.$value.'</option>';
                     }
                     echo '
