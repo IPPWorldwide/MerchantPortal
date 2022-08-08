@@ -97,16 +97,16 @@ echo '
         <div class="row row-cols-md-4 mb-4">
             <div class="col themed-grid-col">
                 <label for="commercial-market-eu">EU/EEA</label>
-                <br><input name="commercial-market-eu" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-eu"}; echo '"></div>
+                <br><input name="commercial-market-eu" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-eu"} ?? "0"; echo '"></div>
             <div class="col themed-grid-col">
                 <label for="commercial-market-uk">UK</label>
-                <br><input name="commercial-market-uk" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-uk"}; echo '"></div>
+                <br><input name="commercial-market-uk" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-uk"} ?? "0"; echo '"></div>
             <div class="col themed-grid-col">
                 <label for="commercial-market-us">USA</label>
-                <br><input name="commercial-market-us" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-us"}; echo '"></div>
+                <br><input name="commercial-market-us" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-us"} ?? "0"; echo '"></div>
             <div class="col themed-grid-col">
                 <label for="commercial-market-row">ROW</label>
-                <br><input name="commercial-market-row" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-row"}; echo '"></div>
+                <br><input name="commercial-market-row" class="commercial-market form-control" value="'; echo $onboarding_data->data->{"commercial-market-row"} ?? "0"; echo '"></div>
         </div>
         <div class="row row-cols-md-1 mb-1 targetMarketExceeds" style="display:none;">
             <div class="col md-12 alert-warning rounded text-muted alert">
