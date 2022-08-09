@@ -121,6 +121,46 @@
             "install-path": "../ippworldwide/component-request-params"
         },
         {
+            "name": "ippworldwide/ippcountry",
+            "version": "1.0.1",
+            "version_normalized": "1.0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IPPWorldwide/IPPCountry.git",
+                "reference": "df5f37b66c41e319cf8f726891f2e0491a41237e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IPPWorldwide/IPPCountry/zipball/df5f37b66c41e319cf8f726891f2e0491a41237e",
+                "reference": "df5f37b66c41e319cf8f726891f2e0491a41237e",
+                "shasum": ""
+            },
+            "time": "2022-08-09T23:12:52+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "./"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathias Gajhede",
+                    "email": "mag@ippworldwide.com"
+                }
+            ],
+            "description": "Commons Class for Country",
+            "support": {
+                "issues": "https://github.com/IPPWorldwide/IPPCountry/issues",
+                "source": "https://github.com/IPPWorldwide/IPPCountry/tree/1.0.1"
+            },
+            "install-path": "../ippworldwide/ippcountry"
+        },
+        {
             "name": "ippworldwide/php-sdk",
             "version": "dev-main",
             "version_normalized": "dev-main",

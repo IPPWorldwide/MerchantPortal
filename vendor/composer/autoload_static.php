@@ -8,6 +8,7 @@ class ComposerStaticInitef54d450e2853b652eec553891888791
 {
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'IPPCountry' => __DIR__ . '/..' . '/ippworldwide/ippcountry/country.php',
         'IPPCurrency' => __DIR__ . '/..' . '/ippworldwide/component-currency/currency.php',
         'IPPGateway' => __DIR__ . '/..' . '/ippworldwide/php-sdk/Gateway.php',
         'MCC' => __DIR__ . '/..' . '/ippworldwide/component-mcc-list/mcc.php',
