@@ -41,7 +41,7 @@ $request    = new IPPRequest($id,$session_id);
 $ipp        = new IPP($request,$id,$session_id);
 $partner    = new IPPPartner($request,$id,$session_id);
 
-$country    => new IPPCountry();
+$country    = new IPPCountry();
 $plugins    = new IPPPlugins();
 $currency   = new IPPCurrency();
 $mcc        = new MCC();
