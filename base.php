@@ -92,6 +92,8 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
 $plugins->loadPlugins();
 
 require_once(BASEDIR . "language/en-gb.php");
-if(file_exists(THEME . "/language/$language.php"))
+if(file_exists(THEME . "/language/$language.php")) {
     require_once(THEME . "/language/$language.php");
-
+} elseif(file_exists(BASEDIR . "/language/$language.php")) {
+    require_once(BASEDIR . "/language/$language.php");
+}
