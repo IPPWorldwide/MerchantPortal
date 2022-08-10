@@ -14,6 +14,13 @@ class IPPPartner {
             $this->session_id = $session_id;
     }
 
+    public function PartnerLoggedIn() {
+        if($this->user_id === NULL)
+            return false;
+        else
+            return true;
+    }
+
     public function login($username,$password) {
         $data = ["username" => $username, "password" => $password];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/login/", "POST", [], $data);

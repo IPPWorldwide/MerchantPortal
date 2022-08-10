@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'IPPCountry' => $vendorDir . '/ippworldwide/ippcountry/country.php',
     'IPPCurrency' => $vendorDir . '/ippworldwide/component-currency/currency.php',
     'IPPGateway' => $vendorDir . '/ippworldwide/php-sdk/Gateway.php',
     'MCC' => $vendorDir . '/ippworldwide/component-mcc-list/mcc.php',

@@ -1,0 +1,20 @@
+{
+    "name": "ippworldwide/ippcountry",
+    "description": "Commons Class for Country",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mathias Gajhede",
+            "email": "mag@ippworldwide.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    },
+    "minimum-stability": "dev"
+}
