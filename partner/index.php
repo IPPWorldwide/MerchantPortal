@@ -56,30 +56,30 @@ endif;
             </select>
         </div>
     </div>
-    <div draggable="true" class="card" data-sequence="4">
+<!--    <div draggable="true" class="card" data-sequence="4">
         <div class="card-header">Percentage Increase/Decrease in Transactions</div>
         <div class="card-body">
             <canvas id="chart4" width="600px" height="230px"></canvas>
-            <!-- <select data-sequence="4" name="type_4" id="type_4" class="form-control">
+            <select data-sequence="4" name="type_4" id="type_4" class="form-control">
                 <option>This Month</option>
                 <option>Last Month</option>
-            </select> -->
+            </select>
         </div>
     </div>
     <div draggable="true" class="card" data-sequence="5">
         <div class="card-header"> Percentage Increase/Decrease in Transactions</div>
         <div class="card-body">
             <canvas id="chart5" width="600px" height="230px"></canvas>
-            <!-- <select data-sequence="5" name="type_5" id="type_5" class="form-control">
+            <select data-sequence="5" name="type_5" id="type_5" class="form-control">
                 <option>This Week</option>
                 <option>This Month</option>
                 <option value="today">Today</option>
                 <option value="7">Last 7 Days</option>
                 <option value="15">Last 15 Days</option>
                 <option value="28">Last 28 Days</option>
-            </select> -->
+            </select>
         </div>
     </div>
-</div>
+</div> -->
 
 <?php echo foot(); ?>
