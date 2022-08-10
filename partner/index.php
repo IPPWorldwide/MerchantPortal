@@ -28,19 +28,20 @@ endif;
         <div class="card-body">
             <canvas id="chart1" width="600px" height="230px"></canvas>
             <select data-sequence="1" name="type_1" id="type_1" class="form-control">
-                <option value="7">Last 30 Minutes</option>
-                <option value="15">Last 24 Hours</option>
+                <option value="10m">Last 10 Minutes</option>
+                <option value="30m">Last 30 Minutes</option>
             </select>
         </div>
     </div>
     <div draggable="true" class="card" data-sequence="2">
-        <div class="card-header">The Payments Graph</div>
+        <div class="card-header">Daily Graph</div>
         <div class="card-body">
             <canvas id="chart2" width="600px" height="230px"></canvas>
             <select data-sequence="2" name="type_2" id="type_2" class="form-control">
-                <option value="7">Last 7 Days</option>
-                <option value="15">Last 15 Days</option>
-                <option value="28">Last 28 Days</option>
+                <option value="7d">Last 7 Days</option>
+                <option value="30d">Last 30 Days</option>
+                <option value="90d">Last 90 Days</option>
+                <option value="1y">Lastest year</option>
             </select>
         </div>
     </div>

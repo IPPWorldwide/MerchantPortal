@@ -17,37 +17,25 @@ class IPPPartnerGraph {
 
     public function graph_1($request)
     {
-        $invoices = $this->partner->Listinvoices();
+        $graphs = $this->partner->statisticCharts("live",$request["type"])->content;
         $data = [];
-        $data2 = [];
         $label = [];
-        $today = new DateTime();
-        for($i = 1; $i <= 7 ; $i++){
-            $label[] = $today->format("l");
-            $today->add(new DateInterval("P1D"));
-            $data[] = rand(14000, 50000);
-            $data2[] = rand(14000, 50000);
+        foreach($graphs as $value) {
+            $label[] = $value->display;
+            $data[] = $value->count;
         }
         echo json_encode([
             "type" => "line",
             "data" => [
-                "labels" => $label,
+                "labels" => array_reverse($label),
                 "datasets" => array([
-                    "label" => "Data 1",
-                    "data" => $data,
+                    "label" => "Transactions",
+                    "data" => array_reverse($data),
                     "backgroundColor" => 'transparent',
                     "borderColor" => '#007bff',
                     "borderWidth" => 2,
                     "pointBackgroundColor" =>'#007bff',
                     "tension" => 0.5,
-                ],[
-                    "label" => "Data 2",
-                    "data" => $data2,
-                    "backgroundColor" => 'transparent',
-                    "borderColor" => 'rgb(75, 192, 192)',
-                    "borderWidth" => 2,
-                    "pointBackgroundColor" =>'rgb(75, 192, 192)',
-                    "tension" => 0.5
                 ])
             ],
             "options" => [
@@ -71,59 +59,20 @@ class IPPPartnerGraph {
     }
     public function graph_2($request)
     {
-        if($request['type'] == 'today'){
-            return;
-        }
-        $invoices = $this->partner->Listinvoices();
-        foreach($invoices as $invoice){
-            $transaction_date = new DateTime("@".$invoice->period_start);
-            // print_r($transaction_date);
-        }
-        // echo next($invoices)->id;
-        // exit();
+        $graphs = $this->partner->statisticCharts("daily",$request["type"])->content;
         $data = [];
         $label = [];
-        $date = new DateTime(date("Y-m-01 00:00:00"));
-        $j = current($invoices)->id;
-        // print_r("____________ start loop _____________\n");
-        // print_r($date);
-        for($i = 1; $i <= $request['type']; $i++){
-            $transaction_date = new DateTime("@".$invoices->{$j}->period_start);
-            if($transaction_date < $date){
-                $label[] = $date->format("d M");
-                $data[] = 0;
-                // print_r($date);
-                // print_r("____________ transaction date < date _____________\n");
-                $date->sub(new DateInterval("P1D"));
-                continue;
-            }
-            $data_this_date = 0;
-            // print_r("____________ transaction date condition start _____________\n");
-            // print_r($date);
-            // print_r($transaction_date);
-            // print_r("____________ transaction date condition end _____________\n");
-            // print_r("____________ transaction date while start _____________\n");
-            while($transaction_date->format('Y-m-d') == $date->format('Y-m-d')){
-                // print_r("____________ transaction date while continue _____________\n");
-                $data_this_date += $invoices->{$j}->amount;
-                $j = next($invoices)->id;
-                // echo $j;
-                $transaction_date = new DateTime("@".$invoices->{$j}->period_start);
-            }
-            // print_r("____________ transaction date while end _____________\n");
-            $label[] = $date->format("d M");
-            $data[] = $data_this_date;
-            // print_r($date);
-            // print_r("____________ transaction date == date _____________\n");
-            $date->sub(new DateInterval("P1D"));
+        foreach($graphs as $value) {
+            $label[] = $value->display;
+            $data[] = $value->count;
         }
         echo json_encode([
             "type" => "line",
             "data" => [
-                "labels" => $label,
+                "labels" => array_reverse($label),
                 "datasets" => array([
-                    "label" => "Data 1",
-                    "data" => $data,
+                    "label" => "Daily transactions",
+                    "data" => array_reverse($data),
                     "backgroundColor" => 'transparent',
                     "borderColor" => '#007bff',
                     "borderWidth" => 2,

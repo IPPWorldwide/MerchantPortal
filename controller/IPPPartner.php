@@ -185,7 +185,6 @@ class IPPPartner {
             "provider" => $provider,
             "provider_guid" => $provider_guid
         ];
-        var_dump($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/update/payment/provider/add/?".http_build_query($data));
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/update/payment/provider/add/", "POST", [], $data);
     }
 
@@ -257,6 +256,14 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"themes"=>$theme_slug];
         echo $_ENV["GLOBAL_BASE_URL"]."/themes/add.php?".http_build_query($data);
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/themes/add.php", "POST", [], $data);
+    }
+
+
+    public function statisticCharts($chart,$period) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"type"=>$chart,"period"=>$period];
+        $curl = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/", "POST", [], $data);
+
+        return $curl;
     }
 
     public function ListCountry() {
