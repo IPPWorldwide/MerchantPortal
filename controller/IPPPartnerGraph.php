@@ -99,52 +99,29 @@ class IPPPartnerGraph {
             ]
         ]);
     }
-    public function graph_3()
+    public function graph_3($request)
     {
+        $graphs = $this->partner->statisticCharts("yearly",$request["type"])->content;
         $data = [];
         $label = [];
-        $today = new DateTime();
-        for($i = 1; $i <= 12 ; $i++){
-            $label[] = $today->format("F");
-            $today->add(new DateInterval("P1M"));
-            $data[] = rand(14000, 50000);
+        $background = [];
+        $border = [];
+        foreach($graphs as $value) {
+            $label[] = $value->display;
+            $data[] = $value->count;
+            $background[] = "rgba(255, 99, 132, 0.2)";
+            $border[] = "rgba(255, 99, 132)";
         }
         echo json_encode([
             "type" => "bar",
             "data" => [
-                "labels" => $label,
+                "labels" => array_reverse($label),
                 "datasets" => array([
                     "label" => 'Bar Chart',
-                    "data" => $data,
+                    "data" => array_reverse($data),
                     "lineTension" => 0,
-                    "backgroundColor" => [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)',
-                        'rgba(156, 203, 207, 0.2)',
-                        'rgba(231, 203, 207, 0.2)',
-                        'rgba(109, 203, 207, 0.2)',
-                        'rgba(199, 203, 207, 0.2)',
-                        'rgba(129, 203, 207, 0.2)',
-                    ],
-                    "borderColor" => [
-                        'rgba(255, 99, 132)',
-                        'rgba(255, 159, 64)',
-                        'rgba(255, 205, 86)',
-                        'rgba(75, 192, 192)',
-                        'rgba(54, 162, 235)',
-                        'rgba(153, 102, 255)',
-                        'rgba(201, 203, 207)',
-                        'rgba(156, 203, 207)',
-                        'rgba(231, 203, 207)',
-                        'rgba(109, 203, 207)',
-                        'rgba(199, 203, 207)',
-                        'rgba(129, 203, 207)',
-                    ],
+                    "backgroundColor" => $background,
+                    "borderColor" => $border,
                     "borderWidth" => 1,
                 ])
             ],
