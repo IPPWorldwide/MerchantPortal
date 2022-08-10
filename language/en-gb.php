@@ -117,7 +117,7 @@ $lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"] = "Access Rights";
 $lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN"] = "Make user Compliance Administrator";
 $lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN_DESCRIPTION"] = "An Compliance Administrator can access earlier onboardings and see their personal data.";
 
-$lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Add new User";
+$lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Add new Partner User";
 $lang["PARTNER"]["USERS_ADD"]["EMAIL"] = "Email:";
 $lang["PARTNER"]["USERS_ADD"]["PASSWORD"] = "Password:";
 $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create User";

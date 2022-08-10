@@ -20,7 +20,7 @@ $('.AccessRights').on('click', function () {
     $('#accessModal').modal('show');
     $('#accessModal .modal-title').text('New access rights for ' + button.data('username'));
     $('#accessModal #user-id').val(button.data('id'));
-    $('#passwordModal #compliance_admin').val(button.data('compliance'));
+    $('#passwordModal #compliance_admin').val(button.attr('data-compliance'));
     if(button.attr('data-compliance') === "1") {
         $('#compliance_admin').attr("checked","checked")
         console.log(button.attr('data-compliance'));
