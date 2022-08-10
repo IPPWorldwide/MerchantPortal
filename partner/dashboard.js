@@ -21,8 +21,6 @@ graphs.forEach(ele => {
     $.get( "graphs.php", { graph: sequence, type })
     .done(function( data ) {      
       let json = JSON.parse(data);
-      console.log(sequence);
-      console.log(json);
       var ctx = document.getElementById(`chart${sequence}`).getContext('2d');
       var myChart = new Chart(ctx, {
         type: json.type,
@@ -112,11 +110,24 @@ items.forEach(function (item) {
     item.addEventListener('drop', handleDrop);
 });
 
-// setInterval(() => {
-//   renders.forEach((e, key) => {
-//     e(key);
-//   });
-// }, 10000)
-
-// renderChart1();
-// renderChart2();
+ function ReloadLive(sequence) {
+   $.get( "graphs.php", { graph: sequence, type: $("#type_1").val() })
+     .done(function( data ) {
+       let json = JSON.parse(data);
+       console.log(json);
+       var ctx = document.getElementById(`chart${sequence}`).getContext('2d');
+       var myChart = new Chart(ctx, {
+         type: json.type,
+         data: json.data,
+         options: json.options
+       });
+       setTimeout(function(){
+         ReloadLive(sequence);
+       }, 60000);
+     });
+ }
+setTimeout(function(){
+  ReloadLive(1);
+  ReloadLive(2);
+  ReloadLive(3);
+  }, 60000);
