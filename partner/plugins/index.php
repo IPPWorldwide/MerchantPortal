@@ -58,7 +58,6 @@ echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
 <?php
 $i=1;
 foreach($all_plugins as $key=>$value) {
-    // removing plugnings that are stored in remote api.
     $name = $value->name ?? $value->id;
     $description = $value->description->en_gb->description ?? "";
     $file = $value->file ?? "";
@@ -70,7 +69,13 @@ foreach($all_plugins as $key=>$value) {
         <div class="col" data-plugin-id="'.$key.'">
           <div class="card shadow-sm">
               <p class="card-header">'.$name.'</p>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            ';
+    if($value->image !== NULL) {
+        echo '<div class="plugin-thumbnail"><img src="'.$value->image.'"></div>';
+    } else {
+        echo '<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>';
+    }
+    echo '
             <div class="card-body plugin-card-body">
               <p class="card-text">'.substr($description, 0, 199); if(strlen($description) > 199){ echo '...'; } echo '</p>
               <div class="d-flex justify-content-between align-items-center">

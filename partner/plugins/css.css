@@ -1,0 +1,14 @@
+.plugin-thumbnail {
+    display: flex;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+
+}
+.plugin-thumbnail img {
+    width: 100%;
+    max-height: 180px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    margin: auto;
+}
