@@ -8,7 +8,7 @@
   
 })();
 
-let graphs = document.querySelectorAll('.card');
+let graphs = document.querySelectorAll('.col');
 
 let renders = [];
 graphs.forEach(ele => {
@@ -18,6 +18,7 @@ graphs.forEach(ele => {
     if(input){
       type = input.value;
     }
+    $("#chart"+ sequence).parent().append("<div class='chartloading chart"+sequence+"_loading_txt'><div class='opacityBg'></div><div class='text'>Loading</div></div>");
     $.get( "graphs.php", { graph: sequence, type })
     .done(function( data ) {      
       let json = JSON.parse(data);
@@ -27,6 +28,7 @@ graphs.forEach(ele => {
         data: json.data,
         options: json.options
       });
+      $(".chartloading.chart"+sequence+"_loading_txt").remove();
     });
   }
 });
@@ -35,7 +37,7 @@ renders.forEach((e, key) => {
   e(key);
 });
 
-let items = document.querySelectorAll('.chart-container .card');
+let items = document.querySelectorAll('.row .col');
 
 function handleDragStart(e) {
   this.style.opacity = '0.4';
@@ -123,7 +125,7 @@ items.forEach(function (item) {
        });
        setTimeout(function(){
          ReloadLive(sequence);
-       }, 60000);
+       }, 300000);
      });
  }
 setTimeout(function(){
