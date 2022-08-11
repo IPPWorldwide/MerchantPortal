@@ -24,7 +24,7 @@ class IPPLanguages
     }
     public function getLanguageStrings(String $language="en-gb") {
         $lang = [];
-//        require(BASEDIR . "language/en-gb.php");
+        require(BASEDIR . "language/en-gb.php");
         if(file_exists(BASEDIR . "language/$language.php"))
             require(BASEDIR . "language/$language.php");
 
