@@ -62,7 +62,6 @@ if(isset($_COOKIE["timezone"])) {
 
 $langs = $utils->prefered_language(["da","en","da-dk","en-gb"], $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 $language   = $_COOKIE['language'] ?? array_key_first($langs);
-
 $inline_css = [];
 $inline_script = [];
 $load_script = [];
@@ -96,8 +95,4 @@ $plugins->loadPlugins();
 if(file_exists(THEME . "/functions.php"))
     require_once(THEME . "/functions.php");
 
-
-require_once(BASEDIR . "language/en-gb.php");
-if(file_exists(THEME . "/language/$language.php"))
-    require_once(THEME . "/language/$language.php");
-
+$lang = $languages->getLanguageStrings($language);
