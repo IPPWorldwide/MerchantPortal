@@ -117,7 +117,7 @@ class IPPPartnerGraph {
             "data" => [
                 "labels" => array_reverse($label),
                 "datasets" => array([
-                    "label" => 'Bar Chart',
+                    "label" => 'Transactions',
                     "data" => array_reverse($data),
                     "lineTension" => 0,
                     "backgroundColor" => $background,
