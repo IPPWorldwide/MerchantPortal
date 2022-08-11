@@ -174,7 +174,6 @@ input:checked + .slider:before {
 }
 
 .card {
-  width: 50rem;
   height: 25rem;
   cursor: move;
 }

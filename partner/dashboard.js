@@ -111,7 +111,7 @@ items.forEach(function (item) {
 });
 
  function ReloadLive(sequence) {
-   $.get( "graphs.php", { graph: sequence, type: $("#type_1").val() })
+   $.get( "graphs.php", { graph: sequence, type: $("#type_" + sequence).val() })
      .done(function( data ) {
        let json = JSON.parse(data);
        console.log(json);
@@ -130,4 +130,4 @@ setTimeout(function(){
   ReloadLive(1);
   ReloadLive(2);
   ReloadLive(3);
-  }, 60000);
+  }, 100);
