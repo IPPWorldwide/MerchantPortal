@@ -1,6 +1,4 @@
 <?php
-
-
 class IPPPlugins
 {
     public $available_plugins;
@@ -86,6 +84,42 @@ class IPPPlugins
             $this->hook_header[] = $this->available_plugins[$plugin_name]->hook_header();
         if(method_exists($this->available_plugins[$plugin_name],"hook_login"))
             $this->hook_login[] = $this->available_plugins[$plugin_name]->hook_login();
+    }
+    public function updateSettingsValues($plugin_slug,$variable,$content,$action="o") {
+        global $partner,$utils;
+        $fields = $this->GetPluginFields($plugin_slug);
+        if(!isset($fields["plugin_id"])) {
+            echo "An unexpected error. Could not identify plugin_id";
+            die();
+        }
+        if(is_array($content) || is_object($content))
+            $content = json_encode($content,true);
+
+        if(!isset($fields[$variable]) || $action === "o") {
+            $fields[$variable] = $content;
+        }
+        elseif(isset($fields[$variable]) && $action === "a") {
+            if($utils->isJson($content)) {
+                $old_fields = json_decode($fields[$variable],false);
+                $old_fields[] = (json_decode($content)[0]);
+                $fields[$variable] = json_encode($old_fields);
+            } else {
+                $fields[$variable] .= $content;
+            }
+        }
+        $myfile = fopen(BASEDIR . "plugins/".$plugin_slug."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($fields as $key=>$value) {
+            $partner->UpdatePluginSettings($fields["plugin_id"],$key,$value);
+            $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        fclose($myfile);
+        $update_plugin = new $plugin_slug();
+        if(method_exists($update_plugin,"hookUpdate"))
+            $update_plugin->hookUpdate($plugin_slug,$fields["plugin_id"],$fields);
+
     }
     public function getSettingsValues($plugin_name, $value) {
         if(isset($this->values[$value]))

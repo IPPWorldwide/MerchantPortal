@@ -16,6 +16,7 @@ include(BASEDIR . "controller/IPPPlugins.php");
 include(BASEDIR . "controller/IPPMenu.php");
 include(BASEDIR . "controller/IPPUtils.php");
 include(BASEDIR . "controller/IPPPartnerGraph.php");
+include(BASEDIR . "controller/IPPLanguages.php");
 
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
@@ -51,6 +52,7 @@ $currency   = new IPPCurrency();
 $mcc        = new MCC();
 $menu       = new IPPMenu();
 $utils      = new IPPUtils();
+$languages  = new IPPLanguages();
 if(isset($_COOKIE["timezone"])) {
     $timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
     if($timezoneoffset <> "") {
@@ -60,7 +62,6 @@ if(isset($_COOKIE["timezone"])) {
 
 $langs = $utils->prefered_language(["da","en","da-dk","en-gb"], $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 $language   = $_COOKIE['language'] ?? array_key_first($langs);
-
 $inline_css = [];
 $inline_script = [];
 $load_script = [];
@@ -91,9 +92,7 @@ elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
 }
 $plugins->loadPlugins();
 
-require_once(BASEDIR . "language/en-gb.php");
-if(file_exists(THEME . "/language/$language.php")) {
-    require_once(THEME . "/language/$language.php");
-} elseif(file_exists(BASEDIR . "/language/$language.php")) {
-    require_once(BASEDIR . "/language/$language.php");
-}
+if(file_exists(THEME . "/functions.php"))
+    require_once(THEME . "/functions.php");
+
+$lang = $languages->getLanguageStrings($language);
