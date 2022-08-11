@@ -177,3 +177,7 @@ input:checked + .slider:before {
   height: 25rem;
   cursor: move;
 }
+
+.noOverflow {
+  overflow: none;
+}
