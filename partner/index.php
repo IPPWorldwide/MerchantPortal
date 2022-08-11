@@ -23,14 +23,14 @@ endif;
 ?>
 <h2>Processing status</h2>
 <div class="row row-cols-md-3 mb-3">
-    <div class="col themed-grid-col" draggable="true" class="card" data-sequence="1">
+    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="1">
         <canvas id="chart1" height="230px"></canvas>
         <select data-sequence="1" name="type_1" id="type_1" class="form-control">
             <option value="10m">Last 10 Minutes</option>
             <option value="30m">Last 30 Minutes</option>
         </select>
     </div>
-    <div class="col themed-grid-col"  draggable="true" class="card" data-sequence="2">
+    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="2">
         <canvas id="chart2" height="230px"></canvas>
         <select data-sequence="2" name="type_2" id="type_2" class="form-control">
             <option value="7d">Last 7 Days</option>
@@ -39,7 +39,7 @@ endif;
             <option value="1y">Lastest year</option>
         </select>
     </div>
-    <div class="col themed-grid-col"  draggable="true" class="card" data-sequence="3">
+    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="3">
         <canvas id="chart3" height="230px"></canvas>
         <select data-sequence="3" name="type_3" id="type_3" class="form-control">
             <option value="1y">1 year</option>
