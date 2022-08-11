@@ -63,4 +63,13 @@ class IPPUtils
         return $tz;
     }
 
+    public function isJson($string) {
+        $result = json_decode($string);
+        if(json_last_error() === JSON_ERROR_NONE)
+            return true;
+        else
+            return false;
+
+    }
+
 }
