@@ -98,9 +98,13 @@ $(".btnShowMore").on("click", function() {
         $("#pluginViewMoreModal .pluginSettingsModal").css("display","none");
         $("#pluginViewMoreModal .removeModal").css("display","none");
         $("#pluginViewMoreModal .installModal").css("display","block");
-
     }
-    console.log("btnShowMore");
+
+    if($this.attr("data-fields") == "[]") {
+        $("#pluginViewMoreModal .pluginSettingsModal").css("display","none");
+    } else {
+        $("#pluginViewMoreModal .pluginSettingsModal").css("display","block");
+    }
 });
 $('.pluginSettingsModal').on('click', function () {
     var button = $(this);
