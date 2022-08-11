@@ -93,18 +93,20 @@ $(".btnShowMore").on("click", function() {
     if($this.attr("data-installed") === "1") {
         $("#pluginViewMoreModal .installModal").css("display","none");
         $("#pluginViewMoreModal .removeModal").css("display","block");
-        $("#pluginViewMoreModal .pluginSettingsModal").css("display","block");
     } else {
-        $("#pluginViewMoreModal .pluginSettingsModal").css("display","none");
         $("#pluginViewMoreModal .removeModal").css("display","none");
         $("#pluginViewMoreModal .installModal").css("display","block");
     }
 
-    if($this.attr("data-fields") == "[]") {
+    if($this.attr("data-fields") == "[]" || $this.attr("data-fields") == "") {
         $("#pluginViewMoreModal .pluginSettingsModal").css("display","none");
     } else {
         $("#pluginViewMoreModal .pluginSettingsModal").css("display","block");
     }
+    $("#pluginViewMoreModal .admin_links").remove();
+    $.each( JSON.parse($this.attr("data-admin-links")), function( key, value ) {
+        $(".pluginSettingsModal").after("<a class='admin_links btn btn-sm btn-info text-white me-2' href='" + value.link + "'>" + value.title + "</a>");
+    });
 });
 $('.pluginSettingsModal').on('click', function () {
     var button = $(this);
