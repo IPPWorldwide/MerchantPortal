@@ -119,7 +119,7 @@ $lang["PARTNER"]["USERS"]["ACCESS_RIGHTS"] = "Adgangsrettigheder";
 $lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN"] = "Gør bruger til Compliance Administrator";
 $lang["PARTNER"]["USERS"]["MODAL_COMPLIANCE_ADMIN_DESCRIPTION"] = "En Compliance Administrator kan tilgå tidligere ansøgninger og personoplysninger.";
 
-$lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Tilføj ny bruger";
+$lang["PARTNER"]["USERS_ADD"]["HEADER"] = "Tilføj nyt Partner login";
 $lang["PARTNER"]["USERS_ADD"]["EMAIL"] = "Email:";
 $lang["PARTNER"]["USERS_ADD"]["PASSWORD"] = "Adgangskode:";
 $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Opret bruger";
