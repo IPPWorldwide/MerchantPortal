@@ -38,6 +38,7 @@ if(isset($REQ["template_id"])) {
 $communication_types = ["email","webhook"];
 $receiver_types = ["company","partner"];
 $hooks = ["pay_by_link","merchant_creation","payment_confirmed","forgot_password","report_payments"];
+$identifiers = ["email","phone","user_id"];
 echo head();
 echo '
         <form action="?" method="POST" class="form">
@@ -65,7 +66,14 @@ echo '
                     echo "<option value='".$value->plugin_id."' "; if($value->plugin_id === $plugin_id) { echo "selected"; } echo ">".$value->title."</option>";
                 }
                 echo '</select></div>                
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["DATA_IDENTIFIER"].'<br /><input name="data_identifier" class="form-control" value="'.$data_identifier.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["DATA_IDENTIFIER"].'<br />
+                <select class="form-control" name="data_identifier">
+                ';
+foreach($identifiers as $value) {
+    echo "<option value='$value' "; if($value == $data_identifier) { echo "selected"; } echo ">".$value."</option>";
+}
+echo '
+                </select></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TITLE"].'<br /><input name="title" class="form-control" value="'.$title.'"></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["CONTENT"].'<br /><textarea class="form-control" name="content">'.$content.'</textarea></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["ACTIVE"].'<br /><input name="active" class="form-control" value="'.$active.'"></div>
