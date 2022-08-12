@@ -35,7 +35,7 @@ if(isset($REQ["template_id"])) {
 }
 $communication_types = ["email","webhook"];
 $receiver_types = ["company","partner"];
-$hooks = ["pay_by_link","merchant_creation","payment_completed","forgot_password","report_payments"];
+$hooks = ["pay_by_link","merchant_creation","payment_confirmed","forgot_password","report_payments"];
 echo head();
 echo '
         <form action="?" method="POST" class="form">
