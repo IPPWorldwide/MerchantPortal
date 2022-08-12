@@ -19,6 +19,7 @@ if(isset($REQ["template_id"])) {
     $content = $template_data->content;
     $active  = $template_data->active;
     $receiver= $template_data->receiver;
+    $webhook_url = $template_data->webhook_url;
     $method  = "update";
 } else {
     $template_id  = 0;
@@ -30,6 +31,7 @@ if(isset($REQ["template_id"])) {
     $active     = 1;
     $receiver   = "";
     $method     = "add";
+    $webhook_url = "";
 }
 $communication_types = ["email","webhook"];
 $receiver_types = ["company","partner"];
@@ -53,6 +55,7 @@ echo '
                 }
                 echo '
                 </select></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["WEBHOOK_URL"].'<br /><input name="title" class="form-control" value="'.$webhook_url.'"></div>                
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TITLE"].'<br /><input name="title" class="form-control" value="'.$title.'"></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["CONTENT"].'<br /><textarea class="form-control" name="content">'.$content.'</textarea></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["ACTIVE"].'<br /><input name="active" class="form-control" value="'.$active.'"></div>
