@@ -17,6 +17,10 @@ if(!is_null($plugins->available_plugins))
             $available_communication[] = $value->communication->type;
     }
 $templates = $partner->ListTemplates();
+$communication_plugin_ids = [];
+foreach($plugins->communication as $value) {
+    $communication_plugin_ids[] = $value->plugin_id;
+}
 echo head();
 echo '
     <div class="row">
@@ -47,7 +51,7 @@ echo '
               <td>".$value->hook."</td>
               ";
               echo "<td>";
-              if(is_null($available_communication) || (isset($available_communication) && !in_array($value->type,$available_communication))) {
+              if(is_null($available_communication) || (isset($available_communication) && !in_array($value->type,$available_communication) && !in_array($value->plugin_id,$communication_plugin_ids))) {
                   echo ICON_INFO . " " .  $value->type . " " . $lang["PARTNER"]["OUTBOUND_COMMUNICATION"]["MISSING_PLUGIN"] . "<br />";
               }
               echo $value->type;
