@@ -58,7 +58,7 @@ function head() {
   </button>
   <div class=\"navbar-nav\">
     <div class=\"nav-item text-nowrap\">
-      <a class=\"nav-link px-3\" href=\"/logout.php\">".$lang["SIGN_OUT"]."</a>
+      <a class=\"nav-link px-3\" href=\"/logout.php\" id='lougout_btn'>".$lang["SIGN_OUT"]."</a>
     </div>
   </div>
 </header>
