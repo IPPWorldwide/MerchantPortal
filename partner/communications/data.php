@@ -2,9 +2,9 @@
 include("../b.php");
 if(isset($REQ["method"])) {
     if($REQ["method"] == "add")
-        $partner->AddCommunicationTemplate($REQ["hook"],$REQ["plugin_id"],$REQ["type"],$REQ["title"],$REQ["content"],$REQ["receiver"],$REQ["active"]);
+        $partner->AddCommunicationTemplate($REQ["hook"],$REQ["plugin_id"],$REQ["type"],$REQ["title"],$REQ["content"],$REQ["receiver"],$REQ["active"],$REQ["data_identifier"]);
     else
-        $data = $partner->UpdateCommunicationTemplate($REQ["template_id"],$REQ["hook"],$REQ["plugin_id"],$REQ["type"],$REQ["title"],$REQ["content"],$REQ["receiver"],$REQ["active"]);
+        $data = $partner->UpdateCommunicationTemplate($REQ["template_id"],$REQ["hook"],$REQ["plugin_id"],$REQ["type"],$REQ["title"],$REQ["content"],$REQ["receiver"],$REQ["active"],$REQ["data_identifier"]);
 
     header("Location: /partner/communications");
     die();
@@ -20,6 +20,7 @@ if(isset($REQ["template_id"])) {
     $active  = $template_data->active;
     $receiver  = $template_data->receiver;
     $plugin_id = $template_data->plugin_id;
+    $data_identifier = $template_data->data_identifier;
     $method  = "update";
 } else {
     $template_id  = 0;
@@ -32,6 +33,7 @@ if(isset($REQ["template_id"])) {
     $receiver   = "";
     $method     = "add";
     $plugin_id  = "";
+    $data_identifier = "email";
 }
 $communication_types = ["email","webhook"];
 $receiver_types = ["company","partner"];
@@ -63,6 +65,7 @@ echo '
                     echo "<option value='".$value->plugin_id."' "; if($value->plugin_id === $plugin_id) { echo "selected"; } echo ">".$value->title."</option>";
                 }
                 echo '</select></div>                
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["DATA_IDENTIFIER"].'<br /><input name="data_identifier" class="form-control" value="'.$data_identifier.'"></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TITLE"].'<br /><input name="title" class="form-control" value="'.$title.'"></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["CONTENT"].'<br /><textarea class="form-control" name="content">'.$content.'</textarea></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["ACTIVE"].'<br /><input name="active" class="form-control" value="'.$active.'"></div>
