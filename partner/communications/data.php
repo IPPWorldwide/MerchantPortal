@@ -33,6 +33,7 @@ if(isset($REQ["template_id"])) {
 }
 $communication_types = ["email","webhook"];
 $receiver_types = ["company","partner"];
+$hooks = ["pay_by_link","merchant_creation","payment_completed","forgot_password","report_payments"];
 echo head();
 echo '
         <form action="?" method="POST" class="form">
@@ -40,7 +41,8 @@ echo '
             <input type="hidden" name="template_id" value="'.$template_id.'">
             <h2>'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HEADER"].'</h2>
             <div class="row row-cols-md-1 mb-1">
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"].'<br /><input name="hook" class="form-control" value="'.$hook.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["HOOK"].'<br />
+                <select name="hook" class="form-control"></option>'; foreach($hooks as $value) { echo "<option"; if($hook === $value) { echo " selected"; } echo ">".$value."</option>"; } echo '</select></div>
             </div>
             <div class="row row-cols-md-1 mb-1">
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["OUTBOUND_COMMUNICATION_ADD"]["TYPE"].'<br />
