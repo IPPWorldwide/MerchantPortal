@@ -136,8 +136,17 @@ function plugin_fields(field_type,text,name,id,value,hidden) {
         css = "display:none";
     if(field_type[0] == "html")
         return "<div class=\"form-group\" style='" + css +  "'>" + field_type[1] + "</div>";
-    else
-        return "<div class=\"form-group\" style='" + css +  "'><label for=\""+id+"\" class=\"col-form-label\">"+text+":</label><input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\"></div>";
+    else {
+        var htmlelement = "<div class=\"form-group\" style='" + css +  "'><label for=\""+id+"\" class=\"col-form-label\">"+text+":</label>";
+
+        if(field_type[0] === "file") {
+            htmlelement += "<input type=\"file\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\">";
+        } else {
+            htmlelement += "<input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\">";
+        }
+        htmlelement += "</div>";
+        return htmlelement;
+    }
 }
 $(".confirmPluginSettngs").on("click", function() {
     $.post( "?", $("#pluginModal form").serialize())
