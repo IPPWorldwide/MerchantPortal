@@ -19,6 +19,8 @@ if(isset($REQ["external"])) {
     die();
 }
 if(isset($REQ["plugin_slug"])) {
+    $data_fields = $plugins->available_plugins[$REQ["plugin_slug"]]->getFields();
+
     $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
     $txt = "<?php\n";
     fwrite($myfile, $txt);
@@ -26,6 +28,18 @@ if(isset($REQ["plugin_slug"])) {
         $partner->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
         $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
         fwrite($myfile, $txt);
+    }
+    foreach($data_fields as $value) {
+        if(isset($value["type"]) && $value["type"] === "file") {
+            if(isset($_FILES[$value["id"]]['tmp_name'])) {
+                $file = $_FILES[$value["id"]]['tmp_name'];
+                $file_data = base64_encode(file_get_contents($file));
+                if($file_data !== "") {
+                    $partner->UpdatePluginSettings($REQ["plugin_id"],$value["id"],$file_data);
+                    fwrite($myfile, "\$settings[\"".$value["id"]."\"] = '" . $file_data . "';\n");
+                }
+            }
+        }
     }
     fclose($myfile);
     $update_plugin = new $REQ["plugin_slug"]();
