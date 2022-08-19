@@ -23,7 +23,12 @@ class IPPPartner {
 
     public function login($username,$password) {
         $data = ["username" => $username, "password" => $password];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/login/", "POST", [], $data);
+        $login_response = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/login/", "POST", [], $data);
+        if(isset($login_response->content->user_id)) {
+            $this->user_id = $login_response->content->user_id;
+            $this->session_id = $login_response->content->session_id;
+        }
+        return $login_response;
     }
 
     public function CheckLogin() {
@@ -195,12 +200,12 @@ class IPPPartner {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/invoice/update/payment/provider/add/", "POST", [], $data);
     }
 
-    public function AddCommunicationTemplate($hook,$type,$title,$content,$receiver,$active) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "hook" => $hook, "type" => $type, "title"=> $title, "content" => $content, "receiver" => $receiver,"active" => $active];
+    public function AddCommunicationTemplate($hook,$plugin_id,$type,$title,$content,$receiver,$active,$data_identifier) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "hook" => $hook, "plugin_id" => $plugin_id, "type" => $type, "title"=> $title, "content" => $content, "receiver" => $receiver,"active" => $active,"data_identifier"=>$data_identifier];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/communication/templates/add/", "POST", [], $data);
     }
-    public function UpdateCommunicationTemplate($template_id,$hook,$type,$title,$content,$receiver,$active) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "template_id" => $template_id, "hook" => $hook, "type" => $type, "title"=> $title, "content" => $content, "receiver" => $receiver, "active" => $active];
+    public function UpdateCommunicationTemplate($template_id,$hook,$plugin_id,$type,$title,$content,$receiver,$active,$data_identifier) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "template_id" => $template_id, "hook" => $hook, "plugin_id" => $plugin_id, "type" => $type, "title"=> $title, "content" => $content, "receiver" => $receiver, "active" => $active,"data_identifier"=>$data_identifier];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/communication/templates/update/", "POST", [], $data);
     }
     public function CommuncationTemplateData($template_id) {

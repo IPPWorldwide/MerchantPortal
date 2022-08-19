@@ -7,6 +7,7 @@ class IPPPlugins
     public $hook_login;
     public $hook_onboarding;
     public $bookkeeping;
+    public $communication;
 
     public function loadPlugins() {
         if ($handle = opendir(BASEDIR . 'plugins')) {
@@ -173,6 +174,10 @@ class IPPPlugins
 
         if(isset($this->available_plugins[$plugin_name]->hook_onboarding))
             $this->hook_onboarding = $this->available_plugins[$plugin_name]->hook_onboarding;
+
+        if(isset($this->available_plugins[$plugin_name]->communication))
+            $this->communication = $this->available_plugins[$plugin_name]->communication;
+
     }
 
 
