@@ -172,6 +172,11 @@ class IPP {
     public function ListVersions() {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/versions.php")->content->versions;
     }
+    public function ListPlugins() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/plugins/", "POST", [], $data)->content;
+    }
+
     public function version() {
         if(!isset($_ENV["GLOBAL_BASE_URL"]))
             $_ENV["GLOBAL_BASE_URL"] = "https://api.ippeurope.com";
