@@ -29,6 +29,9 @@ class IPPRequest {
         fclose($fw);
         fclose($fr);
     }
+    public function portal($url, $data){
+        return $this->curl($_ENV["PORTAL_URL"]."/".$url, "POST", [], $data);
+    }
 
     public function request($url, $data){
         return $this->curl($_ENV["GLOBAL_BASE_URL"]."/".$url, "POST", [], $data);
