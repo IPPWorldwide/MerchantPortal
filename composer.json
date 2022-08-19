@@ -15,7 +15,10 @@
         "ippworldwide/component-request-params": "1.0.0",
         "ippworldwide/ippcountry": "1.0.1",
         "ippworldwide/php-sdk": "dev-main",
-        "shuchkin/simplexlsxgen": "1.2.14"
+        "shuchkin/simplexlsxgen": "1.2.14",
+        "setasign/fpdf": "1.8.*",
+        "setasign/fpdi": "^2.0"
+
     },
     "minimum-stability": "dev",
     "repositories":[

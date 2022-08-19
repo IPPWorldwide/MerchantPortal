@@ -5,6 +5,7 @@ class IPPPlugins
     public $hook_footer;
     public $hook_header;
     public $hook_login;
+    public $hook_onboarding;
     public $bookkeeping;
     public $communication;
 
@@ -170,6 +171,9 @@ class IPPPlugins
 
         if(isset($this->available_plugins[$plugin_name]->bookkeeping))
             $this->bookkeeping = $this->available_plugins[$plugin_name]->bookkeeping;
+
+        if(isset($this->available_plugins[$plugin_name]->hook_onboarding))
+            $this->hook_onboarding = $this->available_plugins[$plugin_name]->hook_onboarding;
 
         if(isset($this->available_plugins[$plugin_name]->communication))
             $this->communication = $this->available_plugins[$plugin_name]->communication;

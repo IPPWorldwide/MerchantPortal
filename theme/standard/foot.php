@@ -5,12 +5,6 @@ function foot() {
     $script = "";
     if(file_exists("dashboard.js"))
         $load_script[] = "dashboard.js";
-    foreach($inline_css as $value) {
-        $css .= "<style>".$value."</style>";
-    }
-    foreach($inline_script as $value) {
-        $script .= "<script>".$value."</script>";
-    }
     foreach($load_script as $value) {
         $script .= "<script src='".$value."'></script>";
     }
@@ -18,6 +12,12 @@ function foot() {
         foreach ($plugins->hook_footer as $value) {
             $script .= $value;
         }
+    }
+    foreach($inline_css as $value) {
+        $css .= "<style>".$value."</style>";
+    }
+    foreach($inline_script as $value) {
+        $script .= "<script>".$value."</script>";
     }
     return '    </main>
   </div>
