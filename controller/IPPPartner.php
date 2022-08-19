@@ -23,7 +23,12 @@ class IPPPartner {
 
     public function login($username,$password) {
         $data = ["username" => $username, "password" => $password];
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/login/", "POST", [], $data);
+        $login_response = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/login/", "POST", [], $data);
+        if(isset($login_response->content->user_id)) {
+            $this->user_id = $login_response->content->user_id;
+            $this->session_id = $login_response->content->session_id;
+        }
+        return $login_response;
     }
 
     public function CheckLogin() {
