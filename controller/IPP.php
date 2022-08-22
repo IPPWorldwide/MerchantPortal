@@ -19,7 +19,7 @@ class IPP {
 
     public function login($username,$password) {
         $data = ["username" => $username, "password" => $password];
-        $login_response = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data);
+        $login_response = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/login/", "POST", [], $data);
         if(isset($login_response->content->user_id)) {
             $this->user_id = $login_response->content->user_id;
             $this->session_id = $login_response->content->session_id;
@@ -172,6 +172,11 @@ class IPP {
     public function ListVersions() {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/versions.php")->content->versions;
     }
+    public function ListPlugins() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/plugins/", "POST", [], $data)->content;
+    }
+
     public function version() {
         if(!isset($_ENV["GLOBAL_BASE_URL"]))
             $_ENV["GLOBAL_BASE_URL"] = "https://api.ippeurope.com";
