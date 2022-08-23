@@ -18,8 +18,10 @@ if(!is_null($plugins->available_plugins))
     }
 $templates = $partner->ListTemplates();
 $communication_plugin_ids = [];
-foreach($plugins->communication as $value) {
-    $communication_plugin_ids[] = $value->plugin_id;
+if(isset($plugins->communication)) {
+    foreach($plugins->communication as $value) {
+        $communication_plugin_ids[] = $value->plugin_id;
+    }
 }
 echo head();
 echo '
