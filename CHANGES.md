@@ -1,1 +1,3 @@
 - Number of minor bugfixes
+- Rename of Plugins to Extensions
+- Improvements in Company Extensions
