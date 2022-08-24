@@ -26,7 +26,7 @@ if(isset($REQ["plugin_slug"])) {
     echo json_encode($REQ);
     die();
 }
-$all_plugins = array_merge((array)$plugins->getAvailablePlugins(true),(array)$ipp->ListPlugins());
+$all_plugins = array_merge((array)$plugins->getAvailablePlugins(true));
 
 
 echo head();
