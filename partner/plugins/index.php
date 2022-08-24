@@ -49,10 +49,7 @@ if(isset($REQ["plugin_slug"])) {
     die();
 }
 $all_plugins = array_merge((array)$plugins->getAvailablePlugins(false),(array)$partner->ListPlugins());
-
-
 echo head();
-
 echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
 ';
 ?>
@@ -112,6 +109,54 @@ foreach($all_plugins as $key=>$value) {
 ';
     $i++;
 }
+
+
+echo "</div><hr />";
+
+$company_plugins = array_merge((array)$plugins->getAvailablePlugins(true),(array)$ipp->ListPlugins());
+echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
+';
+$i=1;
+foreach($company_plugins as $key=>$value) {
+    $name = $value->name ?? $value->id;
+    $description = $value->description->en_gb->description ?? "";
+    $file = $value->file ?? "";
+    if(isset($value->admin_links))
+        $admin_links = json_encode((object)$value->admin_links);
+    else
+        $admin_links = "{}";
+    echo '
+        <div class="col" data-plugin-id="'.$key.'">
+          <div class="card shadow-sm">
+              <p class="card-header">'.$name.'</p>
+            ';
+    if($value->image !== NULL) {
+        echo '<div class="plugin-thumbnail"><img src="'.$value->image.'"></div>';
+    } else {
+        echo '<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>';
+    }
+    echo '
+            <div class="card-body plugin-card-body">
+              <p class="card-text">'.substr($description, 0, 199); if(strlen($description) > 199){ echo '...'; } echo '</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">';
+    echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-key="'.$i.'" data-plugin-file="'.$file.'"'; if(file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-success installModal me-2">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
+    echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-danger me-2 removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+
+    echo '
+                </div>
+    ';
+    if($description == "")
+        echo '<div>Only local</div>';
+    echo '
+              </div>
+            </div>
+          </div>
+        </div>
+';
+    $i++;
+}
+
 echo '
     <div class="modal fade" id="pluginViewMoreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
