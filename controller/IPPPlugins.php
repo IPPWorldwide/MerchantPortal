@@ -131,15 +131,26 @@ class IPPPlugins
             $update_plugin->hookUpdate($plugin_slug,$fields["plugin_id"],$fields);
 
     }
-    public function getSettingsValues($plugin_name, $value) {
-        if(isset($this->values[$value]))
-            return $this->values[$value];
-        elseif(isset($this->available_plugins[$plugin_name]->values[$value]))
-            return $this->available_plugins[$plugin_name]->values[$value];
-        elseif(isset($this->available_plugins[$plugin_name]->values))
-            return json_encode($this->available_plugins[$plugin_name]->values);
-        else
-            return "{}";
+    public function getSettingsValues($plugin_name, $value,$specific_setting_file=false) {
+        if(!$specific_setting_file) {
+            if(isset($this->values[$value]))
+                return $this->values[$value];
+            elseif(isset($this->available_plugins[$plugin_name]->values[$value]))
+                return $this->available_plugins[$plugin_name]->values[$value];
+            elseif(isset($this->available_plugins[$plugin_name]->values))
+                return json_encode($this->available_plugins[$plugin_name]->values);
+            else
+                return "{}";
+        } else {
+            if(file_exists($specific_setting_file)) {
+                include($specific_setting_file);
+                if($value !== "")
+                    return $settings[$value];
+                else
+                    return json_encode($settings);
+            } else
+                return "{}";
+        }
     }
     public function getId($plugin_name) {
         return $this->available_plugins[$plugin_name]->id;
