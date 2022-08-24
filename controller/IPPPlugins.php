@@ -43,6 +43,12 @@ class IPPPlugins
                     unset($plugin_list[$value->id]);
                 }
             }
+        } else {
+            foreach($plugin_list as $value) {
+                if(isset($value->company_plugin)) {
+                    unset($plugin_list[$value->id]);
+                }
+            }
         }
         return $plugin_list;
     }

@@ -48,7 +48,7 @@ if(isset($REQ["plugin_slug"])) {
     echo json_encode($REQ);
     die();
 }
-$all_plugins = array_merge((array)$plugins->getAvailablePlugins(),(array)$partner->ListPlugins());
+$all_plugins = array_merge((array)$plugins->getAvailablePlugins(false),(array)$partner->ListPlugins());
 
 
 echo head();
