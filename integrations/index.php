@@ -1,31 +1,12 @@
 <?php
 include("../base.php");
-if(isset($REQ["external"])) {
-    if($plugins->hasExternalLogin($REQ["plugin_slug"])) {
-        $REQ = array_merge($REQ, $plugins->hasExternalCommunication($REQ["plugin_slug"],"initial",$REQ));
-        $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
-        $txt = "<?php\n";
-        fwrite($myfile, $txt);
-        foreach($REQ as $key=>$value) {
-            $partner->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
-            $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
-            fwrite($myfile, $txt);
-        }
-        fclose($myfile);
-        if(method_exists($plugins,"hookUpdate"))
-            $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
-    }
-    header("Location: ".$REQ["return"]);
-    die();
-}
 if(isset($REQ["plugin_slug"])) {
     $data_fields = $plugins->available_plugins[$REQ["plugin_slug"]]->getFields();
-
-    $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/settings.php", "w") or die("Unable to open file!");
+    $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/".$company_data->content->id."_settings.php", "w") or die("Unable to open file!");
     $txt = "<?php\n";
     fwrite($myfile, $txt);
     foreach($REQ as $key=>$value) {
-        $partner->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
+        $ipp->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
         $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
         fwrite($myfile, $txt);
     }
@@ -35,43 +16,26 @@ if(isset($REQ["plugin_slug"])) {
                 $file = $_FILES[$value["id"]]['tmp_name'];
                 $file_data = base64_encode(file_get_contents($file));
                 if($file_data !== "") {
-                    $partner->UpdatePluginSettings($REQ["plugin_id"],$value["id"],$file_data);
+                    $ipp->UpdatePluginSettings($REQ["plugin_id"],$value["id"],$file_data);
                     fwrite($myfile, "\$settings[\"".$value["id"]."\"] = '" . $file_data . "';\n");
                 }
             }
         }
     }
     fclose($myfile);
-    $update_plugin = new $REQ["plugin_slug"]();
-    if(method_exists($update_plugin,"hookUpdate"))
-        $update_plugin->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
     echo json_encode($REQ);
     die();
 }
-$all_plugins = array_merge((array)$plugins->getAvailablePlugins(),(array)$ipp->ListPlugins());
+$all_plugins = array_merge((array)$plugins->getAvailablePlugins(true),(array)$ipp->ListPlugins());
 
 
 echo head();
 
 echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
 ';
-?>
-    <div class="col">
-        <div class="card shadow-sm">
-            <p class="card-header">Add new plugin</p>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body plugin-card-body">
-                <p class="card-text"></p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group"><form id="add-new-plugin" action="#" method="POST" enctype='multipart/form-data'><input type="file" name="new-plugin" id="plugin-file" accept=".zip"></form><button type="button" class="btn btn-sm btn-info text-white" id="upload-plugin-file">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php
 $i=1;
 foreach($all_plugins as $key=>$value) {
+    $file_key = BASEDIR . "plugins/".$key."/".$company_data->content->id."_settings.php";
     $name = $value->name ?? $value->id;
     $description = $value->description->en_gb->description ?? "";
     $file = $value->file ?? "";
@@ -94,11 +58,11 @@ foreach($all_plugins as $key=>$value) {
               <p class="card-text">'.substr($description, 0, 199); if(strlen($description) > 199){ echo '...'; } echo '</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">';
-        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-key="'.$i.'" data-plugin-file="'.$file.'"'; if(file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-success installModal me-2">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
-        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-danger me-2 removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+        echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-key="'.$i.'"'; if(file_exists($file_key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-success installModal me-2">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
+        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id",$file_key).'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists($file_key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-danger me-2 removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
 
     echo
-        '<button type="button" class="btn btn-sm btn-info text-white btnShowMore" data-name="'.$name.'" data-slug="'.$key.'" data-admin-links=\''.$admin_links.'\' data-plugin-file="'.$file.'" data-external-login="'.$plugins->hasExternalLogin($key).'" data-installed="'.file_exists(BASEDIR . "plugins/".$key).'" data-description="'.strip_tags($description).'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,'').'\' data-bs-toggle="modal" data-bs-target="#pluginViewMoreModal">'.$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"].'</button>';
+        '<button type="button" class="btn btn-sm btn-info text-white btnShowMore" data-name="'.$name.'" data-slug="'.$key.'" data-admin-links=\''.$admin_links.'\' data-external-login="'.$plugins->hasExternalLogin($key).'" data-installed="'.file_exists($file_key).'" data-description="'.strip_tags($description).'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,'',$file_key).'\' data-bs-toggle="modal" data-bs-target="#pluginViewMoreModal">'.$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"].'</button>';
     echo '
                 </div>
     ';

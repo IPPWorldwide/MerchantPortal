@@ -35,8 +35,16 @@ class IPPPlugins
         $this->bookkeeping[] = $slug;
     }
 
-    public function getAvailablePlugins() {
-        return $this->available_plugins;
+    public function getAvailablePlugins($company_plugin=false) {
+        $plugin_list = $this->available_plugins;
+        if($company_plugin) {
+            foreach($plugin_list as $value) {
+                if(!isset($value->company_plugin)) {
+                    unset($plugin_list[$value->id]);
+                }
+            }
+        }
+        return $plugin_list;
     }
     public function plugin_name()
     {
@@ -123,15 +131,26 @@ class IPPPlugins
             $update_plugin->hookUpdate($plugin_slug,$fields["plugin_id"],$fields);
 
     }
-    public function getSettingsValues($plugin_name, $value) {
-        if(isset($this->values[$value]))
-            return $this->values[$value];
-        elseif(isset($this->available_plugins[$plugin_name]->values[$value]))
-            return $this->available_plugins[$plugin_name]->values[$value];
-        elseif(isset($this->available_plugins[$plugin_name]->values))
-            return json_encode($this->available_plugins[$plugin_name]->values);
-        else
-            return "{}";
+    public function getSettingsValues($plugin_name, $value,$specific_setting_file=false) {
+        if(!$specific_setting_file) {
+            if(isset($this->values[$value]))
+                return $this->values[$value];
+            elseif(isset($this->available_plugins[$plugin_name]->values[$value]))
+                return $this->available_plugins[$plugin_name]->values[$value];
+            elseif(isset($this->available_plugins[$plugin_name]->values))
+                return json_encode($this->available_plugins[$plugin_name]->values);
+            else
+                return "{}";
+        } else {
+            if(file_exists($specific_setting_file)) {
+                include($specific_setting_file);
+                if($value !== "")
+                    return $settings[$value];
+                else
+                    return json_encode($settings);
+            } else
+                return "{}";
+        }
     }
     public function getId($plugin_name) {
         return $this->available_plugins[$plugin_name]->id;

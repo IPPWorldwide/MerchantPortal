@@ -1,11 +1,9 @@
 <?php
-include("../b.php");
+include("../base.php");
 
-$partner->RemovePlugin($REQ["id"],$REQ["plugin"]);
-$remove_pugin = new $REQ["plugin"]();
-if(method_exists($remove_pugin,"hookRemove"))
-    $remove_pugin->hookRemove($remove_pugin->plugin_id,$id,$session_id);
+$ipp->RemovePlugin($company_data->content->id,$REQ["id"],$REQ["plugin"]);
 
-$dir = "plugins/".$REQ["plugin"];
-$utils->rrmdir($dir);
+
+$dir = "plugins/".$REQ["plugin"]."/".$company_data->content->id."_settings.php";
+$utils->rrfile($dir);
 

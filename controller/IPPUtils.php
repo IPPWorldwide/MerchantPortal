@@ -14,6 +14,9 @@ class IPPUtils
         }
         rmdir($dir);
     }
+    public function rrfile($file) {
+        unlink(BASEDIR . $file);
+    }
     public function in_object($value,$object) {
         if (is_object($object)) {
             foreach($object as $key => $item) {

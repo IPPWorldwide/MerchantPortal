@@ -148,6 +148,37 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/search/", "POST", [], $data)->content;
     }
 
+    public function InstallPlugin($company_id,$slug) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+        $install = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/plugins/add/", "POST", [], $data)->content;
+        require_once BASEDIR . "plugins/".$slug."/init.php";
+        $new_pugin = new $slug();
+
+        $standard_configs = $new_pugin->getStandardConfigs($slug);
+        $std_settings = [];
+        foreach($standard_configs as $value)
+            $std_settings[$value["name"]] = $value["standard"];
+
+        $myfile = fopen(BASEDIR . "plugins/".$slug."/".$company_id."_settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        $txt .= "\$settings[\"plugin_id\"] = '" . $install->plugin_id . "';\n";
+        foreach($std_settings as $key=>$value) {
+            $txt .= "\$settings[\"".$key."\"] = '" . $value . "';\n";
+        }
+        fwrite($myfile, $txt);
+        fclose($myfile);
+        return $install;
+    }
+    public function UpdatePluginSettings($plugin_id,$key,$value) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/plugins/update/", "POST", [], $data);
+    }
+    public function RemovePlugin($company_id,$id,$slug) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$id,"plugin_slug"=>$slug];
+        $remove = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/plugins/close/", "POST", [], $data)->content;
+        
+        
+    }
 
     public function ListPayouts() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
