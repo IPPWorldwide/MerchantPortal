@@ -74,11 +74,13 @@ class IPPPlugins
         if($this->getFields())
             return $this->getFields();
     }
-    public function GetPluginFields($entry)
+    public function GetPluginFields($entry,$company_id="")
     {
         $settings = [];
-        if(file_exists(BASEDIR . "plugins/".$entry."/settings.php")) {
-            include(BASEDIR . "plugins/".$entry."/settings.php");
+        if($company_id !== "")
+            $company_id .= "_";
+        if(file_exists(BASEDIR . "plugins/".$entry."/".$company_id."settings.php")) {
+            include(BASEDIR . "plugins/".$entry."/".$company_id."settings.php");
         }
         return $settings;
     }
