@@ -1,5 +1,22 @@
 <?php
 include("../base.php");
+if(isset($REQ["external"])) {
+    if($plugins->hasExternalLogin($REQ["plugin_slug"])) {
+        $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/".$company_data->content->id."_settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($REQ as $key=>$value) {
+            $ipp->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
+            $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        fclose($myfile);
+        if(method_exists($plugins,"hookUpdate"))
+            $plugins->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ);
+    }
+    header("Location: ".$REQ["return"]);
+    die();
+}
 if(isset($REQ["plugin_slug"])) {
     $data_fields = $plugins->available_plugins[$REQ["plugin_slug"]]->getFields();
     $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/".$company_data->content->id."_settings.php", "w") or die("Unable to open file!");
