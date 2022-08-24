@@ -48,28 +48,13 @@ if(isset($REQ["plugin_slug"])) {
     echo json_encode($REQ);
     die();
 }
-$all_plugins = array_merge((array)$plugins->getAvailablePlugins(),(array)$ipp->ListPlugins());
+$all_plugins = array_merge((array)$plugins->getAvailablePlugins(true),(array)$ipp->ListPlugins());
 
 
 echo head();
 
 echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
 ';
-?>
-    <div class="col">
-        <div class="card shadow-sm">
-            <p class="card-header">Add new plugin</p>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body plugin-card-body">
-                <p class="card-text"></p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group"><form id="add-new-plugin" action="#" method="POST" enctype='multipart/form-data'><input type="file" name="new-plugin" id="plugin-file" accept=".zip"></form><button type="button" class="btn btn-sm btn-info text-white" id="upload-plugin-file">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php
 $i=1;
 foreach($all_plugins as $key=>$value) {
     $name = $value->name ?? $value->id;

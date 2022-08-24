@@ -35,8 +35,16 @@ class IPPPlugins
         $this->bookkeeping[] = $slug;
     }
 
-    public function getAvailablePlugins() {
-        return $this->available_plugins;
+    public function getAvailablePlugins($company_plugin=false) {
+        $plugin_list = $this->available_plugins;
+        if($company_plugin) {
+            foreach($plugin_list as $value) {
+                if(!isset($value->company_plugin)) {
+                    unset($plugin_list[$value->id]);
+                }
+            }
+        }
+        return $plugin_list;
     }
     public function plugin_name()
     {
