@@ -16,7 +16,7 @@ class IPPMenu {
         $menu["PARTNER"]["invoices/plans/"] = "Companies Recurring Plans";
         $menu["PARTNER"]["data"] = "Partner Data";
         $menu["PARTNER"]["users"] = "Users";
-        $menu["PARTNER"]["plugins"] = "Plugins";
+        $menu["PARTNER"]["plugins"] = "Extensions";
         $menu["PARTNER"]["communications"] = "Outbound Communications";
         $menu["PARTNER"]["menus"] = "Menu Administration";
         $menu["PARTNER"]["onboarding"] = "Merchant Onboardings";
@@ -34,7 +34,7 @@ class IPPMenu {
         $menu["COMPANY"]["payment_links"] = "Payment Links";
         $menu["COMPANY"]["invoices"] = "Invoices";
         $menu["COMPANY"]["company_access_rights"] = "Company Access Rights";
-        $menu["COMPANY"]["integrations"] = "Integrations";
+        $menu["COMPANY"]["integrations"] = "Extensions";
 
         return json_encode($menu);
     }
