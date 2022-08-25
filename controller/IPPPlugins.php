@@ -36,17 +36,18 @@ class IPPPlugins
     }
 
     public function getAvailablePlugins($company_plugin=false) {
-        $plugin_list = $this->available_plugins;
+        $list = $this->available_plugins;
+        $plugin_list = [];
         if($company_plugin) {
-            foreach($plugin_list as $value) {
-                if(!isset($value->company_plugin)) {
-                    unset($plugin_list[$value->id]);
+            foreach($list as $value) {
+                if(isset($value->company_plugin)) {
+                    $plugin_list[$value->id] = $value;
                 }
             }
         } else {
-            foreach($plugin_list as $value) {
-                if(isset($value->company_plugin)) {
-                    unset($plugin_list[$value->id]);
+            foreach($list as $value) {
+                if(!isset($value->company_plugin)) {
+                    $plugin_list[$value->id] = $value;
                 }
             }
         }
