@@ -5,7 +5,12 @@ $onboarding_status = $REQ["onboarding_status"] ?? "WAITING_APPROVAL";
 $onboarding_list = $partner->ListOnboardings($onboarding_status);
 echo '
 <h1>Merchant Onboarding</h1>
-<form action="?" method="GET">
+';
+if($user_data->super_admin && $user_data->compliance_admin) {
+    echo "<div class='alert alert-info' role='alert' id='UserRightsSet'>Your account an Super Administrator or Compliance Administrator. This provides your account access to earlier onboarding procedures.</div>";
+}
+
+echo '<form action="?" method="GET">
     <div class="form-group">
         <select id="onboarding_status" name="onboarding_status">
             <option value="WAITING_APPROVAL"'; if($onboarding_status === "WAITING_APPROVAL") { echo " selected"; } echo '>'.$lang["PARTNER"]["ONBOARDING"]["WAITING_FOR_APPROVAL"].'</option>
