@@ -34,6 +34,7 @@ echo '
               <td>".$value->amount_readable."</td>
               <td>".$value->amount_tnx_readable."</td>
               <td><a href='/partner/invoices/plans/details.php?id=".$value->id."' class='btn btn-dark'>".$lang["PARTNER"]["INVOICES_PLAN"]["INFO"]."</a></td>
+              <td><a href='/partner/invoices/plans/subscribers.php?id=".$value->id."' class='btn btn-dark'>".$lang["PARTNER"]["INVOICES_PLAN"]["SUBSCRIBERS"]."</a></td>
             </tr>";
             }
             echo '

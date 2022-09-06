@@ -310,6 +310,10 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/subscription_plans.php", "POST", [], $data)->content;
     }
+    public function ListSubscriptionPlansSubscribers($plan_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"id"=>$plan_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/subscription_plans_company.php", "POST", [], $data)->content;
+    }
     public function ListInvoices($filter=[]) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"filter"=>$filter];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/invoices.php", "POST", [], $data)->content;
