@@ -111,20 +111,20 @@ echo head();
             <div class="row">
                 <div class="col-md-8">
                     <label for="zip" class="form-label">Product name</label>
-                    <input class="form-control" name="product[1][name]">
+                    <input class="form-control productdata" name="product[1][name]">
                 </div>
                 <div class="col-md-1">
                     <label for="zip" class="form-label">Qty</label>
-                    <input class="form-control" name="product[1][qty]">
+                    <input type="number" class="form-control productdata" name="product[1][qty]">
                 </div>
                 <div class="col-md-3">
                     <label for="country" class="form-label">Price</label>
-                    <input class="form-control" name="product[1][price]">
+                    <input class="form-control productdata" name="product[1][price]">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" name="add_invoice" class="btn btn-primary mb-3">Create Invoice</button>
+                    <button type="submit" id="add_invoice" name="add_invoice" class="btn btn-primary mb-3" disabled="disabled">Create Invoice</button>
                 </div>
             </div>
     </div>

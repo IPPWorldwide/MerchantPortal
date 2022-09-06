@@ -72,6 +72,14 @@ $lang["PARTNER"]["INVOICES_PLAN"]["MONTHLY_FEE"] = "Monthly Subscription";
 $lang["PARTNER"]["INVOICES_PLAN"]["TNX_FEE"] = "Tnx Fee";
 $lang["PARTNER"]["INVOICES_PLAN"]["STATUS"] = "Status";
 $lang["PARTNER"]["INVOICES_PLAN"]["INFO"] = "Info";
+$lang["PARTNER"]["INVOICES_PLAN"]["SUBSCRIBERS"] = "Subscribers";
+
+$lang["PARTNER"]["INVOICES_PLAN_SUBSCRIBERS"]["HEADER"] = "Plan Subscribers";
+$lang["PARTNER"]["INVOICES_PLAN_SUBSCRIBERS"]["COMPANY_ID"] = "Company ID";
+$lang["PARTNER"]["INVOICES_PLAN_SUBSCRIBERS"]["COMPANY_NAME"] = "Company Name";
+$lang["PARTNER"]["INVOICES_PLAN_SUBSCRIBERS"]["NEXT_INVOICE"] = "Next Invoice";
+$lang["PARTNER"]["INVOICES_PLAN_SUBSCRIBERS"]["STATUS"] = "Status";
+
 
 $lang["PARTNER"]["DATA"]["HEADER"] = "Partner Data";
 $lang["PARTNER"]["DATA"]["PARTNER_ID"] = "Partner ID:";

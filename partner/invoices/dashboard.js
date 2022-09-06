@@ -69,3 +69,16 @@ $("#invoiceSettingsModal .confirm").on("click",function() {
         }
     });
 });
+
+$(".productdata").on("keyup", function() {
+    var AllProductData = true;
+    $(".productdata").each(function() {
+        if(AllProductData && $(this).val() === "")
+            AllProductData = false;
+    });
+    if(AllProductData)
+        $("#add_invoice").removeAttr("disabled");
+    else
+        $("#add_invoice").attr("disabled","disabled");
+    console.log(AllProductData);
+});
