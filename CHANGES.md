@@ -1,3 +1,4 @@
-- Number of minor bugfixes
-- Rename of Plugins to Extensions
-- Improvements in Company Extensions
+- Improvements in Create Invoice
+- Subscription Subscribers improved
+- Onboarding Administrator made more visible
+- Improvement of Appearance Settings
