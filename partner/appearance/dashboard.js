@@ -79,3 +79,21 @@ $(document).ready(function (){
         }
     });
 });
+$(".btnSettings").on("click",function() {
+    $("#appearanceSettingsModal").modal("show");
+});
+
+$("#appearanceSettingsModal .closeModal").on("click",function() {
+    $("#appearanceSettingsModal").modal("hide");
+});
+$("#appearanceSettingsModal .confirm").on("click",function() {
+    $.ajax({
+        url: '?',
+        data: $("#appearanceSettingsModal form").serialize(),
+        cache: false,
+        method: "POST",
+        success: function (data) {
+            $("#appearanceSettingsModal").modal("hide");
+        }
+    });
+});

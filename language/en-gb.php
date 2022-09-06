@@ -421,6 +421,7 @@ $lang["PARTNER"]["ONBOARDING"]["CLOSE"] = "Cancel and go back";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Continue anyway";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Continue";
 
+$lang["PARTNER"]["APPEARANCE"]["HEADER"] = "Appearance";
 $lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Activate Theme";
 $lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Delete Theme";
 $lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Purchase";
