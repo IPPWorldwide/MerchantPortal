@@ -1,8 +1,12 @@
 <?php
 include("../base.php");
 
-if(isset($REQ["userid"])) {
+if(isset($REQ["password"])) {
     $ipp->ResetUserPassword($REQ["userid"],$REQ["password"]);
+    die();
+}
+if(isset($REQ["access_right"])) {
+    $ipp->ChangeUserAccessRight($REQ["userid"],$REQ["access_right"]);
     die();
 }
 if(isset($REQ["close"])) {
@@ -10,6 +14,7 @@ if(isset($REQ["close"])) {
     header("Location: /users");
     die();
 }
+$access_rights = $ipp->GetAllAccessRights();
 
 $companies = $ipp->ListUsers();
 echo head();
@@ -41,6 +46,7 @@ echo '
                 <td>".$value->email."</td>
                 <td>".$value->admin."</td>
                 <td>
+                    <button type='button' class='btn btn-light ChangeAccessModal' data-username='".$value->email."' id='user_access_".$value->id."' data-id='".$value->id."' data-rights='".$value->access->id."'>".$lang["COMPANY"]["USERS"]["CHANGE_ACCESS"]."</button>
                     <button type='button' class='btn btn-info ResetPasswordModal' data-username='".$value->email."' data-id='".$value->id."'>".$lang["COMPANY"]["USERS"]["RESET_PASSWORD"]."</button>
                     <a href='/users/?close=1&user_id=".$value->id."' class='btn btn-warning'>".$lang["COMPANY"]["USERS"]["CLOSE_ACCOUNT"]."</a>
                 </td>
@@ -52,6 +58,34 @@ echo '
         </table>
       </div>
 
+    <div class="modal fade" id="accessModal" tabindex="-1" role="dialog" aria-labelledby="accessModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accessModalTitle"></h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" name="user_id" id="user-id" readonly>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">'.$lang["COMPANY"]["USERS"]["NEW_ACCESS_RIGHTS"].'</label>
+                            <select class="form-control" name="access_right" id="access_right">
+                            ';
+                            foreach($access_rights->content->company_rules as $idx=>$rule){
+                                echo '<option value="'.$idx.'">'.$rule->name.'</option>';
+                            }
+                            echo '
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeModal">'.$lang["COMPANY"]["USERS"]["CLOSE"].'</button>
+                    <button type="button" class="btn btn-primary confirm">'.$lang["COMPANY"]["USERS"]["SET_ACCESS_RIGHTS"].'</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
