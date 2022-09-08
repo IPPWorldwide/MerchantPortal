@@ -3,3 +3,4 @@
 - Onboarding Administrator made more visible
 - Improvement of Appearance Settings
 - User Access Added
+- User Admin of Access rights added
