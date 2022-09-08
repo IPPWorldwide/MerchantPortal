@@ -379,6 +379,12 @@ $lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["CARD_HASHED"] = "Card hashed";
 $lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["EXPIRY"] = "Expmonth / Year";
 $lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["STATUS"] = "Status";
 
+$lang["COMPANY"]["ACCESS_RIGHTS"]["ADD_NEW"] = "Add access right";
+
+$lang["COMPANY"]["ACCESS_RIGHTS_ADD"]["HEADER"] = "Add new access right";
+$lang["COMPANY"]["ACCESS_RIGHTS_ADD"]["NAME"] = "Name of access right";
+$lang["COMPANY"]["ACCESS_RIGHTS_ADD"]["ADD_NEW"] = "Add access right";
+
 
 
 $lang["COMPANY"]["PAYMENT"]["HEADER"] = "Payment Data";
