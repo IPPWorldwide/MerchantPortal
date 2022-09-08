@@ -117,6 +117,10 @@ class IPP {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "update_user_id" => $update_user_id, "password" => $password];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/password/reset/", "POST", [], $data);
     }
+    public function ChangeUserAccessRight($update_user_id, $access_right) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"update_user_id"=>$update_user_id,"rule" => $access_right];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/update/access_policy/", "POST", [], $data);
+    }
     public function UserData($merchant_id) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/data/", "POST", [], $data)->content;
