@@ -232,4 +232,9 @@ class IPP {
         }
         return false;
     }
+    public function AddAccessRight($name, $rules) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"name"=>$name,"rules" => $rules];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/add/", "POST", [], $data);
+    }
+
 }
