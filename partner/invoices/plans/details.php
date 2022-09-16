@@ -14,7 +14,7 @@ echo head();
             <div class="row row-cols-md-3 mb-3">
                 <div class="col themed-grid-col">ID:<br /><input name="id" class="form-control" value="<?php echo $invoice->id; ?>" readonly></div>
             </div>
-            <h2>Partner Details</h2>
+            <h2>Invoice Plan Details</h2>
             <div class="row row-cols-md-3 mb-3">
                 <div class="col themed-grid-col">Name:<br /><input name="name" class="form-control" value="<?php echo $invoice->name; ?>"></div>
             </div>
