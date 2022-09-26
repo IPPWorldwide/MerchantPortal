@@ -121,6 +121,16 @@ class IPPPlugins
             return false;
 
     }
+
+    public function hasConfigurationPages($plugin_name) {
+        if(
+            isset($this->available_plugins[$plugin_name]->config) &&
+            is_array($this->available_plugins[$plugin_name]->config))
+            return json_encode($this->available_plugins[$plugin_name]->config);
+        else
+            return false;
+
+    }
     public function hasExternalCommunication($plugin_name,$method,$request) {
         if(
             isset($this->available_plugins[$plugin_name]) &&

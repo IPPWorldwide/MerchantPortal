@@ -100,7 +100,12 @@ $(".btnShowMore").on("click", function() {
         $("#pluginViewMoreModal .installModal").css("display","block");
 
     }
-    console.log("btnShowMore");
+    $("#pluginViewMoreModal .card-body .config").remove();
+    jQuery.each(JSON.parse($this.attr("data-configuration")), function(index, item) {
+        console.log(item);
+        console.log(item[0]);
+        $("#pluginViewMoreModal .pluginSettingsModal").before("<a class=\"btn btn-sm btn-info text-white pluginSettingsModal me-2\" href='/?pages=" + $this.attr("data-slug") + "&page=" + item[0] + "'>" + item[1] + "</a>");
+    });
 });
 $('.pluginSettingsModal').on('click', function () {
     var button = $(this);
