@@ -93,6 +93,19 @@ class IPPPlugins
             return "";
         }
     }
+    public function checkLatestVersion($request,$entry) {
+        $file = BASEDIR . "plugins/".$entry."/version.php";
+        if(file_exists( $file)) {
+            $settings = [];
+            include($file);
+        } else {
+            $version = $request->plugins("",["plugin"=>$entry]);
+            $txt = "<?php \n \$version[\"version\"] = '" . $version . "';\n \$version[\"checked\"] = '" . time() . "';\n";
+            $myfile = fopen($file, "w") or die("Unable to open file!");
+            fwrite($myfile, $txt);
+            fclose($myfile);
+        }
+    }
     private function setSettingsValues($plugin_name,$values) {
         if(is_object($this->available_plugins[$plugin_name])) {
             $this->available_plugins[$plugin_name]->values = $values;

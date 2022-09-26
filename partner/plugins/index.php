@@ -72,6 +72,10 @@ foreach($all_plugins as $key=>$value) {
     $name = $value->name ?? $value->id;
     $description = $value->description->en_gb->description ?? "";
     $file = $value->file ?? "";
+    if($file!=="" && file_exists(BASEDIR . "plugins/".$key)) {
+        $plugins->checkLatestVersion($request,$key);
+    }
+
     if(isset($value->admin_links))
         $admin_links = json_encode((object)$value->admin_links);
     else

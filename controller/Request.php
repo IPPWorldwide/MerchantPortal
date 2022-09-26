@@ -37,6 +37,10 @@ class IPPRequest {
         return $this->curl($_ENV["GLOBAL_BASE_URL"]."/".$url, "POST", [], $data);
     }
 
+    public function plugins($url, $data){
+        return $this->curl("https://plugins.ippworldwide.com/".$url, "GET", $data);
+    }
+
     public function curl($url, $type = 'POST', $query = [], $data = [], $headers = [],$file=false){
         global $_SESSION,$IPP_CONFIG;
         if(isset($this->user_id) && $this->user_id != "")
