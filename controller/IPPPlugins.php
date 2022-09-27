@@ -96,11 +96,23 @@ class IPPPlugins
     public function checkLatestVersion($request,$entry) {
         $file = BASEDIR . "plugins/".$entry."/version.php";
         if(file_exists( $file)) {
-            $settings = [];
-            include($file);
+            include_once($file);
+            if($version["checked"] < (time()-259200)) {
+                $plugin_version = $request->plugins("",["plugin"=>$entry]);
+                if($version["version"] !== $plugin_version) {
+                    $version["latest"] = 0;
+                    $txt = "<?php \n";
+                    foreach($version as $key=>$value) {
+                        $txt .= "\$version[\"".$key."\"] = '" . $value . "';\n";
+                    }
+                    $myfile = fopen($file, "w") or die("Unable to open file!");
+                    fwrite($myfile, $txt);
+                    fclose($myfile);
+                }
+            }
         } else {
             $version = $request->plugins("",["plugin"=>$entry]);
-            $txt = "<?php \n \$version[\"version\"] = '" . $version . "';\n \$version[\"checked\"] = '" . time() . "';\n";
+            $txt = "<?php \n \$version[\"version\"] = '" . $version . "';\n \$version[\"checked\"] = '" . time() . "';\n \$version[\"latest\"] = '1';\n";
             $myfile = fopen($file, "w") or die("Unable to open file!");
             fwrite($myfile, $txt);
             fclose($myfile);
