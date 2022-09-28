@@ -16,33 +16,33 @@ function listFolderFiles($dir)
     endforeach;
     return $allFileLists;
 }
-public function cpy($source, $dest){
-        if(is_dir($source)):
-            $dir_handle=opendir($source);
-            while($file=readdir($dir_handle)):
-                if($file!="." && $file!=".."):
-                    if(is_dir($source."/".$file)):
-                        if(!is_dir($dest."/".$file)):
-                            mkdir($dest."/".$file);
-                        endif;
-                        cpy($source."/".$file, $dest."/".$file);
-                    else:
-                        copy($source."/".$file, $dest."/".$file);
+function cpy($source, $dest){
+    if(is_dir($source)):
+        $dir_handle=opendir($source);
+        while($file=readdir($dir_handle)):
+            if($file!="." && $file!=".."):
+                if(is_dir($source."/".$file)):
+                    if(!is_dir($dest."/".$file)):
+                        mkdir($dest."/".$file);
                     endif;
+                    cpy($source."/".$file, $dest."/".$file);
+                else:
+                    copy($source."/".$file, $dest."/".$file);
                 endif;
-            endwhile;
-            closedir($dir_handle);
-        else:
-            copy($source, $dest);
-        endif;
-    }
-    public function recurseRmdir($dir) {
-        $files = array_diff(scandir($dir), array('.','..'));
-        foreach ($files as $file):
-            (is_dir("$dir/$file") && !is_link("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
-        endforeach;
-        return rmdir($dir);
-    }
+            endif;
+        endwhile;
+        closedir($dir_handle);
+    else:
+        copy($source, $dest);
+    endif;
+}
+function recurseRmdir($dir) {
+    $files = array_diff(scandir($dir), array('.','..'));
+    foreach ($files as $file):
+        (is_dir("$dir/$file") && !is_link("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
+    endforeach;
+    return rmdir($dir);
+}
 function flatten($array, $prefix = '') {
     $result = array();
     foreach($array as $key=>$value):
