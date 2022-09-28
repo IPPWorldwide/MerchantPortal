@@ -85,8 +85,8 @@ $files_to_remove = array_diff($current_files, $new_files);
 foreach($files_to_remove as $key=>$value):
     unlink($key);
 endforeach;
-$utils->cpy("update/MerchantPortal-".$REQ["version"],".");
-$utils->recurseRmdir("update/MerchantPortal-".$REQ["version"]);
+cpy("update/MerchantPortal-".$REQ["version"],".");
+recurseRmdir("update/MerchantPortal-".$REQ["version"]);
 
 include("controller/IPPConfig.php");
 $config = new IPPConfig();
