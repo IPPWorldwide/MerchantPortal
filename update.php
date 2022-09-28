@@ -16,7 +16,33 @@ function listFolderFiles($dir)
     endforeach;
     return $allFileLists;
 }
-
+function cpy($source, $dest){
+    if(is_dir($source)):
+        $dir_handle=opendir($source);
+        while($file=readdir($dir_handle)):
+            if($file!="." && $file!=".."):
+                if(is_dir($source."/".$file)):
+                    if(!is_dir($dest."/".$file)):
+                        mkdir($dest."/".$file);
+                    endif;
+                    cpy($source."/".$file, $dest."/".$file);
+                else:
+                    copy($source."/".$file, $dest."/".$file);
+                endif;
+            endif;
+        endwhile;
+        closedir($dir_handle);
+    else:
+        copy($source, $dest);
+    endif;
+}
+function recurseRmdir($dir) {
+    $files = array_diff(scandir($dir), array('.','..'));
+    foreach ($files as $file):
+        (is_dir("$dir/$file") && !is_link("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
+    endforeach;
+    return rmdir($dir);
+}
 function flatten($array, $prefix = '') {
     $result = array();
     foreach($array as $key=>$value):
@@ -59,8 +85,8 @@ $files_to_remove = array_diff($current_files, $new_files);
 foreach($files_to_remove as $key=>$value):
     unlink($key);
 endforeach;
-$utils->cpy("update/MerchantPortal-".$REQ["version"],".");
-$utils->recurseRmdir("update/MerchantPortal-".$REQ["version"]);
+cpy("update/MerchantPortal-".$REQ["version"],".");
+recurseRmdir("update/MerchantPortal-".$REQ["version"]);
 
 include("controller/IPPConfig.php");
 $config = new IPPConfig();

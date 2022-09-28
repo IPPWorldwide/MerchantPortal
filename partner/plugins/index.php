@@ -81,8 +81,8 @@ foreach($all_plugins as $key=>$value) {
                 $latest_version = 0;
         }
     }
-    if(isset($value->admin_links))
-        $admin_links = json_encode((object)$value->admin_links);
+    if(isset($plugins->available_plugins[$name]) && isset($plugins->available_plugins[$name]->admin_links))
+        $admin_links = json_encode((object)$plugins->available_plugins[$name]->admin_links);
     else
         $admin_links = "{}";
     echo '
