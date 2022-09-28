@@ -72,6 +72,15 @@ foreach($all_plugins as $key=>$value) {
     $name = $value->name ?? $value->id;
     $description = $value->description->en_gb->description ?? "";
     $file = $value->file ?? "";
+    $latest_version = 1;
+    if($file!=="" && file_exists(BASEDIR . "plugins/".$key)) {
+        $plugins->checkLatestVersion($request,$key);
+        if(file_exists(BASEDIR . "plugins/".$key."/version.php")) {
+            include(BASEDIR . "plugins/".$key."/version.php");
+            if($version["latest"] === "0")
+                $latest_version = 0;
+        }
+    }
     if(isset($value->admin_links))
         $admin_links = json_encode((object)$value->admin_links);
     else
@@ -93,7 +102,9 @@ foreach($all_plugins as $key=>$value) {
                 <div class="btn-group">';
         echo '<button type="button" data-plugin-name="'.$key.'" data-plugin-key="'.$i.'" data-plugin-file="'.$file.'"'; if(file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-success installModal me-2">'.$lang["PARTNER"]["PLUGINS"]["INSTALL"].'</button>';
         echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-danger me-2 removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
-
+    if((bool)!$latest_version) {
+        echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-file="'.$file.'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-warning me-2 UpdateModal">'.$lang["PARTNER"]["PLUGINS"]["UPDATE"].'</button>';
+    }
     echo
         '<button type="button" class="btn btn-sm btn-info text-white btnShowMore" data-name="'.$name.'" data-slug="'.$key.'" data-admin-links=\''.$admin_links.'\' data-plugin-file="'.$file.'" data-external-login="'.$plugins->hasExternalLogin($key).'" data-installed="'.file_exists(BASEDIR . "plugins/".$key).'" data-description="'.strip_tags($description).'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,'').'\' data-bs-toggle="modal" data-bs-target="#pluginViewMoreModal">'.$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"].'</button>';
     echo '
