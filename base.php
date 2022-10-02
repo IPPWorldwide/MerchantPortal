@@ -59,6 +59,8 @@ if(isset($_COOKIE["timezone"])) {
         date_default_timezone_set($timezoneoffset);
     }
 }
+if(!isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
+    $_SERVER["HTTP_ACCEPT_LANGUAGE"] = "en";
 
 $langs = $utils->prefered_language(["da","en","da-dk","en-gb"], $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 $language   = $_COOKIE['language'] ?? array_key_first($langs);
