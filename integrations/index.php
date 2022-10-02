@@ -40,6 +40,9 @@ if(isset($REQ["plugin_slug"])) {
         }
     }
     fclose($myfile);
+    $plugin = new $REQ["plugin_slug"]();
+    if(method_exists($plugin,"hookUpdate"))
+        $plugin->hookUpdate($REQ["plugin_slug"],$REQ["plugin_id"],$REQ,$company_data->content->id);
     echo json_encode($REQ);
     die();
 }
@@ -64,7 +67,7 @@ foreach($all_plugins as $key=>$value) {
           <div class="card shadow-sm">
               <p class="card-header">'.$name.'</p>
             ';
-    if($value->image !== NULL) {
+    if(isset($value->image) && $value->image !== NULL) {
         echo '<div class="plugin-thumbnail"><img src="'.$value->image.'"></div>';
     } else {
         echo '<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>';

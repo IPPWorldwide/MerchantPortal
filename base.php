@@ -26,7 +26,7 @@ if (file_exists(BASEDIR . "ipp-config.php")) {
 }
 $_ENV           = $IPP_CONFIG;
 $RequestP   = new RequestParams();
-$REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"]);
+$REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"],$_GET,$_POST);
 
 $id             = isset($_COOKIE["ipp_user_id"]) ? $_COOKIE["ipp_user_id"] : "";
 $session_id     = isset($_COOKIE["ipp_user_session_id"]) ? $_COOKIE["ipp_user_session_id"] : "";
