@@ -20,9 +20,12 @@ jobs:
           unzip main.zip
           cd Docker-main
           docker-compose -f docker-compose.test.yml build
+      - name: Start Network
+        run: |
+          docker network create testing-net
       - name: Start MerchantAdmin Containers
         run: |
-          docker run -d --publish 9030:80 merchantadmin
+          docker run -d --net testing-net --name merchantadmin --publish 9030:80 merchantadmin
 
       - name: Perform Integration Tests
         env:
@@ -33,6 +36,6 @@ jobs:
             COMPANY_USERNAME: ${{ secrets.COMPANY_USERNAME }}
             COMPANY_PASSWORD: ${{ secrets.COMPANY_PASSWORD }}
         run: |
-          docker run --env TEST_PORTAL=1 --env API_URL=${{ secrets.API_URL }} --env MERCHANT_URL=${{ secrets.MERCHANT_URL }} --env PARTNER_USERNAME=${{ secrets.PARTNER_USERNAME }} --env PARTNER_PASSWORD=${{ secrets.PARTNER_PASSWORD }} --env COMPANY_USERNAME=${{ secrets.COMPANY_USERNAME }} --env COMPANY_PASSWORD=${{ secrets.COMPANY_PASSWORD }} testcases ./vendor/bin/phpunit test
+          docker run  --net testing-net --name testing --env TEST_PORTAL=1 --env API_URL=${{ secrets.API_URL }} --env MERCHANT_URL=${{ secrets.MERCHANT_URL }} --env PARTNER_USERNAME=${{ secrets.PARTNER_USERNAME }} --env PARTNER_PASSWORD=${{ secrets.PARTNER_PASSWORD }} --env COMPANY_USERNAME=${{ secrets.COMPANY_USERNAME }} --env COMPANY_PASSWORD=${{ secrets.COMPANY_PASSWORD }} testcases ./vendor/bin/phpunit test
 
      
