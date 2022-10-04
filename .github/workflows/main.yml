@@ -33,6 +33,6 @@ jobs:
             COMPANY_USERNAME: ${{ secrets.COMPANY_USERNAME }}
             COMPANY_PASSWORD: ${{ secrets.COMPANY_PASSWORD }}
         run: |
-          docker run --env API_URL=${{ secrets.API_URL }} --env MERCHANT_URL=${{ secrets.MERCHANT_URL }} --env PARTNER_USERNAME=${{ secrets.PARTNER_USERNAME }} --env PARTNER_PASSWORD=${{ secrets.PARTNER_PASSWORD }} --env COMPANY_USERNAME=${{ secrets.COMPANY_USERNAME }} --env COMPANY_PASSWORD=${{ secrets.COMPANY_PASSWORD }} testcases ./vendor/bin/phpunit test
+          docker run --env TEST_PORTAL=1 --env API_URL=${{ secrets.API_URL }} --env MERCHANT_URL=${{ secrets.MERCHANT_URL }} --env PARTNER_USERNAME=${{ secrets.PARTNER_USERNAME }} --env PARTNER_PASSWORD=${{ secrets.PARTNER_PASSWORD }} --env COMPANY_USERNAME=${{ secrets.COMPANY_USERNAME }} --env COMPANY_PASSWORD=${{ secrets.COMPANY_PASSWORD }} testcases ./vendor/bin/phpunit test
 
      
