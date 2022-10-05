@@ -1,6 +1,4 @@
-- Improvements in Create Invoice
-- Subscription Subscribers improved
-- Onboarding Administrator made more visible
-- Improvement of Appearance Settings
-- User Access Added
-- User Admin of Access rights added
+- Update plugins
+- Bugfix for Transaction ID
+- DK Language fix
+- Update Plugins for Partners & Merchants
