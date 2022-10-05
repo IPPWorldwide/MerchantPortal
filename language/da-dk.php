@@ -399,7 +399,7 @@ $lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Relaterede transaktioner";
 $lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Svar fra indløseren";
 
 $lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Opkræv";
-$lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Forsøg reservation";
+$lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Forøg reservation";
 $lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refunder";
 $lang["COMPANY"]["PAYMENT"]["VOID"] = "Anuller handlingen";
 
