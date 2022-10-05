@@ -15,7 +15,7 @@ jQuery( document ).ready(function() {
       },
       data: {
         action: $(this).data("type").toLowerCase(),
-        id: payment_id,
+        transaction_id: payment_id,
         action_id: action_id,
         amount: $('#amount' + $(this).data("type")).val(),
       }

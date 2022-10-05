@@ -2,7 +2,7 @@
 include("../base.php");
 
 if(isset($REQ["action"])) {
-    $ipp->TransactionsAction($REQ["action"],$REQ["id"],$REQ["action_id"],$REQ["amount"] ?? 0);
+    $ipp->TransactionsAction($REQ["action"],$REQ["transaction_id"],$REQ["action_id"],$REQ["amount"] ?? 0);
     $transaction_data = $ipp->TransactionsData($_GET["id"]);
     foreach($ipp->TransactionsRelated($transaction_data->transaction_id) as $value) {
         echo "<tr ";
