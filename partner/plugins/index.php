@@ -33,10 +33,12 @@ if(isset($REQ["plugin_slug"])) {
         if(isset($value["type"]) && $value["type"] === "file") {
             if(isset($_FILES[$value["id"]]['tmp_name'])) {
                 $file = $_FILES[$value["id"]]['tmp_name'];
-                $file_data = base64_encode(file_get_contents($file));
-                if($file_data !== "") {
-                    $partner->UpdatePluginSettings($REQ["plugin_id"],$value["id"],$file_data);
-                    fwrite($myfile, "\$settings[\"".$value["id"]."\"] = '" . $file_data . "';\n");
+                if($file !== "") {
+                    $file_data = base64_encode(file_get_contents($file));
+                    if($file_data !== "") {
+                        $partner->UpdatePluginSettings($REQ["plugin_id"],$value["id"],$file_data);
+                        fwrite($myfile, "\$settings[\"".$value["id"]."\"] = '" . $file_data . "';\n");
+                    }
                 }
             }
         }
