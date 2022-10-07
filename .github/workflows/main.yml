@@ -39,8 +39,10 @@ jobs:
             COMPANY_PASSWORD: ${{ secrets.COMPANY_PASSWORD }}
             COMPANY_VERSION: ${{ secrets.COMPANY_VERSION }}
             TESTING_CARDNO: ${{ secrets.TESTING_CARDNO }}
+            TESTING_CARDNO_AMEX: ${{ secrets.TESTING_CARDNO_AMEX }}
+            TESTING_CARDNO_DISCOVER: ${{ secrets.TESTING_CARDNO_DISCOVER }}
 
         run: |
-          docker run  --net testing-net --name testing --env TEST_PORTAL=1 --env TESTING_CARDNO=${{ secrets.TESTING_CARDNO }} --env COMPANY_VERSION=${{ secrets.COMPANY_VERSION }} --env API_URL=${{ secrets.API_URL }} --env MERCHANT_URL=${{ secrets.MERCHANT_URL }} --env PARTNER_USERNAME=${{ secrets.PARTNER_USERNAME }} --env PARTNER_PASSWORD=${{ secrets.PARTNER_PASSWORD }} --env COMPANY_USERNAME=${{ secrets.COMPANY_USERNAME }} --env COMPANY_PASSWORD=${{ secrets.COMPANY_PASSWORD }} testcases ./vendor/bin/phpunit test
+          docker run  --net testing-net --name testing --env TEST_PORTAL=1 --env TESTING_CARDNO_DISCOVER=${{ secrets.TESTING_CARDNO_DISCOVER }} --env TESTING_CARDNO_AMEX=${{ secrets.TESTING_CARDNO_AMEX }} --env TESTING_CARDNO=${{ secrets.TESTING_CARDNO }} --env COMPANY_VERSION=${{ secrets.COMPANY_VERSION }} --env API_URL=${{ secrets.API_URL }} --env MERCHANT_URL=${{ secrets.MERCHANT_URL }} --env PARTNER_USERNAME=${{ secrets.PARTNER_USERNAME }} --env PARTNER_PASSWORD=${{ secrets.PARTNER_PASSWORD }} --env COMPANY_USERNAME=${{ secrets.COMPANY_USERNAME }} --env COMPANY_PASSWORD=${{ secrets.COMPANY_PASSWORD }} testcases ./vendor/bin/phpunit test
 
      
