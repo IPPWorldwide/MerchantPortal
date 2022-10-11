@@ -142,8 +142,7 @@ echo '
             ';
                 foreach($onboarding_data->key_personnel as $value) {
                     echo '<tr>';
-                    echo '<td>'.$value->name.'</td>';
-                    echo "<input type='HIDDEN' name='KEY_PERSONNEL[".$value->id."][name]' value='".$value->name."'>";
+                    echo "<td><input type='text' name='KEY_PERSONNEL[".$value->id."][name]' value='".$value->name."'></td>";
                     echo '<td>'.$value->date_of_birth.'</td>';
 
                     echo "<td>";
