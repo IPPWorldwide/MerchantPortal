@@ -143,6 +143,7 @@ echo '
                 foreach($onboarding_data->key_personnel as $value) {
                     echo '<tr>';
                     echo '<td>'.$value->name.'</td>';
+                    echo "<input type='HIDDEN' name='KEY_PERSONNEL[".$value->id."][name]' value='".$value->name."'>";
                     echo '<td>'.$value->date_of_birth.'</td>';
 
                     echo "<td>";
@@ -157,7 +158,7 @@ echo '
                                 echo "<tr>";
                                     echo "<td>";
                                         echo "Personal code number:";
-                                    echo "</td>";
+                                echo "</td>";
                                     echo "<td>";
                                         echo "<input type='text' name='KEY_PERSONNEL[".$value->id."][passport_personal_code_number]' value='"; echo $onboarding_data->confirmed_version->KEY_PERSONNEL->{$value->id}->passport_personal_code_number ?? ""; echo "'>";
                                     echo "</td>";
