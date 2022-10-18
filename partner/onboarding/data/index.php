@@ -41,8 +41,8 @@ echo '
             <div>&nbsp;</div>
         </div>
         <div class="row row-cols-md-2 mb-2">
-            <div class="col themed-grid-col"><label for="website-terms-conditions">Terms & Conditions</label><br><input name="company-name" class="form-control" value="'.$onboarding_data->data->{"website-terms-conditions"}.'"></div>
-            <div class="col themed-grid-col"><label for="company-name">Privacy Policy</label><br><input name="company-name" class="form-control" value="'.$onboarding_data->data->{"website-terms-privacy"}.'"></div>
+            <div class="col themed-grid-col"><label for="website-terms-conditions">Terms & Conditions</label><br><input name="website-terms-conditions" class="form-control" value="'.$onboarding_data->data->{"website-terms-conditions"}.'"></div>
+            <div class="col themed-grid-col"><label for="company-name">Privacy Policy</label><br><input name="website-terms-privacy" class="form-control" value="'.$onboarding_data->data->{"website-terms-privacy"}.'"></div>
         </div>
     <h2>About the company</h2>
         <div class="row row-cols-md-3 mb-3">
