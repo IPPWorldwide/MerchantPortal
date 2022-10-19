@@ -1,4 +1,6 @@
-- Update plugins
-- Bugfix for Transaction ID
-- DK Language fix
-- Update Plugins for Partners & Merchants
+- Bugfix for Updating Plugins with empty files
+- Update Onboarding flow
+- Yes-No Icons for std Theme
+- Partner acquiring fees
+- Onboarding improvements
+
