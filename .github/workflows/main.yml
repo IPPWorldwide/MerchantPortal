@@ -2,7 +2,7 @@ name: Run integration tests
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   run-integration-tests:
