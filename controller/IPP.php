@@ -171,6 +171,10 @@ class IPP {
         }
         fwrite($myfile, $txt);
         fclose($myfile);
+
+        if(method_exists($new_pugin,"hookInstallCompany"))
+            $new_pugin->hookInstallCompany($install->plugin_id,$this->user_id,$this->session_id);
+
         return $install;
     }
     public function UpdatePluginSettingFile($ipp,$plugins,$plugin_slug,$company_data,$REQ,$FILES) {
@@ -196,10 +200,10 @@ class IPP {
             }
         }
         fclose($myfile);
-        $plugin = new $REQ["plugin_slug"]();
+        $plugin = new $plugin_slug();
         if(method_exists($plugin,"hookUpdate"))
             $plugin->hookUpdate($plugin_slug,$REQ["plugin_id"],$REQ,$company_data->content->id);
-        echo json_encode($REQ);
+        return json_encode($REQ);
         die();
     }
     public function UpdatePluginSettings($plugin_id,$key,$value) {
