@@ -1,5 +1,8 @@
 name: Run integration tests
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   run-integration-tests:
