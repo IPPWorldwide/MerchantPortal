@@ -1,6 +1,11 @@
 <?php
 include("../../b.php");
 $onboarding_data = $partner->OnboardingData($REQ["id"]);
+$merchant_data = $partner->MerchantData($REQ["id"]);
+$pricing_data = [];
+if(isset($merchant_data->invoices->plan->data_id) && strlen($merchant_data->invoices->plan->id) === 14) {
+    $pricing_data = $partner->SubscriptionPlanData($merchant_data->invoices->plan->data_id);
+}
 
 if(isset($REQ["ApproveApplication"])) {
     $state = 0;
@@ -317,6 +322,40 @@ echo '
             </div>
         </div>
     </div>
+    <div class="tab-pane" name="pricing" role="tabpanel" aria-labelledby="messages-tab">
+        <h2>Acquiring Cost</h2>
+        ';
+        if(!isset($pricing_data->acquirer_cost->tnx->percentage)) {
+            echo '<div class="row row-cols-md-1 mb-1">No Acquiring Pricing have been added</div>';
+        } else {
+            $tnx_percentage = $onboarding_data->data->cost->tnx->percentage ?? $pricing_data->acquirer_cost->tnx->percentage;
+            $refund_tnx_cost = $onboarding_data->data->cost->refund->tnx_cost ?? $pricing_data->acquirer_cost->refund->tnx_cost;
+            $refund_percentage = $onboarding_data->data->cost->refund->percentage ?? $pricing_data->acquirer_cost->refund->percentage;
+            $cft_tnx_cost = $onboarding_data->data->cost->cft->tnx_cost ?? $pricing_data->acquirer_cost->cft->tnx_cost;
+            $cft_percentage = $onboarding_data->data->cost->cft->percentage ?? $pricing_data->acquirer_cost->cft->percentage;
+            $cbk_standard = $onboarding_data->data->cost->cbk->standard->fee ?? $pricing_data->acquirer_cost->cbk->standard->fee;
+            $cbk_tier1 = $onboarding_data->data->cost->cbk->tier1->fee ?? $pricing_data->acquirer_cost->cbk->tier1->fee;
+            $cbk_tier2 = $onboarding_data->data->cost->cbk->tier1->fee ?? $pricing_data->acquirer_cost->cbk->tier1->fee;
+            $cbk_other_represent = $onboarding_data->data->cost->cbk->other->represent ?? $pricing_data->acquirer_cost->cbk->other->represent;
+            $cbk_other_retrieval = $onboarding_data->data->cost->cbk->other->retrieval ?? $pricing_data->acquirer_cost->cbk->other->retrieval;
+            $wire_fee = $onboarding_data->data->cost->wire->tnx_cost ?? $pricing_data->acquirer_cost->wire->tnx_cost;
+            echo '
+        <div class="row row-cols-md-3 mb-3">
+            <div class="col themed-grid-col">Acquiring Percentage %:<br /><input value="'.number_format($tnx_percentage/100,2,".","").'" name="acquirer[percentage]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring Refund Cost:<br /><input value="'.number_format($refund_tnx_cost/100,2,".","").'" name="acquirer[refund][cost]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring Refund Percentage %:<br /><input value="'.number_format($refund_percentage/100,2,".","").'" name="acquirer[refund][percentage]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring CFT Cost:<br /><input value="'.number_format($cft_tnx_cost/100,2,".","").'" name="acquirer[cft][cost]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring CFT Percentage:<br /><input value="'.number_format($cft_percentage/100,2,".","").'" name="acquirer[cft][percentage]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring CBK Fee, below 1%:<br /><input value="'.number_format($cbk_standard/100,2,".","").'" name="acquirer[cbk][below]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring CBK Visa (1%-2%), MC (1%-1.5%):<br /><input value="'.number_format($cbk_tier1/100,2,".","").'" name="acquirer[cbk][tier1]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring CBK Visa (above 2%), MC (above 1.5%):<br /><input value="'.number_format($cbk_tier2/100,2,".","").'" name="acquirer[cbk][tier2]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring CBK Re-presentment Fee :<br /><input value="'.number_format($cbk_other_represent/100,2,".","").'" name="acquirer[cbk][representment]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring CBK Retrieval Request Fee:<br /><input value="'.number_format($cbk_other_retrieval/100,2,".","").'" name="acquirer[cbk][retrieval]" class="form-control"></div>
+            <div class="col themed-grid-col">Acquiring Wire transfer fee:<br /><input value="'.number_format($wire_fee/100,2,".","").'" name="acquirer[wire][fee]" class="form-control"></div>
+        </div>';
+        }
+        echo '
+    </div>    
     ';
     if(!$onboarding_data->validated->partner) {
         echo '
