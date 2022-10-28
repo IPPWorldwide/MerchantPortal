@@ -278,11 +278,20 @@ echo '
     <div class="tab-pane" name="bank" role="tabpanel" aria-labelledby="messages-tab">
         <h2>Banking Data</h2>
             <div class="row row-cols-md-1 mb-1">
-                <div class="col themed-grid-col">
+            ';
+                if(!isset($onboarding_data->data->{"bank-documentation"})) {
+                    echo '<div class="col md-12 alert-warning rounded text-muted alert">
+            <div>Documentation of bank account is missing.<br>
+        </div>
+        </div>';
+                } else {
+                    echo '                <div class="col themed-grid-col">
                     <label for="bank-documentation">File</label><br>
                     <input type="hidden" name="bank-documentation" value="'.$onboarding_data->data->{"bank-documentation"}.'">
                     <a target="_NEW" href="data:image/jpg;base64,'.$onboarding_data->data->{"bank-documentation"}.'">Validate</a>
-                </div>
+                </div>';
+                }
+            echo '
             </div>
                 <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">

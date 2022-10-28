@@ -5,6 +5,13 @@ if(session_id() === "") {
 $folder_level = "./";
 while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
 define("BASEDIR", $folder_level);
+
+if (file_exists(BASEDIR . "ipp-config.php")) {
+    include BASEDIR . "ipp-config.php";
+} else {
+    header("Location: ".BASEDIR."setup");
+    die();
+}
 include(BASEDIR . "vendor/autoload.php");
 
 include(BASEDIR . "controller/Request.php");
@@ -18,12 +25,6 @@ include(BASEDIR . "controller/IPPUtils.php");
 include(BASEDIR . "controller/IPPPartnerGraph.php");
 include(BASEDIR . "controller/IPPLanguages.php");
 
-if (file_exists(BASEDIR . "ipp-config.php")) {
-    include BASEDIR . "ipp-config.php";
-} else {
-    header("Location: ".BASEDIR."setup");
-    die();
-}
 $_ENV           = $IPP_CONFIG;
 $RequestP   = new RequestParams();
 $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"],$_GET,$_POST);
