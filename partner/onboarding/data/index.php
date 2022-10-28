@@ -277,7 +277,14 @@ echo '
     </div>
     <div class="tab-pane" name="bank" role="tabpanel" aria-labelledby="messages-tab">
         <h2>Banking Data</h2>
-        <div class="row row-cols-md-2 mb-2">
+            <div class="row row-cols-md-1 mb-1">
+                <div class="col themed-grid-col">
+                    <label for="bank-documentation">File</label><br>
+                    <input type="hidden" name="bank-documentation" value="'.$onboarding_data->data->{"bank-documentation"}.'">
+                    <a target="_NEW" href="data:image/jpg;base64,'.$onboarding_data->data->{"bank-documentation"}.'">Validate</a>
+                </div>
+            </div>
+                <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">
                 <label for="bank-account-location">Account location</label><br>
                 <select name="bank-account-location" class="form-control">';
