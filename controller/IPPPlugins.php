@@ -86,8 +86,32 @@ class IPPPlugins
         return $settings;
     }
     public function getSettingsFields($plugin_name) {
+        global $partner_page;
         if(isset($this->available_plugins[$plugin_name])) {
-            return json_encode($this->available_plugins[$plugin_name]->getFields());
+            if(isset($partner_page) && $partner_page === 1) {
+                if(isset($this->available_plugins[$plugin_name]->company_plugin) && $this->available_plugins[$plugin_name]->company_plugin) {
+                    $fields = [];
+                    $all_fields = $this->available_plugins[$plugin_name]->getFields();
+                    foreach($all_fields as $value) {
+                        if(isset($value["access"]) && $value["access"] === "partner")
+                            $fields[] = $value;
+                    }
+                } else {
+                    $fields = $this->available_plugins[$plugin_name]->getFields();
+                }
+            } else {
+                if(isset($this->available_plugins[$plugin_name]->company_plugin) && $this->available_plugins[$plugin_name]->company_plugin) {
+                    $fields = [];
+                    $all_fields = $this->available_plugins[$plugin_name]->getFields();
+                    foreach($all_fields as $value) {
+                        if(!isset($value["access"]) || (isset($value["access"]) && $value["access"] !== "partner"))
+                            $fields[] = $value;
+                    }
+                } else {
+                    $fields = $this->available_plugins[$plugin_name]->getFields();
+                }
+            }
+            return json_encode($fields);
         }
         else {
             return "";
