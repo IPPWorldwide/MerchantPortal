@@ -167,6 +167,8 @@ foreach($company_plugins as $key=>$value) {
         echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-file="'.$file.'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-warning me-2 UpdateModal">'.$lang["PARTNER"]["PLUGINS"]["UPDATE"].'</button>';
     }
     echo '<button type="button" data-plugin-id="'.$plugins->getSettingsValues($key,"plugin_id").'" data-plugin-key="'.$i.'" data-plugin-name="'.$key.'"'; if(!file_exists(BASEDIR . "plugins/".$key)) { echo "style='display:none'"; } echo ' class="btn btn-sm btn-danger me-2 removeModal">'.$lang["PARTNER"]["PLUGINS"]["UNINSTALL"].'</button>';
+    if($plugins->getSettingsFields($key) !== "" && $plugins->getSettingsFields($key) !== "[]")
+        echo '<button type="button" class="btn btn-sm btn-info text-white btnShowMore" data-name="'.$name.'" data-slug="'.$key.'" data-plugin-file="'.$file.'" data-external-login="'.$plugins->hasExternalLogin($key).'" data-installed="'.file_exists(BASEDIR . "plugins/".$key).'" data-description="'.strip_tags($description).'" data-fields=\''.$plugins->getSettingsFields($key).'\' data-values=\''.$plugins->getSettingsValues($key,'').'\' data-bs-toggle="modal" data-bs-target="#pluginViewMoreModal">'.$lang["PARTNER"]["PLUGINS"]["VIEW_MORE"].'</button>';
 
     echo '
                 </div>
