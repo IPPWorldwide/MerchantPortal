@@ -155,6 +155,9 @@ function plugin_fields(field_type,text,name,id,value,hidden) {
 
         if(field_type[0] === "file") {
             htmlelement += "<input type=\"file\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\">";
+        }
+        else if(field_type[0] === "textarea") {
+            htmlelement += "<textarea type=\"file\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\">" + value + "</textarea>";
         } else {
             htmlelement += "<input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\">";
         }
