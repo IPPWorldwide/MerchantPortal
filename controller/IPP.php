@@ -152,12 +152,14 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/search/", "POST", [], $data)->content;
     }
 
-    public function InstallPlugin($company_id,$slug) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+    public function InstallPlugin($company_id,$slug,$key1="") {
+        if($key1 === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+        else
+            $data = ["company_id" => $company_id, "key1" => $key1,"plugin_slug"=>$slug];
         $install = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/plugins/add/", "POST", [], $data)->content;
         require_once BASEDIR . "plugins/".$slug."/init.php";
         $new_pugin = new $slug();
-
         $standard_configs = $new_pugin->getStandardConfigs($slug);
         $std_settings = [];
         foreach($standard_configs as $value)
@@ -177,14 +179,17 @@ class IPP {
 
         return $install;
     }
-    public function UpdatePluginSettingFile($ipp,$plugins,$plugin_slug,$company_data,$REQ,$FILES) {
+    public function UpdatePluginSettingFile($ipp,$plugins,$plugin_slug,$company_data,$REQ,$FILES,$clean_value_storage=false) {
         $data_fields = $plugins->available_plugins[$plugin_slug]->getFields();
         $myfile = fopen(BASEDIR . "plugins/".$plugin_slug."/".$company_data->content->id."_settings.php", "w") or die("Unable to open file!");
         $txt = "<?php\n";
         fwrite($myfile, $txt);
         foreach($REQ as $key=>$value) {
             $ipp->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
-            $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            if($clean_value_storage)
+                $txt = "\$settings[\"".$key."\"] = " . $value . ";\n";
+            else
+                $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
             fwrite($myfile, $txt);
         }
         foreach($data_fields as $value) {
