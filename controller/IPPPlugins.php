@@ -252,9 +252,12 @@ class IPPPlugins
         if(isset($this->available_plugins[$plugin_name]->hook_onboarding))
             $this->hook_onboarding = $this->available_plugins[$plugin_name]->hook_onboarding;
 
-        if(isset($this->available_plugins[$plugin_name]->communication))
-            $this->communication = $this->available_plugins[$plugin_name]->communication;
-
+        if(isset($this->available_plugins[$plugin_name]->communication)) {
+            if(!is_object($this->communication))
+                $this->communication = new stdClass();
+            $this->communication->{$plugin_name} = new StdClass();
+            $this->communication->{$plugin_name} = $this->available_plugins[$plugin_name]->communication->{$plugin_name};
+        }
     }
 
 
