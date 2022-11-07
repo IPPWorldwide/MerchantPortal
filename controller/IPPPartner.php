@@ -96,6 +96,9 @@ class IPPPartner {
         $meta_data["acquirers"] = $all_data["acquirers"] ?? [];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update/", "POST", [], $meta_data)->content;
     }
+    public function MerchantDataUpdateSlim($all_data = []) {
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update/", "POST", [], $all_data)->content;
+    }
 
     public function ValidateDomains($domains) {
         $github_data = $data = [
