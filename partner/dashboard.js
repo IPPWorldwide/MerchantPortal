@@ -125,11 +125,11 @@ items.forEach(function (item) {
        });
        setTimeout(function(){
          ReloadLive(sequence);
-       }, 300000);
+       }, 600000);
      });
  }
 setTimeout(function(){
   ReloadLive(1);
   ReloadLive(2);
   ReloadLive(3);
-  }, 100);
+  }, 1000);
