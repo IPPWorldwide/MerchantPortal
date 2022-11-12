@@ -45,17 +45,23 @@ if($_ENV["VERSION"] < $ipp->version()->content->version):
     endif;
 endforeach;
 endif;
-?>
-<h2>Processing status</h2>
+echo '
+    <div class="row">
+        <div class="col-6">
+            <h2>Status</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-success" href="change.php">'.$lang["PARTNER"]["DASHBOARD"]["CHANGE"].'</a>
+        </div>
 <div class="row row-cols-md-3 mb-3">
-    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="1">
+    <div class="col themed-grid-col chartscol" data-sequence="1">
         <canvas id="chart1" height="230px"></canvas>
         <select data-sequence="1" name="type_1" id="type_1" class="form-control">
             <option value="10m">Last 10 Minutes</option>
             <option value="30m">Last 30 Minutes</option>
         </select>
     </div>
-    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="2">
+    <div class="col themed-grid-col chartscol" data-sequence="2">
         <canvas id="chart2" height="230px"></canvas>
         <select data-sequence="2" name="type_2" id="type_2" class="form-control">
             <option value="7d">Last 7 Days</option>
@@ -64,7 +70,7 @@ endif;
             <option value="1y">Lastest year</option>
         </select>
     </div>
-    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="3">
+    <div class="col themed-grid-col chartscol" data-sequence="3">
         <canvas id="chart3" height="230px"></canvas>
         <select data-sequence="3" name="type_3" id="type_3" class="form-control">
             <option value="1y">1 year</option>
@@ -74,19 +80,19 @@ endif;
     </div>
 </div>
 <div class="chart-container">
-    <!--    <div draggable="true" class="card" data-sequence="2">
+    <!--    <div class="card" data-sequence="2">
             <div class="card-header">Daily Graph</div>
             <div class="card-body">
 
             </div>
         </div>
-        <div draggable="true" class="card" data-sequence="3">
+        <div class="card" data-sequence="3">
             <div class="card-header">Monthly Graph</div>
             <div class="card-body">
 
             </div>
         </div>
-        <div draggable="true" class="card" data-sequence="4">
+        <div class="card" data-sequence="4">
             <div class="card-header">Percentage Increase/Decrease in Transactions</div>
             <div class="card-body">
                 <canvas id="chart4" width="600px" height="230px"></canvas>
@@ -96,7 +102,7 @@ endif;
                 </select>
             </div>
         </div>
-        <div draggable="true" class="card" data-sequence="5">
+        <div class="card" data-sequence="5">
             <div class="card-header"> Percentage Increase/Decrease in Transactions</div>
             <div class="card-body">
                 <canvas id="chart5" width="600px" height="230px"></canvas>
@@ -111,5 +117,5 @@ endif;
             </div>
         </div>
     </div> -->
-
-<?php echo foot(); ?>
+';
+echo foot(); ?>
