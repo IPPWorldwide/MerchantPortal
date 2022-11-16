@@ -13,6 +13,30 @@ include("../ipp-config-sample.php");
             $new_config = $config->UpdateConfig(strtoupper($key),$value);
         }
         $config->WriteConfig();
+
+
+        if(isset($REQ["plugin_email"]) && $REQ["plugin_email"] === "smtp_server") {
+            $src = BASEDIR."plugins/".$REQ["plugin_email"]."/";
+            $filename = $src . $REQ["plugin_email"];
+            $dirMode = 0755;
+            if(!file_exists($src))
+                if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                    throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+                }
+            sleep(1);
+            file_put_contents($filename, fopen($REQ["file"], 'r'));
+            $zip = new ZipArchive();
+            $res = $zip->open($filename);
+            if ($res === TRUE) {
+                $zip->extractTo($src);
+                $zip->close();
+                $partner->InstallPlugin($REQ["plugin_email"]);
+            } else {
+                throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+            }
+            unlink($filename);
+        }
+
         die();
     }
 include("../controller/IPP.php");
@@ -202,8 +226,8 @@ $ipp        = new IPP($request,null, null);
                                         <label for="plugin_email_none"><img src="images/disabled_stop.png" alt=""></label>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="plugin_email" id="smtp" value="smtp">
-                                        <label for="smtp"><img src="images/email.png" alt=""></label>
+                                        <input type="radio" name="plugin_email" id="smtp_server" value="smtp_server">
+                                        <label for="smtp_server"><img src="images/email.png" alt=""></label>
                                     </div>
                                 </div>
                             </div>
