@@ -57,6 +57,7 @@ $ipp        = new IPP($request,null, null);
                     <fieldset>
                         <h2>Merchant Portal</h2>
                         <p class="desc">You are now seconds away from starting your own Payment Processor.<br />Follow the guide below, and get live.</p>
+                        <p class="desc">Now we are defining the details about your Portal where you can administrate your Merchants,<br />and your Merchants can see their transactions.</p>
                         <div class="fieldset-content">
                             <div class="form-row">
                                 <div class="form-flex">
@@ -71,6 +72,7 @@ $ipp        = new IPP($request,null, null);
                                     <div class="form-group">
                                         <label class="form-label" for="administrator_email">Administrative e-mail</label>
                                         <input type="text" name="administrator_email" id="administrator_email" />
+                                        <p class="desc">Define the e-mail used for outbound communication.</p>
                                     </div>
                                 </div>
                             </div>
@@ -143,6 +145,65 @@ $ipp        = new IPP($request,null, null);
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="partner_key2" id="partner_key2" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <h3>Theme Setup</h3>
+                    <fieldset>
+                        <h2>Theme Setup</h2>
+                        <p class="desc">Lets make the Portal your own, and ensure the nice look and feel for your Merchants.</p>
+                        <div class="fieldset-content">
+                            <div class="choose-bank2">
+                                <div class="form-radio-flex">
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="selected_theme" id="standard" value="standard" checked="checked">
+                                        <label for="standard"><img src="images/theme_bootstrap.png" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="selected_theme" id="theme_two" value="theme_two">
+                                        <label for="theme_two"><img src="images/bank-2.jpg" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="selected_theme" id="theme_three" value="theme_three">
+                                        <label for="theme_three"><img src="images/bank-3.jpg" alt=""></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </fieldset>
+                    <h3>Payment Flow & Plugins</h3>
+                    <fieldset>
+                        <h2>Payment Flow & Plugins</h2>
+                        <p class="desc">Lets get the standard services set up, once and for all.</p>
+                        <h2>Hosted Payment Flow or Injected Payments</h2>
+                        <div class="fieldset-content">
+                            <div class="choose-bank">
+                                <div class="form-radio-flex">
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="payments_method" id="injected_payment" value="injected_payment" checked="checked">
+                                        <label for="injected_payment"><img src="images/payments_injected.png" alt=""></label>
+                                        <h3>Injected on eCommerce site</h3>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="payments_method" id="hosted_flow" value="hosted_flow">
+                                        <label for="hosted_flow"><img src="images/payments_hosted_flow.png" alt=""></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Sending out Emails?</h2>
+                        <div class="fieldset-content">
+                            <div class="choose-bank">
+                                <div class="form-radio-flex">
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="plugin_email" id="plugin_email_none" value="none" checked="checked">
+                                        <label for="plugin_email_none"><img src="images/disabled_stop.png" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="plugin_email" id="smtp" value="smtp">
+                                        <label for="smtp"><img src="images/email.png" alt=""></label>
                                     </div>
                                 </div>
                             </div>
