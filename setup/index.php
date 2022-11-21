@@ -1,44 +1,45 @@
 <?php
 include("../ipp-config-sample.php");
-    if(isset($_POST["portal_title"])) {
-        $folder_level = "./";
-        while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
-        define("BASEDIR", $folder_level);
-        $myfile = fopen("../ipp-config.php", "w") or die("Unable to open file!");
-        fclose($myfile);
-        include("../controller/IPPConfig.php");
-        $config = new IPPConfig();
+$public_page=1;
+if(isset($_POST["portal_title"])) {
+    $folder_level = "./";
+    while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
+    define("BASEDIR", $folder_level);
+    $myfile = fopen("../ipp-config.php", "w") or die("Unable to open file!");
+    fclose($myfile);
+    include("../controller/IPPConfig.php");
+    $config = new IPPConfig();
 
-        foreach($_POST as $key=>$value) {
-            $new_config = $config->UpdateConfig(strtoupper($key),$value);
-        }
-        $config->WriteConfig();
-
-
-        if(isset($REQ["plugin_email"]) && $REQ["plugin_email"] === "smtp_server") {
-            $src = BASEDIR."plugins/".$REQ["plugin_email"]."/";
-            $filename = $src . $REQ["plugin_email"];
-            $dirMode = 0755;
-            if(!file_exists($src))
-                if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
-                    throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
-                }
-            sleep(1);
-            file_put_contents($filename, fopen($REQ["file"], 'r'));
-            $zip = new ZipArchive();
-            $res = $zip->open($filename);
-            if ($res === TRUE) {
-                $zip->extractTo($src);
-                $zip->close();
-                $partner->InstallPlugin($REQ["plugin_email"]);
-            } else {
-                throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
-            }
-            unlink($filename);
-        }
-
-        die();
+    foreach($_POST as $key=>$value) {
+        $new_config = $config->UpdateConfig(strtoupper($key),$value);
     }
+    $config->WriteConfig();
+    include_once("../base.php");
+    if(isset($_POST["plugin_email"]) && $_POST["plugin_email"] === "smtp_server") {
+        $request    = new IPPRequest("","");
+        $partner    = new IPPPartner($request,"","");
+        $src = BASEDIR."plugins/".$_POST["plugin_email"]."/";
+        $filename = $src . $_POST["plugin_email"].".zip";
+        $dirMode = 0755;
+        if(!file_exists($src))
+            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+            }
+        sleep(1);
+        file_put_contents($filename, fopen("https://plugins.ippworldwide.com/smtp_server.zip", 'r'));
+        $zip = new ZipArchive();
+        $res = $zip->open($filename);
+        if ($res === TRUE) {
+            $zip->extractTo($src);
+            $zip->close();
+            $partner->InstallPlugin($_POST["plugin_email"],$_POST["partner_id"],$_POST["partner_key1"]);
+        } else {
+            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+        }
+        unlink($filename);
+    }
+    die();
+}
 include("../controller/IPP.php");
 include("../controller/Request.php");
 include("../controller/IPPCurrency.php");
@@ -126,13 +127,13 @@ $ipp        = new IPP($request,null, null);
                             <div class="form-row" style="display: none;">
                                 <label class="form-label">API BASE URL</label>
                                 <div class="form-flex">
-                                    <input type="text" name="global_base_url" id="global_base_url" value="https://api.ippeurope.com" />
+                                    <input type="text" name="global_base_url" id="global_base_url" value="<?php echo $IPP_CONFIG["GLOBAL_BASE_URL"]; ?>" />
                                 </div>
                             </div>
                             <div class="form-row" style="display: none;">
                                 <label class="form-label">Onboarding BASE URL</label>
                                 <div class="form-flex">
-                                    <input type="text" name="onboarding_base_url" id="onboarding_base_url" value="https://onboarding.api.ippeurope.com" />
+                                    <input type="text" name="onboarding_base_url" id="onboarding_base_url" value="<?php echo $IPP_CONFIG["ONBOARDING_BASE_URL"]; ?>" />
                                 </div>
                             </div>
                             <div class="form-row" style="display: none;">
