@@ -15,9 +15,32 @@ if(isset($_POST["portal_title"])) {
     }
     $config->WriteConfig();
     include_once("../base.php");
+    if(isset($_POST["theme"]) && $_POST["theme"] !== "standard") {
+        $theme = $partner->purchaseTheme($_POST["theme"],$_POST["partner_id"],$_POST["partner_key1"]);
+        $src = BASEDIR . "theme/" . $_POST["theme"] . "/";
+        $filename = $src . basename($theme->{$_POST["theme"]}->file);
+        $dirMode = 0755;
+        if (!file_exists($src))
+            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+            }
+        sleep(1);
+        file_put_contents($filename, fopen($theme->{$_POST["theme"]}->file, 'r'));
+        $zip = new ZipArchive();
+        $res = $zip->open($filename);
+        if ($res === TRUE) {
+            $zip->extractTo($src);
+            $zip->close();
+
+        } else {
+            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+        }
+        unlink($filename);
+
+    }
+    echo $_POST["theme"];
+    
     if(isset($_POST["plugin_email"]) && $_POST["plugin_email"] === "smtp_server") {
-        $request    = new IPPRequest("","");
-        $partner    = new IPPPartner($request,"","");
         $src = BASEDIR."plugins/".$_POST["plugin_email"]."/";
         $filename = $src . $_POST["plugin_email"].".zip";
         $dirMode = 0755;
@@ -75,7 +98,6 @@ $ipp        = new IPP($request,null, null);
     <div class="main">
         <div class="container">
             <form method="POST" id="signup-form" class="signup-form" action="#">
-                <input type="HIDDEN" name="theme" id="theme" value="standard" />
                 <input type="HIDDEN" name="version" id="version" value="<?php echo $ipp->version()->content->version; ?>" />
                 <div>
                     <h3>Merchant Portal</h3>
@@ -183,16 +205,16 @@ $ipp        = new IPP($request,null, null);
                             <div class="choose-bank2">
                                 <div class="form-radio-flex">
                                     <div class="form-radio-item">
-                                        <input type="radio" name="selected_theme" id="standard" value="standard" checked="checked">
+                                        <input type="radio" name="theme" id="standard" value="standard" checked="checked">
                                         <label for="standard"><img src="images/theme_bootstrap.png" alt=""></label>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="selected_theme" id="theme_two" value="theme_two">
-                                        <label for="theme_two"><img src="images/bank-2.jpg" alt=""></label>
+                                        <input type="radio" name="theme" id="darkpan" value="darkpan">
+                                        <label for="darkpan"><img src="images/theme_darktheme.png" alt=""></label>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="selected_theme" id="theme_three" value="theme_three">
-                                        <label for="theme_three"><img src="images/bank-3.jpg" alt=""></label>
+                                        <input type="radio" name="theme" id="niceadmin" value="niceadmin">
+                                        <label for="niceadmin"><img src="images/theme_niceadmin.png" alt=""></label>
                                     </div>
                                 </div>
                             </div>
