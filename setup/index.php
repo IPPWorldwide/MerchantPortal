@@ -39,7 +39,7 @@ if(isset($_POST["portal_title"])) {
 
     }
     echo $_POST["theme"];
-    
+
     if(isset($_POST["plugin_email"]) && $_POST["plugin_email"] === "smtp_server") {
         $src = BASEDIR."plugins/".$_POST["plugin_email"]."/";
         $filename = $src . $_POST["plugin_email"].".zip";
@@ -56,6 +56,27 @@ if(isset($_POST["portal_title"])) {
             $zip->extractTo($src);
             $zip->close();
             $partner->InstallPlugin($_POST["plugin_email"],$_POST["partner_id"],$_POST["partner_key1"]);
+        } else {
+            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+        }
+        unlink($filename);
+    }
+    if(isset($_POST["payments_method"]) && $_POST["payments_method"] === "hosted_payment") {
+        $src = BASEDIR."plugins/".$_POST["payments_method"]."/";
+        $filename = $src . $_POST["payments_method"].".zip";
+        $dirMode = 0755;
+        if(!file_exists($src))
+            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+            }
+        sleep(1);
+        file_put_contents($filename, fopen("https://plugins.ippworldwide.com/hosted_payment.zip", 'r'));
+        $zip = new ZipArchive();
+        $res = $zip->open($filename);
+        if ($res === TRUE) {
+            $zip->extractTo($src);
+            $zip->close();
+            $partner->InstallPlugin($_POST["payments_method"],$_POST["partner_id"],$_POST["partner_key1"]);
         } else {
             throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
         }
@@ -234,8 +255,8 @@ $ipp        = new IPP($request,null, null);
                                         <h3>Injected on eCommerce site</h3>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="payments_method" id="hosted_flow" value="hosted_flow">
-                                        <label for="hosted_flow"><img src="images/payments_hosted_flow.png" alt=""></label>
+                                        <input type="radio" name="payments_method" id="hosted_payment" value="hosted_payment">
+                                        <label for="hosted_payment"><img src="images/payments_hosted_flow.png" alt=""></label>
                                     </div>
                                 </div>
                             </div>
