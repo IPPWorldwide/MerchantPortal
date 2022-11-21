@@ -238,8 +238,11 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$id,"plugin_slug"=>$slug];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/close/", "POST", [], $data);
     }
-    public function InstallPlugin($slug) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+    public function InstallPlugin(string $slug,string $partner_id="",string $key1="") {
+        if($partner_id === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+        else
+            $data = ["partner_id" => $partner_id, "key1" => $key1,"plugin_slug"=>$slug];
         $install = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/add/", "POST", [], $data)->content;
         require_once BASEDIR . "plugins/".$slug."/init.php";
         $new_pugin = new $slug();
@@ -267,9 +270,11 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/update/", "POST", [], $data);
     }
-    public function purchaseTheme($theme_slug) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"themes"=>$theme_slug];
-        echo $_ENV["GLOBAL_BASE_URL"]."/themes/add.php?".http_build_query($data);
+    public function purchaseTheme($theme_slug,string $partner_id="",string $key1="") {
+        if($partner_id === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"themes"=>$theme_slug];
+        else
+            $data = ["partner_id" => $partner_id, "key1" => $key1,"themes"=>$theme_slug];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/themes/add.php", "POST", [], $data);
     }
 

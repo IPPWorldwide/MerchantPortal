@@ -45,71 +45,61 @@ if($_ENV["VERSION"] < $ipp->version()->content->version):
     endif;
 endforeach;
 endif;
-?>
-<h2>Processing status</h2>
+echo '
+    <div class="row">
+        <div class="col-6">
+            <h2>Status</h2>
+        </div>
+        <div class="col-6 text-end">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          '.$lang["PARTNER"]["DASHBOARD"]["CHANGE"].'
+        </button>
+        </div>
 <div class="row row-cols-md-3 mb-3">
-    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="1">
+    <div class="col themed-grid-col chartscol" data-sequence="1">
         <canvas id="chart1" height="230px"></canvas>
-        <select data-sequence="1" name="type_1" id="type_1" class="form-control">
+        <select data-sequence="1" name="type_1" id="type_1" data-updateframe="30000" class="form-control">
             <option value="10m">Last 10 Minutes</option>
             <option value="30m">Last 30 Minutes</option>
         </select>
     </div>
-    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="2">
+    <div class="col themed-grid-col chartscol" data-sequence="2">
         <canvas id="chart2" height="230px"></canvas>
-        <select data-sequence="2" name="type_2" id="type_2" class="form-control">
+        <select data-sequence="2" name="type_2" id="type_2" data-updateframe="360000" class="form-control">
             <option value="7d">Last 7 Days</option>
             <option value="30d">Last 30 Days</option>
             <option value="90d">Last 90 Days</option>
             <option value="1y">Lastest year</option>
         </select>
     </div>
-    <div class="col themed-grid-col chartscol" draggable="true" data-sequence="3">
+    <div class="col themed-grid-col chartscol" data-sequence="3">
         <canvas id="chart3" height="230px"></canvas>
-        <select data-sequence="3" name="type_3" id="type_3" class="form-control">
+        <select data-sequence="3" name="type_3" id="type_3" data-updateframe="480000" class="form-control">
             <option value="1y">1 year</option>
             <option value="2y">2 years</option>
             <option value="3y">3 years</option>
         </select>
     </div>
 </div>
-<div class="chart-container">
-    <!--    <div draggable="true" class="card" data-sequence="2">
-            <div class="card-header">Daily Graph</div>
-            <div class="card-body">
 
-            </div>
-        </div>
-        <div draggable="true" class="card" data-sequence="3">
-            <div class="card-header">Monthly Graph</div>
-            <div class="card-body">
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-            </div>
-        </div>
-        <div draggable="true" class="card" data-sequence="4">
-            <div class="card-header">Percentage Increase/Decrease in Transactions</div>
-            <div class="card-body">
-                <canvas id="chart4" width="600px" height="230px"></canvas>
-                <select data-sequence="4" name="type_4" id="type_4" class="form-control">
-                    <option>This Month</option>
-                    <option>Last Month</option>
-                </select>
-            </div>
-        </div>
-        <div draggable="true" class="card" data-sequence="5">
-            <div class="card-header"> Percentage Increase/Decrease in Transactions</div>
-            <div class="card-body">
-                <canvas id="chart5" width="600px" height="230px"></canvas>
-                <select data-sequence="5" name="type_5" id="type_5" class="form-control">
-                    <option>This Week</option>
-                    <option>This Month</option>
-                    <option value="today">Today</option>
-                    <option value="7">Last 7 Days</option>
-                    <option value="15">Last 15 Days</option>
-                    <option value="28">Last 28 Days</option>
-                </select>
-            </div>
-        </div>
-    </div> -->
-
-<?php echo foot(); ?>
+';
+echo foot(); ?>

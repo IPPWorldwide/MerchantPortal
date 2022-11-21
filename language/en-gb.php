@@ -185,6 +185,7 @@ $lang["PARTNER"]["MENUS"]["ADD_TO_MENU"] = "Add to menu";
 
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdmin is outdated!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
+$lang["PARTNER"]["DASHBOARD"]["CHANGE"] = "Change elements";
 
 
 $lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Transactions";

@@ -13,23 +13,7 @@ let graphs = document.querySelectorAll('.col');
 let renders = [];
 graphs.forEach(ele => {
   renders[ele.dataset.sequence] = (sequence) => {
-    let input = document.getElementById(`type_${sequence}`)
-    let type = "";
-    if(input){
-      type = input.value;
-    }
-    $("#chart"+ sequence).parent().append("<div class='chartloading chart"+sequence+"_loading_txt'><div class='opacityBg'></div><div class='text'>Loading</div></div>");
-    $.get( "graphs.php", { graph: sequence, type })
-    .done(function( data ) {      
-      let json = JSON.parse(data);
-      var ctx = document.getElementById(`chart${sequence}`).getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: json.type,
-        data: json.data,
-        options: json.options
-      });
-      $(".chartloading.chart"+sequence+"_loading_txt").remove();
-    });
+    ReloadLive(sequence);
   }
 });
 
@@ -125,11 +109,6 @@ items.forEach(function (item) {
        });
        setTimeout(function(){
          ReloadLive(sequence);
-       }, 300000);
+       }, $("#type_" + sequence).data("updateframe"));
      });
  }
-setTimeout(function(){
-  ReloadLive(1);
-  ReloadLive(2);
-  ReloadLive(3);
-  }, 100);

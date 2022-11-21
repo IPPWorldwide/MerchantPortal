@@ -1,20 +1,89 @@
 <?php
 include("../ipp-config-sample.php");
-    if(isset($_POST["portal_title"])) {
-        $folder_level = "./";
-        while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
-        define("BASEDIR", $folder_level);
-        $myfile = fopen("../ipp-config.php", "w") or die("Unable to open file!");
-        fclose($myfile);
-        include("../controller/IPPConfig.php");
-        $config = new IPPConfig();
+$public_page=1;
+if(isset($_POST["portal_title"])) {
+    $folder_level = "./";
+    while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
+    define("BASEDIR", $folder_level);
+    $myfile = fopen("../ipp-config.php", "w") or die("Unable to open file!");
+    fclose($myfile);
+    include("../controller/IPPConfig.php");
+    $config = new IPPConfig();
 
-        foreach($_POST as $key=>$value) {
-            $new_config = $config->UpdateConfig(strtoupper($key),$value);
-        }
-        $config->WriteConfig();
-        die();
+    foreach($_POST as $key=>$value) {
+        $new_config = $config->UpdateConfig(strtoupper($key),$value);
     }
+    $config->WriteConfig();
+    include_once("../base.php");
+    if(isset($_POST["theme"]) && $_POST["theme"] !== "standard") {
+        $theme = $partner->purchaseTheme($_POST["theme"],$_POST["partner_id"],$_POST["partner_key1"]);
+        $src = BASEDIR . "theme/" . $_POST["theme"] . "/";
+        $filename = $src . basename($theme->{$_POST["theme"]}->file);
+        $dirMode = 0755;
+        if (!file_exists($src))
+            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+            }
+        sleep(1);
+        file_put_contents($filename, fopen($theme->{$_POST["theme"]}->file, 'r'));
+        $zip = new ZipArchive();
+        $res = $zip->open($filename);
+        if ($res === TRUE) {
+            $zip->extractTo($src);
+            $zip->close();
+
+        } else {
+            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+        }
+        unlink($filename);
+
+    }
+    echo $_POST["theme"];
+
+    if(isset($_POST["plugin_email"]) && $_POST["plugin_email"] === "smtp_server") {
+        $src = BASEDIR."plugins/".$_POST["plugin_email"]."/";
+        $filename = $src . $_POST["plugin_email"].".zip";
+        $dirMode = 0755;
+        if(!file_exists($src))
+            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+            }
+        sleep(1);
+        file_put_contents($filename, fopen("https://plugins.ippworldwide.com/smtp_server.zip", 'r'));
+        $zip = new ZipArchive();
+        $res = $zip->open($filename);
+        if ($res === TRUE) {
+            $zip->extractTo($src);
+            $zip->close();
+            $partner->InstallPlugin($_POST["plugin_email"],$_POST["partner_id"],$_POST["partner_key1"]);
+        } else {
+            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+        }
+        unlink($filename);
+    }
+    if(isset($_POST["payments_method"]) && $_POST["payments_method"] === "hosted_payment") {
+        $src = BASEDIR."plugins/".$_POST["payments_method"]."/";
+        $filename = $src . $_POST["payments_method"].".zip";
+        $dirMode = 0755;
+        if(!file_exists($src))
+            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+            }
+        sleep(1);
+        file_put_contents($filename, fopen("https://plugins.ippworldwide.com/hosted_payment.zip", 'r'));
+        $zip = new ZipArchive();
+        $res = $zip->open($filename);
+        if ($res === TRUE) {
+            $zip->extractTo($src);
+            $zip->close();
+            $partner->InstallPlugin($_POST["payments_method"],$_POST["partner_id"],$_POST["partner_key1"]);
+        } else {
+            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+        }
+        unlink($filename);
+    }
+    die();
+}
 include("../controller/IPP.php");
 include("../controller/Request.php");
 include("../controller/IPPCurrency.php");
@@ -50,13 +119,13 @@ $ipp        = new IPP($request,null, null);
     <div class="main">
         <div class="container">
             <form method="POST" id="signup-form" class="signup-form" action="#">
-                <input type="HIDDEN" name="theme" id="theme" value="standard" />
                 <input type="HIDDEN" name="version" id="version" value="<?php echo $ipp->version()->content->version; ?>" />
                 <div>
                     <h3>Merchant Portal</h3>
                     <fieldset>
                         <h2>Merchant Portal</h2>
                         <p class="desc">You are now seconds away from starting your own Payment Processor.<br />Follow the guide below, and get live.</p>
+                        <p class="desc">Now we are defining the details about your Portal where you can administrate your Merchants,<br />and your Merchants can see their transactions.</p>
                         <div class="fieldset-content">
                             <div class="form-row">
                                 <div class="form-flex">
@@ -71,6 +140,7 @@ $ipp        = new IPP($request,null, null);
                                     <div class="form-group">
                                         <label class="form-label" for="administrator_email">Administrative e-mail</label>
                                         <input type="text" name="administrator_email" id="administrator_email" />
+                                        <p class="desc">Define the e-mail used for outbound communication.</p>
                                     </div>
                                 </div>
                             </div>
@@ -100,13 +170,13 @@ $ipp        = new IPP($request,null, null);
                             <div class="form-row" style="display: none;">
                                 <label class="form-label">API BASE URL</label>
                                 <div class="form-flex">
-                                    <input type="text" name="global_base_url" id="global_base_url" value="https://api.ippeurope.com" />
+                                    <input type="text" name="global_base_url" id="global_base_url" value="<?php echo $IPP_CONFIG["GLOBAL_BASE_URL"]; ?>" />
                                 </div>
                             </div>
                             <div class="form-row" style="display: none;">
                                 <label class="form-label">Onboarding BASE URL</label>
                                 <div class="form-flex">
-                                    <input type="text" name="onboarding_base_url" id="onboarding_base_url" value="https://onboarding.api.ippeurope.com" />
+                                    <input type="text" name="onboarding_base_url" id="onboarding_base_url" value="<?php echo $IPP_CONFIG["ONBOARDING_BASE_URL"]; ?>" />
                                 </div>
                             </div>
                             <div class="form-row" style="display: none;">
@@ -143,6 +213,65 @@ $ipp        = new IPP($request,null, null);
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="partner_key2" id="partner_key2" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <h3>Theme Setup</h3>
+                    <fieldset>
+                        <h2>Theme Setup</h2>
+                        <p class="desc">Lets make the Portal your own, and ensure the nice look and feel for your Merchants.</p>
+                        <div class="fieldset-content">
+                            <div class="choose-bank2">
+                                <div class="form-radio-flex">
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="theme" id="standard" value="standard" checked="checked">
+                                        <label for="standard"><img src="images/theme_bootstrap.png" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="theme" id="darkpan" value="darkpan">
+                                        <label for="darkpan"><img src="images/theme_darktheme.png" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="theme" id="niceadmin" value="niceadmin">
+                                        <label for="niceadmin"><img src="images/theme_niceadmin.png" alt=""></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </fieldset>
+                    <h3>Payment Flow & Plugins</h3>
+                    <fieldset>
+                        <h2>Payment Flow & Plugins</h2>
+                        <p class="desc">Lets get the standard services set up, once and for all.</p>
+                        <h2>Hosted Payment Flow or Injected Payments</h2>
+                        <div class="fieldset-content">
+                            <div class="choose-bank">
+                                <div class="form-radio-flex">
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="payments_method" id="injected_payment" value="injected_payment" checked="checked">
+                                        <label for="injected_payment"><img src="images/payments_injected.png" alt=""></label>
+                                        <h3>Injected on eCommerce site</h3>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="payments_method" id="hosted_payment" value="hosted_payment">
+                                        <label for="hosted_payment"><img src="images/payments_hosted_flow.png" alt=""></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Sending out Emails?</h2>
+                        <div class="fieldset-content">
+                            <div class="choose-bank">
+                                <div class="form-radio-flex">
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="plugin_email" id="plugin_email_none" value="none" checked="checked">
+                                        <label for="plugin_email_none"><img src="images/disabled_stop.png" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="plugin_email" id="smtp_server" value="smtp_server">
+                                        <label for="smtp_server"><img src="images/email.png" alt=""></label>
                                     </div>
                                 </div>
                             </div>
