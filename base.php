@@ -4,7 +4,9 @@ if(session_id() === "") {
 }
 $folder_level = "./";
 while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
-define("BASEDIR", $folder_level);
+
+if(!defined("BASEDIR"))
+    define("BASEDIR", $folder_level);
 
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
