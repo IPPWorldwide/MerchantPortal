@@ -266,12 +266,35 @@ $ipp        = new IPP($request,null, null);
                             <div class="choose-bank">
                                 <div class="form-radio-flex">
                                     <div class="form-radio-item">
-                                        <input type="radio" name="plugin_email" id="plugin_email_none" value="none" checked="checked">
-                                        <label for="plugin_email_none"><img src="images/disabled_stop.png" alt=""></label>
+                                        <input type="radio" name="plugin_email" id="smtp_server" value="smtp_server" checked="checked">
+                                        <label for="smtp_server"><img src="images/yes.png" alt=""></label>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="plugin_email" id="smtp_server" value="smtp_server">
-                                        <label for="smtp_server"><img src="images/email.png" alt=""></label>
+                                        <input type="radio" name="plugin_email" id="plugin_email_none" value="none">
+                                        <label for="plugin_email_none"><img src="images/no.png" alt=""></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <h3>eCommerce Platforms</h3>
+                    <fieldset>
+                        <h2>Which eCommerce platforms do you support</h2>
+                        <p class="desc">Lets create an standardized version of a Plugin for each eCommerce Platform. Plug'n'play.</p>
+                        <div class="fieldset-content">
+                            <div class="choose-bank">
+                                <div class="form-radio-flex">
+                                    <div class="form-radio-item">
+                                        <input type="checkbox" name="woocommerce" id="woocommerce" value="woocommerce" checked="checked">
+                                        <label for="woocommerce"><img src="images/platforms/woocommerce.png" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="checkbox" name="magento" id="magento" value="magento">
+                                        <label for="magento"><img src="images/platforms/magento.png" alt=""></label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="checkbox" name="prestashop" id="prestashop" value="prestashop">
+                                        <label for="prestashop"><img src="images/platforms/prestashop.png" alt=""></label>
                                     </div>
                                 </div>
                             </div>
