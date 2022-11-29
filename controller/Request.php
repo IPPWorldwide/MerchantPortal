@@ -57,7 +57,8 @@ class IPPRequest {
         if($file) {
             $data["attached_file"] = new CURLFile($file['tmp_name'], $file['type'], $file['name']);
         }
-        $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
+        if(isset($IPP_CONFIG["PARTNER_ID"]))
+            $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
