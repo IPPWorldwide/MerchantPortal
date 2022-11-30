@@ -2,6 +2,49 @@
 include("../ipp-config-sample.php");
 $public_page=1;
 if(isset($_POST["portal_title"])) {
+    function Zip($source, $destination)
+    {
+        if (!extension_loaded('zip') || !file_exists($source)) {
+            return false;
+        }
+
+        $zip = new ZipArchive();
+        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+            return false;
+        }
+
+        $source = str_replace('\\', '/', realpath($source));
+
+        if (is_dir($source) === true)
+        {
+            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+
+            foreach ($files as $file)
+            {
+                $file = str_replace('\\', '/', $file);
+
+                // Ignore "." and ".." folders
+                if( in_array(substr($file, strrpos($file, '/')+1), array('.', '..')) )
+                    continue;
+
+                $file = realpath($file);
+
+                if (is_dir($file) === true)
+                {
+                    $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
+                }
+                else if (is_file($file) === true)
+                {
+                    $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
+                }
+            }
+        }
+        else if (is_file($source) === true)
+        {
+            $zip->addFromString(basename($source), file_get_contents($source));
+        }
+        return $zip->close();
+    }
     $folder_level = "./";
     while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
     define("BASEDIR", $folder_level);
@@ -38,8 +81,6 @@ if(isset($_POST["portal_title"])) {
         unlink($filename);
 
     }
-    echo $_POST["theme"];
-
     if(isset($_POST["plugin_email"]) && $_POST["plugin_email"] === "smtp_server") {
         $src = BASEDIR."plugins/".$_POST["plugin_email"]."/";
         $filename = $src . $_POST["plugin_email"].".zip";
@@ -81,6 +122,13 @@ if(isset($_POST["portal_title"])) {
             throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
         }
         unlink($filename);
+    }
+    if(isset($_POST["woocommerce"]) && $_POST["woocommerce"] === "woocommerce") {
+        echo "Include Woo!";
+        if (!file_exists(BASEDIR . 'tmp')) {
+            mkdir(BASEDIR . 'tmp', 0777, true);
+        }
+        include(BASEDIR . "setup/shop_extensions/woocommerce.php");
     }
     die();
 }
