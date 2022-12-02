@@ -124,11 +124,16 @@ if(isset($_POST["portal_title"])) {
         unlink($filename);
     }
     if(isset($_POST["woocommerce"]) && $_POST["woocommerce"] === "woocommerce") {
-        echo "Include Woo!";
         if (!file_exists(BASEDIR . 'tmp')) {
             mkdir(BASEDIR . 'tmp', 0777, true);
         }
         include(BASEDIR . "setup/shop_extensions/woocommerce.php");
+    }
+    if(isset($_POST["prestashop"]) && $_POST["prestashop"] === "prestashop") {
+        if (!file_exists(BASEDIR . 'tmp')) {
+            mkdir(BASEDIR . 'tmp', 0777, true);
+        }
+        include(BASEDIR . "setup/shop_extensions/prestashop.php");
     }
     die();
 }
@@ -335,10 +340,6 @@ $ipp        = new IPP($request,null, null);
                                     <div class="form-radio-item">
                                         <input type="checkbox" name="woocommerce" id="woocommerce" value="woocommerce" checked="checked">
                                         <label for="woocommerce"><img src="images/platforms/woocommerce.png" alt=""></label>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="checkbox" name="magento" id="magento" value="magento">
-                                        <label for="magento"><img src="images/platforms/magento.png" alt=""></label>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="checkbox" name="prestashop" id="prestashop" value="prestashop">
