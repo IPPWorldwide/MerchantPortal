@@ -24,6 +24,7 @@ if(isset($REQ["language"])) {
 }
 if(isset($REQ["setup"])) {
     $utils->rrmdir("setup");
+    $utils->rrmdir("tmp");
 }
 if(
         isset($REQ["username"]) && strlen($REQ["username"]) > 2 &&
