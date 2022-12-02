@@ -34,6 +34,21 @@ echo '
 <input type="hidden" name="company_id" value="'.$REQ["id"].'">
 <div>
     <div class="tab-pane active" id="company" role="tabpanel" aria-labelledby="home-tab">
+    <h2>About the Commerce</h2>
+        <div class="row row-cols-md-2 mb-2">
+            <div class="col themed-grid-col"><label for="company-name">Website URL</label><br><input name="website-domain-name" class="form-control" value="'.$onboarding_data->data->{"website-domain-name"}.'"></div>
+            <div class="col themed-grid-col"><label for="company-name">Website Currency</label><br><input name="website-currency" class="form-control" value="'.$onboarding_data->data->{"website-currency"}.'"></div>
+        </div>
+        <div class="row row-cols-md-2 mb-2">
+            <div class="col themed-grid-col"><label for="company-name">Monthly Sales</label><br><input name="website-monthly-sales" class="form-control" value="'.$onboarding_data->data->{"website-monthly-sales"}.'"></div>
+        </div>
+        <div class="row row-cols-md-1 mb-1">
+            <div>&nbsp;</div>
+        </div>
+        <div class="row row-cols-md-2 mb-2">
+            <div class="col themed-grid-col"><label for="website-terms-conditions">Terms & Conditions</label><br><input name="website-terms-conditions" class="form-control" value="'.$onboarding_data->data->{"website-terms-conditions"}.'"></div>
+            <div class="col themed-grid-col"><label for="company-name">Privacy Policy</label><br><input name="website-terms-privacy" class="form-control" value="'.$onboarding_data->data->{"website-terms-privacy"}.'"></div>
+        </div>
     <h2>About the company</h2>
         <div class="row row-cols-md-3 mb-3">
             <div class="col themed-grid-col">
@@ -47,7 +62,7 @@ echo '
             }
             echo '
             </select></div>
-            <div class="col themed-grid-col"><label for="company-name">Company Name</label><br><input name="company-name" class="form-control" value="'.$onboarding_data->{"name"}.'"></div>
+            <div class="col themed-grid-col"><label for="company-name">Company Name</label><br><input name="company-name" class="form-control" value="'.$onboarding_data->data->{"company-name"}.'"></div>
             <div class="col themed-grid-col"><label for="company-vat">Company Registration number</label><br><input name="company-vat" class="form-control" value="'.$onboarding_data->data->{"company-vat"}.'"></div>
         </div>
         <div class="row row-cols-md-3 mb-3">
