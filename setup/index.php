@@ -123,6 +123,27 @@ if(isset($_POST["portal_title"])) {
         }
         unlink($filename);
     }
+
+    $src = BASEDIR."plugins/".$_POST["payments_method"]."/";
+    $filename = $src . $_POST["payments_method"].".zip";
+    $dirMode = 0755;
+    if(!file_exists($src))
+        if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+        }
+    sleep(1);
+    file_put_contents($filename, fopen("https://plugins.ippworldwide.com/identify_ecommerce.zip", 'r'));
+    $zip = new ZipArchive();
+    $res = $zip->open($filename);
+    if ($res === TRUE) {
+        $zip->extractTo($src);
+        $zip->close();
+        $partner->InstallPlugin($_POST["payments_method"],$_POST["partner_id"],$_POST["partner_key1"]);
+    } else {
+        throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+    }
+    unlink($filename);
+
     if(isset($_POST["woocommerce"]) && $_POST["woocommerce"] === "woocommerce") {
         if (!file_exists(BASEDIR . 'tmp')) {
             mkdir(BASEDIR . 'tmp', 0777, true);
