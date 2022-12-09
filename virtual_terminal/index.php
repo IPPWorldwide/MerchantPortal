@@ -21,6 +21,7 @@ if(isset($REQ["start_terminal"])) {
 }
 
 echo head();
+$actions->get_action("virtual_terminal");
 if(!isset($_POST["start_terminal"])) {
 echo '
       <h2>'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["HEADER"].'</h2>

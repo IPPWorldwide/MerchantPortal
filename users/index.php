@@ -18,6 +18,7 @@ $access_rights = $ipp->GetAllAccessRights();
 
 $companies = $ipp->ListUsers();
 echo head();
+$actions->get_action("users");
 echo '
     <div class="row">
         <div class="col-6">
