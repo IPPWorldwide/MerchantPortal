@@ -1,6 +1,6 @@
 <?php
 function foot() {
-    global $inline_css, $inline_script,$load_script,$plugins,$IPP_CONFIG;
+    global $inline_css, $inline_script,$load_script,$load_css,$plugins;
     $css = "";
     $script = "";
     if(file_exists("dashboard.js"))
@@ -18,6 +18,9 @@ function foot() {
     }
     foreach($inline_script as $value) {
         $script .= "<script>".$value."</script>";
+    }
+    foreach($load_css as $value) {
+        $css .= "<link href=\"".$value."\" rel=\"stylesheet\">";;
     }
     return '    </main>
   </div>
