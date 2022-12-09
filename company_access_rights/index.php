@@ -1,6 +1,8 @@
 <?php
 include("../base.php");
 echo head();
+$actions->get_action("access_rights");
+
 $access_rights = $ipp->GetAllAccessRights();
 echo '
     <div class="row">

@@ -2,6 +2,7 @@
 include("../base.php");
 
 echo head();
+$actions->get_action("payouts");
 echo '
 <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">

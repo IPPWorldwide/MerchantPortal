@@ -16,6 +16,8 @@ if(isset($REQ["send_link"])) {
 }
 $sent_payment_links = $ipp->ListPaymentLinks();
 echo head();
+$actions->get_action("payment_links");
+
 echo "<h2>".$lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"]."</h2>";
 
 if(isset($REQ["sent"]) && $REQ["sent"] >= 1) {

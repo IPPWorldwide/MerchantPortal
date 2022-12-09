@@ -26,6 +26,7 @@ include(BASEDIR . "controller/IPPMenu.php");
 include(BASEDIR . "controller/IPPUtils.php");
 include(BASEDIR . "controller/IPPPartnerGraph.php");
 include(BASEDIR . "controller/IPPLanguages.php");
+include(BASEDIR . "controller/IPPActions.php");
 
 $_ENV           = $IPP_CONFIG;
 $RequestP   = new RequestParams();
@@ -57,6 +58,7 @@ $mcc        = new MCC();
 $menu       = new IPPMenu();
 $utils      = new IPPUtils();
 $languages  = new IPPLanguages();
+$actions    = new IPPActions();
 if(isset($_COOKIE["timezone"])) {
     $timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
     if($timezoneoffset <> "") {

@@ -2,6 +2,7 @@
 include("../base.php");
 
 echo head();
+$actions->get_action("charts");
 echo '
       <h2>'.$lang["COMPANY"]["CHARTS"]["HEADER"].'</h2>
         <div class="card chart-container">

@@ -2,6 +2,7 @@
 include("../base.php");
 $result         = $REQ["result"] ?? "ALL";
 echo head();
+$actions->get_action("cardholder_subscriptions");
 echo '
 <h2>'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["HEADER"].'</h2>
 
