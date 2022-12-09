@@ -2,9 +2,11 @@
 include("../base.php");
 $merchant_data = $ipp->MerchantData();
 $isEcommChannel = false;
-foreach($merchant_data->channels as $channels){
-    if($channels == 'ecom'){
-        $isEcommChannel = true;
+if(isset($merchant_data->channels)) {
+    foreach($merchant_data->channels as $channels){
+        if($channels == 'ecom'){
+            $isEcommChannel = true;
+        }
     }
 }
 //$isEcommChannel = false;
