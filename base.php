@@ -104,3 +104,5 @@ if(file_exists(THEME . "/functions.php"))
     require_once(THEME . "/functions.php");
 
 $lang = $languages->getLanguageStrings($language);
+
+$inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
