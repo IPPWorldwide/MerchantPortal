@@ -17,6 +17,8 @@ if(isset($REQ["close"])) {
 
 $companies = $partner->ListUsers();
 echo head();
+$actions->get_action("partner_users");
+
 echo '
     <div class="row">
         <div class="col-6">

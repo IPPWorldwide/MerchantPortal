@@ -27,6 +27,7 @@ if(isset($REQ["IPPCONFIG"]['PORTAL_TITLE'])) {
 $all_themes = $partner->ListThemes();
 $public_themes = $partner->ListPublicThemes();
 echo head();
+$actions->get_action("partner_apperance");
 
 echo '
 

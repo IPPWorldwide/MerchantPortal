@@ -13,6 +13,8 @@ if(isset($REQ["close"])) {
 
 $companies = $partner->ListCompany();
 echo head();
+$actions->get_action("partner_companies");
+
 echo '
     <div class="row">
         <div class="col-6">

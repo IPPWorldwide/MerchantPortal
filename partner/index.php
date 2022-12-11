@@ -32,6 +32,7 @@ if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
     $config = $config->WriteConfig();
 }
 echo head();
+$actions->get_action("partner_dashboard");
 
 if($_ENV["VERSION"] < $ipp->version()->content->version):
     ?>
