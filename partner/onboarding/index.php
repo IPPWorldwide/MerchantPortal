@@ -1,6 +1,8 @@
 <?php
 include("../b.php");
 echo head();
+$actions->get_action("partner_onboarding");
+
 $onboarding_status = $REQ["onboarding_status"] ?? "WAITING_APPROVAL";
 $onboarding_list = $partner->ListOnboardings($onboarding_status);
 echo '

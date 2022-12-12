@@ -270,6 +270,26 @@ class IPPPartner {
             $new_pugin->hookUpdate($slug,$install->plugin_id,$std_settings);
         return $install;
     }
+    public function UpdatePluginSettingFile($plugins,$plugin_slug,$plugin_id,$REQ,$FILES=[],$clean_value_storage=false) {
+        $data_fields = $plugins->GetPluginFields($plugin_id);
+        $myfile = fopen(BASEDIR . "plugins/".$plugin_slug."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($REQ as $key=>$value) {
+            $this->UpdatePluginSettings($plugin_id,$key,$value);
+            if($clean_value_storage)
+                $txt = "\$settings[\"".$key."\"] = " . $value . ";\n";
+            else
+                $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        foreach($data_fields as $key=>$value) {
+                if(!isset($REQ[$key]))
+                    fwrite($myfile, "\$settings[\"".$key."\"] = '" . $value . "';\n");
+        }
+        fclose($myfile);
+        return json_encode($REQ);
+    }
     public function UpdatePluginSettings($plugin_id,$key,$value) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/update/", "POST", [], $data);

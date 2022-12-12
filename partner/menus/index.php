@@ -16,6 +16,7 @@ if(isset($REQ["section"])) {
 $MENU = json_decode($IPP_CONFIG["MENU"]);
 
 echo head();
+$actions->get_action("partner_menus");
 echo '
 <h2>'.$lang["PARTNER"]["MENUS"]["HEADER_PARTNER"].'</h2>
 <div class="row">

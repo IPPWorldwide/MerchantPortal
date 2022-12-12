@@ -9,6 +9,8 @@ $partner_data = $partner->PartnerData();
 
 
 echo head();
+$actions->get_action("partner_domains");
+
 ?>
         <form action="?" method="POST" class="form">
             <h2>Domains</h2>

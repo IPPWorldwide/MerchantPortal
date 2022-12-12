@@ -6,6 +6,8 @@ if(isset($REQ["submit"])) {
 }
 $partner_data = $partner->PartnerData();
 echo head();
+$actions->get_action("partner_data");
+
 echo '
         <form action="?" method="POST" class="form">
             <h2>'.$lang["PARTNER"]["DATA"]["HEADER"].'</h2>
