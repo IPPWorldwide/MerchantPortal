@@ -212,7 +212,6 @@ class IPP {
         if(method_exists($plugin,"hookUpdate"))
             $plugin->hookUpdate($plugin_slug,$REQ["plugin_id"],$REQ,$company_data->content->id);
         return json_encode($REQ);
-        die();
     }
     public function UpdatePluginSettings($plugin_id,$key,$value) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
