@@ -1,6 +1,6 @@
 <?php
 function head() {
-    global $plugins,$lang,$IPP_CONFIG;
+    global $plugins,$lang,$IPP_CONFIG,$load_css;
     $extra_css = "";
     $hook_header = "";
     if(!is_null($plugins->hook_header)) {
@@ -19,6 +19,7 @@ function head() {
 
     if(file_exists("css.css"))
         $extra_css .= "<link href=\"css.css\" rel=\"stylesheet\">";
+
 
     $html = '<html lang="en">
   <head>
