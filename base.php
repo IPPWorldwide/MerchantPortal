@@ -104,6 +104,9 @@ if(file_exists(THEME . "/functions.php"))
     require_once(THEME . "/functions.php");
 
 $lang = $languages->getLanguageStrings($language);
+if(isset($_COOKIE["ipp_type"]))
+    $user_type = $_COOKIE["ipp_type"];
+
 
 $inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
 $actions->get_action("init");
