@@ -68,7 +68,7 @@ class IPP {
             $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         else
             $data = ["company_id" => $merchant_id, "key1" => $key1];
-        return $this->request->curl("https://api.ippeurope.com/company/data/", "POST", [], $data)->content;
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data)->content;
     }
     public function MerchantDataUpdate($all_data = []) {
         $security_data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
