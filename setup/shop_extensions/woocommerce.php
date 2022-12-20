@@ -27,4 +27,5 @@ $str = str_replace("ippgateway","newwoocommerce_gateway", $str);
 $str = str_replace("ipp_hourly","newwoocommerce_hourly", $str);
 file_put_contents(BASEDIR . "tmp/new_woocommerce/new_woocommerce.php", $str);
 Zip(BASEDIR . 'tmp/new_woocommerce/', BASEDIR . 'tmp/new_woocommerce.zip');
+rename(BASEDIR . 'tmp/new_woocommerce.zip', 'ecommerce/woocommerce.zip');
 
