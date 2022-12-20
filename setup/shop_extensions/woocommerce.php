@@ -22,7 +22,7 @@ rename(BASEDIR . "tmp/new_woocommerce/ippgateway.php",BASEDIR . "tmp/new_woocomm
 $str = file_get_contents(BASEDIR . "tmp/new_woocommerce/new_woocommerce.php");
 $str = str_replace("WC_Gateway_IPPGateway","WC_Gateway_NewWooCommerce", $str);
 $str = str_replace("IPPGATEWAY_DIR","NewWooCommerce_DIR", $str);
-$str = str_replace("IPPGateway Services","New WooCommerce", $str);
+$str = str_replace("IPPGateway Services",$_POST["portal_title"], $str);
 $str = str_replace("ippgateway","newwoocommerce_gateway", $str);
 $str = str_replace("ipp_hourly","newwoocommerce_hourly", $str);
 file_put_contents(BASEDIR . "tmp/new_woocommerce/new_woocommerce.php", $str);
