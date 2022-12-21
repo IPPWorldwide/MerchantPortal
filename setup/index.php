@@ -374,6 +374,11 @@ $ipp        = new IPP($request,null, null);
         </div>
 
     </div>
+    <div class="pyro">
+        <div class="title"></div>
+        <div class="before"></div>
+        <div class="after"></div>
+    </div>
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
