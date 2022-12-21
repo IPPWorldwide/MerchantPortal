@@ -1,7 +1,4 @@
 (function($) {
-
-
-
     var form = $("#signup-form");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
@@ -54,12 +51,29 @@
         onFinished: function(event, currentIndex) {
             $.ajax({
                 method: "POST",
-                url: "?",
-                data: $("#signup-form").serialize()
+                url: "https://api.ippeurope.com/partner/data/",
+                data: {
+                    partner_id: $('#partner_id').val(),
+                    key1: $( "#partner_key1" ).val()
+                }
             })
-                .done(function( msg ) {
-                    window.location.replace($("#portal_url").val() + "?setup=complete");
-                });
+            .done(function( msg ) {
+                if(msg.content.security.key2 === $( "#partner_key2" ).val()) {
+                    $.ajax({
+                        method: "POST",
+                        url: "?",
+                        data: $("#signup-form").serialize()
+                    })
+                    .done(function( msg ) {
+                        window.location.replace($("#portal_url").val() + "?setup=complete");
+                    });
+                } else {
+                    alert( "Key 2 is invalid" );
+                }
+            })
+            .fail(function() {
+                alert( "Partner ID or Key 1 is invalid" );
+            });
         },
         onStepChanged: function(event, currentIndex, priorIndex) {
 
