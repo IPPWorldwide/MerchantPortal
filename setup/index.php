@@ -136,25 +136,27 @@ if(isset($_POST["portal_title"])) {
         }
         include(BASEDIR . "setup/shop_extensions/prestashop.php");
     }
-    $src = BASEDIR."plugins/identify_ecommerce/";
-    $filename = $src . "identify_ecommerce.zip";
-    $dirMode = 0755;
-    if(!file_exists($src))
-        if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+    if((isset($_POST["woocommerce"]) && $_POST["woocommerce"] === "woocommerce") || (isset($_POST["prestashop"]) && $_POST["prestashop"] === "prestashop")) {
+        $src = BASEDIR."plugins/identify_ecommerce/";
+        $filename = $src . "identify_ecommerce.zip";
+        $dirMode = 0755;
+        if(!file_exists($src))
+            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
+            }
+        sleep(1);
+        file_put_contents($filename, fopen("https://plugins.ippworldwide.com/identify_ecommerce.zip", 'r'));
+        $zip = new ZipArchive();
+        $res = $zip->open($filename);
+        if ($res === TRUE) {
+            $zip->extractTo($src);
+            $zip->close();
+            $partner->InstallPlugin("identify_ecommerce",$_POST["partner_id"],$_POST["partner_key1"]);
+        } else {
+            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
         }
-    sleep(1);
-    file_put_contents($filename, fopen("https://plugins.ippworldwide.com/identify_ecommerce.zip", 'r'));
-    $zip = new ZipArchive();
-    $res = $zip->open($filename);
-    if ($res === TRUE) {
-        $zip->extractTo($src);
-        $zip->close();
-        $partner->InstallPlugin("identify_ecommerce",$_POST["partner_id"],$_POST["partner_key1"]);
-    } else {
-        throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
+        unlink($filename);
     }
-    unlink($filename);
     die();
 }
 include("../controller/IPP.php");
