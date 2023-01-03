@@ -110,11 +110,11 @@ echo '
                         <input type="hidden" name="user_id" id="user-id" readonly>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">'.$lang["COMPANY"]["USERS"]["PASSWORD"].'</label>
-                            <input type="password" class="form-control checkPasswordUser" name="password" id="password">
+                            <input type="password" class="form-control checkPasswordUser" autocomplete="new-password" name="password" id="password">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">'.$lang["COMPANY"]["USERS"]["REPEAT_PASSWORD"].'</label>
-                            <input type="password" class="form-control checkPasswordUser" id="repeat-password">
+                            <input type="password" class="form-control checkPasswordUser" autocomplete="new-password" id="repeat-password">
                             <small id="PasswordRequirements">'.$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"].'</small>
                         </div>
                     </form>
