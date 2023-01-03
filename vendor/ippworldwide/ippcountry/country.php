@@ -18,4 +18,11 @@ class IPPCountry {
                 return ["NO","NOR","NOK", "Norway"];
         }
     }
+    public function countryList() {
+        $list[] = ["DK","DNK","DKK", "Denmark"];
+        $list[] = ["SE","SWE","SEK", "Sweden"];
+        $list[] = ["NO","NOR","NOK", "Norway"];
+
+        return $list;
+    }
 }
