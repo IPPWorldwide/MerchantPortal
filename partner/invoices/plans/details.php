@@ -58,17 +58,17 @@ echo head();
                 </div>
             </div>
 
-            <div class="col themed-grid-col">Acquiring Percentage %:<br /><input name="acquirer[percentage]" class="form-control" value="<?php echo $invoice->tnx->percentage; ?>"></div>
-            <div class="col themed-grid-col">Acquiring Refund Cost:<br /><input name="acquirer[refund][cost]" class="form-control" value="<?php echo $invoice->refund->tnx_cost; ?>"></div>
-            <div class="col themed-grid-col">Acquiring Refund Percentage %:<br /><input name="acquirer[refund][percentage]" class="form-control" value="<?php echo $invoice->refund->percentage; ?>"></div>
-            <div class="col themed-grid-col">Acquiring CFT Cost:<br /><input name="acquirer[cft][cost]" class="form-control" value="<?php echo $invoice->cft->tnx_cost; ?>"></div>
-            <div class="col themed-grid-col">Acquiring CFT Percentage:<br /><input name="acquirer[cft][percentage]" class="form-control" value="<?php echo $invoice->cft->percentage; ?>"></div>
-            <div class="col themed-grid-col">Acquiring CBK Fee, below 1%:<br /><input name="acquirer[cbk][below]" class="form-control" value="<?php echo $invoice->cbk->standard->fee; ?>"></div>
-            <div class="col themed-grid-col">Acquiring CBK Visa (1%-2%), MC (1%-1.5%):<br /><input name="acquirer[cbk][tier1]" class="form-control" value="<?php echo $invoice->cbk->tier1->fee; ?>"></div>
-            <div class="col themed-grid-col">Acquiring CBK Visa (above 2%), MC (above 1.5%):<br /><input name="acquirer[cbk][tier2]" class="form-control" value="<?php echo $invoice->cbk->tier2->fee; ?>"></div>
-            <div class="col themed-grid-col">Acquiring CBK Re-presentment Fee :<br /><input name="acquirer[cbk][representment]" class="form-control" value="<?php echo $invoice->cbk->other->represent; ?>"></div>
-            <div class="col themed-grid-col">Acquiring CBK Retrieval Request Fee:<br /><input name="acquirer[cbk][retrieval]" class="form-control" value="<?php echo $invoice->cbk->other->retrieval; ?>"></div>
-            <div class="col themed-grid-col">Acquiring Wire transfer fee:<br /><input name="acquirer[wire][fee]" class="form-control" value="<?php echo $invoice->cbk->wire->tnx_cost; ?>"></div>
+            <div class="col themed-grid-col">Acquiring Percentage %:<br /><input name="acquirer[percentage]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->tnx->percentage/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring Refund Cost:<br /><input name="acquirer[refund][cost]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->refund->tnx_cost/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring Refund Percentage %:<br /><input name="acquirer[refund][percentage]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->refund->percentage/100,2);; ?>"></div>
+            <div class="col themed-grid-col">Acquiring CFT Cost:<br /><input name="acquirer[cft][cost]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->cft->tnx_cost/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring CFT Percentage:<br /><input name="acquirer[cft][percentage]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->cft->percentage/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring CBK Fee, below 1%:<br /><input name="acquirer[cbk][below]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->cbk->standard->fee/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring CBK Visa (1%-2%), MC (1%-1.5%):<br /><input name="acquirer[cbk][tier1]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->cbk->tier1->fee/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring CBK Visa (above 2%), MC (above 1.5%):<br /><input name="acquirer[cbk][tier2]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->cbk->tier2->fee/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring CBK Re-presentment Fee :<br /><input name="acquirer[cbk][representment]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->cbk->other->represent/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring CBK Retrieval Request Fee:<br /><input name="acquirer[cbk][retrieval]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->cbk->other->retrieval/100,2); ?>"></div>
+            <div class="col themed-grid-col">Acquiring Wire transfer fee:<br /><input name="acquirer[wire][fee]" class="form-control" value="<?php echo number_format($invoice->acquirer_cost->wire->tnx_cost/100,2); ?>"></div>
             <div class="row row-cols-md-1 mb-1">
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mb-3">Save</button>
