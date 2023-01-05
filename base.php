@@ -59,6 +59,8 @@ $menu       = new IPPMenu();
 $utils      = new IPPUtils();
 $languages  = new IPPLanguages();
 $actions    = new IPPActions();
+$countries  = new IPPCountry();
+
 if(isset($_COOKIE["timezone"])) {
     $timezoneoffset = $utils->getTimezoneBasedOnOffsetMinutes($_COOKIE["timezone"]);
     if($timezoneoffset <> "") {
