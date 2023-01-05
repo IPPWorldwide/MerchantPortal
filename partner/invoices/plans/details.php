@@ -1,8 +1,10 @@
 <?php
 include("../../b.php");
 
-if(isset($REQ["id"])) {
+if(isset($REQ["id"]) && isset($REQ["name"])) {
     $partner->UpdateSubscriptionPlan($REQ);
+    header("Location: details.php?id=".$REQ["id"]);
+    die();
 }
 
 $invoice = $partner->SubscriptionPlanData($REQ["id"]);
