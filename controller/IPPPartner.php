@@ -234,8 +234,7 @@ class IPPPartner {
     public function OnboardingPartnerData($company_id,$all_data,$application_state) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id"=>$company_id,"state" => $application_state];
         $data = array_merge((array)$all_data, $data);
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/onboarding/validation/", "POST", [], $data);
-        return $this->request->curl("https://api.ippeurope.com/partner/company/data/onboarding/validation/", "POST", [], $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/onboarding/validation/", "POST", [], $data)->content;
     }
 
     public function RemovePlugin($id,$slug) {
