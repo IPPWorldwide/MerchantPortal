@@ -204,6 +204,7 @@ $lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"] = "Kortholder";
 $lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Beløb";
 $lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
+$lang["COMPANY"]["DASHBOARD"]["REASON"] = "Årsag";
 $lang["COMPANY"]["DASHBOARD"]["INFO"] = "Info";
 
 
