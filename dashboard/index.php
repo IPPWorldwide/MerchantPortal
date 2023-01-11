@@ -71,6 +71,7 @@ echo '
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["AMOUNT"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CURRENCY"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["STATUS"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["REASON"].'</th>
             </tr>
           </thead>
           <tbody>
@@ -93,6 +94,7 @@ if(is_array($transaction_list))
               <td>".number_format($value->amount/100,2,",",".")."</td>
               <td>".$currency->currency($value->currency)[0]."</td>
               <td>".$value->result."</td>
+              <td>".$value->reason."</td>              
             </tr>";
           }
 echo '

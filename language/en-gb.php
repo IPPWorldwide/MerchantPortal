@@ -212,6 +212,7 @@ $lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"] = "Cardholder";
 $lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Amount";
 $lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
+$lang["COMPANY"]["DASHBOARD"]["REASON"] = "Reason";
 $lang["COMPANY"]["DASHBOARD"]["INFO"] = "Info";
 
 
