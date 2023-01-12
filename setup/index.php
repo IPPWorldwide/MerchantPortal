@@ -1,7 +1,50 @@
 <?php
-include("../ipp-config-sample.php");
+if(file_exists("../ipp-config-sample.php")) {
+    include("../ipp-config-sample.php");
+}
 $public_page=1;
+if(file_exists("../ipp-autoconfig.php") && !isset($_POST["autosetup"])) {
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    include("../ipp-autoconfig.php");
+    $create_partner_args = [];
+    $create_partner_args["name"]        = $IPP_CONFIG["portal_title"];
+    $create_partner_args["email"]       = $IPP_CONFIG["administrator_email"];
+    $create_partner_args["password"]    = generateRandomString(16);
+    $create_partner_args["cipher"]      = "ABX!lx3a<903234ASDF234WER¤%";
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"http://api/create/partner.php");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($create_partner_args));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $server_output = json_decode(curl_exec($ch));
+    curl_close($ch);
+    $IPP_CONFIG["PARTNER_ID"]   = $server_output->content->partner_id;
+    $IPP_CONFIG["PARTNER_KEY1"] = $server_output->content->security->key1;
+    $IPP_CONFIG["PARTNER_KEY2"] = $server_output->content->security->key2;
+    $IPP_CONFIG["autosetup"]    = true;
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,$actual_link);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($IPP_CONFIG));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $server_output = curl_exec($ch);
+    curl_close($ch);
+    die();
+}
 if(isset($_POST["portal_title"])) {
+    echo "Portal Install";
+    die();
     function Zip($source, $destination)
     {
         if (!extension_loaded('zip') || !file_exists($source)) {
