@@ -19,6 +19,7 @@ if(file_exists("../ipp-autoconfig.php") && !isset($_POST["autosetup"])) {
     $create_partner_args["name"]        = $IPP_CONFIG["portal_title"];
     $create_partner_args["email"]       = $IPP_CONFIG["administrator_email"];
     $create_partner_args["password"]    = generateRandomString(16);
+    $create_partner_args["url"]         = $actual_link;
     $create_partner_args["cipher"]      = "ABX!lx3a<903234ASDF234WER¤%";
 
     $ch = curl_init();
