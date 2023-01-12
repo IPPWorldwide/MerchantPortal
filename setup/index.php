@@ -43,8 +43,6 @@ if(file_exists("../ipp-autoconfig.php") && !isset($_POST["autosetup"])) {
     die();
 }
 if(isset($_POST["portal_title"])) {
-    echo "Portal Install";
-    die();
     function Zip($source, $destination)
     {
         if (!extension_loaded('zip') || !file_exists($source)) {
