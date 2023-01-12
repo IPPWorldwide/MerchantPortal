@@ -22,7 +22,7 @@ if(file_exists("../ipp-autoconfig.php") && !isset($_POST["autosetup"])) {
     $create_partner_args["cipher"]      = "ABX!lx3a<903234ASDF234WER¤%";
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,"http://api/create/partner.php");
+    curl_setopt($ch, CURLOPT_URL,"https://api.ippeurope.com/create/partner.php");
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($create_partner_args));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
