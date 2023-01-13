@@ -25,6 +25,23 @@ class IPPPlugins
             }
             closedir($handle);
         }
+        if(is_dir(BASEDIR . "mu-plugins")) {
+            if ($handle = opendir(BASEDIR . 'mu-plugins')) {
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != "." && $entry != ".." && $entry != "index.php") {
+                        include(BASEDIR . "plugins/".$entry."/init.php");
+                        $this->loadPlugin($entry);
+                        if(file_exists(BASEDIR . "mu-plugins/".$entry."/settings.php")) {
+                            $settings = [];
+                            include(BASEDIR . "mu-plugins/".$entry."/settings.php");
+                            if(isset($settings) && count($settings) > 0)
+                                $this->setSettingsValues($entry,$settings);
+                        }
+                    }
+                }
+                closedir($handle);
+            }
+        }
     }
 
     public function setAvailablePlugin($slug) {
