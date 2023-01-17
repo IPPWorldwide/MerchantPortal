@@ -1,13 +1,13 @@
 <?php
 include("b.php");
+$config     = new IPPConfig();
+
 if(isset($REQ["update"]) && $REQ["update"] == "true") {
     header( "Location: /update.php?version=".$ipp->version()->content->version);
     die();
 }
 if(isset($REQ["action"]) && $REQ["action"] === "addElement") {
-    include(BASEDIR . "controller/IPPConfig.php");
-    $config = new IPPConfig();
-    $current = strlen($config->ReadConfig("admin_user_".$id."_dashboard"))===0 ? "{}" : $config->ReadConfig("admin_user_".$id."_dashboard");
+    $current = $config->ReadConfig("admin_user_".$id."_dashboard");
     $current = json_decode($current, true);
     $current[][$REQ["data"]] = $REQ["type"];
     $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
@@ -57,6 +57,8 @@ if($_ENV["VERSION"] < $ipp->version()->content->version):
     endif;
 endforeach;
 endif;
+$elements = json_decode($config->ReadConfig("admin_user_".$id."_dashboard"), JSON_THROW_ON_ERROR,512);
+
 echo '
     <div class="row">
         <div class="col-6">
@@ -94,22 +96,13 @@ echo '
         </div>
     </div>
     <div class="row row-cols-md-3 mb-3">
-    <div class="col themed-grid-col chartscol" data-sequence="2">
-        <div class="content">
-            <canvas id="chart2" height="230px"></canvas>
-            <select data-sequence="2" name="type_2" id="type_2" data-updateframe="360000" class="form-control">
-                <option value="7d">Last 7 Days</option>
-                <option value="30d">Last 30 Days</option>
-                <option value="90d">Last 90 Days</option>
-                <option value="1y">Lastest year</option>
-            </select>
-        </div>
-        <div class="settings">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
-            </button>
-        </div>
-    </div>
+    ';
+    $i=1;
+    foreach($elements as $element) {
+        echo $partner_graph->GenerateHTML($i,$element[key($element)]);
+        $i++;
+    }
+    echo '
 </div>
 ';
 $load_script[] = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js";

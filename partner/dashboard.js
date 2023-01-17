@@ -109,7 +109,7 @@ items.forEach(function (item) {
        });
        setTimeout(function(){
          ReloadLive(sequence);
-       }, $("#type_" + sequence).data("updateframe"));
+       }, 5000);
      });
  }
  $(".btnChangeDashboard").on("click", function() {

@@ -15,7 +15,7 @@ class IPPPartnerGraph {
         $this->partner = $partner;
     }
 
-    public function GenerateView($ViewType="graph",$length=7) {
+    public function GenerateView($ViewType="graph",$length="7d") {
         $graphs = $this->partner->statisticCharts("daily",$length)->content;
         $data = [];
         $label = [];
@@ -28,6 +28,20 @@ class IPPPartnerGraph {
         }
         else
             return [];
+    }
+
+    public function GenerateHTML(int $i, string $ElementType) {
+        global $lang;
+        return '<div class="col themed-grid-col chartscol" data-sequence="'.$i.'">
+            <div class="content">
+                <canvas id="chart'.$i.'" height="230px"></canvas>
+            </div>
+            <div class="settings">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
+                </button>
+            </div>
+        </div>';
     }
 
     private function generateGraphJosn($label, $text, $data, $background='transparent', $border_color='#007bff', $border_width=2, $pointBackground='#007bff', $tension="0.5") {

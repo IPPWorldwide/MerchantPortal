@@ -2,4 +2,4 @@
 
 include("b.php");
 
-echo $partner_graph->GenerateView("graph",$REQ["type"]);
+echo $partner_graph->GenerateView("graph","7d");
