@@ -16,6 +16,11 @@ echo '
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["KEY_1"].'<br /><input name="security[key1]" class="form-control" value="'.$partner_data->security->key1.'"></div>
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["KEY_2"].'<br /><input name="security[key2]" class="form-control" value="'.$partner_data->security->key2.'"></div>
             </div>
+            <h2>'.$lang["COMPANY"]["DATA"]["HEADER_SESSION"].'</h2>
+            <div class="row row-cols-md-3 mb-3">
+                <div class="col themed-grid-col">'.$lang["COMPANY"]["DATA"]["USER_ID"].'<br /><input name="id" class="form-control" value="'.$ipp->getSession()["user_id"].'" readonly></div>
+                <div class="col themed-grid-col">'.$lang["COMPANY"]["DATA"]["SESSION_KEY"].'<br /><input name="security[key1]" class="form-control" value="'.$ipp->getSession()["session_id"].'"></div>
+            </div>            
             <h2>'.$lang["PARTNER"]["DATA"]["DETAILS"].'</h2>
             <div class="row row-cols-md-3 mb-3">
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["NAME"].'<br /><input name="meta[name]" class="form-control" value="'; echo $partner_data->meta_data->name ?? ""; echo '"></div>

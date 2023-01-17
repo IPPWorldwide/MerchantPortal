@@ -112,3 +112,29 @@ items.forEach(function (item) {
        }, $("#type_" + sequence).data("updateframe"));
      });
  }
+ $(".btnChangeDashboard").on("click", function() {
+   $(".settings").toggle();
+   if($(".AddNewElementToPage").css('display') == 'none') {
+     $(".AddNewElementToPage").css("display","contents");
+   } else {
+     $(".AddNewElementToPage").css("display","none");
+   }
+ });
+ function AddBtnAvailable() {
+   if($(".ElementType").val() !== "0" && $(".ElementContent").val() !== "0") {
+     $(".btnAddElement").removeAttr("disabled");
+   } else {
+     $(".btnAddElement").attr("disabled", "disabled");
+   }
+ }
+$(".ElementType").on("change", function() {
+  AddBtnAvailable();
+});
+$(".ElementContent").on("change", function() {
+  AddBtnAvailable();
+});
+$(".btnAddElement").on("click", function() {
+});
+$(function() {
+  $('.selectpicker').selectpicker();
+});
