@@ -63,20 +63,20 @@ echo '
             Add new Element
         </div>
         <div class="col-3">
-            <select type="select" class="form-select ElementType" name="ElementType">
-                <option value="0">-- CHOOSE TYPE --</option>
-                <option value="GraphBar">Graph, Bar</option>
-                <option value="GraphLine">Graph, Line</option>
-                <option value="Number">Number</option>
-            </select>
-        </div>
-        <div class="col-3">
             <div class="form-group row">
                 <select type="select" class="form-control ElementContent selectpicker" name="ElementContent" data-live-search="true">
                     <option value="0">-- CHOOSE DATA --</option>            
                     <option data-tokens="customers_created_7_days" value="customers_created_7_days">-- Created Customers, past 7 days --</option>            
                 </select>
             </div>
+        </div>
+        <div class="col-3">
+            <select type="select" class="form-select ElementType" name="ElementType">
+                <option value="0">-- CHOOSE TYPE --</option>
+                <option value="GraphBar">Graph, Bar</option>
+                <option value="GraphLine">Graph, Line</option>
+                <option value="Number">Number</option>
+            </select>
         </div>
         <div class="col-4">
             <button type="button" class="btn btn-success btnAddElement" disabled="disabled">
