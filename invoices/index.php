@@ -19,6 +19,7 @@ if(isset($REQ["id"])) {
 }
 $invoices = $ipp->Listinvoices();
 echo head();
+$actions->get_action("invoices");
 echo '
     <div class="row">
         <div class="col-6">

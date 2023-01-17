@@ -79,6 +79,8 @@ $bookeeping_providers = [];
 $known_invoices = [];
 
 echo head();
+$actions->get_action("partner_invoices");
+
 echo '
     <div class="row">
         <div class="col-6">

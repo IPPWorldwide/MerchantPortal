@@ -84,7 +84,7 @@ $lang["PARTNER"]["INVOICES_PLAN_SUBSCRIBERS"]["STATUS"] = "Status";
 $lang["PARTNER"]["DATA"]["HEADER"] = "Partner Data";
 $lang["PARTNER"]["DATA"]["PARTNER_ID"] = "Partner ID:";
 $lang["PARTNER"]["DATA"]["KEY_1"] = "Key 1:";
-$lang["PARTNER"]["DATA"]["KEY_2"] = "Key 2:";
+$lang["PARTNER"]["DATA"]["KEY_2"] = "Public API Key:";
 $lang["PARTNER"]["DATA"]["DETAILS"] = "Partner Details";
 $lang["PARTNER"]["DATA"]["NAME"] = "Partner Name:";
 $lang["PARTNER"]["DATA"]["COUNTRY"] = "Country:";
@@ -133,6 +133,7 @@ $lang["PARTNER"]["USERS_ADD"]["CREATE_USER"] = "Create User";
 $lang["PARTNER"]["PLUGINS"]["SETTINGS"] = "Settings";
 $lang["PARTNER"]["PLUGINS"]["INSTALL"] = "Install";
 $lang["PARTNER"]["PLUGINS"]["UNINSTALL"] = "Uninstall";
+$lang["PARTNER"]["PLUGINS"]["UPDATE"] = "Update";
 $lang["PARTNER"]["PLUGINS"]["VIEW_MORE"] = "Show more";
 $lang["PARTNER"]["PLUGINS"]["CLOSE"] = "Close";
 $lang["PARTNER"]["PLUGINS"]["SAVE"] = "Save";
@@ -189,7 +190,6 @@ $lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"] = "Change";
 $lang["PARTNER"]["DASHBOARD"]["ADD_ELEMENT"] = "Add new Element";
 
 
-
 $lang["COMPANY"]["DASHBOARD"]["HEADER"] = "Transactions";
 $lang["COMPANY"]["DASHBOARD"]["PAYMENT_TYPE"] = "Payment Type";
 $lang["COMPANY"]["DASHBOARD"]["STARTING_DATE"] = "Payments from";
@@ -214,6 +214,7 @@ $lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"] = "Cardholder";
 $lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Amount";
 $lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
+$lang["COMPANY"]["DASHBOARD"]["REASON"] = "Reason";
 $lang["COMPANY"]["DASHBOARD"]["INFO"] = "Info";
 
 

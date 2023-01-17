@@ -2,9 +2,11 @@
 include("../base.php");
 $merchant_data = $ipp->MerchantData();
 $isEcommChannel = false;
-foreach($merchant_data->channels as $channels){
-    if($channels == 'ecom'){
-        $isEcommChannel = true;
+if(isset($merchant_data->channels)) {
+    foreach($merchant_data->channels as $channels){
+        if($channels == 'ecom'){
+            $isEcommChannel = true;
+        }
     }
 }
 //$isEcommChannel = false;
@@ -16,6 +18,8 @@ if(isset($REQ["send_link"])) {
 }
 $sent_payment_links = $ipp->ListPaymentLinks();
 echo head();
+$actions->get_action("payment_links");
+
 echo "<h2>".$lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"]."</h2>";
 
 if(isset($REQ["sent"]) && $REQ["sent"] >= 1) {

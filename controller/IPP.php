@@ -63,8 +63,11 @@ class IPP {
     }
 
 
-    public function MerchantData($data = []) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+    public function MerchantData($data = [],$merchant_id="",$key1="") {
+        if($merchant_id === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        else
+            $data = ["company_id" => $merchant_id, "key1" => $key1];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data)->content;
     }
     public function MerchantDataUpdate($all_data = []) {
@@ -152,12 +155,14 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/search/", "POST", [], $data)->content;
     }
 
-    public function InstallPlugin($company_id,$slug) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+    public function InstallPlugin($company_id,$slug,$key1="") {
+        if($key1 === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+        else
+            $data = ["company_id" => $company_id, "key1" => $key1,"plugin_slug"=>$slug];
         $install = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/plugins/add/", "POST", [], $data)->content;
         require_once BASEDIR . "plugins/".$slug."/init.php";
         $new_pugin = new $slug();
-
         $standard_configs = $new_pugin->getStandardConfigs($slug);
         $std_settings = [];
         foreach($standard_configs as $value)
@@ -171,7 +176,42 @@ class IPP {
         }
         fwrite($myfile, $txt);
         fclose($myfile);
+
+        if(method_exists($new_pugin,"hookInstallCompany"))
+            $new_pugin->hookInstallCompany($install->plugin_id,$this->user_id,$this->session_id);
+
         return $install;
+    }
+    public function UpdatePluginSettingFile($ipp,$plugins,$plugin_slug,$company_data,$REQ,$FILES,$clean_value_storage=false) {
+        $data_fields = $plugins->available_plugins[$plugin_slug]->getFields();
+        $myfile = fopen(BASEDIR . "plugins/".$plugin_slug."/".$company_data->content->id."_settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($REQ as $key=>$value) {
+            $ipp->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
+            if($clean_value_storage)
+                $txt = "\$settings[\"".$key."\"] = " . $value . ";\n";
+            else
+                $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        foreach($data_fields as $value) {
+            if(isset($value["type"]) && $value["type"] === "file") {
+                if(isset($FILES[$value["id"]]['tmp_name'])) {
+                    $file = $FILES[$value["id"]]['tmp_name'];
+                    $file_data = base64_encode(file_get_contents($file));
+                    if($file_data !== "") {
+                        $ipp->UpdatePluginSettings($REQ["plugin_id"],$value["id"],$file_data);
+                        fwrite($myfile, "\$settings[\"".$value["id"]."\"] = '" . $file_data . "';\n");
+                    }
+                }
+            }
+        }
+        fclose($myfile);
+        $plugin = new $plugin_slug();
+        if(method_exists($plugin,"hookUpdate"))
+            $plugin->hookUpdate($plugin_slug,$REQ["plugin_id"],$REQ,$company_data->content->id);
+        return json_encode($REQ);
     }
     public function UpdatePluginSettings($plugin_id,$key,$value) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];

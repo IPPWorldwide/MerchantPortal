@@ -16,18 +16,6 @@ function listFolderFiles($dir)
     endforeach;
     return $allFileLists;
 }
-
-function flatten($array, $prefix = '') {
-    $result = array();
-    foreach($array as $key=>$value):
-        if(is_array($value)):
-            $result = $result + flatten($value, $prefix . $key . '/');
-        else:
-            $result[$prefix . $key] = $value;
-        endif;
-    endforeach;
-    return $result;
-}
 function cpy($source, $dest){
     if(is_dir($source)):
         $dir_handle=opendir($source);
@@ -48,13 +36,23 @@ function cpy($source, $dest){
         copy($source, $dest);
     endif;
 }
-
 function recurseRmdir($dir) {
     $files = array_diff(scandir($dir), array('.','..'));
     foreach ($files as $file):
         (is_dir("$dir/$file") && !is_link("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
     endforeach;
     return rmdir($dir);
+}
+function flatten($array, $prefix = '') {
+    $result = array();
+    foreach($array as $key=>$value):
+        if(is_array($value)):
+            $result = $result + flatten($value, $prefix . $key . '/');
+        else:
+            $result[$prefix . $key] = $value;
+        endif;
+    endforeach;
+    return $result;
 }
 
 $current_files = listFolderFiles('.');

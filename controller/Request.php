@@ -37,6 +37,10 @@ class IPPRequest {
         return $this->curl($_ENV["GLOBAL_BASE_URL"]."/".$url, "POST", [], $data);
     }
 
+    public function plugins($url, $data){
+        return $this->curl("https://plugins.ippworldwide.com/".$url, "GET", $data);
+    }
+
     public function curl($url, $type = 'POST', $query = [], $data = [], $headers = [],$file=false){
         global $_SESSION,$IPP_CONFIG;
         if(isset($this->user_id) && $this->user_id != "")
@@ -53,7 +57,8 @@ class IPPRequest {
         if($file) {
             $data["attached_file"] = new CURLFile($file['tmp_name'], $file['type'], $file['name']);
         }
-        $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
+        if(isset($IPP_CONFIG["PARTNER_ID"]))
+            $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);

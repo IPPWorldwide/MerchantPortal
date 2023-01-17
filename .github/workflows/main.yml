@@ -1,0 +1,52 @@
+name: Run integration tests
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-integration-tests:
+    name: Run integration tests
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Create Docker Images
+        env:
+            API_URL: ${{ secrets.API_URL }}
+            MERCHANT_URL: ${{ secrets.MERCHANT_URL }}
+            PARTNER_USERNAME: ${{ secrets.PARTNER_USERNAME }}
+            PARTNER_PASSWORD: ${{ secrets.PARTNER_PASSWORD }}
+            COMPANY_USERNAME: ${{ secrets.COMPANY_USERNAME }}
+            COMPANY_PASSWORD: ${{ secrets.COMPANY_PASSWORD }}
+            COMPANY_VERSION: ${{ secrets.COMPANY_VERSION }}
+            TESTING_CARDNO: ${{ secrets.TESTING_CARDNO }}
+        run: |
+          wget https://github.com/IPPWorldwide/Docker/archive/refs/heads/main.zip
+          unzip main.zip
+          cd Docker-main
+          docker-compose -f docker-compose.test.yml build
+      - name: Start Network
+        run: |
+          docker network create testing-net
+      - name: Start MerchantAdmin Containers
+        run: |
+          docker run -d --net testing-net --name merchantadmin --publish 9030:80 merchantadmin
+
+      - name: Perform Integration Tests
+        env:
+            API_URL: ${{ secrets.API_URL }}
+            MERCHANT_URL: ${{ secrets.MERCHANT_URL }}
+            PARTNER_USERNAME: ${{ secrets.PARTNER_USERNAME }}
+            PARTNER_PASSWORD: ${{ secrets.PARTNER_PASSWORD }}
+            COMPANY_USERNAME: ${{ secrets.COMPANY_USERNAME }}
+            COMPANY_PASSWORD: ${{ secrets.COMPANY_PASSWORD }}
+            COMPANY_VERSION: ${{ secrets.COMPANY_VERSION }}
+            TESTING_CARDNO: ${{ secrets.TESTING_CARDNO }}
+            TESTING_CARDNO_AMEX: ${{ secrets.TESTING_CARDNO_AMEX }}
+            TESTING_CARDNO_DISCOVER: ${{ secrets.TESTING_CARDNO_DISCOVER }}
+            API_AUTOMATIONS_URL: ${{ secrets.API_AUTOMATIONS_URL }}
+
+        run: |
+          docker run  --net testing-net --name testing --env API_URL=${{ secrets.API_URL }} --env MERCHANT_URL=${{ secrets.MERCHANT_URL }} --env PARTNER_USERNAME=${{ secrets.PARTNER_USERNAME }} --env PARTNER_PASSWORD=${{ secrets.PARTNER_PASSWORD }} --env COMPANY_USERNAME=${{ secrets.COMPANY_USERNAME }} --env COMPANY_PASSWORD=${{ secrets.COMPANY_PASSWORD }} --env TESTING_CARDNO_DISCOVER=${{ secrets.TESTING_CARDNO_DISCOVER }} --env TESTING_CARDNO_AMEX=${{ secrets.TESTING_CARDNO_AMEX }} --env TESTING_CARDNO=${{ secrets.TESTING_CARDNO }} --env COMPANY_VERSION=${{ secrets.COMPANY_VERSION }} --env API_AUTOMATIONS_URL=${{ secrets.API_AUTOMATIONS_URL }} --env TEST_PORTAL=1 testcases ./vendor/bin/phpunit test
+
+     

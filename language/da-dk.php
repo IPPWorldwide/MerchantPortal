@@ -76,7 +76,7 @@ $lang["PARTNER"]["INVOICES_PLAN"]["INFO"] = "Info";
 $lang["PARTNER"]["DATA"]["HEADER"] = "Partner Data";
 $lang["PARTNER"]["DATA"]["PARTNER_ID"] = "Partner ID:";
 $lang["PARTNER"]["DATA"]["KEY_1"] = "Nøgle 1:";
-$lang["PARTNER"]["DATA"]["KEY_2"] = "Nøgle 2:";
+$lang["PARTNER"]["DATA"]["KEY_2"] = "Offentlig API Key:";
 $lang["PARTNER"]["DATA"]["DETAILS"] = "Partner detaljer";
 $lang["PARTNER"]["DATA"]["NAME"] = "Partner navn:";
 $lang["PARTNER"]["DATA"]["COUNTRY"] = "Land:";
@@ -204,6 +204,7 @@ $lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"] = "Kortholder";
 $lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Beløb";
 $lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
+$lang["COMPANY"]["DASHBOARD"]["REASON"] = "Årsag";
 $lang["COMPANY"]["DASHBOARD"]["INFO"] = "Info";
 
 
@@ -399,7 +400,7 @@ $lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Relaterede transaktioner";
 $lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Svar fra indløseren";
 
 $lang["COMPANY"]["PAYMENT"]["CAPTURE"] = "Opkræv";
-$lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Forsøg reservation";
+$lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Forøg reservation";
 $lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refunder";
 $lang["COMPANY"]["PAYMENT"]["VOID"] = "Anuller handlingen";
 
@@ -419,7 +420,7 @@ $lang["PARTNER"]["ONBOARDING"]["APPROVED_PARTNER"] = "Afsluttet af Partner";
 $lang["PARTNER"]["ONBOARDING"]["APPROVED_ACQUIRER"] = "Afsluttet af Indløser";
 
 
-$lang["PARTNER"]["ONBOARDING"]["CLOSE"] = "Afbryd gå gå tilbage";
+$lang["PARTNER"]["ONBOARDING"]["CLOSE"] = "Afbryd, gå tilbage";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Forsæt trods fejlen";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Forsæt";
 

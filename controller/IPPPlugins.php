@@ -25,6 +25,23 @@ class IPPPlugins
             }
             closedir($handle);
         }
+        if(is_dir(BASEDIR . "mu-plugins")) {
+            if ($handle = opendir(BASEDIR . 'mu-plugins')) {
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != "." && $entry != ".." && $entry != "index.php") {
+                        include(BASEDIR . "plugins/".$entry."/init.php");
+                        $this->loadPlugin($entry);
+                        if(file_exists(BASEDIR . "mu-plugins/".$entry."/settings.php")) {
+                            $settings = [];
+                            include(BASEDIR . "mu-plugins/".$entry."/settings.php");
+                            if(isset($settings) && count($settings) > 0)
+                                $this->setSettingsValues($entry,$settings);
+                        }
+                    }
+                }
+                closedir($handle);
+            }
+        }
     }
 
     public function setAvailablePlugin($slug) {
@@ -88,11 +105,60 @@ class IPPPlugins
         return $settings;
     }
     public function getSettingsFields($plugin_name) {
+        global $partner_page;
         if(isset($this->available_plugins[$plugin_name])) {
-            return json_encode($this->available_plugins[$plugin_name]->getFields());
+            if(isset($partner_page) && $partner_page === 1) {
+                if(isset($this->available_plugins[$plugin_name]->company_plugin) && $this->available_plugins[$plugin_name]->company_plugin) {
+                    $fields = [];
+                    $all_fields = $this->available_plugins[$plugin_name]->getFields();
+                    foreach($all_fields as $value) {
+                        if(isset($value["access"]) && $value["access"] === "partner")
+                            $fields[] = $value;
+                    }
+                } else {
+                    $fields = $this->available_plugins[$plugin_name]->getFields();
+                }
+            } else {
+                if(isset($this->available_plugins[$plugin_name]->company_plugin) && $this->available_plugins[$plugin_name]->company_plugin) {
+                    $fields = [];
+                    $all_fields = $this->available_plugins[$plugin_name]->getFields();
+                    foreach($all_fields as $value) {
+                        if(!isset($value["access"]) || (isset($value["access"]) && $value["access"] !== "partner"))
+                            $fields[] = $value;
+                    }
+                } else {
+                    $fields = $this->available_plugins[$plugin_name]->getFields();
+                }
+            }
+            return json_encode($fields);
         }
         else {
             return "";
+        }
+    }
+    public function checkLatestVersion($request,$entry) {
+        $file = BASEDIR . "plugins/".$entry."/version.php";
+        if(file_exists( $file)) {
+            include_once($file);
+            if($version["checked"] < (time()-259200)) {
+                $plugin_version = $request->plugins("",["plugin"=>$entry]);
+                if($version["version"] !== $plugin_version) {
+                    $version["latest"] = 0;
+                    $txt = "<?php \n";
+                    foreach($version as $key=>$value) {
+                        $txt .= "\$version[\"".$key."\"] = '" . $value . "';\n";
+                    }
+                    $myfile = fopen($file, "w") or die("Unable to open file!");
+                    fwrite($myfile, $txt);
+                    fclose($myfile);
+                }
+            }
+        } else {
+            $version = $request->plugins("",["plugin"=>$entry]);
+            $txt = "<?php \n \$version[\"version\"] = '" . $version . "';\n \$version[\"checked\"] = '" . time() . "';\n \$version[\"latest\"] = '1';\n";
+            $myfile = fopen($file, "w") or die("Unable to open file!");
+            fwrite($myfile, $txt);
+            fclose($myfile);
         }
     }
     private function setSettingsValues($plugin_name,$values) {
@@ -205,9 +271,12 @@ class IPPPlugins
         if(isset($this->available_plugins[$plugin_name]->hook_onboarding))
             $this->hook_onboarding = $this->available_plugins[$plugin_name]->hook_onboarding;
 
-        if(isset($this->available_plugins[$plugin_name]->communication))
-            $this->communication = $this->available_plugins[$plugin_name]->communication;
-
+        if(isset($this->available_plugins[$plugin_name]->communication)) {
+            if(!is_object($this->communication))
+                $this->communication = new stdClass();
+            $this->communication->{$plugin_name} = new StdClass();
+            $this->communication->{$plugin_name} = $this->available_plugins[$plugin_name]->communication->{$plugin_name};
+        }
     }
 
 

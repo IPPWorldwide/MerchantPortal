@@ -48,8 +48,11 @@ class IPPPartner {
     }
 
 
-    public function AddMerchant($all_data = []) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+    public function AddMerchant($all_data = [],string $partner_id="",string $key2="") {
+        if($partner_id === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        else
+            $data = ["partner_id" => $partner_id, "key2" => $key2];
         $data = array_merge($all_data, $data);
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/add/", "POST", [], $data);
     }
@@ -95,6 +98,9 @@ class IPPPartner {
 
         $meta_data["acquirers"] = $all_data["acquirers"] ?? [];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update/", "POST", [], $meta_data)->content;
+    }
+    public function MerchantDataUpdateSlim($all_data = []) {
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/update/", "POST", [], $all_data)->content;
     }
 
     public function ValidateDomains($domains) {
@@ -228,15 +234,18 @@ class IPPPartner {
     public function OnboardingPartnerData($company_id,$all_data,$application_state) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id"=>$company_id,"state" => $application_state];
         $data = array_merge((array)$all_data, $data);
-        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/onboarding/validation/", "POST", [], $data);
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/onboarding/validation/", "POST", [], $data)->content;
     }
 
     public function RemovePlugin($id,$slug) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$id,"plugin_slug"=>$slug];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/close/", "POST", [], $data);
     }
-    public function InstallPlugin($slug) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+    public function InstallPlugin(string $slug,string $partner_id="",string $key1="") {
+        if($partner_id === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_slug"=>$slug];
+        else
+            $data = ["partner_id" => $partner_id, "key1" => $key1,"plugin_slug"=>$slug];
         $install = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/add/", "POST", [], $data)->content;
         require_once BASEDIR . "plugins/".$slug."/init.php";
         $new_pugin = new $slug();
@@ -260,13 +269,35 @@ class IPPPartner {
             $new_pugin->hookUpdate($slug,$install->plugin_id,$std_settings);
         return $install;
     }
+    public function UpdatePluginSettingFile($plugins,$plugin_slug,$plugin_id,$REQ,$FILES=[],$clean_value_storage=false) {
+        $data_fields = $plugins->GetPluginFields($plugin_id);
+        $myfile = fopen(BASEDIR . "plugins/".$plugin_slug."/settings.php", "w") or die("Unable to open file!");
+        $txt = "<?php\n";
+        fwrite($myfile, $txt);
+        foreach($REQ as $key=>$value) {
+            $this->UpdatePluginSettings($plugin_id,$key,$value);
+            if($clean_value_storage)
+                $txt = "\$settings[\"".$key."\"] = " . $value . ";\n";
+            else
+                $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
+            fwrite($myfile, $txt);
+        }
+        foreach($data_fields as $key=>$value) {
+                if(!isset($REQ[$key]))
+                    fwrite($myfile, "\$settings[\"".$key."\"] = '" . $value . "';\n");
+        }
+        fclose($myfile);
+        return json_encode($REQ);
+    }
     public function UpdatePluginSettings($plugin_id,$key,$value) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"plugin_id"=>$plugin_id,"key" => $key,"value"=>$value];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/plugins/update/", "POST", [], $data);
     }
-    public function purchaseTheme($theme_slug) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"themes"=>$theme_slug];
-        echo $_ENV["GLOBAL_BASE_URL"]."/themes/add.php?".http_build_query($data);
+    public function purchaseTheme($theme_slug,string $partner_id="",string $key1="") {
+        if($partner_id === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"themes"=>$theme_slug];
+        else
+            $data = ["partner_id" => $partner_id, "key1" => $key1,"themes"=>$theme_slug];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/themes/add.php", "POST", [], $data);
     }
 

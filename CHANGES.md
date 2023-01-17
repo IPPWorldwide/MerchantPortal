@@ -1,6 +1,3 @@
-- Improvements in Create Invoice
-- Subscription Subscribers improved
-- Onboarding Administrator made more visible
-- Improvement of Appearance Settings
-- User Access Added
-- User Admin of Access rights added
+* Improvements in Communication Scheme by @MathiasGajhede in https://github.com/IPPWorldwide/MerchantPortal/pull/99
+* Slim MerchantUpdater by @MathiasGajhede in https://github.com/IPPWorldwide/MerchantPortal/pull/100
+* Setup guide updated by @MathiasGajhede in https://github.com/IPPWorldwide/MerchantPortal/pull/101

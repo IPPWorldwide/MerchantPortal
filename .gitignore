@@ -2,7 +2,9 @@
 .env
 composer.lock
 .idea
+.ecommerce
 composer.lock
 ipp-config.php
 /plugins/
 theme/
+ecommerce/

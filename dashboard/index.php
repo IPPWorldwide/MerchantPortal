@@ -15,6 +15,7 @@ if($company_data->content->user->password->new) {
     $('#passwordModal #user-id').val('" . $_COOKIE["ipp_user_id"] .  "');";
 }
 echo head();
+$actions->get_action("dashboard");
 echo '
       <h2>'.$lang["COMPANY"]["DASHBOARD"]["HEADER"].'</h2>
         <div class="row row-cols-md-2 mb-2">
@@ -70,6 +71,7 @@ echo '
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["AMOUNT"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CURRENCY"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["STATUS"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["REASON"].'</th>
             </tr>
           </thead>
           <tbody>
@@ -92,6 +94,7 @@ if(is_array($transaction_list))
               <td>".number_format($value->amount/100,2,",",".")."</td>
               <td>".$currency->currency($value->currency)[0]."</td>
               <td>".$value->result."</td>
+              <td>".$value->reason."</td>              
             </tr>";
           }
 echo '
@@ -109,11 +112,11 @@ echo '
                         <input type="hidden" name="user_id" id="user-id" readonly>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">'.$lang["COMPANY"]["USERS"]["PASSWORD"].'</label>
-                            <input type="password" class="form-control checkPasswordUser" name="password" id="password">
+                            <input type="password" class="form-control checkPasswordUser" autocomplete="new-password" name="password" id="password">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">'.$lang["COMPANY"]["USERS"]["REPEAT_PASSWORD"].'</label>
-                            <input type="password" class="form-control checkPasswordUser" id="repeat-password">
+                            <input type="password" class="form-control checkPasswordUser" autocomplete="new-password" id="repeat-password">
                             <small id="PasswordRequirements">'.$lang["COMPANY"]["USERS"]["PASSWORD_REQUIREMENTS"].'</small>
                         </div>
                     </form>

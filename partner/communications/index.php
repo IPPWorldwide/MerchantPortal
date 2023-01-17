@@ -24,6 +24,8 @@ if(isset($plugins->communication)) {
     }
 }
 echo head();
+$actions->get_action("partner_communcations");
+
 echo '
     <div class="row">
         <div class="col-6">

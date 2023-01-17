@@ -18,34 +18,14 @@ if(isset($REQ["external"])) {
     die();
 }
 if(isset($REQ["plugin_slug"])) {
-    $data_fields = $plugins->available_plugins[$REQ["plugin_slug"]]->getFields();
-    $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/".$company_data->content->id."_settings.php", "w") or die("Unable to open file!");
-    $txt = "<?php\n";
-    fwrite($myfile, $txt);
-    foreach($REQ as $key=>$value) {
-        $ipp->UpdatePluginSettings($REQ["plugin_id"],$key,$value);
-        $txt = "\$settings[\"".$key."\"] = '" . $value . "';\n";
-        fwrite($myfile, $txt);
-    }
-    foreach($data_fields as $value) {
-        if(isset($value["type"]) && $value["type"] === "file") {
-            if(isset($_FILES[$value["id"]]['tmp_name'])) {
-                $file = $_FILES[$value["id"]]['tmp_name'];
-                $file_data = base64_encode(file_get_contents($file));
-                if($file_data !== "") {
-                    $ipp->UpdatePluginSettings($REQ["plugin_id"],$value["id"],$file_data);
-                    fwrite($myfile, "\$settings[\"".$value["id"]."\"] = '" . $file_data . "';\n");
-                }
-            }
-        }
-    }
-    fclose($myfile);
+    $ipp->UpdatePluginSettingFile($ipp,$plugins,$REQ["plugin_slug"],$company_data,$REQ,$_FILES);
     echo json_encode($REQ);
     die();
 }
 $all_plugins = array_merge((array)$plugins->getAvailablePlugins(true));
 
 echo head();
+$actions->get_action("extensions");
 
 echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
 ';
@@ -64,7 +44,7 @@ foreach($all_plugins as $key=>$value) {
           <div class="card shadow-sm">
               <p class="card-header">'.$name.'</p>
             ';
-    if($value->image !== NULL) {
+    if(isset($value->image) && $value->image !== NULL) {
         echo '<div class="plugin-thumbnail"><img src="'.$value->image.'"></div>';
     } else {
         echo '<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>';

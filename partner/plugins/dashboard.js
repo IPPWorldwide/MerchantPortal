@@ -72,6 +72,20 @@ $('.removeModal').on('click', function () {
         }
     });
 });
+$('.UpdateModal').on('click', function () {
+    var btn = $(this);
+    let plugin_type = $(this).data("local-plugin");
+    let plugin_div = $(`[data-plugin-id="${$(this).data("plugin-name")}"]`);
+    var btn2 = $('.plugin-btn-'+$(this).attr("data-plugin-key"));
+    plugin_div.find(".btnShowMore").attr("data-installed","0");
+    $("#pluginViewMoreModal .pluginSettingsModal").css("display","none");
+    $.post( "update.php", { id: $(this).attr("data-plugin-id"), plugin: $(this).attr("data-plugin-name"),file: $(this).data("plugin-file")  })
+        .done(function( data ) {
+            if(data === "") {
+                btn.css("display","none");
+            }
+        });
+});
 $(".btnShowMore").on("click", function() {
     $this = $(this);
     $("#pluginModal .modal-header").html($this.attr("data-name"));
@@ -141,6 +155,9 @@ function plugin_fields(field_type,text,name,id,value,hidden) {
 
         if(field_type[0] === "file") {
             htmlelement += "<input type=\"file\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\">";
+        }
+        else if(field_type[0] === "textarea") {
+            htmlelement += "<textarea type=\"file\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\">" + value + "</textarea>";
         } else {
             htmlelement += "<input type=\"text\" class=\"form-control\" name=\""+name+"\" id=\""+id+"\" value=\"" + value + "\">";
         }

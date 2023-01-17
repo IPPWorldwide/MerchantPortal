@@ -23,7 +23,10 @@ if(isset($REQ["language"])) {
     exit;
 }
 if(isset($REQ["setup"])) {
-    $utils->rrmdir("setup");
+    if(is_dir("setup"))
+        $utils->rrmdir("setup");
+    if(is_dir("tmp"))
+        $utils->rrmdir("tmp");
 }
 if(
         isset($REQ["username"]) && strlen($REQ["username"]) > 2 &&
