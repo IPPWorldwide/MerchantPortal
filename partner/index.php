@@ -99,7 +99,7 @@ echo '
     ';
     $i=1;
     foreach($elements as $element) {
-        echo $partner_graph->GenerateHTML($i,$element[key($element)]);
+        echo $partner_graph->GenerateHTML($i,$partner_graph->getDataSource(key($element))["time"],$partner_graph->getDataSource(key($element))["period"],key($element),$element[key($element)]);
         $i++;
     }
     echo '

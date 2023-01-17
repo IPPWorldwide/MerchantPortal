@@ -15,26 +15,33 @@ class IPPPartnerGraph {
         $this->partner = $partner;
     }
 
-    public function GenerateView($ViewType="graph",$length="7d") {
-        $graphs = $this->partner->statisticCharts("daily",$length)->content;
+    public function GenerateView($ViewType="graph",$datasource="tansactions",$length="7d") {
+        $graphs = $this->partner->statisticCharts("daily",$datasource,$length)->content;
         $data = [];
         $label = [];
         foreach($graphs as $value) {
             $label[] = $value->display;
             $data[] = $value->count;
         }
-        if($ViewType==="graph") {
-            return $this->generateGraphJosn($label, "Transactions",$data);
+        if($ViewType==="GraphLine") {
+            return $this->generateGraphJson($label, "Transactions",$data);
+        }
+        elseif($ViewType==="Number") {
+            return $this->generateNumberJson($label, "Transactions",$data);
         }
         else
             return [];
     }
 
-    public function GenerateHTML(int $i, string $ElementType) {
+    public function GenerateHTML(int $i, $time, $period, string $ElementData, string $ElementType) {
         global $lang;
-        return '<div class="col themed-grid-col chartscol" data-sequence="'.$i.'">
+        $html = '<div class="col themed-grid-col chartscol dashboard" data-sequence="'.$i.'" data-data="'.$ElementData.'" data-type="'.$ElementType.'">
             <div class="content">
-                <canvas id="chart'.$i.'" height="230px"></canvas>
+                <h2>Transactions past '.$time.' ';
+                if($period == "d") {
+                    $html .= "days";
+                } $html .= '</h2>
+                <canvas id="chart'.$i.'" height="130px"></canvas>
             </div>
             <div class="settings">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -42,9 +49,23 @@ class IPPPartnerGraph {
                 </button>
             </div>
         </div>';
+        return $html;
     }
 
-    private function generateGraphJosn($label, $text, $data, $background='transparent', $border_color='#007bff', $border_width=2, $pointBackground='#007bff', $tension="0.5") {
+    private function generateNumberJson($label,$text,$data) {
+        $count = 0;
+        foreach($data as $value)
+            $count+=$value;
+        echo json_encode([
+            "type" => "number",
+            "data" => [
+                "label"  => $text,
+                "number" => $count,
+            ],
+        ],JSON_THROW_ON_ERROR);
+    }
+
+    private function generateGraphJson($label, $text, $data, $background='transparent', $border_color='#007bff', $border_width=2, $pointBackground='#007bff', $tension="0.5") {
         echo json_encode([
             "type" => "line",
             "data" => [
@@ -79,90 +100,23 @@ class IPPPartnerGraph {
         ], JSON_THROW_ON_ERROR, 256);
     }
 
-    public function graph_1($request)
-    {
-        $graphs = $this->partner->statisticCharts("live",$request["type"])->content;
-        $data = [];
-        $label = [];
-        foreach($graphs as $value) {
-            $label[] = $value->display;
-            $data[] = $value->count;
+    public function getDataSource($data) {
+        if($data==="customers_created_7_days") {
+            $datasource = "transactions";
+            $time   = 7;
+            $period = "d";
         }
-        echo json_encode([
-            "type" => "line",
-            "data" => [
-                "labels" => array_reverse($label),
-                "datasets" => array([
-                    "label" => "Transactions",
-                    "data" => array_reverse($data),
-                    "backgroundColor" => 'transparent',
-                    "borderColor" => '#007bff',
-                    "borderWidth" => 2,
-                    "pointBackgroundColor" =>'#007bff',
-                    "tension" => 0.5,
-                ])
-            ],
-            "options" => [
-                "scales" => [
-                    "yAxes" => [
-                        [
-                            "ticks" => [
-                                "beginAtZero" => false
-                            ]
-                        ]
-                    ]
-                ],
-                "legend" => [
-                    "display" => true
-                ],
-                "interaction" => [
-                    "intersect" => false,
-                ],
-            ]
-        ]);
+
+
+        return [
+            "source" => $datasource,
+            "time"   => $time,
+            "length" => $time . $period,
+            "period" => $period
+        ];
     }
-    public function graph_2($request)
-    {
-        $graphs = $this->partner->statisticCharts("daily",$request["type"])->content;
-        $data = [];
-        $label = [];
-        foreach($graphs as $value) {
-            $label[] = $value->display;
-            $data[] = $value->count;
-        }
-        echo json_encode([
-            "type" => "line",
-            "data" => [
-                "labels" => array_reverse($label),
-                "datasets" => array([
-                    "label" => "Daily transactions",
-                    "data" => array_reverse($data),
-                    "backgroundColor" => 'transparent',
-                    "borderColor" => '#007bff',
-                    "borderWidth" => 2,
-                    "pointBackgroundColor" =>'#007bff',
-                    "tension" => 0.5,
-                ])
-            ],
-            "options" => [
-                "scales" => [
-                    "yAxes" => [
-                        [
-                            "ticks" => [
-                                "beginAtZero" => false
-                            ]
-                        ]
-                    ]
-                ],
-                "legend" => [
-                    "display" => true
-                ],
-                "interaction" => [
-                    "intersect" => false,
-                ],
-            ]
-        ]);
-    }
+
+    /*
     public function graph_3($request)
     {
         $graphs = $this->partner->statisticCharts("yearly",$request["type"])->content;
@@ -205,7 +159,6 @@ class IPPPartnerGraph {
             ]
         ]);
     }
-    /*
     public function graphCompare()
     {
         $data = [];

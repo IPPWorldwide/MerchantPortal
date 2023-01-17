@@ -235,3 +235,9 @@ input:checked + .slider:before {
 .AddNewElementToPage {
   display: none;
 }
+canvas {
+  width: 100%;
+}
+.dashboard .content h2 {
+  text-align: center;
+}

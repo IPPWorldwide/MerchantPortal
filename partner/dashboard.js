@@ -13,13 +13,15 @@ let graphs = document.querySelectorAll('.col');
 let renders = [];
 graphs.forEach(ele => {
   renders[ele.dataset.sequence] = (sequence) => {
-    ReloadLive(sequence);
+    var dashboardElement = $("body").find('[data-sequence='+sequence+']');
+    console.log($("body").find('[data-sequence='+sequence+']'));
+    ReloadLive(sequence,dashboardElement.data("data"), dashboardElement.data("type"));
   }
 });
-
 renders.forEach((e, key) => {
   e(key);
 });
+/*
 
 let items = document.querySelectorAll('.row .col');
 
@@ -95,20 +97,31 @@ items.forEach(function (item) {
     item.addEventListener('dragend', handleDragEnd);
     item.addEventListener('drop', handleDrop);
 });
+*/
 
- function ReloadLive(sequence) {
-     $.get( "graphs.php", { graph: sequence, type: $("#type_" + sequence).val() })
-     .done(function( data ) {
-       let json = JSON.parse(data);
-       console.log(json);
-       var ctx = document.getElementById(`chart${sequence}`).getContext('2d');
-       var myChart = new Chart(ctx, {
-         type: json.type,
-         data: json.data,
-         options: json.options
-       });
+function ReloadLive(sequence, data, type) {
+   console.log(type);
+     $.get( "graphs.php", { graph: sequence, data: data, type: type })
+     .done(function( getData ) {
+       let json = JSON.parse(getData);
+       var ctxe = document.getElementById(`chart${sequence}`);
+       var ctx = ctxe.getContext('2d');
+       if(type==="GraphLine") {
+         var myChart = new Chart(ctx, {
+           type: json.type,
+           data: json.data,
+           options: json.options
+         });
+       }
+       else if(type==="Number") {
+         ctx.fillStyle = "blue";
+         ctx.font = "22px Arial";
+         ctx.textAlign = 'center';
+         ctx.textBaseline = 'middle';
+         ctx.fillText(json.data.number, (ctxe.width / 2), (ctxe.height / 2));
+       }
        setTimeout(function(){
-         ReloadLive(sequence);
+         ReloadLive(sequence, data, type);
        }, 5000);
      });
  }
