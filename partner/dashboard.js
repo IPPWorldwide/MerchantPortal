@@ -97,7 +97,7 @@ items.forEach(function (item) {
 });
 
  function ReloadLive(sequence) {
-   $.get( "graphs.php", { graph: sequence, type: $("#type_" + sequence).val() })
+     $.get( "graphs.php", { graph: sequence, type: $("#type_" + sequence).val() })
      .done(function( data ) {
        let json = JSON.parse(data);
        console.log(json);
@@ -120,6 +120,15 @@ items.forEach(function (item) {
      $(".AddNewElementToPage").css("display","none");
    }
  });
+ $(".btnAddElement").on("click", function() {
+   AddDashboardElement();
+});
+ function AddDashboardElement() {
+   $.post( "?", { action: "addElement", data: $(".selectpicker").val(), type: $(".ElementType").val() })
+     .done(function( data ) {
+       console.log( data );
+     });
+ }
  function AddBtnAvailable() {
    if($(".ElementType").val() !== "0" && $(".ElementContent").val() !== "0") {
      $(".btnAddElement").removeAttr("disabled");

@@ -15,6 +15,56 @@ class IPPPartnerGraph {
         $this->partner = $partner;
     }
 
+    public function GenerateView($ViewType="graph",$length=7) {
+        $graphs = $this->partner->statisticCharts("daily",$length)->content;
+        $data = [];
+        $label = [];
+        foreach($graphs as $value) {
+            $label[] = $value->display;
+            $data[] = $value->count;
+        }
+        if($ViewType==="graph") {
+            return $this->generateGraphJosn($label, "Transactions",$data);
+        }
+        else
+            return [];
+    }
+
+    private function generateGraphJosn($label, $text, $data, $background='transparent', $border_color='#007bff', $border_width=2, $pointBackground='#007bff', $tension="0.5") {
+        echo json_encode([
+            "type" => "line",
+            "data" => [
+                "labels" => array_reverse($label),
+                "datasets" => array([
+                    "label" => $text,
+                    "data" => array_reverse($data),
+                    "backgroundColor" => $background,
+                    "borderColor" => $border_color,
+                    "borderWidth" => $border_width,
+                    "pointBackgroundColor" => $pointBackground,
+                    "tension" => $tension,
+                ])
+            ],
+            "options" => [
+                "scales" => [
+                    "yAxes" => [
+                        [
+                            "ticks" => [
+                                "beginAtZero" => false
+                            ]
+                        ]
+                    ]
+                ],
+                "legend" => [
+                    "display" => true
+                ],
+                "interaction" => [
+                    "intersect" => false,
+                ],
+            ]
+        ], JSON_THROW_ON_ERROR, 256);
+    }
+
     public function graph_1($request)
     {
         $graphs = $this->partner->statisticCharts("live",$request["type"])->content;
@@ -141,7 +191,8 @@ class IPPPartnerGraph {
             ]
         ]);
     }
-    public function graph_4()
+    /*
+    public function graphCompare()
     {
         $data = [];
         $data2 = [];
@@ -194,4 +245,5 @@ class IPPPartnerGraph {
             ]
         ]);
     }
+    */
 }

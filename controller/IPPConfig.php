@@ -22,4 +22,10 @@ class IPPConfig {
         fclose($myfile);
     }
 
+    public function ReadConfig($value): string
+    {
+        global $IPP_CONFIG;
+        return $IPP_CONFIG[strtoupper($value)] ?? "";
+    }
+
 }

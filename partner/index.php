@@ -1,9 +1,19 @@
 <?php
 include("b.php");
-if(isset($REQ["update"]) && $REQ["update"] == "true"):
+if(isset($REQ["update"]) && $REQ["update"] == "true") {
     header( "Location: /update.php?version=".$ipp->version()->content->version);
     die();
-endif;
+}
+if(isset($REQ["action"]) && $REQ["action"] === "addElement") {
+    include(BASEDIR . "controller/IPPConfig.php");
+    $config = new IPPConfig();
+    $current = strlen($config->ReadConfig("admin_user_".$id."_dashboard"))===0 ? "{}" : $config->ReadConfig("admin_user_".$id."_dashboard");
+    $current = json_decode($current, true);
+    $current[][$REQ["data"]] = $REQ["type"];
+    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
+    $config = $config->WriteConfig();
+    die();
+}
 if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
     if(class_exists('ZipArchive')) {
         $src = BASEDIR."plugins/interactive_guide/";
@@ -33,7 +43,6 @@ if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
 }
 echo head();
 $actions->get_action("partner_dashboard");
-
 if($_ENV["VERSION"] < $ipp->version()->content->version):
     ?>
     <div class="alert alert-warning" role="alert"><?=$lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"]?><a href='?update=true'><?=$lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"]?></a></div>
@@ -85,20 +94,6 @@ echo '
         </div>
     </div>
     <div class="row row-cols-md-3 mb-3">
-    <div class="col themed-grid-col chartscol" data-sequence="1">
-        <div class="content">
-            <canvas id="chart1" height="230px"></canvas>
-            <select data-sequence="1" name="type_1" id="type_1" data-updateframe="30000" class="form-control">
-                <option value="10m">Last 10 Minutes</option>
-                <option value="30m">Last 30 Minutes</option>
-            </select>
-        </div>
-        <div class="settings">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
-            </button>
-        </div>
-    </div>
     <div class="col themed-grid-col chartscol" data-sequence="2">
         <div class="content">
             <canvas id="chart2" height="230px"></canvas>
@@ -107,21 +102,6 @@ echo '
                 <option value="30d">Last 30 Days</option>
                 <option value="90d">Last 90 Days</option>
                 <option value="1y">Lastest year</option>
-            </select>
-        </div>
-        <div class="settings">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
-            </button>
-        </div>
-    </div>
-    <div class="col themed-grid-col chartscol" data-sequence="3">
-        <div class="content">
-            <canvas id="chart3" height="230px"></canvas>
-            <select data-sequence="3" name="type_3" id="type_3" data-updateframe="480000" class="form-control">
-                <option value="1y">1 year</option>
-                <option value="2y">2 years</option>
-                <option value="3y">3 years</option>
             </select>
         </div>
         <div class="settings">
