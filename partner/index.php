@@ -112,7 +112,7 @@ echo '
     <div class="row row-cols-md-3 mb-3 DashboardElements">
     ';
     $i=1;
-    if(isset($elements) && is_array((array)$elements) && (array)count($elements)>1) {
+    if(isset($elements) && is_array((array)$elements) && count((array)$elements)>1) {
         foreach($elements as $element) {
             echo $partner_graph->GenerateHTML($i,$partner_graph->getDataSource(key($element))["title"],key($element),$element[key($element)]);
             $i++;
