@@ -14,7 +14,6 @@ let renders = [];
 graphs.forEach(ele => {
   renders[ele.dataset.sequence] = (sequence) => {
     var dashboardElement = $("body").find('[data-sequence='+sequence+']');
-    console.log($("body").find('[data-sequence='+sequence+']'));
     ReloadLive(sequence,dashboardElement.data("data"), dashboardElement.data("type"));
   }
 });
@@ -100,7 +99,6 @@ items.forEach(function (item) {
 */
 
 function ReloadLive(sequence, data, type) {
-   console.log(type);
      $.get( "graphs.php", { graph: sequence, data: data, type: type })
      .done(function( getData ) {
        let json = JSON.parse(getData);
@@ -122,9 +120,23 @@ function ReloadLive(sequence, data, type) {
        }
        setTimeout(function(){
          ReloadLive(sequence, data, type);
-       }, 5000);
+       }, 60000);
      });
  }
+ $(".DashboardRemoveElement").on("click", function() {
+     var $this = $(this).parent().parent();
+     var sequence = $this.attr("data-sequence");
+     $.post( "?", { action: "removeElement", sequence: sequence });
+     $("div").filter(function() {
+         return parseInt($(this).attr("data-sequence")) > sequence;
+     }).each(function(){
+         newId = parseInt($(this).attr("data-sequence")) - 1;
+         $(this).attr("data-sequence", newId);
+     })
+         ;
+
+     $this.remove();
+ });
  $(".btnChangeDashboard").on("click", function() {
    $(".settings").toggle();
    if($(".AddNewElementToPage").css('display') == 'none') {
@@ -137,9 +149,9 @@ function ReloadLive(sequence, data, type) {
    AddDashboardElement();
 });
  function AddDashboardElement() {
-   $.post( "?", { action: "addElement", data: $(".selectpicker").val(), type: $(".ElementType").val() })
+   $.post( "?", { action: "addElement", data: $(".selectpicker").val(), type: $(".ElementType").val(), total: $(".row .chartscol.dashboard").length })
      .done(function( data ) {
-       console.log( data );
+       $(".DashboardElements").append(data);
      });
  }
  function AddBtnAvailable() {

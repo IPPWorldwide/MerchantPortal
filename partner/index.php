@@ -12,6 +12,15 @@ if(isset($REQ["action"]) && $REQ["action"] === "addElement") {
     $current[][$REQ["data"]] = $REQ["type"];
     $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
     $config = $config->WriteConfig();
+    echo $partner_graph->GenerateHTML(($REQ["total"]+1),$partner_graph->getDataSource($REQ["data"])["title"],$REQ["data"],$REQ["type"]);
+    die();
+}
+if(isset($REQ["action"]) && $REQ["action"] === "removeElement") {
+    $current = $config->ReadConfig("admin_user_".$id."_dashboard");
+    $current = json_decode($current, true);
+    array_splice($current, ($REQ["sequence"]-1), 1);
+//    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
+//    $config = $config->WriteConfig();
     die();
 }
 if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
@@ -58,7 +67,7 @@ if($_ENV["VERSION"] < $ipp->version()->content->version):
 endforeach;
 endif;
 $elements = json_decode($config->ReadConfig("admin_user_".$id."_dashboard"), JSON_THROW_ON_ERROR,512);
-
+$available_elements = $partner_graph->getDataSources();
 echo '
     <div class="row">
         <div class="col-6">
@@ -76,8 +85,12 @@ echo '
         <div class="col-3">
             <div class="form-group row">
                 <select type="select" class="form-control ElementContent selectpicker" name="ElementContent" data-live-search="true">
-                    <option value="0">-- CHOOSE DATA --</option>            
-                    <option data-tokens="customers_created_7_days" value="customers_created_7_days">-- Created Customers, past 7 days --</option>            
+                    <option value="0">-- CHOOSE DATA --</option>           
+                    ';
+                    foreach($available_elements as $value) {
+                        echo '<option data-tokens="'.$value["id"].'" value="'.$value["id"].'">'.$value["title"].'</option>';
+                    }
+                    echo '
                 </select>
             </div>
         </div>
@@ -94,13 +107,20 @@ echo '
               '.$lang["PARTNER"]["DASHBOARD"]["ADD_ELEMENT"].'
             </button>
         </div>
+        <div class="col-12">&nbsp;</div>
     </div>
-    <div class="row row-cols-md-3 mb-3">
+    <div class="row row-cols-md-3 mb-3 DashboardElements">
     ';
     $i=1;
-    foreach($elements as $element) {
-        echo $partner_graph->GenerateHTML($i,$partner_graph->getDataSource(key($element))["time"],$partner_graph->getDataSource(key($element))["period"],key($element),$element[key($element)]);
-        $i++;
+    if(isset($elements) && is_array((array)$elements) && (array)count($elements)>1) {
+        foreach($elements as $element) {
+            echo $partner_graph->GenerateHTML($i,$partner_graph->getDataSource(key($element))["title"],key($element),$element[key($element)]);
+            $i++;
+        }
+    } else {
+        echo $partner_graph->GenerateHTML(1,$partner_graph->getDataSource("customers_created_7_days")["title"],"customers_created_7_days","GraphLine");
+        echo $partner_graph->GenerateHTML(2,$partner_graph->getDataSource("transactions_approved_7_days")["title"],"transactions_approved_7_days","GraphLine");
+        echo $partner_graph->GenerateHTML(3,$partner_graph->getDataSource("transactions_approved_30_days")["title"],"transactions_approved_30_days","GraphLine");
     }
     echo '
 </div>

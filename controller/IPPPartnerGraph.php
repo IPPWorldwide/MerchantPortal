@@ -33,18 +33,15 @@ class IPPPartnerGraph {
             return [];
     }
 
-    public function GenerateHTML(int $i, $time, $period, string $ElementData, string $ElementType) {
+    public function GenerateHTML(int $i, $title, string $ElementData, string $ElementType) {
         global $lang;
         $html = '<div class="col themed-grid-col chartscol dashboard" data-sequence="'.$i.'" data-data="'.$ElementData.'" data-type="'.$ElementType.'">
             <div class="content">
-                <h2>Transactions past '.$time.' ';
-                if($period == "d") {
-                    $html .= "days";
-                } $html .= '</h2>
+                <h2>'.$title.'</h2>
                 <canvas id="chart'.$i.'" height="130px"></canvas>
             </div>
             <div class="settings">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="btn btn-warning DashboardRemoveElement">
                   '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
                 </button>
             </div>
@@ -100,15 +97,54 @@ class IPPPartnerGraph {
         ], JSON_THROW_ON_ERROR, 256);
     }
 
+    public function getDataSources() {
+        $sources = [];
+        $sources["customers_created_7_days"] = [
+            "id"            => "customers_created_7_days",
+            "title"         => "Created Customers, past 7 days",
+            "datasource"    => "company",
+            "time"          => 7,
+            "period"        => "d"
+        ];
+        $sources["customers_created_30_days"] = [
+            "id"            => "customers_created_30_days",
+            "title"         => "Created Customers, past 30 days",
+            "datasource"    => "company",
+            "time"          => 30,
+            "period"        => "d"
+        ];
+        $sources["transactions_approved_7_days"] = [
+            "id"            => "transactions_approved_7_days",
+            "title"         => "Approved Transactions, past 7 days",
+            "datasource"    => "transactions",
+            "time"          => 7,
+            "period"        => "d"
+        ];
+        $sources["transactions_approved_14_days"] = [
+            "id"            => "transactions_approved_14_days",
+            "title"         => "Approved Transactions, past 14 days",
+            "datasource"    => "transactions",
+            "time"          => 14,
+            "period"        => "d"
+        ];
+        $sources["transactions_approved_30_days"] = [
+            "id"            => "transactions_approved_30_days",
+            "title"         => "Approved Transactions, past 30 days",
+            "datasource"    => "transactions",
+            "time"          => 30,
+            "period"        => "d"
+        ];
+        return $sources;
+    }
+
     public function getDataSource($data) {
-        if($data==="customers_created_7_days") {
-            $datasource = "transactions";
-            $time   = 7;
-            $period = "d";
-        }
-
-
+        $source_list = $this->getDataSources();
+        $title = $source_list[$data]["title"];
+        $datasource = $source_list[$data]["datasource"];
+        $time = $source_list[$data]["time"];
+        $period = $source_list[$data]["period"];
         return [
+            "title"  => $title,
             "source" => $datasource,
             "time"   => $time,
             "length" => $time . $period,
