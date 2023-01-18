@@ -111,9 +111,11 @@ class IPPPlugins
                 if(isset($this->available_plugins[$plugin_name]->company_plugin) && $this->available_plugins[$plugin_name]->company_plugin) {
                     $fields = [];
                     $all_fields = $this->available_plugins[$plugin_name]->getFields();
-                    foreach($all_fields as $value) {
-                        if(isset($value["access"]) && $value["access"] === "partner")
-                            $fields[] = $value;
+                    if(!is_null($all_fields)) {
+                        foreach($all_fields as $value) {
+                            if(isset($value["access"]) && $value["access"] === "partner")
+                                $fields[] = $value;
+                        }
                     }
                 } else {
                     $fields = $this->available_plugins[$plugin_name]->getFields();

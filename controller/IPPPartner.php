@@ -302,8 +302,8 @@ class IPPPartner {
     }
 
 
-    public function statisticCharts($chart,$period) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"type"=>$chart,"period"=>$period];
+    public function statisticCharts($chart,$datasource,$period) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"type"=>$chart,"source"=>$datasource,"period"=>$period];
         $curl = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/", "POST", [], $data);
 
         return $curl;

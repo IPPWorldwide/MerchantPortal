@@ -1,5 +1,4 @@
 <?php
 
 include("b.php");
-
-$partner_graph->{"graph_" . $_GET['graph']}($_GET);
+echo $partner_graph->GenerateView($REQ["type"],$partner_graph->getDataSource($REQ["data"])["source"],$partner_graph->getDataSource($REQ["data"])["length"]);

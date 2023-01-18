@@ -27,8 +27,8 @@ include(BASEDIR . "controller/IPPUtils.php");
 include(BASEDIR . "controller/IPPPartnerGraph.php");
 include(BASEDIR . "controller/IPPLanguages.php");
 include(BASEDIR . "controller/IPPActions.php");
-
-$_ENV           = $IPP_CONFIG;
+include(BASEDIR . "controller/IPPConfig.php");
+$_ENV       = $IPP_CONFIG;
 $RequestP   = new RequestParams();
 $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"],$_GET,$_POST);
 

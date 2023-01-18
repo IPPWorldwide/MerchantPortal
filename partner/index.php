@@ -1,9 +1,28 @@
 <?php
 include("b.php");
-if(isset($REQ["update"]) && $REQ["update"] == "true"):
+$config     = new IPPConfig();
+
+if(isset($REQ["update"]) && $REQ["update"] == "true") {
     header( "Location: /update.php?version=".$ipp->version()->content->version);
     die();
-endif;
+}
+if(isset($REQ["action"]) && $REQ["action"] === "addElement") {
+    $current = $config->ReadConfig("admin_user_".$id."_dashboard");
+    $current = json_decode($current, true);
+    $current[][$REQ["data"]] = $REQ["type"];
+    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
+    $config = $config->WriteConfig();
+    echo $partner_graph->GenerateHTML(($REQ["total"]+1),$partner_graph->getDataSource($REQ["data"])["title"],$REQ["data"],$REQ["type"]);
+    die();
+}
+if(isset($REQ["action"]) && $REQ["action"] === "removeElement") {
+    $current = $config->ReadConfig("admin_user_".$id."_dashboard");
+    $current = json_decode($current, true);
+    array_splice($current, ($REQ["sequence"]-1), 1);
+//    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
+//    $config = $config->WriteConfig();
+    die();
+}
 if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
     if(class_exists('ZipArchive')) {
         $src = BASEDIR."plugins/interactive_guide/";
@@ -33,7 +52,6 @@ if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
 }
 echo head();
 $actions->get_action("partner_dashboard");
-
 if($_ENV["VERSION"] < $ipp->version()->content->version):
     ?>
     <div class="alert alert-warning" role="alert"><?=$lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"]?><a href='?update=true'><?=$lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"]?></a></div>
@@ -48,6 +66,8 @@ if($_ENV["VERSION"] < $ipp->version()->content->version):
     endif;
 endforeach;
 endif;
+$elements = json_decode($config->ReadConfig("admin_user_".$id."_dashboard"), JSON_THROW_ON_ERROR,512);
+$available_elements = $partner_graph->getDataSources();
 echo '
     <div class="row">
         <div class="col-6">
@@ -63,6 +83,18 @@ echo '
             Add new Element
         </div>
         <div class="col-3">
+            <div class="form-group row">
+                <select type="select" class="form-control ElementContent selectpicker" name="ElementContent" data-live-search="true">
+                    <option value="0">-- CHOOSE DATA --</option>           
+                    ';
+                    foreach($available_elements as $value) {
+                        echo '<option data-tokens="'.$value["id"].'" value="'.$value["id"].'">'.$value["title"].'</option>';
+                    }
+                    echo '
+                </select>
+            </div>
+        </div>
+        <div class="col-3">
             <select type="select" class="form-select ElementType" name="ElementType">
                 <option value="0">-- CHOOSE TYPE --</option>
                 <option value="GraphBar">Graph, Bar</option>
@@ -70,66 +102,27 @@ echo '
                 <option value="Number">Number</option>
             </select>
         </div>
-        <div class="col-3">
-            <div class="form-group row">
-                <select type="select" class="form-control ElementContent selectpicker" name="ElementContent" data-live-search="true">
-                    <option value="0">-- CHOOSE DATA --</option>            
-                    <option data-tokens="customers_created_7_days" value="customers_created_7_days">-- Created Customers, past 7 days --</option>            
-                </select>
-            </div>
-        </div>
         <div class="col-4">
             <button type="button" class="btn btn-success btnAddElement" disabled="disabled">
               '.$lang["PARTNER"]["DASHBOARD"]["ADD_ELEMENT"].'
             </button>
         </div>
+        <div class="col-12">&nbsp;</div>
     </div>
-    <div class="row row-cols-md-3 mb-3">
-    <div class="col themed-grid-col chartscol" data-sequence="1">
-        <div class="content">
-            <canvas id="chart1" height="230px"></canvas>
-            <select data-sequence="1" name="type_1" id="type_1" data-updateframe="30000" class="form-control">
-                <option value="10m">Last 10 Minutes</option>
-                <option value="30m">Last 30 Minutes</option>
-            </select>
-        </div>
-        <div class="settings">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
-            </button>
-        </div>
-    </div>
-    <div class="col themed-grid-col chartscol" data-sequence="2">
-        <div class="content">
-            <canvas id="chart2" height="230px"></canvas>
-            <select data-sequence="2" name="type_2" id="type_2" data-updateframe="360000" class="form-control">
-                <option value="7d">Last 7 Days</option>
-                <option value="30d">Last 30 Days</option>
-                <option value="90d">Last 90 Days</option>
-                <option value="1y">Lastest year</option>
-            </select>
-        </div>
-        <div class="settings">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
-            </button>
-        </div>
-    </div>
-    <div class="col themed-grid-col chartscol" data-sequence="3">
-        <div class="content">
-            <canvas id="chart3" height="230px"></canvas>
-            <select data-sequence="3" name="type_3" id="type_3" data-updateframe="480000" class="form-control">
-                <option value="1y">1 year</option>
-                <option value="2y">2 years</option>
-                <option value="3y">3 years</option>
-            </select>
-        </div>
-        <div class="settings">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
-            </button>
-        </div>
-    </div>
+    <div class="row row-cols-md-3 mb-3 DashboardElements">
+    ';
+    $i=1;
+    if(isset($elements) && is_array((array)$elements) && (array)count($elements)>1) {
+        foreach($elements as $element) {
+            echo $partner_graph->GenerateHTML($i,$partner_graph->getDataSource(key($element))["title"],key($element),$element[key($element)]);
+            $i++;
+        }
+    } else {
+        echo $partner_graph->GenerateHTML(1,$partner_graph->getDataSource("customers_created_7_days")["title"],"customers_created_7_days","GraphLine");
+        echo $partner_graph->GenerateHTML(2,$partner_graph->getDataSource("transactions_approved_7_days")["title"],"transactions_approved_7_days","GraphLine");
+        echo $partner_graph->GenerateHTML(3,$partner_graph->getDataSource("transactions_approved_30_days")["title"],"transactions_approved_30_days","GraphLine");
+    }
+    echo '
 </div>
 ';
 $load_script[] = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js";
