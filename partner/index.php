@@ -19,8 +19,8 @@ if(isset($REQ["action"]) && $REQ["action"] === "removeElement") {
     $current = $config->ReadConfig("admin_user_".$id."_dashboard");
     $current = json_decode($current, true);
     array_splice($current, ($REQ["sequence"]-1), 1);
-//    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
-//    $config = $config->WriteConfig();
+    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
+    $config = $config->WriteConfig();
     die();
 }
 if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
