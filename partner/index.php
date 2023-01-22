@@ -45,8 +45,6 @@ if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
         }
         unlink($filename);
     }
-    include(BASEDIR . "controller/IPPConfig.php");
-    $config = new IPPConfig();
     $config->UpdateConfig("INTERACTIVE_GUIDE","1");
     $config = $config->WriteConfig();
 }
