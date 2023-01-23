@@ -74,6 +74,9 @@ class IPPUtils
             return false;
 
     }
+    public function number($numeric,$decimals) {
+        return number_format($numeric,$decimals,",",".");
+    }
     public function cpy($source, $dest){
         if(is_dir($source)):
             $dir_handle=opendir($source);
