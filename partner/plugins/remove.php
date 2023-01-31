@@ -7,7 +7,7 @@ if(file_exists(BASEDIR . "plugins/".$REQ["id"]."/init.php")) {
     if (method_exists($remove_pugin, "hookRemove"))
         $remove_pugin->hookRemove($remove_pugin->plugin_id, $id, $session_id);
 
-    $dir = "plugins/" . $REQ["plugin"];
 }
+$dir = "plugins/" . $REQ["plugin"];
 $utils->rrmdir($dir);
 
