@@ -1,6 +1,6 @@
 <?php
 function foot() {
-    global $inline_css, $inline_script,$load_script,$load_css,$plugins;
+    global $inline_css, $inline_script,$load_script,$load_css,$plugins,$IPP_CONFIG;
     $css = "";
     $script = "";
     if(file_exists("dashboard.js"))
@@ -22,7 +22,7 @@ function foot() {
     foreach($load_css as $value) {
         $css .= "<link href=\"".$value."\" rel=\"stylesheet\">";;
     }
-    return '    </main>
+    $html_return = '    </main>
   </div>
 </div>
 
@@ -39,7 +39,7 @@ function foot() {
         }';
         if(!isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) || (isset($IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"]) && !$IPP_CONFIG["PORTAL_DEACTIVATE_SEARCH"])){
 
-        echo '$("#CustomerSearch").autocomplete({
+            $html_return .= '$("#CustomerSearch").autocomplete({
             html:true,
             source: function(request, response) {
                 $.ajax({
@@ -87,8 +87,9 @@ function foot() {
 };
     });';
 };
- echo '</script>
+    $html_return .= '</script>
   </body>
 </html>
 ';
+    echo $html_return;
 }

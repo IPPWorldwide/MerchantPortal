@@ -13,13 +13,15 @@ class IPPPlugins
         if ($handle = opendir(BASEDIR . 'plugins')) {
             while (false !== ($entry = readdir($handle))) {
                 if ($entry != "." && $entry != ".." && $entry != "index.php") {
-                    include(BASEDIR . "plugins/".$entry."/init.php");
-                    $this->loadPlugin($entry);
-                    if(file_exists(BASEDIR . "plugins/".$entry."/settings.php")) {
-                        $settings = [];
-                        include(BASEDIR . "plugins/".$entry."/settings.php");
-                        if(isset($settings) && count($settings) > 0)
-                            $this->setSettingsValues($entry,$settings);
+                    if(file_exists(BASEDIR . "plugins/".$entry."/init.php")) {
+                        include(BASEDIR . "plugins/".$entry."/init.php");
+                        $this->loadPlugin($entry);
+                        if(file_exists(BASEDIR . "plugins/".$entry."/settings.php")) {
+                            $settings = [];
+                            include(BASEDIR . "plugins/".$entry."/settings.php");
+                            if(isset($settings) && count($settings) > 0)
+                                $this->setSettingsValues($entry,$settings);
+                        }
                     }
                 }
             }
