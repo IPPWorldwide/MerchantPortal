@@ -25,32 +25,65 @@
             finish: 'Finish',
             current: ''
         },
-        onStepChanging: function(event, currentIndex, newIndex) {
+        onStepChanging: async function(event, currentIndex, newIndex) {
             if (currentIndex === 0) {
-                form.parent().parent().parent().append('<div class="footer footer-' + currentIndex + '"></div>');
-                $("#partner_id").focus();
+                await $.ajax({
+                    method: "POST",
+                    url: "https://api.ippeurope.com/partner/login/",
+                    data: {
+                        username: $('#partner_username').val(),
+                        password: $( "#partner_password" ).val()
+                    }
+                })
+                .done(
+                    function( msg ) {
+                        if(msg.content.hasOwnProperty('session_id')) {
+                            $.ajax({
+                                method: "POST",
+                                url: "https://api.ippeurope.com/partner/data/",
+                                data: {
+                                    user_id: msg.content.user_id,
+                                    session_id: msg.content.session_id,
+                                }
+                            })
+                                .done(
+                                    function( msg ) {
+                                        $("#partner_id").val(msg.content.id);
+                                        $("#partner_key1").val(msg.content.security.key1);
+                                        $("#partner_key2").val(msg.content.security.key2);
+                                    }
+                                );
+                            form.parent().parent().parent().append('<div class="footer footer-' + currentIndex + '"></div>');
+                            form.validate().settings.ignore = ":disabled,:hidden";
+                            return form.valid();
+                        } else
+                            return form.valid();
+                    }
+                );
+                return false;
             }
             if (currentIndex === 1) {
                 form.parent().parent().parent().find('.footer').removeClass('footer-0').addClass('footer-' + currentIndex + '');
+                form.validate().settings.ignore = ":disabled,:hidden";
+                return form.valid();
             }
             if (currentIndex === 2) {
                 form.parent().parent().parent().find('.footer').removeClass('footer-1').addClass('footer-' + currentIndex + '');
+                form.validate().settings.ignore = ":disabled,:hidden";
+                return form.valid();
             }
             if (currentIndex === 3) {
                 form.parent().parent().parent().find('.footer').removeClass('footer-2').addClass('footer-' + currentIndex + '');
+                form.validate().settings.ignore = ":disabled,:hidden";
+                return form.valid();
             }
             // if(currentIndex === 4) {
             //     form.parent().parent().parent().append('<div class="footer" style="height:752px;"></div>');
             // }
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
         },
         onStepChanged: function(event, currentIndex) {
             if (currentIndex === 0) {
                 $("#portal_title").focus();
-            }
-            if (currentIndex === 1) {
-                $("#partner_id").focus();
             }
         },
         onFinishing: function(event, currentIndex) {
@@ -87,7 +120,7 @@
                 }
             })
             .fail(function() {
-                alert( "Partner ID or Key 1 is invalid" );
+                alert( "Partner username and/or password is invalid" );
             });
         }
     });
@@ -102,6 +135,16 @@
     skip_delay = 50,
     speed = 50;
 
+    function validatePartnerAccount(username, password) {
+        return $.ajax({
+            method: "POST",
+            url: "https://api.ippeurope.com/partner/login/",
+            data: {
+                username: username,
+                password: password
+            }
+        })
+    }
     var wordflick = function(){
         setInterval(function(){
             if (forwards) {

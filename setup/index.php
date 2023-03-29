@@ -92,7 +92,6 @@ if(isset($_POST["portal_title"])) {
     define("BASEDIR", $folder_level);
     $myfile = fopen("../ipp-config.php", "w") or die("Unable to open file!");
     fclose($myfile);
-    include("../controller/IPPConfig.php");
     $config = new IPPConfig();
 
     foreach($_POST as $key=>$value) {
@@ -237,6 +236,14 @@ $ipp        = new IPP($request,null, null);
         <div class="container">
             <form method="POST" id="signup-form" class="signup-form" action="#">
                 <input type="HIDDEN" name="version" id="version" value="<?php echo $ipp->version()->content->version; ?>" />
+                <input type="hidden" name="portal_url" id="portal_url" value="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]".str_replace("/setup","",$_SERVER["REQUEST_URI"]); ?>" />
+                <input type="hidden" name="onboarding_base_url" id="onboarding_base_url" value="<?php echo $IPP_CONFIG["ONBOARDING_BASE_URL"]; ?>" />
+                <input type="hidden" name="menu" id="menu" value="<?php echo htmlentities($IPP_CONFIG["MENU"]); ?>" />
+                <input type="hidden" name="currency" value="<?php echo $IPP_CONFIG["CURRENCY"]; ?>">
+                <input type="hidden" name="partner_id" id="partner_id" />
+                <input type="hidden" name="partner_key1" id="partner_key1" />
+                <input type="hidden" name="partner_key2" id="partner_key2" />
+
                 <div>
                     <h3>Merchant Portal</h3>
                     <fieldset>
@@ -257,79 +264,23 @@ $ipp        = new IPP($request,null, null);
                                     <div class="form-group">
                                         <label class="form-label" for="administrator_email">Administrative e-mail</label>
                                         <input type="text" name="administrator_email" id="administrator_email" />
-                                        <p class="desc">Define the e-mail used for outbound communication.</p>
+                                        <p class="desc">The sender e-mail, when you are in touch with clients.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-flex">
-                                    <div class="form-group form-select-group">
-                                        <label class="form-label" for="currency">Standard Currency</label>
-                                        <select name="currency" id="currency" class="form-select form-select-lg mb-3">
-                                            <?php
-                                            foreach($currency->currency_list() as $value) {
-                                                echo "<option value='".$value."' ";
-                                                if($IPP_CONFIG["CURRENCY"] === $value) { echo "selected"; } echo ">".$currency->currency($value)[0]."</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
+                                <label class="form-label">IPP Partner Username</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <label for="portal_url" class="form-label">Portal URL</label>
-                                        <input type="text" name="portal_url" id="portal_url" value="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]".str_replace("/setup","",$_SERVER["REQUEST_URI"]); ?>" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row" style="display: none;">
-                                <label class="form-label">API BASE URL</label>
-                                <div class="form-flex">
-                                    <input type="text" name="global_base_url" id="global_base_url" value="<?php echo $IPP_CONFIG["GLOBAL_BASE_URL"]; ?>" />
-                                </div>
-                            </div>
-                            <div class="form-row" style="display: none;">
-                                <label class="form-label">Onboarding BASE URL</label>
-                                <div class="form-flex">
-                                    <input type="text" name="onboarding_base_url" id="onboarding_base_url" value="<?php echo $IPP_CONFIG["ONBOARDING_BASE_URL"]; ?>" />
-                                </div>
-                            </div>
-                            <div class="form-row" style="display: none;">
-                                <label class="form-label">Menu string</label>
-                                <div class="form-flex">
-                                    <input type="text" name="menu" id="menu" value="<?php echo htmlentities($IPP_CONFIG["MENU"]); ?>" />
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <h3>Connectivity Details</h3>
-                    <fieldset>
-                        <h2>Connectivity Details</h2>
-                        <p class="desc">These details have been provided by IPP. Reach out to your representative if you aren't sure.</p>
-                        <div class="fieldset-content">
-                            <div class="form-row">
-                                <label class="form-label">ID</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="partner_id" id="partner_id" />
+                                        <input type="text" name="partner_username" id="partner_username" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label class="form-label">Key 1</label>
+                                <label class="form-label">IPP Partner Password</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="text" name="partner_key1" id="partner_key1" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <label class="form-label">Key 2</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="partner_key2" id="partner_key2" />
+                                        <input type="password" name="partner_password" id="partner_password" />
                                     </div>
                                 </div>
                             </div>
@@ -357,7 +308,7 @@ $ipp        = new IPP($request,null, null);
                                 </div>
                             </div>
                         </div>
-                </fieldset>
+                    </fieldset>
                     <h3>Payment Flow & Plugins</h3>
                     <fieldset>
                         <h2>Payment Flow & Plugins</h2>
