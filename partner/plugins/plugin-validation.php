@@ -100,13 +100,13 @@ if(move_uploaded_file($_FILES['new-plugin']['tmp_name'],$path)):
             $response['message'] = "Zip file is not valid 'init.php' file is missing in zip folder.";
             break;
     endswitch;
+    $za->close();
 else:
     $response['message'] = "File is not uploaded in your path.";
 endif;
 else:
     $response['message'] = "Please choose a file";
 endif;
-$za->close();
 recurseRmdir('tmp');
 if(file_exists($path))
     unlink($path);
