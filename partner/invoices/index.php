@@ -110,8 +110,9 @@ echo '
             </thead>
             <tbody>
             <tr>';
-            foreach($invoices as $value) {
-            echo "
+            if(count($invoices) > 0) {
+                foreach($invoices as $value) {
+                    echo "
               <td>".$value->id."</td>
               <td>".$value->company_id."</td>
               <td>".$value->package_id."</td>
@@ -119,18 +120,19 @@ echo '
               <td>".$value->vat."%</td>
               <td>".date("Y-m-d", $value->period_end)."</td>
               <td>";
-                if($value->cancelled == 1)
-                    echo $lang["PARTNER"]["INVOICES"]["CANCELLED"];
-                elseif($value->paid == 1)
-                    echo $lang["PARTNER"]["INVOICES"]["PAID_TXT"];
-                else
-                    echo $lang["PARTNER"]["INVOICES"]["UNPAID"];
-              echo "</td>
+                    if($value->cancelled == 1)
+                        echo $lang["PARTNER"]["INVOICES"]["CANCELLED"];
+                    elseif($value->paid == 1)
+                        echo $lang["PARTNER"]["INVOICES"]["PAID_TXT"];
+                    else
+                        echo $lang["PARTNER"]["INVOICES"]["UNPAID"];
+                    echo "</td>
               <td><a class=\"btn btn-info\" href=\"show.php?id=".$value->id."\">".$lang["PARTNER"]["INVOICES"]["SHOW"]."</a></td>
             </tr>";
-              if(!in_array($value->provider->name.$value->provider->guid,$known_invoices)) {
-                  $known_invoices[] = $value->provider->name.$value->provider->guid;
-              }
+                    if(!in_array($value->provider->name.$value->provider->guid,$known_invoices)) {
+                        $known_invoices[] = $value->provider->name.$value->provider->guid;
+                    }
+                }
             }
             echo '
             </tbody>
