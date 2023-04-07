@@ -2,6 +2,8 @@
 if(session_id() === "") {
     session_start();
 }
+header("Access-Control-Allow-Origin: *");
+
 $folder_level = "./";
 while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
 define("BASEDIR", $folder_level);
@@ -96,3 +98,9 @@ if(file_exists(THEME . "/functions.php"))
     require_once(THEME . "/functions.php");
 
 $lang = $languages->getLanguageStrings($language);
+if(isset($_COOKIE["ipp_type"]))
+    $user_type = $_COOKIE["ipp_type"];
+
+
+$inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
+$actions->get_action("init");
