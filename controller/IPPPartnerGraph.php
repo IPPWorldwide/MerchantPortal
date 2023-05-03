@@ -137,13 +137,6 @@ class IPPPartnerGraph {
             "time"          => 30,
             "period"        => "d"
         ];
-        $sources["customers_pending_onboarding_approval"] = [
-            "id"            => "customers_pending_onboarding_approval",
-            "title"         => "Companies pending approval",
-            "datasource"    => "company",
-            "time"          => 365,
-            "period"        => "d"
-        ];
         return $sources;
     }
 
