@@ -98,6 +98,7 @@ echo '
                 <option value="GraphBar">Graph, Bar</option>
                 <option value="GraphLine">Graph, Line</option>
                 <option value="Number">Number</option>
+                <option value="List">List</option>
             </select>
         </div>
         <div class="col-4">

@@ -140,6 +140,12 @@ class IPPPartnerGraph {
         return $sources;
     }
 
+    public function AddGraph($title, $array) {
+        $new_element[$title] = $array;
+        $this->data_sources = array_merge($this->data_sources,$new_element);
+        return array_merge($this->data_sources,$array);
+    }
+
     public function getDataSource($data) {
         $source_list = $this->getDataSources();
         $title = $source_list[$data]["title"];
