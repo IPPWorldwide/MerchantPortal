@@ -1,0 +1,25 @@
+#onboarding_form #onboarding_menu ul li {
+    background: lightgray;
+    list-style-type: none;
+}
+
+#onboarding_form #onboarding_menu ul li.group {
+    line-height: 40px;
+    padding-left: 25px;
+}
+
+
+#onboarding_form #onboarding_menu ul li ol {
+    display: none;
+}
+#onboarding_form #onboarding_menu ul li ol li {
+    padding-left: 50px;
+}
+
+#onboarding_form #company div.step1,#onboarding_form #company div.step2,#onboarding_form #company div.step3,#onboarding_form #company div.step4 {
+    display: none;
+}
+
+#onboarding_form #company #welcome {
+    display: inline;
+}
