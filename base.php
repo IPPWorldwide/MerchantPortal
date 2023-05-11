@@ -109,6 +109,7 @@ $lang = $languages->getLanguageStrings($language);
 if(isset($_COOKIE["ipp_type"]))
     $user_type = $_COOKIE["ipp_type"];
 
-
 $inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
 $actions->get_action("init");
+$load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/user.js";
+$inline_script[] = "user.id = '".$_COOKIE["ipp_user_id"]."';user.session_id = '".$_COOKIE["ipp_user_session_id"]."';";
