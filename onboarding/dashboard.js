@@ -1,11 +1,12 @@
 (function () {
   'use strict'
   $("#onboarding_form [data-href]").click(function() {
-    console.log("Clicked");
-    var $this = $(this);
-    var group = $this.data("group");
-    var href = $this.data("href");
-    ChangePage($this, group,href);
+    if($(this).attr("disabled") === undefined) {
+      var $this = $(this);
+      var group = $this.data("group");
+      var href = $this.data("href");
+      ChangePage($this, group,href);
+    }
   });
 })()
 function ChangePage($this, group,href) {

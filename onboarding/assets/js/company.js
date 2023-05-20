@@ -22,7 +22,8 @@ function FindCompanyDetails() {
     });
 
     request.done(function( msg ) {
-        $( "#log" ).html( msg );
+        $("#onboarding_form [data-href='ubo']").removeAttr("disabled");
+        console.log(msg.kyc);
     });
 
     request.fail(function( jqXHR, textStatus ) {

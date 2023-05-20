@@ -1,5 +1,6 @@
 <?php
 include("../base.php");
+require_once("parts/persons.php");
 $merchant_data = $ipp->MerchantData();
 if(isset($REQ["vat"])) {
     echo json_encode($ipp->PublicCompanyData($REQ["vat"]));
@@ -26,7 +27,7 @@ echo "<div id='onboarding_form' class='row mb-3'>";
                     echo "<li data-href='url'>URL</li>";
                     echo "<li data-href='country'>Country</li>";
                     echo "<li data-href='company_data'>Company data</li>";
-                    echo "<li data-href='ubo'>UBO & Directors</li>";
+                    echo "<li data-href='ubo' disabled='disabled'>UBO & Directors</li>";
                 echo "</ol>";
             echo "</li>";
             echo "<li class='group financial' data-group='financial'><span data-group='financial' data-href='settlement'>Financial data</span>";

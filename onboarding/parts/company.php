@@ -80,21 +80,9 @@ $countries = [
     </div>
     <div class="step3 row ubo">
         <h2>Attach documents for the following UBOs:</h2>
-
-        <h3>Camilla Thomsen:</h3>
-        <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Passport</label>
-            <div class="col-sm-10">
-                <input type="file" class="form-control input" id="passport">
-            </div>
+        <div id="allUbos">
+            <?php echo html_preson(1, "Mathias Gajhede"); ?>
         </div>
-        <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Utility Bill</label>
-            <div class="col-sm-10">
-                <input type="file" class="form-control input" id="passport">
-            </div>
-        </div>
-
     </div>
 </div>
 
