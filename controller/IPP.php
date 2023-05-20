@@ -67,7 +67,6 @@ class IPP {
             $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "company-vat" => $companyvat];
         else
             $data = ["company_id" => $merchant_id, "key1" => $key1, "company-vat" => $companyvat];
-        echo $_ENV["GLOBAL_BASE_URL"]."/company/onboarding/public_data/";
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/onboarding/public_data/", "POST", [], $data)->content;
     }
     public function MerchantData($data = [],$merchant_id="",$key1="") {
