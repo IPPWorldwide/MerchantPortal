@@ -113,5 +113,7 @@ $inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
 $actions->get_action("init");
 if(isset($_COOKIE["ipp_user_id"])) {
     $load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/user.js";
-    $inline_script[] = "user.id = '".$_COOKIE["ipp_user_id"]."';user.session_id = '".$_COOKIE["ipp_user_session_id"]."';";
+    $load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/company.js";
+    $inline_script[] = "user.id = '".$_COOKIE["ipp_user_id"]."';user.session_id = '".$_COOKIE["ipp_user_session_id"]."';company.id='".$company_data->content->id."';company.api_key='".$company_data->content->security->key1."'";
+    $inline_script[] = "GLOBAL_BASE_URL = '".$IPP_CONFIG["GLOBAL_BASE_URL"]."';";
 }

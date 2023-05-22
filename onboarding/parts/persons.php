@@ -1,7 +1,7 @@
 <?php
-function html_preson($id, $full_name) {
+function html_preson($id,$full_name,$address = "",$postal = "",$city = "",$country = "") {
     return '
-<div id="person_'.base64_encode($full_name).'">
+<div id="person_'.md5($full_name).'">
     <div class="mb-12 row">
         <div class="col-sm-12">
             <h3>'.$full_name.'</h3>

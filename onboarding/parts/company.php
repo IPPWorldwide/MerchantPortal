@@ -9,6 +9,8 @@ $company_zip = $onboarding_data->{"company-zip"} ?? "";
 $company_city = $onboarding_data->{"company-city"} ?? "";
 
 $inline_script[] = "val_company_country = '$company_country';";
+if($company_vat !== "")
+    $inline_script[] = "$( document ).ready(function() { FindCompanyDetails(); });";
 $countries = [
     ["dnk","92051_denmark_denmark","Denmark"],
     ["swe","92367_sweden_sweden","Sweden"],
@@ -49,6 +51,7 @@ $countries = [
             <button class="form-control btn btn-success col-3" onclick="FindCompanyDetails();">Confirm</button>
         </div>
         <div class="identified_company_details">
+            <div class="CompanyLoading"><img src="<?php echo $IPP_CONFIG["PORTAL_URL"]."assets/img/loading.gif"; ?>"></div>
             <div class="mb-12 row">
                     <label for="staticEmail" class="col-sm-4 col-form-label">Company Name</label>
                 <div class="col-sm-8">
@@ -73,7 +76,7 @@ $countries = [
                     <input type="text" class="form-control input" id="company-city" value="<?php echo $company_city; ?>">
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 row">
                 <button class="form-control btn btn-success col-3" data-href="ubo" data-validation="validate_for_ubo">Confirm</button>
             </div>
         </div>
@@ -81,7 +84,6 @@ $countries = [
     <div class="step3 row ubo">
         <h2>Attach documents for the following UBOs:</h2>
         <div id="allUbos">
-            <?php echo html_preson(1, "Mathias Gajhede"); ?>
         </div>
     </div>
 </div>

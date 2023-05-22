@@ -28,7 +28,3 @@
 #onboarding_form #company #welcome {
     display: inline;
 }
-
-#onboarding_form .company_data .identified_company_details {
-    display: none;
-}

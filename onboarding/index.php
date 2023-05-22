@@ -6,8 +6,12 @@ if(isset($REQ["vat"])) {
     echo json_encode($ipp->PublicCompanyData($REQ["vat"]));
     die();
 }
+if(isset($REQ["person"])) {
+    echo html_preson($REQ["id"], $REQ["name"], $REQ["address"],$REQ["postal"],$REQ["city"],$REQ["country"]);
+    die();
+}
 $load_css[] = "onboarding.css";
-//$load_script[] = $_ENV["ONBOARDING_BASE_URL"]."/onboarding.api.js?company_id=".$merchant_data->id."&api_key=".$merchant_data->security->key1;
+$load_script[] = "assets/js/jquery.md5.js";
 $load_script[] = "assets/js/company.js";
 $load_script[] = "assets/js/financial.js";
 $load_script[] = "assets/js/website.js";
