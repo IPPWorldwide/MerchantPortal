@@ -1,4 +1,5 @@
 var ubos_found = false;
+var md5people = [];
 
 function access_url() {
     if(/^(http|https|ftp):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#company-url").val())){
@@ -31,7 +32,6 @@ function company_country($this) {
     });
     return true;
 }
-var md5people = [];
 function FindCompanyDetails() {
     $("#onboarding_form .company_data .identified_company_details .CompanyLoading").css("display","inline");
     $("#onboarding_form .company_data .identified_company_details .row").css("display","none");
@@ -58,11 +58,22 @@ function FindCompanyDetails() {
         $.each(msg.kyc.directors, function( index, value ) {
             var md5 = $.md5(value.name);
             if($("#person_" + md5).length === 0 && $.inArray(md5, md5people ) < 0) {
-                $.post( "", { person: 1, id: 1, name: value.name, address: value.address, postal: value.postal, city: value.city, country: value.country })
-                .done(function( person ) {
-                    $("#allUbos").append(person);
-                });
+                $.post( GLOBAL_BASE_URL + "company/data/onboarding/personnel/add/", {
+                    company_id: company.id,
+                    api_key: company.api_key,
+                    politically_exposed: 0, agreement_signature: 0,
+                    full_name: value.name, email: "", date_of_birth: "", key_personnel_address: value.address, postal: value.postal, city: value.city, country: value.country
+                })
+                    .done(function( data ) {
+                        console.log(data);
+                        $.post( "", { person: 1, id: data.content.owner_id, name: value.name, address: value.address, postal: value.postal, city: value.city, country: value.country })
+                            .done(function( person ) {
+                                $("#allUbos").append(person);
+                            });
+                    });
+
                 md5people.push(md5);
+                ubos_found = true;
             }
         });
         $.each(msg.kyc.realOwners, function( index, value ) {
@@ -73,6 +84,7 @@ function FindCompanyDetails() {
                         $("#allUbos").append(person);
                     });
                 md5people.push(md5);
+                ubos_found = true;
             }
         });
     });
@@ -130,3 +142,59 @@ function validate_for_ubo() {
         return false;
     }
 }
+$( document ).ready(function() {
+    $(document).on("click",".delete_person", function() {
+        var div = $(this).parent().parent().attr("id");
+        var id = $(this).parent().parent().attr("data-id");
+        var md5 = $(this).parent().parent().attr("data-md5");
+        $("#" + div).remove();
+        $.ajax({
+            url: GLOBAL_BASE_URL + "company/data/onboarding/personnel/remove/",
+            method: "POST",
+            data: {
+                owner_id: id,
+                company_id: company.id,
+                api_key: company.api_key
+            }
+        });
+        md5people = jQuery.grep(md5people, function(value) {
+            return value != md5;
+        });
+    });
+    $(document).on("change", ".passport", function() {
+        var id = $(this).parent().parent().parent().attr("data-id");
+        var div = $(this).parent().parent().parent().attr("id");
+        var formData = new FormData();
+        formData.append('owner_id', id);
+        formData.append('company_id', company.id);
+        formData.append('api_key', company.api_key);
+        formData.append('file-passport', $(this)[0].files[0]);
+        $.ajax({
+            url: GLOBAL_BASE_URL + "company/data/onboarding/personnel/file/",
+            method: "POST",
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+        });
+    });
+    $(document).on("change", ".address", function() {
+        var id = $(this).parent().parent().parent().attr("data-id");
+        var div = $(this).parent().parent().parent().attr("id");
+        var formData = new FormData();
+        formData.append('owner_id', id);
+        formData.append('company_id', company.id);
+        formData.append('api_key', company.api_key);
+        formData.append('file-address-documentation', $(this)[0].files[0]);
+        $.ajax({
+            url: GLOBAL_BASE_URL + "company/data/onboarding/personnel/file/",
+            method: "POST",
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+        });
+    });
+});

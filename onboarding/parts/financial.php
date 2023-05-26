@@ -28,7 +28,7 @@ $settlement = [
         <div class="mb-12 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Screenshot from Bank</label>
             <div class="col-sm-10">
-                <input type="file" class="form-control input" id="screenshot">
+                <input type="file" class="form-control input" id="bank-screenshot">
             </div>
             <div class="alert alert-warning">
                 The Screnshot must contain:<br />

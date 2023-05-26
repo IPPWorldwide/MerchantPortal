@@ -72,4 +72,53 @@ $( document ).ready(function() {
                 }
             });
         } );
+    $( "#earlierProcessing" )
+        .on( "focusout", function() {
+            $.ajax({
+                url: GLOBAL_BASE_URL + "company/data/onboarding/update/",
+                method: "POST",
+                data: {
+                    company_id: company.id,
+                    api_key: company.api_key,
+                    field: 'earlierProcessing',
+                    value: $("#earlierProcessing").val()
+                }
+            });
+        } );
+    $(document).on("change", "#bank-screenshot", function() {
+        var id = $(this).parent().parent().parent().attr("data-id");
+        var div = $(this).parent().parent().parent().attr("id");
+        var formData = new FormData();
+        formData.append('company_id', company.id);
+        formData.append('api_key', company.api_key);
+        formData.append('field', "bank-documentation");
+        formData.append('file', $("#bank-screenshot")[0].files[0]);
+        $.ajax({
+            url: "http://localhost:8091/company/data/onboarding/update/",
+            method: "POST",
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+        });
+    });
+    $(document).on("change", "#processing-history", function() {
+        var id = $(this).parent().parent().parent().attr("data-id");
+        var div = $(this).parent().parent().parent().attr("id");
+        var formData = new FormData();
+        formData.append('company_id', company.id);
+        formData.append('api_key', company.api_key);
+        formData.append('field', "processing-history");
+        formData.append('file', $("#processing-history")[0].files[0]);
+        $.ajax({
+            url: "http://localhost:8091/company/data/onboarding/update/",
+            method: "POST",
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+        });
+    });
 });

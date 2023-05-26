@@ -7,7 +7,18 @@ if(isset($REQ["vat"])) {
     die();
 }
 if(isset($REQ["person"])) {
-    echo html_preson($REQ["id"], $REQ["name"], $REQ["address"],$REQ["postal"],$REQ["city"],$REQ["country"]);
+    $id = $REQ["id"] ?? "";
+    $name = $REQ["name"] ?? "";
+    $address = $REQ["address"] ?? "";
+    $postal = $REQ["postal"] ?? "";
+    $city = $REQ["city"] ?? "";
+    $country = $REQ["country"] ?? "";
+    $files_passport = $REQ["files_passport"] ?? "";
+    $files_driving_license_front = $REQ["files_driving_license_front"] ?? "";
+    $files_driving_license_back = $REQ["files_driving_license_back"] ?? "";
+    $files_address = $REQ["files_address"] ?? "";
+    echo html_preson(
+        $id, $name, $address,$postal,$city,$country,$files_passport,$files_driving_license_front,$files_driving_license_back,$files_address);
     die();
 }
 $load_css[] = "onboarding.css";
