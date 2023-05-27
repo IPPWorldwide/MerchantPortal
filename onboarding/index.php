@@ -53,7 +53,7 @@ echo "<div id='onboarding_form' class='row mb-3'>";
             echo "</li>";
             echo "<li class='group website' data-group='website'><span data-group='website' data-href='checks'>Website</span>";
                 echo "<ol>";
-                    echo "<li data-href='checks'>Website Check</li>";
+                    echo "<li data-href='website_check'>Website Check</li>";
                     echo "<li data-href='mcc'>MCC code</li>";
                     echo "<li data-href='limits'>Purchase limits</li>";
                     echo "<li data-href='timeframes'>Service timeframes</li>";

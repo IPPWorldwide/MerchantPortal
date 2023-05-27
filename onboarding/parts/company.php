@@ -42,7 +42,7 @@ foreach($onboarding_data->key_personnel as $key=>$value) {
     </div>
     <div class="step2 row country">
         <h2>Country of company registration</h2>
-        <div class="flags">
+    <div class="flags">
             <?php
             foreach($countries as $value) {
                 echo '<img src="icons/'.$value[1].'.png" data-country="'.$value[2].'" data-href="company_data" data-validation="company_country"';

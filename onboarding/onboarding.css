@@ -21,7 +21,11 @@
 #onboarding_form #company div.step3,
 #onboarding_form #company div.step4,
 #onboarding_form #financial div.settlement,
-#onboarding_form #financial div.earlier_provider {
+#onboarding_form #financial div.earlier_provider,
+#onboarding_form #website div.website_check,
+#onboarding_form #website div.mcc,
+#onboarding_form #website div.limits,
+#onboarding_form #website div.timeframes {
     display: none;
 }
 
