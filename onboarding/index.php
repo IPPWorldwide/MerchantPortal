@@ -51,7 +51,7 @@ echo "<div id='onboarding_form' class='row mb-3'>";
                     echo "<li data-href='earlier_provider'>Earlier processing</li>";
                 echo "</ol>";
             echo "</li>";
-            echo "<li class='group website' data-group='website'><span data-group='website' data-href='checks'>Website</span>";
+            echo "<li class='group website' data-group='website'><span data-group='website' data-href='website_check'>Website</span>";
                 echo "<ol>";
                     echo "<li data-href='website_check'>Website Check</li>";
                     echo "<li data-href='mcc'>MCC code</li>";

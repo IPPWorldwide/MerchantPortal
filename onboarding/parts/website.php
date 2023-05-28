@@ -19,8 +19,8 @@ $basket_limits = [
     100000
 ];
 $onb_mcc = $onboarding_data->{"commercial-mcc"} ?? 5999;
-$onb_basket_limits = $onboarding_data->{"basket-limits"} ?? 7;
-$onb_delivery_timeframe = $onboarding_data->{"delivery-timeframe"} ?? 7;
+$onb_basket_limits = $onboarding_data->{"basket_limit"} ?? 400;
+$onb_delivery_timeframe = $onboarding_data->{"delivery_timeframe"} ?? 7;
 ?>
 <div id='website'>
     <div class="step1 row website_check">
@@ -30,6 +30,9 @@ $onb_delivery_timeframe = $onboarding_data->{"delivery-timeframe"} ?? 7;
         </div>
         <div class="col-3">
 
+        </div>
+        <div class="col-3">
+            <button class="form-control btn btn-success col-3" data-href="mcc">Confirm</button>
         </div>
     </div>
     <div class="step2 row mcc">
@@ -45,6 +48,9 @@ $onb_delivery_timeframe = $onboarding_data->{"delivery-timeframe"} ?? 7;
             }
             ?>
         </select>
+        <div class="col-3">
+            <button class="form-control btn btn-success col-3" data-href="limits">Confirm</button>
+        </div>
     </div>
     <div class="step2 row limits">
         <h2>Payment Limits</h2>
@@ -52,13 +58,19 @@ $onb_delivery_timeframe = $onboarding_data->{"delivery-timeframe"} ?? 7;
         <select name="basket_limit" id="basket_limit" class="form-control" >
             <?php
             foreach($basket_limits as $value) {
-                echo '<option value="'.$value.'"'; if($onb_basket_limits===$value) { echo "selected"; } echo '>Less than '.number_format($value,0,",",".").'</option>';
+                echo '<option value="'.$value.'"'; if((int)$onb_basket_limits===$value) { echo "selected"; } echo '>Less than '.number_format($value,0,",",".").'</option>';
             }
             ?>
         </select>
+        <div class="col-3">
+            <button class="form-control btn btn-success col-3" data-href="timeframes">Confirm</button>
+        </div>
     </div>
     <div class="step2 row timeframes">
         <h2>How fast do you generally deliver your goods</h2>
         <input type="text" id="delivery_timeframe" name="delivery_timeframe" value="<?php echo $onb_delivery_timeframe; ?>">
+        <div class="col-3">
+            <button class="form-control btn btn-success col-3" data-group="contract" data-href="our_contract">Confirm</button>
+        </div>
     </div>
 </div>

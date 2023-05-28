@@ -53,6 +53,9 @@ $settlement = [
                 </select>
             </div>
         </div>
+        <div class="col-3">
+            <button class="form-control btn btn-success col-3" data-group="financial" data-href="earlier_provider">Confirm</button>
+        </div>
     </div>
     <div class="step2 row earlier_provider">
         <h2>Earlier Processing provider</h2>
@@ -71,6 +74,9 @@ $settlement = [
             <div class="col-sm-10">
                 <input type="file" class="form-control input" name="processing-history" id="processing-history">
             </div>
+        </div>
+        <div class="col-3">
+            <button class="form-control btn btn-success col-3" data-group="website" data-href="website_check">Confirm</button>
         </div>
     </div>
 </div>

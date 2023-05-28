@@ -30,6 +30,8 @@ function company_country($this) {
             value: $this.attr("data-country")
         }
     });
+    $(".flags img").css("opacity","0.5");
+    $this.css("opacity","1.0");
     return true;
 }
 function FindCompanyDetails() {

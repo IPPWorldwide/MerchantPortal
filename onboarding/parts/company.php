@@ -98,6 +98,9 @@ foreach($onboarding_data->key_personnel as $key=>$value) {
         <h2>Attach documents for the following UBOs:</h2>
         <div id="allUbos">
         </div>
+        <div class="col-3">
+            <button class="form-control btn btn-success col-3" data-group="financial" data-href="settlement">Confirm</button>
+        </div>
     </div>
 </div>
 
