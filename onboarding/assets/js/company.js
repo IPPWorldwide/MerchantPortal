@@ -3,6 +3,7 @@ var md5people = [];
 
 function access_url() {
     if(/^(http|https|ftp):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#company-url").val())){
+        $(".website_check_url").html($("#company-url").val());
         $.ajax({
             url: GLOBAL_BASE_URL + "company/data/onboarding/update/",
             method: "POST",

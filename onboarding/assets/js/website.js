@@ -1,3 +1,4 @@
+var validatedWebsite = false;
 $( document ).ready(function() {
     $(document).on("change", "#mcc", function () {
         $.ajax({
@@ -35,4 +36,12 @@ $( document ).ready(function() {
             }
         });
     });
+    $(".checkWebsite").on("click", function() {
+        checkWebsite();
+    });
 });
+function checkWebsite() {
+    validatedWebsite = true;
+    $(".checkWebsite").attr("disabled","disabled");
+    $(".ValidatedWebsiteChecks").removeAttr("disabled");
+}
