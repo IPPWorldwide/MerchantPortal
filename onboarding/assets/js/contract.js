@@ -13,9 +13,8 @@ function sendContracts() {
         type: 'POST',
         url: GLOBAL_BASE_URL + '/company/data/onboarding/confirm/',
         dataType: "json",
-        data: { api_key: api_key, company_id: company_id },
+        data: { api_key: company.api_key, company_id: company.id },
         success: function (response) {
-            AddShadowOnComplete();
             $.each( onboarding_extensions, function( key, value ) {
                 $.ajax({
                     type: 'POST',

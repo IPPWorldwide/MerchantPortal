@@ -29,6 +29,11 @@ $settlement = [
             <label for="staticEmail" class="col-sm-2 col-form-label">Screenshot from Bank</label>
             <div class="col-sm-10">
                 <input type="file" class="form-control input" id="bank-screenshot">
+                <?php
+                    if($onboarding_data->{"bank-documentation"} !== "") {
+                        echo "An screenshot have already been uploaded.";
+                    }
+                ?>
             </div>
             <div class="alert alert-warning">
                 The Screnshot must contain:<br />
@@ -73,6 +78,11 @@ $settlement = [
             <label for="staticEmail" class="col-sm-2 col-form-label">Copy of processing history (3 months)</label>
             <div class="col-sm-10">
                 <input type="file" class="form-control input" name="processing-history" id="processing-history">
+                <?php
+                if($onboarding_data->{"processing-history"} !== "") {
+                    echo "An screenshot have already been uploaded.";
+                }
+                ?>
             </div>
         </div>
         <div class="col-3">
