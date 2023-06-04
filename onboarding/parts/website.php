@@ -163,7 +163,7 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
         <h2>How fast do you generally deliver your goods</h2>
         <input type="text" id="delivery_timeframe" name="delivery_timeframe" value="<?php echo $onb_delivery_timeframe; ?>">
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-group="contract" data-href="our_contract">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-group="contract" data-href="our_contracts">Confirm</button>
         </div>
     </div>
 </div>

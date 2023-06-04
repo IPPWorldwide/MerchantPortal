@@ -60,10 +60,9 @@ echo "<div id='onboarding_form' class='row mb-3'>";
                     echo "<li data-href='timeframes'>Service timeframes</li>";
                 echo "</ol>";
             echo "</li>";
-            echo "<li class='group contract' data-group='contract' aria-disabled='true'><span data-group='website' data-href='our_contract'>Contract</span>";
+            echo "<li class='group contract' data-group='contract' aria-disabled='true'><span data-group='website' data-href='our_contracts'>Contract</span>";
                 echo "<ol>";
-                    echo "<li data-href='our_contract'>Our contract</li>";
-                    echo "<li data-href='poa_contract'>POA Contract</li>";
+                    echo "<li data-href='our_contracts'>Our contract</li>";
                 echo "</ol>";
             echo "</li>";
         echo "</ul>";
@@ -77,11 +76,9 @@ echo "<div id='onboarding_form' class='row mb-3'>";
     echo "</div>";
 echo "</div>";
 
-/*
 if(isset($plugins->hook_onboarding)) {
     foreach($plugins->hook_onboarding as $value) {
-
+        $inline_script[] = "onboarding_extensions.push('".$IPP_CONFIG["PORTAL_URL"]."/plugins/" . $value . "/onboarding.php');";
     }
 }
-*/
 echo foot();
