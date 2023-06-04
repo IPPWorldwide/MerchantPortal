@@ -39,9 +39,29 @@ $( document ).ready(function() {
     $(".checkWebsite").on("click", function() {
         checkWebsite();
     });
+    checkWebsiteStatus()
 });
 function checkWebsite() {
     validatedWebsite = true;
     $(".checkWebsite").attr("disabled","disabled");
     $(".ValidatedWebsiteChecks").removeAttr("disabled");
+}
+function checkWebsiteStatus() {
+    $.ajax({
+        url: "http://localhost:8091/company/data/",
+        method: "POST",
+        data: {
+            user_id: user.id,
+            session_id: user.session_id
+        }
+    })
+        .done(function(data) {
+            var onboarding_data = data.content.onboarding_data.website;
+            if(onboarding_data.pending_customer === 1) {
+                if(onboarding_data.lorem_ipsum === true || onboarding_data.privacy_policy === false || onboarding_data.product === false || onboarding_data.terms === false) {
+                    (".checkWebsite").removeAttr("disabled");
+                }
+                $(".ValidatedWebsiteChecks").removeAttr("disabled");
+            }
+        });
 }

@@ -21,30 +21,26 @@ $basket_limits = [
 $onb_mcc = $onboarding_data->{"commercial-mcc"} ?? 5999;
 $onb_basket_limits = $onboarding_data->{"basket_limit"} ?? 400;
 $onb_delivery_timeframe = $onboarding_data->{"delivery_timeframe"} ?? 7;
-$website_domain_name = $onboarding_data->{"website-domain-name"} ?? "";
+$website_domain_name = $onboarding_data->website->{"url"} ?? "";
 
-(bool)$identified_terms = $onboarding_data->{"identified_terms"} ?? 0;
-$terms_url = $onboarding_data->{"terms_and_conditions_url"} ?? "";
-(bool)$identified_privacy_policy = $onboarding_data->{"privacy_policy_url"} ?? 0;
-$privacy_policy_url = $onboarding_data->{"privacy_policy_url"} ?? "";
+(bool)$identified_terms = $onboarding_data->website->terms->{"found"} ?? 0;
+$terms_url = $onboarding_data->website->terms->{"url"} ?? "";
+(bool)$identified_privacy_policy = $onboarding_data->website->privacy_policy->{"found"} ?? 0;
+$privacy_policy_url = $onboarding_data->website->privacy_policy->{"url"} ?? "";
 
-(bool)$identified_product = $onboarding_data->{"product"} ?? 0;
-$product_url = $onboarding_data->{"product_url"} ?? "";
+(bool)$identified_product = $onboarding_data->website->product->{"found"} ?? 0;
+$product_url = $onboarding_data->website->product->{"url"} ?? "";
 
-(bool)$identified_checkout_flow = $onboarding_data->{"checkout_flow"} ?? 0;
-$checkout_flow_url = $onboarding_data->{"checkout_flow_url"} ?? "";
+(bool)$identified_checkout_flow = $onboarding_data->website->checkout->{"found"} ?? 0;
+$checkout_flow_url = $onboarding_data->website->checkout->{"url"} ?? "";
 
-(bool)$identified_login_required = $onboarding_data->{"login_url"} ?? 0;
-$login_url = $onboarding_data->{"login_url"} ?? "";
+(bool)$identified_login_required = $onboarding_data->website->login->{"found"} ?? 0;
+$login_url = $onboarding_data->website->login->{"url"} ?? "";
+$login_username = $onboarding_data->website->login->{"username"} ?? "";
+$login_password = $onboarding_data->website->privacy_policy->{"password"} ?? "";
 
-(bool)$identified_login_username = $onboarding_data->{"login_username"} ?? 0;
-$login_username = $onboarding_data->{"login_username"} ?? "";
-
-(bool)$identified_login_password = $onboarding_data->{"login_password"} ?? 0;
-$login_password = $onboarding_data->{"login_password"} ?? "";
-
-(bool)$identified_lorem_ipsum = $onboarding_data->{"lorem_ipsum"} ?? 0;
-$lorem_ipsum_url = $onboarding_data->{"lorem_ipsum_url"} ?? "";
+(bool)$identified_lorem_ipsum = $onboarding_data->website->lorem_ipsum->{"found"} ?? 0;
+$lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
 
 ?>
 <div id='website'>
@@ -63,7 +59,7 @@ $lorem_ipsum_url = $onboarding_data->{"lorem_ipsum_url"} ?? "";
                 if($identified_terms) {
                     echo "Terms was identified.";
                 } else {
-                    echo "Not yet identified.";
+                    echo "Not identified.";
                 }
                 ?>
             </div>
@@ -80,7 +76,7 @@ $lorem_ipsum_url = $onboarding_data->{"lorem_ipsum_url"} ?? "";
                 if($identified_privacy_policy) {
                     echo "Policy was identified.";
                 } else {
-                    echo "Not yet identified.";
+                    echo "Not identified.";
                 }
                 ?>
             </div>
@@ -97,7 +93,7 @@ $lorem_ipsum_url = $onboarding_data->{"lorem_ipsum_url"} ?? "";
                 if($identified_checkout_flow) {
                     echo "Checkout was identified.";
                 } else {
-                    echo "Not yet identified.";
+                    echo "Not identified.";
                 }
                 ?>
             </div>
@@ -114,7 +110,7 @@ $lorem_ipsum_url = $onboarding_data->{"lorem_ipsum_url"} ?? "";
                 if($identified_lorem_ipsum) {
                     echo "Checkout was identified.";
                 } else {
-                    echo "Not yet identified.";
+                    echo "Not identified.";
                 }
                 ?>
             </div>
@@ -125,9 +121,11 @@ $lorem_ipsum_url = $onboarding_data->{"lorem_ipsum_url"} ?? "";
         </div>
 
 
-        <div class="col-3">
-            <button class="form-control btn btn-success col-3 checkWebsite">Check Again</button>
-            <button class="form-control btn btn-success col-3 ValidatedWebsiteChecks" disabled="disabled" data-href="mcc">Confirm</button>
+        <div class="col-6">
+            <button class="form-control btn btn-success col-3 checkWebsite" disabled="disabled">Ask us to check Again</button>
+        </div>
+        <div class="col-6">
+            <button class="form-control btn btn-success col-3 ValidatedWebsiteChecks" disabled="disabled" data-href="mcc">Confirm the list above is in place</button>
         </div>
     </div>
     <div class="step2 row mcc">
