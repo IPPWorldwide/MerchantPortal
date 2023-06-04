@@ -62,6 +62,10 @@ function checkWebsiteStatus() {
                     (".checkWebsite").removeAttr("disabled");
                 }
                 $(".ValidatedWebsiteChecks").removeAttr("disabled");
+            } else {
+                setTimeout(function () {
+                    checkWebsiteStatus();
+                }, 5000);
             }
         });
 }
