@@ -18,13 +18,23 @@ class IPPPartnerGraph {
         $this->data_sources = $this->getDataSources();
     }
 
-    public function GenerateView($ViewType="graph",$datasource="tansactions",$length="7d") {
-        $graphs = $this->partner->statisticCharts("daily",$datasource,$length)->content;
+    public function GenerateView($ViewType="graph",$datasource="tansactions",$length="7d",$source="api") {
+        if($source === "api")
+            $graphs = $this->partner->statisticCharts("daily",$datasource,$length)->content;
+        else {
+            $source = new admin_ongoing_onboardings();
+            var_dump($source);
+            var_dump($source);
+            $graphs = json_decode("{[\"display\": \"1\", \"count\": \"2\"]}");
+        }
         $data = [];
         $label = [];
         foreach($graphs as $value) {
             $label[] = $value->display;
             $data[] = $value->count;
+        }
+        if($ViewType==="GraphBar") {
+            return $this->generateGraphJson($label, "Transactions",$data);
         }
         if($ViewType==="GraphLine") {
             return $this->generateGraphJson($label, "Transactions",$data);
@@ -36,12 +46,22 @@ class IPPPartnerGraph {
             return [];
     }
 
-    public function GenerateHTML(int $i, $title, string $ElementData, string $ElementType) {
+    public function GenerateHTML(int $i, $title, string $ElementData, string $ElementType, string $ElementSource = "api") {
         global $lang;
-        $html = '<div class="col themed-grid-col chartscol dashboard" data-sequence="'.$i.'" data-data="'.$ElementData.'" data-type="'.$ElementType.'">
+        $html = '<div class="col themed-grid-col chartscol dashboard" data-sequence="'.$i.'" data-data="'.$ElementData.'" data-type="'.$ElementType.'" data-source="'.$ElementSource.'">
             <div class="content">
                 <h2>'.$title.'</h2>
+                ';
+        if(strtolower($ElementType) === "list") {
+            $html .= '
+                <div class="admin_ongoing_onboardings::generate_list"></div>
+            ';
+        } else {
+            $html .= '
                 <canvas id="chart'.$i.'" height="130px"></canvas>
+            ';
+        }
+        $html .= '
             </div>
             <div class="settings">
                 <button type="button" class="btn btn-warning DashboardRemoveElement">
@@ -105,6 +125,7 @@ class IPPPartnerGraph {
         $sources["customers_created_7_days"] = [
             "id"            => "customers_created_7_days",
             "title"         => "Created Customers, past 7 days",
+            "source"        => "api",
             "datasource"    => "company",
             "time"          => 7,
             "period"        => "d"
@@ -112,6 +133,7 @@ class IPPPartnerGraph {
         $sources["customers_created_30_days"] = [
             "id"            => "customers_created_30_days",
             "title"         => "Created Customers, past 30 days",
+            "source"        => "api",
             "datasource"    => "company",
             "time"          => 30,
             "period"        => "d"
@@ -119,6 +141,7 @@ class IPPPartnerGraph {
         $sources["transactions_approved_7_days"] = [
             "id"            => "transactions_approved_7_days",
             "title"         => "Approved Transactions, past 7 days",
+            "source"        => "api",
             "datasource"    => "transactions",
             "time"          => 7,
             "period"        => "d"
@@ -126,6 +149,7 @@ class IPPPartnerGraph {
         $sources["transactions_approved_14_days"] = [
             "id"            => "transactions_approved_14_days",
             "title"         => "Approved Transactions, past 14 days",
+            "source"        => "api",
             "datasource"    => "transactions",
             "time"          => 14,
             "period"        => "d"
@@ -133,6 +157,7 @@ class IPPPartnerGraph {
         $sources["transactions_approved_30_days"] = [
             "id"            => "transactions_approved_30_days",
             "title"         => "Approved Transactions, past 30 days",
+            "source"        => "api",
             "datasource"    => "transactions",
             "time"          => 30,
             "period"        => "d"
@@ -147,11 +172,11 @@ class IPPPartnerGraph {
     }
 
     public function getDataSource($data) {
-        $source_list = $this->getDataSources();
-        $title = $source_list[$data]["title"];
-        $datasource = $source_list[$data]["datasource"];
-        $time = $source_list[$data]["time"];
-        $period = $source_list[$data]["period"];
+        $source_list = $this->data_sources;
+        $title = $source_list[$data]["title"] ?? "";
+        $datasource = $source_list[$data]["datasource"] ?? "api";
+        $time = $source_list[$data]["time"] ?? 7;
+        $period = $source_list[$data]["period"] ?? "d";
         return [
             "title"  => $title,
             "source" => $datasource,
