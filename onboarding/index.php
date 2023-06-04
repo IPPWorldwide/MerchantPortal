@@ -30,11 +30,13 @@ $load_script[] = "assets/js/website.js";
 $load_script[] = "assets/js/contract.js";
 echo head();
 $onboarding_data = $merchant_data->onboarding_data;
-
 $actions->get_action("onboarding");
 echo '
       <h2>'.$lang["COMPANY"]["ONBOARDING"]["HEADER"].'</h2>
 ';
+if($onboarding_data->validated->company) {
+    $inline_script[] = "ChangePage('','contract','contracts_sent');";
+}
 echo "<div id='onboarding_form' class='row mb-3'>";
     echo "<div class='col-3' id='onboarding_menu'>";
         echo "<ul>";
@@ -75,7 +77,6 @@ echo "<div id='onboarding_form' class='row mb-3'>";
         require_once("parts/contract.php");
     echo "</div>";
 echo "</div>";
-
 if(isset($plugins->hook_onboarding)) {
     foreach($plugins->hook_onboarding as $value) {
         $inline_script[] = "onboarding_extensions.push('".$IPP_CONFIG["PORTAL_URL"]."/plugins/" . $value . "/onboarding.php');";

@@ -21,7 +21,12 @@
         </div>
     </div>
     <div class="step2 row contracts_sent">
-        <h2>Contracts is now being sent</h2>
-        You will receive the contracts within the next few minutes.
+        <h2>Contracts is sent to you</h2>
+        <p>
+            If the contract haven't already landed in your inbox, it sure will do within the next few minutes.
+        </p>
+        <p>
+            The contract is being sent from DocuSign. If you can't see the e-mail, please take a minute and search for it.
+        </p>
     </div>
 </div>

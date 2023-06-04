@@ -12,10 +12,12 @@
 function ChangePage($this, group,href) {
   if(typeof group === "undefined")
     group = $("#onboarding_form #onboarding_menu li[active='1']").attr("data-group");
-  if(typeof $this.data("validation") === "string") {
-    var f = window[$this.data("validation")]($this);
-    if(!f)
-      return;
+  if($this !== '') {
+    if(typeof $this.data("validation") === "string") {
+      var f = window[$this.data("validation")]($this);
+      if(!f)
+        return;
+    }
   }
   $("#onboarding_form #onboarding_menu ul li").removeAttr("active");
   $("#onboarding_form #onboarding_menu ul li span").css("font-weight","unset");
