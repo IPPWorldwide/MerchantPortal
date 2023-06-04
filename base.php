@@ -109,6 +109,14 @@ $lang = $languages->getLanguageStrings($language);
 if(isset($_COOKIE["ipp_type"]))
     $user_type = $_COOKIE["ipp_type"];
 
-
 $inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
 $actions->get_action("init");
+if(isset($_COOKIE["ipp_user_id"])) {
+    $load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/user.js";
+    $load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/company.js";
+    $inline_script[] = "user.id = '".$_COOKIE["ipp_user_id"]."';user.session_id = '".$_COOKIE["ipp_user_session_id"]."';";
+    $inline_script[] = "const onboarding_extensions = [];";
+    if(isset($company_data->success) && $company_data->success)
+        $inline_script[] = "company.id='".$company_data->content->id."';company.api_key='".$company_data->content->security->key1."'";
+    $inline_script[] = "GLOBAL_BASE_URL = '".$IPP_CONFIG["GLOBAL_BASE_URL"]."';";
+}

@@ -65,7 +65,7 @@ if($_ENV["VERSION"] < $ipp->version()->content->version):
 endforeach;
 endif;
 $elements = json_decode($config->ReadConfig("admin_user_".$id."_dashboard"), JSON_THROW_ON_ERROR,512);
-$available_elements = $partner_graph->getDataSources();
+$available_elements = $partner_graph->data_sources;
 echo '
     <div class="row">
         <div class="col-6">
@@ -98,6 +98,7 @@ echo '
                 <option value="GraphBar">Graph, Bar</option>
                 <option value="GraphLine">Graph, Line</option>
                 <option value="Number">Number</option>
+                <option value="List">List</option>
             </select>
         </div>
         <div class="col-4">
