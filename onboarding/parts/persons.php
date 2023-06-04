@@ -38,7 +38,7 @@ function html_preson($id,$full_name,$email="", $address = "",$postal = "",$city 
     <div class="mb-12 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control input email">
+            <input type="text" class="form-control input email" value="'.$email.'">
         </div>
     </div>
 </div> ';
