@@ -1,5 +1,5 @@
 <?php
-function html_preson($id,$full_name,$address = "",$postal = "",$city = "",$country = "", $files_passport= "", $files_driving_license_front="", $files_driving_license_back="", $files_address="") {
+function html_preson($id,$full_name,$email="", $address = "",$postal = "",$city = "",$country = "", $files_passport= "", $files_driving_license_front="", $files_driving_license_back="", $files_address="") {
     global $IPP_CONFIG;
     $html = '
 <div id="person_'.md5($full_name).'" data-md5="'.md5($full_name).'" data-id="'.$id.'">
@@ -33,6 +33,12 @@ function html_preson($id,$full_name,$address = "",$postal = "",$city = "",$count
             $html .= "<input type='file' class='form-control input address'>";
         }
     $html .= '
+        </div>
+    </div>
+    <div class="mb-12 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control input email">
         </div>
     </div>
 </div> ';

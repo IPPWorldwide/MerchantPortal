@@ -200,4 +200,19 @@ $( document ).ready(function() {
             processData: false,
         });
     });
+    $(document).on("change", ".email", function() {
+        var id = $(this).parent().parent().parent().attr("data-id");
+        var div = $(this).parent().parent().parent().attr("id");
+        $.ajax({
+            url: GLOBAL_BASE_URL + "company/data/onboarding/personnel/update/",
+            method: "POST",
+            data: {
+                owner_id: id,
+                company_id: company.id,
+                api_key: company.api_key,
+                field: 'email',
+                value: $(this).val()
+            },
+        });
+    });
 });

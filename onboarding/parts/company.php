@@ -20,7 +20,7 @@ foreach($onboarding_data->key_personnel as $key=>$value) {
     $inline_script[] = "$( document ).ready(function() {
     var md5 = '".md5($value->name)."';
     if($('#person_' + md5).length === 0 && $.inArray(md5, md5people ) < 0) {
-        $.post( '', { person: 1, id: '".$value->id."', name: '".$value->name."', address: '".$value->address."', postal: '".$value->postal."', city: '".$value->city."', country: '".$value->country."', files_passport: '".$value->files->passport."', files_driving_license_front: '".$value->files->driving_license_front."', files_driving_license_back: '".$value->files->driving_license_back."', files_address: '".$value->files->address."' })
+        $.post( '', { person: 1, id: '".$value->id."', name: '".$value->name."', email: '".$value->email."', address: '".$value->address."', postal: '".$value->postal."', city: '".$value->city."', country: '".$value->country."', files_passport: '".$value->files->passport."', files_driving_license_front: '".$value->files->driving_license_front."', files_driving_license_back: '".$value->files->driving_license_back."', files_address: '".$value->files->address."' })
         .done(function( person ) {
             $('#allUbos').append(person);
         });
@@ -29,6 +29,7 @@ foreach($onboarding_data->key_personnel as $key=>$value) {
     }
     FindCompanyDetails(); });";
 }
+
 ?>
 <div id='company'>
     <div class="step1 row url">

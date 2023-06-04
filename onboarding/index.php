@@ -9,6 +9,7 @@ if(isset($REQ["vat"])) {
 if(isset($REQ["person"])) {
     $id = $REQ["id"] ?? "";
     $name = $REQ["name"] ?? "";
+    $email = $REQ["email"] ?? "";
     $address = $REQ["address"] ?? "";
     $postal = $REQ["postal"] ?? "";
     $city = $REQ["city"] ?? "";
@@ -18,7 +19,7 @@ if(isset($REQ["person"])) {
     $files_driving_license_back = $REQ["files_driving_license_back"] ?? "";
     $files_address = $REQ["files_address"] ?? "";
     echo html_preson(
-        $id, $name, $address,$postal,$city,$country,$files_passport,$files_driving_license_front,$files_driving_license_back,$files_address);
+        $id, $name, $email, $address,$postal,$city,$country,$files_passport,$files_driving_license_front,$files_driving_license_back,$files_address);
     die();
 }
 $load_css[] = "onboarding.css";
