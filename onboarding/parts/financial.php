@@ -3,6 +3,8 @@ $iban = $onboarding_data->{"bank-iban"} ?? "";
 $swift = $onboarding_data->{"bank-bic"} ?? "";
 $settlement_schedule = $onboarding_data->{"bank-settlement"} ?? "weekly";
 $earlier_processing = $onboarding_data->{"earlier_processing"} ?? "no";
+$processing_history = $onboarding_data->{"processing-history"} ?? "";
+$bank_documentation = $onboarding_data->{"bank-documentation"} ?? "";
 $settlement = [
     "weekly",
     "daily",
@@ -30,7 +32,7 @@ $settlement = [
             <div class="col-sm-10">
                 <input type="file" class="form-control input" id="bank-screenshot">
                 <?php
-                    if($onboarding_data->{"bank-documentation"} !== "") {
+                    if($bank_documentation !== "") {
                         echo "An screenshot have already been uploaded.";
                     }
                 ?>
@@ -79,7 +81,7 @@ $settlement = [
             <div class="col-sm-10">
                 <input type="file" class="form-control input" name="processing-history" id="processing-history">
                 <?php
-                if($onboarding_data->{"processing-history"} !== "") {
+                if($processing_history !== "") {
                     echo "An screenshot have already been uploaded.";
                 }
                 ?>
