@@ -33,9 +33,11 @@ function company_country($this) {
     });
     $(".flags img").css("opacity","0.5");
     $this.css("opacity","1.0");
+    val_company_country = $this.attr("data-country");
     return true;
 }
 function FindCompanyDetails() {
+    $("#onboarding_form .company_data .identified_company_details").css("display","inline");
     $("#onboarding_form .company_data .identified_company_details .CompanyLoading").css("display","inline");
     $("#onboarding_form .company_data .identified_company_details .row").css("display","none");
     var request = $.ajax({
@@ -90,6 +92,10 @@ function FindCompanyDetails() {
                 ubos_found = true;
             }
         });
+        $("#company-name").val(msg.company.name);
+        $("#company-address").val(msg.company.address);
+        $("#company-zip").val(msg.company.postal);
+        $("#company-city").val(msg.company.city);
     });
 
     request.fail(function( jqXHR, textStatus ) {

@@ -9,8 +9,6 @@ $company_zip = $onboarding_data->{"company-zip"} ?? "";
 $company_city = $onboarding_data->{"company-city"} ?? "";
 
 $inline_script[] = "val_company_country = '$company_country';";
-if($company_vat !== "")
-    $inline_script[] = "$( document ).ready(function() { FindCompanyDetails(); });";
 $countries = [
     ["dnk","92051_denmark_denmark","Denmark"],
     ["swe","92367_sweden_sweden","Sweden"],
@@ -29,11 +27,12 @@ foreach($onboarding_data->key_personnel as $key=>$value) {
         }
     });";
 }
-if($company_vat !== "") {
+if($company_country !== "" && strlen($company_vat) > 3) {
     $inline_script[] = "$( document ).ready(function() {
     setTimeout(function () {
         FindCompanyDetails();
     }, 2000);
+    });
     ";
 }
 ?>
