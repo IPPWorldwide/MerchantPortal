@@ -32,6 +32,7 @@ if($company_country !== "" && strlen($company_vat) > 3) {
     setTimeout(function () {
         FindCompanyDetails();
     }, 2000);
+    });
     ";
 }
 ?>
