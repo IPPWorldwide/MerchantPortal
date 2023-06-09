@@ -33,6 +33,7 @@ function company_country($this) {
     });
     $(".flags img").css("opacity","0.5");
     $this.css("opacity","1.0");
+    val_company_country = $this.attr("data-country");
     return true;
 }
 function FindCompanyDetails() {
