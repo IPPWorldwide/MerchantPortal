@@ -444,6 +444,7 @@ $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Continue anyway";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Continue";
 
 $lang["PARTNER"]["APPEARANCE"]["HEADER"] = "Appearance";
+$lang["PARTNER"]["APPEARANCE"]["EDIT"] = "Edit";
 $lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Activate Theme";
 $lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Delete Theme";
 $lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Purchase";
@@ -452,6 +453,9 @@ $lang["PARTNER"]["APPEARANCE"]["PURCHASE"] = "Purchase";
 $lang["PARTNER"]["APPEARANCE"]["BTN_PURCHASE"] = "Purchase and install";
 $lang["PARTNER"]["APPEARANCE"]["MONTHLY_COST"] = "Monthly cost:";
 
+
+$lang["PARTNER"]["APPEARANCE_EDITOR"]["HEADER"] = "Editor";
+$lang["PARTNER"]["APPEARANCE_EDITOR"]["SAVE"] = "Save file";
 
 
 

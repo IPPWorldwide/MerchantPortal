@@ -1,0 +1,9 @@
+.fullHeight {
+    height: 80vh;
+}
+.fileArea {
+    height: calc(100% - 60px)
+}
+.fileEditor {
+    height: 100%;
+}
