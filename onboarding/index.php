@@ -34,7 +34,7 @@ $actions->get_action("onboarding");
 echo '
       <h2>'.$lang["COMPANY"]["ONBOARDING"]["HEADER"].'</h2>
 ';
-if($onboarding_data->validated->company) {
+if(isset($onboarding_data->validated) && isset($onboarding_data->validated->company) && $onboarding_data->validated->company) {
     $inline_script[] = "ChangePage('','contract','contracts_sent');";
 }
 echo "<div id='onboarding_form' class='row mb-3'>";

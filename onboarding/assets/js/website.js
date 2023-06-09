@@ -48,7 +48,7 @@ function checkWebsite() {
 }
 function checkWebsiteStatus() {
     $.ajax({
-        url: "http://localhost:8091/company/data/",
+        url: GLOBAL_BASE_URL + "/company/data/",
         method: "POST",
         data: {
             user_id: user.id,

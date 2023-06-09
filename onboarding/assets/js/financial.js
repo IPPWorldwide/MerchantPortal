@@ -94,7 +94,7 @@ $( document ).ready(function() {
         formData.append('field', "bank-documentation");
         formData.append('file', $("#bank-screenshot")[0].files[0]);
         $.ajax({
-            url: "http://localhost:8091/company/data/onboarding/update/",
+            url: GLOBAL_BASE_URL + "company/data/onboarding/update/",
             method: "POST",
             data: formData,
             dataType: 'json',
@@ -112,7 +112,7 @@ $( document ).ready(function() {
         formData.append('field', "processing-history");
         formData.append('file', $("#processing-history")[0].files[0]);
         $.ajax({
-            url: "http://localhost:8091/company/data/onboarding/update/",
+            url: GLOBAL_BASE_URL + "company/data/onboarding/update/",
             method: "POST",
             data: formData,
             dataType: 'json',
