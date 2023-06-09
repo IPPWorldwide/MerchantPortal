@@ -36,6 +36,7 @@ function company_country($this) {
     return true;
 }
 function FindCompanyDetails() {
+    $("#onboarding_form .company_data .identified_company_details").css("display","inline");
     $("#onboarding_form .company_data .identified_company_details .CompanyLoading").css("display","inline");
     $("#onboarding_form .company_data .identified_company_details .row").css("display","none");
     var request = $.ajax({
