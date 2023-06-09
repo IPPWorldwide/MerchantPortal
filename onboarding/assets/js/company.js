@@ -91,6 +91,10 @@ function FindCompanyDetails() {
                 ubos_found = true;
             }
         });
+        $("#company-name").val(msg.company.name);
+        $("#company-address").val(msg.company.address);
+        $("#company-zip").val(msg.company.zip);
+        $("#company-city").val(msg.company.city);
     });
 
     request.fail(function( jqXHR, textStatus ) {
