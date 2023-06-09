@@ -93,7 +93,7 @@ function FindCompanyDetails() {
         });
         $("#company-name").val(msg.company.name);
         $("#company-address").val(msg.company.address);
-        $("#company-zip").val(msg.company.zip);
+        $("#company-zip").val(msg.company.postal);
         $("#company-city").val(msg.company.city);
     });
 
