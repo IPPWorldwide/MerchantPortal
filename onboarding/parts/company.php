@@ -27,12 +27,15 @@ foreach($onboarding_data->key_personnel as $key=>$value) {
             md5people.push(md5);
             ubos_found = true;
         }
-        setTimeout(function () {
-            FindCompanyDetails();
-        }, 2000);
     });";
 }
-
+if($company_vat !== "") {
+    $inline_script[] = "$( document ).ready(function() {
+    setTimeout(function () {
+        FindCompanyDetails();
+    }, 2000);
+    ";
+}
 ?>
 <div id='company'>
     <div class="step1 row url">
