@@ -68,6 +68,10 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/", "POST", [], $data)->content;
     }
+    public function AccessCompanyAccount($company_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $company_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/connect/", "POST", [], $data);
+    }
     public function MerchantDataUpdate($all_data = []) {
         if(isset($all_data["pos_device"])) {
             $pos = [];
