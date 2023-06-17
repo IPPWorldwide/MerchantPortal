@@ -34,6 +34,7 @@ $lang["PARTNER"]["COMPANIES"]["MODAL_REPEAT_PASSWORD"] = "Gentag adgangskode:";
 $lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD_DESCRIPTION"] = "Adgangskoden skal være minimum 12 karakterer samt indeholde et lille bogstav, et stort bogstav, et tal og et specialtegn.";
 $lang["PARTNER"]["COMPANIES"]["MODAL_CLOSE"] = "Luk";
 $lang["PARTNER"]["COMPANIES"]["MODAL_SUBMIT_BTN"] = "Skift adgangskode";
+$lang["PARTNER"]["COMPANIES"]["ACCESS_ACCOUNT"] = "Log på som kunden";
 
 $lang["PARTNER"]["INVOICES"]["HEADER"] = "Regninger";
 $lang["PARTNER"]["INVOICES"]["ADD_NEW"] = "Lav ny regning";

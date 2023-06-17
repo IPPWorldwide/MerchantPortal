@@ -9,6 +9,9 @@ class IPPPlugins
     public $bookkeeping;
     public $communication;
 
+    function __construct($request) {
+        $this->request = $request;
+    }
     public function loadPlugins() {
         if ($handle = opendir(BASEDIR . 'plugins')) {
             while (false !== ($entry = readdir($handle))) {
@@ -267,7 +270,7 @@ class IPPPlugins
             return [];
     }
     private function loadPlugin($plugin_name) {
-        $this->available_plugins[$plugin_name] = new $plugin_name();
+        $this->available_plugins[$plugin_name] = new $plugin_name($this->request);
 
         if(isset($this->available_plugins[$plugin_name]->bookkeeping))
             $this->bookkeeping = $this->available_plugins[$plugin_name]->bookkeeping;
@@ -286,7 +289,7 @@ class IPPPlugins
 
 
     public function loadPage($plugin_name,$page,$REQ) {
-        $this->available_plugins[$plugin_name] = new $plugin_name();
+        $this->available_plugins[$plugin_name] = new $plugin_name($this->request);
         return (array)$this->available_plugins[$plugin_name]->{"pages_".$page}($REQ);
     }
 

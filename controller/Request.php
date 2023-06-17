@@ -2,13 +2,18 @@
 class IPPRequest {
     private $user_id;
     private $session_id;
-    
-    function __construct($user_id,$session_id) {
+    private $key2;
+
+    function __construct(String $user_id,String $session_id) {
         $this->user_id = $user_id;
         $this->session_id = $session_id;
     }
 
-    public function download($url, $dest, $fileName) {
+    public function set_key2(String $key2) {
+        $this->key2 = $key2;
+    }
+
+    public function download(String $url, String $dest, String $fileName) {
         $fr = @fopen($url, 'r');
 
         $fw = fopen($dest, 'w');
@@ -43,13 +48,14 @@ class IPPRequest {
 
     public function curl($url, $type = 'POST', $query = [], $data = [], $headers = [],$file=false){
         global $_SESSION,$IPP_CONFIG;
-        if(isset($this->user_id) && $this->user_id != "")
+        if(isset($this->user_id) && strlen($this->user_id) > 0)
             $data["user_id"] = $this->user_id;
-        if(isset($this->session_id) && $this->session_id != "")
+        if(isset($this->session_id) && strlen($this->session_id) > 0)
             $data["session_id"] = $this->session_id;
+        if(isset($this->key2) && strlen($this->key2) > 0)
+            $data["key2"] = $this->key2;
 
-        if(isset($_ENV["PARTNER_ID"]))
-            $data["partner_id"] = $_ENV["PARTNER_ID"];
+        $data["partner_id"] = $_ENV["PARTNER_ID"];
         if(isset($_SESSION["ipp_type"]) && $_SESSION["ipp_type"] == "partner") {
             $data["key1"] = $_ENV["PARTNER_KEY1"];
             $data["key2"] = $_ENV["PARTNER_KEY2"];
@@ -59,6 +65,7 @@ class IPPRequest {
         }
         if(isset($IPP_CONFIG["PARTNER_ID"]))
             $data["partner_id"] = $IPP_CONFIG["PARTNER_ID"];
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$url?".http_build_query($query, "", "&", PHP_QUERY_RFC3986));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);

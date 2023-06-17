@@ -30,7 +30,6 @@ echo head();
 $actions->get_action("partner_apperance");
 
 echo '
-
     <div class="row">
         <div class="col-6">
             <h2>'.$lang["PARTNER"]["APPEARANCE"]["HEADER"].'</h2>
@@ -44,45 +43,42 @@ echo '
             </button>
         </div>
     </div>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <div class="col">
-        <div class="card shadow-sm">
-            <p class="card-header">Add new theme</p>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body plugin-card-body">
-                <p class="card-text"></p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group"><form id="add-new-plugin" action="#" method="POST" enctype="multipart/form-data"><input type="file" name="new-theme" id="theme-file" accept=".zip"></form><button type="button" class="btn btn-sm btn-info text-white" id="upload-theme-file">Upload</button>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-1">
+            <p>Add new theme</p>
+        </div>
+        <div class="col-2">
+            <form id="add-new-plugin" action="#" method="POST" enctype="multipart/form-data"><input type="file" name="new-theme" id="theme-file" accept=".zip"></form>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-sm btn-info text-white" id="upload-theme-file">Upload</button>
         </div>
     </div>
+<div class="row row-cols-1">
+<ul class="list-group">
+
 ';
 foreach($all_themes as $key=>$value) {
     $description = "";
     if(file_exists($value."/info.php"))
         include $value."/info.php";
     echo '
-        <div class="col" id="theme_'.basename($value).'">
-          <div class="card shadow-sm">
-              <p class="card-header">'.basename($value).'</p>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">';
-                echo $description . '</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">';
-        echo '<button type="button" data-plugin-name="'.basename($value).'" class="btn btn-sm btn-success'; if($IPP_CONFIG["THEME"] === basename($value)) { echo " btnHidden"; } echo ' installModal">'.$lang["PARTNER"]["APPEARANCE"]["INSTALL"].'</button>';
-        echo '&nbsp;<button type="button" data-plugin-name="'.basename($value).'" class="btn btn-sm btn-warning removeTheme">'.$lang["PARTNER"]["APPEARANCE"]["REMOVE"].'</button>';
-    echo '
-                </div>
-              </div>
+    <li class="list-group-item" id="theme_'.basename($value).'">
+        <div class="row">
+            <div class="col-1">
+                <button type="button" data-plugin-name="'.basename($value).'" class="btn btn-sm btn-success'; if($IPP_CONFIG["THEME"] === basename($value)) { echo " btnHidden"; } echo ' installModal">'.$lang["PARTNER"]["APPEARANCE"]["INSTALL"].'</button>';
+                echo '
             </div>
-          </div>
-        </div>';
+            <div class="col-9">
+                <b>'.basename($value).'</b><br />'.$description.'<br />
+                <a href="editor.php?theme='.basename($value).'" data-plugin-name="'.basename($value).'" class="btn btn-sm btn-warning editTheme">'.$lang["PARTNER"]["APPEARANCE"]["EDIT"].'</a>
+                <button type="button" data-plugin-name="'.basename($value).'" class="btn btn-sm btn-warning removeTheme">'.$lang["PARTNER"]["APPEARANCE"]["REMOVE"].'</button>
+            </div>
+        </div>
+        ';
+    echo '</li>';
 }
-echo "</div>";
+echo "</ul>";
 
 echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">';
 foreach($public_themes as $key=>$value) {

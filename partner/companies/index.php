@@ -10,6 +10,19 @@ if(isset($REQ["close"])) {
     header("Location: /partner/companies");
     die();
 }
+if(isset($REQ["access_company"])) {
+    $data = $partner->AccessCompanyAccount($REQ["company_id"]);
+    echo json_encode($data);
+    die();
+}
+if(isset($REQ["redirect"])) {
+    setcookie("ipp_type", "customer", time()+3600, "/");  /* expire in 1 hour */
+    setcookie("ipp_user_id", $REQ["user_id"], time()+3600, "/");  /* expire in 1 hour */
+    setcookie("ipp_user_session_id", $REQ["session_id"], time()+3600, "/");  /* expire in 1 hour */
+    header("location: {$_ENV["PORTAL_URL"]}dashboard/");
+    die();
+}
+
 
 $companies = $partner->ListCompany();
 echo head();
@@ -56,7 +69,9 @@ echo '
               <td>".$value->invoices->total."</td>
               <td><a href='/partner/companies/details.php?id=".$value->id."' class='btn btn-dark'>".$lang["PARTNER"]["COMPANIES"]["INFO"]."</a></td>
               <td>
-              <button type='button' class='btn btn-info ResetPasswordModal' data-companyname='".$value->name."' data-company='".$value->id."' data-id='".$user->id."' data-username='".$user->username."'>".$lang["PARTNER"]["COMPANIES"]["RESET_PASSWORD"]."</button></td>
+                <button type='button' class='btn btn-info ResetPasswordModal' data-companyname='".$value->name."' data-company='".$value->id."' data-id='".$user->id."' data-username='".$user->username."'>".$lang["PARTNER"]["COMPANIES"]["RESET_PASSWORD"]."</button>
+                <button type='button' class='btn btn-secondary AccessCompanyAccount' data-company='".$value->id."'>".$lang["PARTNER"]["COMPANIES"]["ACCESS_ACCOUNT"]."</button>
+              </td>
               <td><a href='/partner/companies/?close=1&company_id=".$value->id."' class='btn btn-warning'>".$lang["PARTNER"]["COMPANIES"]["CLOSE_ACCOUNT"]."</a></td>
             </tr>";
           }
