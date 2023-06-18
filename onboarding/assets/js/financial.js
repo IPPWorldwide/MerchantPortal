@@ -20,6 +20,19 @@ function UploadFinanceData() {
     return true;
 }
 $( document ).ready(function() {
+    $( "#bank-name" )
+        .on( "focusout", function() {
+            $.ajax({
+                url: GLOBAL_BASE_URL + "company/data/onboarding/update/",
+                method: "POST",
+                data: {
+                    company_id: company.id,
+                    api_key: company.api_key,
+                    field: 'bank-name',
+                    value: $("#bank-name").val()
+                }
+            });
+        } );
     $( "#iban" )
         .on( "focusout", function() {
             $.ajax({

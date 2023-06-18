@@ -1,20 +1,27 @@
 <?php
+$bank_name = $onboarding_data->{"bank-name"} ?? "";
 $iban = $onboarding_data->{"bank-iban"} ?? "";
 $swift = $onboarding_data->{"bank-bic"} ?? "";
 $settlement_schedule = $onboarding_data->{"bank-settlement"} ?? "weekly";
 $earlier_processing = $onboarding_data->{"earlier_processing"} ?? "no";
 $processing_history = $onboarding_data->{"processing-history"} ?? "";
 $bank_documentation = $onboarding_data->{"bank-documentation"} ?? "";
+$bank_account_currency_code = $onboarding_data->{"bank-account-currency-code"} ?? "EUR";
 $settlement = [
     "weekly",
     "daily",
     "monthly"
 ];
-
 ?>
 <div id='financial'>
     <div class="step1 row settlement">
         <h3>Settlement account</h3>
+        <div class="mb-12 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Name of Bank</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control input" id="bank-name" value="<?php echo $bank_name; ?>">
+            </div>
+        </div>
         <div class="mb-12 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">IBAN</label>
             <div class="col-sm-10">
@@ -25,6 +32,21 @@ $settlement = [
             <label for="staticEmail" class="col-sm-2 col-form-label">SWIFT</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control input" id="swift" value="<?php echo $swift; ?>">
+            </div>
+        </div>
+        <div class="mb-12 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Settlement Currency</label>
+            <div class="col-sm-10">
+                <select class="form-control input" id="bank-account-currency-code" >
+                    <?php
+                    foreach($currency->currency_list() as $value) {
+                        echo "<option";
+                        if($currency->currency($value)[0] === $bank_account_currency_code)
+                            echo " selected ";
+                        echo ">".$currency->currency($value)[0]."</option>";
+                    }
+                    ?>
+                </select>
             </div>
         </div>
         <div class="mb-12 row">
