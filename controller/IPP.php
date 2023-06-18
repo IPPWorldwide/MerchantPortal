@@ -95,6 +95,10 @@ class IPP {
         $data["settings"] = $settings;
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/acquirer/data/update.php", "POST", [], $data)->content;
     }
+    public function MerchantSupportUpdate($status) {
+        $security_data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "status" => $status];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/support/", "POST", [], $security_data);
+    }
 
     public function SendPaymentLink($sender,$recipient,$expiry_time,$order_id,$amount,$currency) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
