@@ -274,6 +274,9 @@ $lang["COMPANY"]["DATA"]["DATA"] = "Data";
 $lang["COMPANY"]["DATA"]["SETTINGS"] = "Settings";
 $lang["COMPANY"]["DATA"]["SAVE"] = "Save";
 $lang["COMPANY"]["DATA"]["CLOSE"] = "Close";
+$lang["COMPANY"]["DATA"]["SHOW_SUPPORT"] = "Show Support Settings";
+$lang["COMPANY"]["DATA"]["DISABLE_SUPPORT"] = "Disable Support Access";
+$lang["COMPANY"]["DATA"]["ENABLE_SUPPORT"] = "Enable Support Access";
 
 $lang["COMPANY"]["PAYOUTS"]["HEADER"] = "Payouts";
 $lang["COMPANY"]["PAYOUTS"]["DATE"] = "Date";
