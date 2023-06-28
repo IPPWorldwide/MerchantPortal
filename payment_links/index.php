@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 $merchant_data = $ipp->MerchantData();
 $isEcommChannel = false;
 if(isset($merchant_data->channels)) {

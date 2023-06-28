@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 
 $ipp->RemovePlugin($company_data->content->id,$REQ["id"],$REQ["plugin"]);
 

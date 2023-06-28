@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 $payment_type   = $REQ["payment_type"] ?? "AUTH+SALE";
 $result         = $REQ["payment_result"] ?? "ALL";
 $payment_start  = $REQ["payment_start"] ?? date("Y-m-d\TH:i", (time()-86400*30));

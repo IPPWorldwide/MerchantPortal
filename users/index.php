@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 
 if(isset($REQ["password"])) {
     $ipp->ResetUserPassword($REQ["userid"],$REQ["password"]);

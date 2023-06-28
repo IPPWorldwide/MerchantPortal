@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 if(isset($REQ["email"])) {
     $data = $ipp->AddUser($REQ);
     header("Location: /users");

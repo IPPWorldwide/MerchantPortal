@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 echo head();
 $actions->get_action("access_rights");
 $actions->get_action("theme_replacement");

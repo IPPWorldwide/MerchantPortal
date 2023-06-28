@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 $merchant_data = $ipp->MerchantData();
 echo head();
 $actions->get_action("virtual_terminal_success");

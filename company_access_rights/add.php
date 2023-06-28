@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 if(isset($REQ["name"])) {
     if(isset($REQ["rights"]["ALL"])) {
         $rights = $REQ["rights"]["ALL"];

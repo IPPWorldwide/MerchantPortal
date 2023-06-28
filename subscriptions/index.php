@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 $result         = $REQ["result"] ?? "ALL";
 echo head();
 $actions->get_action("cardholder_subscriptions");

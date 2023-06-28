@@ -1,5 +1,5 @@
 <?php
-include_once("../base.php");
+include_once "../base.php";
 
 if(isset($REQ["documentation_type"])) {
     $added_documentation = $ipp->DisputesUpload($REQ["id"],$REQ["documentation_type"],$_FILES['attached_file']);
