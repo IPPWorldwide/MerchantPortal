@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 if(isset($REQ["id"])) {
     $invoice = $ipp->InvoiceData($REQ["id"]);
 
@@ -20,6 +20,8 @@ if(isset($REQ["id"])) {
 $invoices = $ipp->Listinvoices();
 echo head();
 $actions->get_action("invoices");
+$actions->get_action("theme_replacement");
+
 echo '
     <div class="row">
         <div class="col-6">

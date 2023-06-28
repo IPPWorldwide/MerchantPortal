@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 if(isset($REQ["id"])) {
     $merchant_data = $ipp->MerchantDataUpdate($REQ);
 }
@@ -17,6 +17,7 @@ if(isset($REQ["acquirer_id"]) && isset($REQ["acquirer_data"])) {
 $merchant_data = $ipp->MerchantData();
 echo head();
 $actions->get_action("merchant_data");
+$actions->get_action("theme_replacement");
 echo '
         <form action="?" method="POST" class="form">
             <h2>'.$lang["COMPANY"]["DATA"]["HEADER"].'</h2>

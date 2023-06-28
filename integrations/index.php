@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 if(isset($REQ["external"])) {
     if($plugins->hasExternalLogin($REQ["plugin_slug"])) {
         $myfile = fopen(BASEDIR . "plugins/".$REQ["plugin_slug"]."/".$company_data->content->id."_settings.php", "w") or die("Unable to open file!");
@@ -26,6 +26,7 @@ $all_plugins = array_merge((array)$plugins->getAvailablePlugins(true));
 
 echo head();
 $actions->get_action("extensions");
+$actions->get_action("theme_replacement");
 
 echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 allplugins">
 ';

@@ -1,8 +1,9 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 $result         = $REQ["result"] ?? "ALL";
 echo head();
 $actions->get_action("cardholder_subscriptions");
+$actions->get_action("theme_replacement");
 echo '
 <h2>'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["HEADER"].'</h2>
 

@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 $merchant_data = $ipp->MerchantData();
 if(isset($REQ["start_terminal"])) {
     $gateway    = new IPPGateway($merchant_data->id,$merchant_data->security->key2);
@@ -22,6 +22,8 @@ if(isset($REQ["start_terminal"])) {
 
 echo head();
 $actions->get_action("virtual_terminal");
+$actions->get_action("theme_replacement");
+
 if(!isset($_POST["start_terminal"])) {
 echo '
       <h2>'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["HEADER"].'</h2>

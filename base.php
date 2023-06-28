@@ -110,6 +110,7 @@ if(isset($_COOKIE["ipp_type"]))
     $user_type = $_COOKIE["ipp_type"];
 
 $inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
+$actions->add_action("theme_replacement","theme_replacement",9999);
 $actions->get_action("init");
 if(isset($_COOKIE["ipp_user_id"])) {
     $load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/user.js";
@@ -120,4 +121,15 @@ if(isset($_COOKIE["ipp_user_id"])) {
         $inline_script[] = "company.id='".$company_data->content->id."';company.api_key='".$company_data->content->security->key1."'";
     $inline_script[] = "GLOBAL_BASE_URL = '".$IPP_CONFIG["GLOBAL_BASE_URL"]."';";
     $inline_script[] = "PORTAL_URL = '".$IPP_CONFIG["PORTAL_URL"]."';";
+}
+function theme_replacement() {
+    global $company_data,$actions,$lang,$ipp;
+    $query = $_SERVER['REQUEST_URI'];
+    if(!isset(pathinfo($query)["extension"]))
+        $query .= "index.php";
+    if(file_exists(THEME."/pages/".$query) && is_file(THEME."/pages/".$query)) {
+        include_once(THEME."/pages/".$query);
+        echo foot();
+        die();
+    }
 }

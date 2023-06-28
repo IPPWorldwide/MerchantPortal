@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 
 if(isset($REQ["action"])) {
     $ipp->TransactionsAction($REQ["action"],$REQ["transaction_id"],$REQ["action_id"],$REQ["amount"] ?? 0);
@@ -28,6 +28,9 @@ $merchant_data = $ipp->MerchantData();
 $transaction_data = $ipp->TransactionsData($REQ["id"]);
 
 echo head();
+$actions->get_action("payments");
+$actions->get_action("theme_replacement");
+
 echo '
 <div class="row row-cols-md-2 mb-2">
     <div class="col-6">

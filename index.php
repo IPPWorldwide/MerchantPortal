@@ -1,7 +1,6 @@
 <?php
 $public_page = true;
-include("base.php");
-
+include_once("base.php");
 if(isset($REQ["timezone"])) {
     setcookie("timezone", $REQ["timezone"],strtotime("+1 day"));
     die();

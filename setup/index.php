@@ -99,7 +99,7 @@ if(isset($_POST["portal_title"])) {
         $new_config = $config->UpdateConfig(strtoupper($key),$value);
     }
     $config->WriteConfig();
-    include_once("../base.php");
+    include_once "../base.php";
     if(isset($_POST["theme"]) && $_POST["theme"] !== "standard") {
         $theme = $partner->purchaseTheme($_POST["theme"],$_POST["partner_id"],$_POST["partner_key1"]);
         $src = BASEDIR . "theme/" . $_POST["theme"] . "/";

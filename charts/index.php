@@ -1,8 +1,9 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 
 echo head();
 $actions->get_action("charts");
+$actions->get_action("theme_replacement");
 echo '
       <h2>'.$lang["COMPANY"]["CHARTS"]["HEADER"].'</h2>
         <div class="card chart-container">

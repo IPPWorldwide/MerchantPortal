@@ -1,11 +1,14 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 if(isset($REQ["email"])) {
     $data = $ipp->AddUser($REQ);
     header("Location: /users");
     die();
 }
 echo head();
+$actions->get_action("users_add");
+$actions->get_action("theme_replacement");
+
 echo '
 <form action="?" method="POST" class="form">
     <input name="access_id" placeholder="For later usage" type="hidden">

@@ -1,6 +1,5 @@
 <?php
-include("../base.php");
-
+include_once "../base.php";
 $payment_type   = $REQ["payment_type"] ?? "AUTH+SALE";
 $result         = $REQ["payment_result"] ?? "ALL";
 $payment_start  = $REQ["payment_start"] ?? date("Y-m-d\TH:i", (time()-86400*30));
@@ -15,7 +14,7 @@ if($company_data->content->user->password->new) {
     $('#passwordModal #user-id').val('" . $_COOKIE["ipp_user_id"] .  "');";
 }
 echo head();
-$actions->get_action("dashboard");
+$actions->get_action("theme_replacement");
 echo '
       <h2>'.$lang["COMPANY"]["DASHBOARD"]["HEADER"].'</h2>
         <div class="row row-cols-md-2 mb-2">

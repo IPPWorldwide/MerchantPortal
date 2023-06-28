@@ -1,9 +1,11 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 
 $invoice = $ipp->InvoiceData($REQ["id"]);
 
 echo head();
+$actions->get_action("invoices_show");
+$actions->get_action("theme_replacement");
 
 echo '
 <div class="py-5 text-center">
