@@ -19,6 +19,7 @@ if(isset($REQ["send_link"])) {
 $sent_payment_links = $ipp->ListPaymentLinks();
 echo head();
 $actions->get_action("payment_links");
+$actions->get_action("theme_replacement");
 
 echo "<h2>".$lang["COMPANY"]["PAYMENT_LINKS"]["HEADER"]."</h2>";
 

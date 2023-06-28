@@ -20,6 +20,8 @@ if(isset($REQ["id"])) {
 $invoices = $ipp->Listinvoices();
 echo head();
 $actions->get_action("invoices");
+$actions->get_action("theme_replacement");
+
 echo '
     <div class="row">
         <div class="col-6">

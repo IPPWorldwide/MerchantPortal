@@ -5,6 +5,7 @@ $status  = $REQ["dispute_status"] ?? "ALL";
 
 echo head();
 $actions->get_action("disputes");
+$actions->get_action("theme_replacement");
 echo '
     <h2>'.$lang["COMPANY"]["DISPUTES"]["HEADER"].'</h2>
     <form action="/disputes" method="GET">

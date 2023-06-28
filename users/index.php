@@ -19,6 +19,8 @@ $access_rights = $ipp->GetAllAccessRights();
 $companies = $ipp->ListUsers();
 echo head();
 $actions->get_action("users");
+$actions->get_action("theme_replacement");
+
 echo '
     <div class="row">
         <div class="col-6">

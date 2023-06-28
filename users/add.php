@@ -6,6 +6,9 @@ if(isset($REQ["email"])) {
     die();
 }
 echo head();
+$actions->get_action("users_add");
+$actions->get_action("theme_replacement");
+
 echo '
 <form action="?" method="POST" class="form">
     <input name="access_id" placeholder="For later usage" type="hidden">

@@ -10,6 +10,9 @@ if(isset($REQ["documentation_type"])) {
 $dispute_id   = $REQ["id"];
 $dispute_data = $ipp->DisputesData($dispute_id);
 echo head();
+$actions->get_action("disputes_data");
+$actions->get_action("theme_replacement");
+
 ?>
         <h2>Dispute Data</h2>
         <div class="row row-cols-md-3 mb-3">

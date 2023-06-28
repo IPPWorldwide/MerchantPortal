@@ -31,6 +31,8 @@ $load_script[] = "assets/js/contract.js";
 echo head();
 $onboarding_data = $merchant_data->onboarding_data;
 $actions->get_action("onboarding");
+$actions->get_action("theme_replacement");
+
 echo '
       <h2>'.$lang["COMPANY"]["ONBOARDING"]["HEADER"].'</h2>
 ';
