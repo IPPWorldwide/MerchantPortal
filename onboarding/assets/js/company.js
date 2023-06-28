@@ -216,8 +216,7 @@ $( document ).ready(function() {
                 owner_id: id,
                 company_id: company.id,
                 api_key: company.api_key,
-                field: 'email',
-                value: $(this).val()
+                email: $(this).val()
             },
         });
     });

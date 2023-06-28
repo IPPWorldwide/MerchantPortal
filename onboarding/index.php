@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once("../base.php");
 require_once("parts/persons.php");
 $merchant_data = $ipp->MerchantData();
 if(isset($REQ["vat"])) {

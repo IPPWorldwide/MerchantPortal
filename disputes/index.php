@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once("../base.php");
 $state   = $REQ["dispute_state"] ?? "ALL";
 $status  = $REQ["dispute_status"] ?? "ALL";
 

@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once("../base.php");
 echo head();
 $actions->get_action("access_rights");
 

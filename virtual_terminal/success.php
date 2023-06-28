@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once("../base.php");
 $merchant_data = $ipp->MerchantData();
 echo head();
 

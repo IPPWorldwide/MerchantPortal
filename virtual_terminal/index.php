@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once("../base.php");
 $merchant_data = $ipp->MerchantData();
 if(isset($REQ["start_terminal"])) {
     $gateway    = new IPPGateway($merchant_data->id,$merchant_data->security->key2);

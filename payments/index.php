@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once("../base.php");
 
 if(isset($REQ["action"])) {
     $ipp->TransactionsAction($REQ["action"],$REQ["transaction_id"],$REQ["action_id"],$REQ["amount"] ?? 0);

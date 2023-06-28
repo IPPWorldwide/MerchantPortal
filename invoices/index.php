@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once("../base.php");
 if(isset($REQ["id"])) {
     $invoice = $ipp->InvoiceData($REQ["id"]);
 
