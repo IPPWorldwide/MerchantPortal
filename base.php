@@ -123,8 +123,9 @@ if(isset($_COOKIE["ipp_user_id"])) {
     $inline_script[] = "PORTAL_URL = '".$IPP_CONFIG["PORTAL_URL"]."';";
 }
 function theme_replacement() {
-    global $company_data,$actions,$lang,$ipp;
-    $query = $_SERVER['REQUEST_URI'];
+    global $REQ,$currency,$company_data,$actions,$lang,$ipp,$merchant_data;
+    $uri = $_SERVER["REQUEST_URI"];
+    $query = strtok($uri, '?');
     if(!isset(pathinfo($query)["extension"]))
         $query .= "index.php";
     if(file_exists(THEME."/pages/".$query) && is_file(THEME."/pages/".$query)) {
