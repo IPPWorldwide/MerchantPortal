@@ -23,8 +23,6 @@ class IPPPartnerGraph {
             $graphs = $this->partner->statisticCharts("daily",$datasource,$length)->content;
         else {
             $source = new admin_ongoing_onboardings();
-            var_dump($source);
-            var_dump($source);
             $graphs = json_decode("{[\"display\": \"1\", \"count\": \"2\"]}");
         }
         $data = [];
