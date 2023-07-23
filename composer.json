@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "ippworldwide/component-mcc-list": "1.0.0",
         "ippworldwide/component-currency": "1.0.0",
         "ippworldwide/component-request-params": "1.0.0",

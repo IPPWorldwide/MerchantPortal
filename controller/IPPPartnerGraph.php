@@ -18,108 +18,6 @@ class IPPPartnerGraph {
         $this->data_sources = $this->getDataSources();
     }
 
-    public function GenerateView($ViewType="graph",$datasource="tansactions",$length="7d",$source="api") {
-        if($source === "api")
-            $graphs = $this->partner->statisticCharts("daily",$datasource,$length)->content;
-        else {
-            $source = new admin_ongoing_onboardings();
-            var_dump($source);
-            var_dump($source);
-            $graphs = json_decode("{[\"display\": \"1\", \"count\": \"2\"]}");
-        }
-        $data = [];
-        $label = [];
-        foreach($graphs as $value) {
-            $label[] = $value->display;
-            $data[] = $value->count;
-        }
-        if($ViewType==="GraphBar") {
-            return $this->generateGraphJson($label, "Transactions",$data);
-        }
-        if($ViewType==="GraphLine") {
-            return $this->generateGraphJson($label, "Transactions",$data);
-        }
-        elseif($ViewType==="Number") {
-            return $this->generateNumberJson($label, "Transactions",$data);
-        }
-        else
-            return [];
-    }
-
-    public function GenerateHTML(int $i, $title, string $ElementData, string $ElementType, string $ElementSource = "api") {
-        global $lang;
-        $html = '<div class="col themed-grid-col chartscol dashboard" data-sequence="'.$i.'" data-data="'.$ElementData.'" data-type="'.$ElementType.'" data-source="'.$ElementSource.'">
-            <div class="content">
-                <h2>'.$title.'</h2>
-                ';
-        if(strtolower($ElementType) === "list") {
-            $html .= '
-                <div class="admin_ongoing_onboardings::generate_list"></div>
-            ';
-        } else {
-            $html .= '
-                <canvas id="chart'.$i.'" height="130px"></canvas>
-            ';
-        }
-        $html .= '
-            </div>
-            <div class="settings">
-                <button type="button" class="btn btn-warning DashboardRemoveElement">
-                  '.$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"].'
-                </button>
-            </div>
-        </div>';
-        return $html;
-    }
-
-    private function generateNumberJson($label,$text,$data) {
-        $count = 0;
-        foreach($data as $value)
-            $count+=$value;
-        echo json_encode([
-            "type" => "number",
-            "data" => [
-                "label"  => $text,
-                "number" => $count,
-            ],
-        ],JSON_THROW_ON_ERROR);
-    }
-
-    private function generateGraphJson($label, $text, $data, $background='transparent', $border_color='#007bff', $border_width=2, $pointBackground='#007bff', $tension="0.5") {
-        echo json_encode([
-            "type" => "line",
-            "data" => [
-                "labels" => array_reverse($label),
-                "datasets" => array([
-                    "label" => $text,
-                    "data" => array_reverse($data),
-                    "backgroundColor" => $background,
-                    "borderColor" => $border_color,
-                    "borderWidth" => $border_width,
-                    "pointBackgroundColor" => $pointBackground,
-                    "tension" => $tension,
-                ])
-            ],
-            "options" => [
-                "scales" => [
-                    "yAxes" => [
-                        [
-                            "ticks" => [
-                                "beginAtZero" => false
-                            ]
-                        ]
-                    ]
-                ],
-                "legend" => [
-                    "display" => true
-                ],
-                "interaction" => [
-                    "intersect" => false,
-                ],
-            ]
-        ], JSON_THROW_ON_ERROR, 256);
-    }
-
     private function getDataSources() {
         $sources = [];
         $sources["customers_created_7_days"] = [
@@ -127,62 +25,91 @@ class IPPPartnerGraph {
             "title"         => "Created Customers, past 7 days",
             "source"        => "api",
             "datasource"    => "company",
-            "time"          => 7,
-            "period"        => "d"
+            "serve"         => "list",
+            "period"        => 7
         ];
         $sources["customers_created_30_days"] = [
             "id"            => "customers_created_30_days",
             "title"         => "Created Customers, past 30 days",
             "source"        => "api",
             "datasource"    => "company",
-            "time"          => 30,
-            "period"        => "d"
+            "serve"         => "list",
+            "period"        => 30
         ];
         $sources["transactions_approved_7_days"] = [
             "id"            => "transactions_approved_7_days",
             "title"         => "Approved Transactions, past 7 days",
             "source"        => "api",
             "datasource"    => "transactions",
-            "time"          => 7,
-            "period"        => "d"
+            "serve"         => "list",
+            "period"        => 7
         ];
         $sources["transactions_approved_14_days"] = [
             "id"            => "transactions_approved_14_days",
             "title"         => "Approved Transactions, past 14 days",
             "source"        => "api",
             "datasource"    => "transactions",
-            "time"          => 14,
-            "period"        => "d"
+            "serve"         => "list",
+            "period"        => 14
         ];
         $sources["transactions_approved_30_days"] = [
             "id"            => "transactions_approved_30_days",
             "title"         => "Approved Transactions, past 30 days",
             "source"        => "api",
             "datasource"    => "transactions",
-            "time"          => 30,
-            "period"        => "d"
+            "serve"         => "list",
+            "period"        => 30
         ];
         return $sources;
     }
-
-    public function AddGraph($title, $array) {
-        $new_element[$title] = $array;
-        $this->data_sources = array_merge($this->data_sources,$new_element);
-        return array_merge($this->data_sources,$array);
-    }
-
-    public function getDataSource($data) {
-        $source_list = $this->data_sources;
-        $title = $source_list[$data]["title"] ?? "";
-        $datasource = $source_list[$data]["datasource"] ?? "api";
-        $time = $source_list[$data]["time"] ?? 7;
-        $period = $source_list[$data]["period"] ?? "d";
-        return [
-            "title"  => $title,
-            "source" => $datasource,
-            "time"   => $time,
-            "length" => $time . $period,
-            "period" => $period
+    
+    private function StatisticsRequest($data_table, $group_method,$summarize,$period) {
+        global $request;
+        $dataset    = [];
+        $dataset["x"] = "";
+        $dataset["y"] = "";
+        $data = [
+            "since" => (time()-(86400*$period)),
+            "table" => $data_table,
+            "serve" => "list",
+            "group" => "start_time,$group_method"
         ];
+        $r_data = $request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/", "POST", [], $data)->content;
+        foreach($r_data->list as $key=>$value) {
+            $dataset["x"] .= "'".$key."',";
+            $dataset["y"] .= "'".count((array)$value)."',";
+        }
+        $dataset["x"] = rtrim($dataset["x"],",");
+        $dataset["y"] = rtrim($dataset["y"],",");
+        return $dataset;
+    }
+    
+    public function GenerateHTML($sequence, $Graph, $Type,$groupBy,$summarize,$live=false) {
+        global $inline_script;
+        $data = $this->StatisticsRequest($this->data_sources[$Graph]["datasource"],$groupBy,$summarize,$this->data_sources[$Graph]["period"]);
+        $script = '
+        var '.$this->data_sources[$Graph]["id"].' = echarts.init(document.getElementById("'.$this->data_sources[$Graph]["id"].'"));
+        option = {
+                xAxis: {
+                    data: ['.$data["x"].']
+                },
+                yAxis: {},
+                series: [
+                    {
+                        type: \''.$Type.'\',
+                        data: ['.$data["y"].']
+                    }
+                ]
+            };
+            '.$this->data_sources[$Graph]["id"].'.setOption(option);
+            console.log("Done");
+            ';
+        $html = "";
+        $html .= "<div class='element' data-sequence='".$sequence."'><h4>".$this->data_sources[$Graph]["title"]."</h4><button class='btn btn-danger DashboardRemoveElement'>Remove</button><div class='graph' id='".$this->data_sources[$Graph]["id"]."'></div></div>";
+        if($live)
+            echo "<script>".$script."</script>";
+        else
+            $inline_script[] = $script;
+        return $html;
     }
 }
