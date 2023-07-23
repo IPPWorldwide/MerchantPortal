@@ -9,11 +9,11 @@ function foot() {
     foreach($load_css as $value) {
         $css .= '<link href="'.$value.'" rel="stylesheet">';
     }
-    foreach($inline_script as $value) {
-        $script .= "<script>".$value."</script>";
-    }
     foreach($load_script as $value) {
         $script .= "<script src='".$value."'></script>";
+    }
+    foreach($inline_script as $value) {
+        $script .= "<script>".$value."</script>";
     }
     if(!is_null($plugins->hook_footer)) {
         foreach($plugins->hook_footer as $value) {

@@ -12,7 +12,7 @@ if(isset($REQ["action"]) && $REQ["action"] === "addElement") {
     $current[][$REQ["data"]] = ["type" => $REQ["type"], "source" => $REQ["source"]];
     $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
     $config = $config->WriteConfig();
-    echo $partner_graph->GenerateHTML(($REQ["total"]+1),$partner_graph->getDataSource($REQ["data"])["title"],$REQ["data"],$REQ["type"]);
+    echo $partner_graph->GenerateHTML(($REQ["total"]+1),$REQ["data"],$REQ["type"],"daily",1,true);
     die();
 }
 if(isset($REQ["action"]) && $REQ["action"] === "removeElement") {
@@ -95,10 +95,8 @@ echo '
         <div class="col-3">
             <select type="select" class="form-select ElementType" name="ElementType">
                 <option value="0">-- CHOOSE TYPE --</option>
-                <option value="GraphBar">Graph, Bar</option>
-                <option value="GraphLine">Graph, Line</option>
-                <option value="Number">Number</option>
-                <option value="List">List</option>
+                <option value="bar">Graph, Bar</option>
+                <option value="line">Graph, Line</option>
             </select>
         </div>
         <div class="col-4">
@@ -113,20 +111,27 @@ echo '
     $i=1;
     if(isset($elements) && is_array((array)$elements) && count((array)$elements)>0) {
         foreach($elements as $element) {
-            $element_data = $partner_graph->getDataSource(key($element));
-            echo $partner_graph->GenerateHTML($i,$element_data["title"],$element_data["source"],$element[key($element)]["type"],$element[key($element)]["source"]);
+            echo $partner_graph->GenerateHTML($i, key($element),$element[key($element)]["type"],"daily",1);
             $i++;
         }
     } else {
-        echo $partner_graph->GenerateHTML(1,$partner_graph->getDataSource("customers_created_7_days")["title"],"customers_created_7_days","GraphLine");
-        echo $partner_graph->GenerateHTML(2,$partner_graph->getDataSource("transactions_approved_7_days")["title"],"transactions_approved_7_days","GraphLine");
-        echo $partner_graph->GenerateHTML(3,$partner_graph->getDataSource("transactions_approved_30_days")["title"],"transactions_approved_30_days","GraphLine");
+        echo $partner_graph->GenerateHTML(1, "customers_created_7_days","bar","daily",1);
+        echo $partner_graph->GenerateHTML(2, "transactions_approved_7_days","bar","daily",1);
+        echo $partner_graph->GenerateHTML(3, "transactions_approved_30_days","bar","daily",1);
     }
     echo '
 </div>
 ';
+$load_script[] = "https://d3js.org/d3.v7.min.js";
+$load_script[] = "https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js";
 $load_script[] = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js";
 $load_css[] = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css";
-
-
-echo foot(); ?>
+$inline_css[] = "/*just a bit of style*/
+.DashboardElements div div.graph {
+  width: 100%;
+  height: 30vh;
+  margin: auto;
+  margin-top: 50px;
+}
+";
+echo foot();

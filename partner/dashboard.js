@@ -4,52 +4,8 @@
   'use strict'
   feather.replace({ 'aria-hidden': 'true' })
 })();
-
-let graphs = document.querySelectorAll('.col');
-let renders = [];
-graphs.forEach(ele => {
-  renders[ele.dataset.sequence] = (sequence) => {
-    var dashboardElement = $("body").find('[data-sequence='+sequence+']');
-    ReloadLive(sequence,dashboardElement.data("data"), dashboardElement.data("type"), dashboardElement.data("source"));
-  }
-});
-renders.forEach((e, key) => {
-  e(key);
-});
-function ReloadLive(sequence, data, type, source) {
-     $.get( "graphs.php", { graph: sequence, data: data, type: type, source: source })
-     .done(function( getData ) {
-       let json = JSON.parse(getData);
-       var ctxe = document.getElementById(`chart${sequence}`);
-       var ctx = ctxe.getContext('2d');
-         if(type==="GraphBar") {
-             var myChart = new Chart(ctx, {
-                 type: json.type,
-                 data: json.data,
-                 options: json.options
-             });
-         }
-       if(type==="GraphLine") {
-         var myChart = new Chart(ctx, {
-           type: json.type,
-           data: json.data,
-           options: json.options
-         });
-       }
-       else if(type==="Number") {
-         ctx.fillStyle = "blue";
-         ctx.font = "22px Arial";
-         ctx.textAlign = 'center';
-         ctx.textBaseline = 'middle';
-         ctx.fillText(json.data.number, (ctxe.width / 2), (ctxe.height / 2));
-       }
-       setTimeout(function(){
-         ReloadLive(sequence, data, type);
-       }, 60000);
-     });
- }
- $(".DashboardRemoveElement").on("click", function() {
-     var $this = $(this).parent().parent();
+$(".DashboardRemoveElement").on("click", function() {
+     var $this = $(this).parent();
      var sequence = $this.attr("data-sequence");
      $.post( "?", { action: "removeElement", sequence: sequence });
      $("div").filter(function() {
@@ -66,8 +22,10 @@ function ReloadLive(sequence, data, type, source) {
    $(".settings").toggle();
    if($(".AddNewElementToPage").css('display') == 'none') {
      $(".AddNewElementToPage").css("display","contents");
+     $(".DashboardRemoveElement").css("display","block");
    } else {
      $(".AddNewElementToPage").css("display","none");
+     $(".DashboardRemoveElement").css("display","none");
    }
  });
  $(".btnAddElement").on("click", function() {
@@ -97,9 +55,4 @@ $(".ElementContent").on("change", function() {
         let data = $(`${slctor} option`).eq(clickedIndex).attr("data-source");
         $(".ElementContent").attr("data-source", data);
     })
-});
-$(".btnAddElement").on("click", function() {
-});
-$(function() {
-  $('.selectpicker').selectpicker();
 });
