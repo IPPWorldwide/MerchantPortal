@@ -39,7 +39,18 @@ if(isset($REQ) && count($REQ) > 0) {
                     exit("Unable to open file.");
                 }
                 $utils->createZip($zipArchive, $cart_file_handling_name, $cart_partner_name);
+                $fp = fopen('config.php', 'w');//opens file in write-only mode
+                fwrite($fp, '<?php ');
+                fwrite($fp, '$configuration["name"] = "'.$partner_name.'"; ');
+                fwrite($fp, '$configuration["url"] = "'.$IPP_CONFIG["GLOBAL_BASE_URL"].'"; ');
+                fwrite($fp, '$configuration["onboarding"] = "'.$IPP_CONFIG["ONBOARDING_BASE_URL"].'"; ');
+                fwrite($fp, '$configuration["portal"] = "'.$IPP_CONFIG["PORTAL_URL"].'"; ');
+                fwrite($fp, '?>');
+                fclose($fp);
+                $zipArchive->addFile("config.php",$cart_partner_name . "/config.php");
                 $zipArchive->close();
+                unlink("config.php");
+
                 $utils->recurseRmdir(PUBLIC_FILES.'/temp_shopping_cart/');
             }
         }
