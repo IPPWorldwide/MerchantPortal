@@ -1,9 +1,50 @@
 <?php
 include("../b.php");
 if(isset($REQ) && count($REQ) > 0) {
+    $partner_data = $partner->PartnerData();
     $shopping_carts = [];
-    foreach($REQ as $key=>$value)
+    foreach($REQ as $key=>$value) {
         $shopping_carts[$key] = $value;
+        if(!file_exists(PUBLIC_FILES.$key.".zip")) {
+            $ch = curl_init();
+            $source = "https://github.com/IPPWorldwide/Sample-$key/archive/refs/heads/main.zip"; //$source = $dynamic_url
+            curl_setopt($ch, CURLOPT_URL, $source);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Accept: application/vnd.github+json',
+                'X-GitHub-Api-Version: 2022-11-28',
+                'User-Agent: IPP'
+            ]);
+            $data = curl_exec ($ch);
+            curl_close ($ch);
+            $destination = PUBLIC_FILES.$key.".zip";
+            $file = fopen($destination, "w+");
+            fputs($file, $data);
+            fclose($file);
+            $zip = new ZipArchive;
+            $res = $zip->open($destination);
+            if ($res === TRUE) {
+                $zip->extractTo(PUBLIC_FILES.'/temp_shopping_cart/');
+                $zip->close();
+                unlink($destination);
+                $temp_folder_name = PUBLIC_FILES."/temp_shopping_cart/Sample-$key-main/";
+                $partner_name = $partner_data->meta_data->name;
+                $partner_url = $IPP_CONFIG["PORTAL_URL"];
+                $cart_partner_name = strtolower(str_replace(" ","_",$partner_name));
+                $cart_file_handling_name = $temp_folder_name . $cart_partner_name."/";
+                include(PUBLIC_FILES."/temp_shopping_cart/Sample-$key-main/import.php");
+                $zipArchive = new ZipArchive();
+                if ($zipArchive->open($destination, ZipArchive::CREATE) !== TRUE) {
+                    exit("Unable to open file.");
+                }
+                $utils->createZip($zipArchive, $cart_file_handling_name, $cart_partner_name);
+                $zipArchive->close();
+                recurseRmdir($temp_folder_name);
+
+            }
+        }
+    }
     $config = new IPPConfig();
     $new_config = $config->UpdateConfig("ENABLED_SHOPPING_CARTS",json_encode($shopping_carts));
     $config = $config->WriteConfig();

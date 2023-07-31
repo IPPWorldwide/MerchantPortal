@@ -104,4 +104,34 @@ class IPPUtils
         endforeach;
         return rmdir($dir);
     }
+    public function createZip($zipArchive, $folder, $new_folder)
+    {
+        if (is_dir($folder)) {
+            if ($f = opendir($folder)) {
+                while (($file = readdir($f)) !== false) {
+                    if (is_file($folder . $file)) {
+                        if ($file != '' && $file != '.' && $file != '..') {
+                            $zipArchive->addFile($folder . $file, $new_folder . "/" . $file);
+                        }
+                    }
+                    else {
+                        if (is_dir($folder . $file)) {
+                            if ($file != '' && $file != '.' && $file != '..') {
+                                $zipArchive->addEmptyDir($new_folder . "/" . $file);
+                                $read_folder = $folder . $file . '/';
+                                $read_new_folder = $new_folder . "/".$file;
+                                $this->createZip($zipArchive, $read_folder, $read_new_folder);
+                            }
+                        }
+                    }
+                }
+                closedir($f);
+            } else {
+                exit("Unable to open directory " . $folder);
+            }
+        } else {
+            exit($folder . " is not a directory.");
+        }
+    }
+
 }
