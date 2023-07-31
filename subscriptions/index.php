@@ -11,9 +11,9 @@ echo '
     <div class="form-group">
         <label for="result">'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["RESULT"].'</label>
         <select id="result" name="result">
-        <option>'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["ALL"].'</option>
-        <option>'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["ACK"].'</option>
-        <option>'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["NOK"].'</option>
+        <option value="ALL">'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["ALL"].'</option>
+        <option value="ACK">'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["ACK"].'</option>
+        <option value="NOK">'.$lang["COMPANY"]["CARDHOLDER_SUBSCRIPTIONS"]["NOK"].'</option>
     </select>
     </div>
     <input type="submit" value="Change view" class="btn btn-primary">
