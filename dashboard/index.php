@@ -15,6 +15,7 @@ if($company_data->content->user->password->new) {
 }
 echo head();
 $actions->get_action("theme_replacement");
+$actions->get_action("dashboard");
 echo '
       <h2>'.$lang["COMPANY"]["DASHBOARD"]["HEADER"].'</h2>
         <div class="row row-cols-md-2 mb-2">
