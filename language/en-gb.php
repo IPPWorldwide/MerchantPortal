@@ -463,6 +463,7 @@ $lang["PARTNER"]["APPEARANCE_EDITOR"]["HEADER"] = "Editor";
 $lang["PARTNER"]["APPEARANCE_EDITOR"]["SAVE"] = "Save file";
 
 
+$lang["PARTNER"]["SHOPPING_CARTS"]["HEADER"] = "Shopping Carts Modules";
 
 
 
