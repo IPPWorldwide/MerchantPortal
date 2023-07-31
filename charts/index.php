@@ -79,7 +79,7 @@ echo '
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Transactions, 7 days</h4>
-                        <h6 class="card-text">'.($tnx_count/100).'</h6>
+                        <h6 class="card-text">'.($tnx_count).'</h6>
                     </div>
                 </div>
             </div>
