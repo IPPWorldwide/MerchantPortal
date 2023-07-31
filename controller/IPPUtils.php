@@ -100,7 +100,7 @@ class IPPUtils
     public function recurseRmdir($dir) {
         $files = array_diff(scandir($dir), array('.','..'));
         foreach ($files as $file):
-            (is_dir("$dir/$file") && !is_link("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
+            (is_dir("$dir/$file") && !is_link("$dir/$file")) ? $this->recurseRmdir("$dir/$file") : unlink("$dir/$file");
         endforeach;
         return rmdir($dir);
     }
@@ -133,5 +133,4 @@ class IPPUtils
             exit($folder . " is not a directory.");
         }
     }
-
 }

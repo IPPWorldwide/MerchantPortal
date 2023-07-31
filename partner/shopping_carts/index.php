@@ -40,8 +40,7 @@ if(isset($REQ) && count($REQ) > 0) {
                 }
                 $utils->createZip($zipArchive, $cart_file_handling_name, $cart_partner_name);
                 $zipArchive->close();
-                recurseRmdir($temp_folder_name);
-
+                $utils->recurseRmdir(PUBLIC_FILES.'/temp_shopping_cart/');
             }
         }
     }
