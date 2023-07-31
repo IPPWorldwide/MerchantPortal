@@ -27,6 +27,11 @@ class IPP {
         return $login_response;
     }
 
+    public function user_data() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/user/", "POST", [], $data)->content;
+    }
+
     public function CheckLogin() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data);
