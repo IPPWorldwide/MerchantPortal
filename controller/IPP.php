@@ -296,7 +296,7 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/add/", "POST", [], $data);
     }
 
-    public function StatisticsRequest($data_table, $group_method,$period) {
+    public function StatisticsRequest($data_table,$group_method,$period,$summerize=false,$divide=1) {
         global $request;
         $dataset    = [];
         $dataset["x"] = "";
@@ -312,7 +312,15 @@ class IPP {
         $r_data = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/statistics/", "POST", [], $data)->content;
         foreach($r_data->list as $key=>$value) {
             $dataset["x"] .= "'".$key."',";
-            $dataset["y"] .= "'".count((array)$value)."',";
+            if(!$summerize)
+                $dataset["y"] .= "'".round(count((array)$value)/$divide)."',";
+            else {
+                $total = 0;
+                foreach($value as $subvalue) {
+                    $total += $subvalue->$summerize;
+                }
+                $dataset["y"] .= "'".round($total/$divide)."',";
+            }
         }
         $dataset["x"] = rtrim($dataset["x"],",");
         $dataset["y"] = rtrim($dataset["y"],",");
