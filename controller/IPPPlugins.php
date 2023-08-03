@@ -61,9 +61,11 @@ class IPPPlugins
         $list = $this->available_plugins;
         $plugin_list = [];
         if($company_plugin) {
-            foreach($list as $value) {
-                if(isset($value->company_plugin)) {
-                    $plugin_list[$value->id] = $value;
+            if($list !== NULL) {
+                foreach($list as $value) {
+                    if(isset($value->company_plugin)) {
+                        $plugin_list[$value->id] = $value;
+                    }
                 }
             }
         } else {
