@@ -296,4 +296,35 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/add/", "POST", [], $data);
     }
 
+    public function StatisticsRequest($data_table,$group_method,$period,$summerize=false,$divide=1) {
+        global $request;
+        $dataset    = [];
+        $dataset["x"] = "";
+        $dataset["y"] = "";
+        $data = [
+            "user_id" => $this->user_id,
+            "session_id" => $this->session_id,
+            "since" => (time()-(86400*$period)),
+            "table" => $data_table,
+            "serve" => "list",
+            "group" => "start_time,$group_method"
+        ];
+        $r_data = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/statistics/", "POST", [], $data)->content;
+        foreach($r_data->list as $key=>$value) {
+            $dataset["x"] .= "'".$key."',";
+            if(!$summerize)
+                $dataset["y"] .= "'".round(count((array)$value)/$divide)."',";
+            else {
+                $total = 0;
+                foreach($value as $subvalue) {
+                    $total += $subvalue->$summerize;
+                }
+                $dataset["y"] .= "'".round($total/$divide)."',";
+            }
+        }
+        $dataset["x"] = rtrim($dataset["x"],",");
+        $dataset["y"] = rtrim($dataset["y"],",");
+        return $dataset;
+    }
+
 }
