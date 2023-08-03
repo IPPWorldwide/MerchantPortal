@@ -67,7 +67,7 @@ class IPPPlugins
                 }
             }
         } else {
-            if(count($list) > 0) {
+            if($list !== NULL && count($list) > 0) {
                 foreach($list as $value) {
                     if(!isset($value->company_plugin)) {
                         $plugin_list[$value->id] = $value;
