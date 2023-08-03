@@ -59,7 +59,10 @@ if(isset($REQ) && count($REQ) > 0) {
     $new_config = $config->UpdateConfig("ENABLED_SHOPPING_CARTS",json_encode($shopping_carts));
     $config = $config->WriteConfig();
 }
-$current_carts = json_decode($IPP_CONFIG["ENABLED_SHOPPING_CARTS"], true) ?? [];
+if(isset($IPP_CONFIG["ENABLED_SHOPPING_CARTS"]))
+    $current_carts = json_decode($IPP_CONFIG["ENABLED_SHOPPING_CARTS"], true);
+else
+    $current_carts = [];
 echo head();
 $actions->get_action("external_platforms");
 
