@@ -54,7 +54,7 @@ echo '
           <tbody>
           <tr>';
           foreach($companies as $value) {
-              $user = reset($value->users);
+              $user = (array)$value->users[0];
               echo "
               <td>".$value->id."</td>
               <td>".$value->security->key2."</td>
