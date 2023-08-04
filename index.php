@@ -60,6 +60,8 @@ if(isset($REQ["pages"])) {
         die();
     }
 }
+$actions->get_action("theme_replacement");
+$actions->get_action("login");
 ?>
 <!doctype html>
 <html lang="en">
