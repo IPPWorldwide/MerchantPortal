@@ -32,6 +32,7 @@ if(file_exists("../ipp-autoconfig.php") && !isset($_POST["autosetup"])) {
     $IPP_CONFIG["PARTNER_ID"]   = $server_output->content->partner_id;
     $IPP_CONFIG["PARTNER_KEY1"] = $server_output->content->security->key1;
     $IPP_CONFIG["PARTNER_KEY2"] = $server_output->content->security->key2;
+    $IPP_CONFIG["portal_url"]   = $actual_link;
     $IPP_CONFIG["autosetup"]    = true;
 
     $ch = curl_init();
@@ -44,49 +45,6 @@ if(file_exists("../ipp-autoconfig.php") && !isset($_POST["autosetup"])) {
     die();
 }
 if(isset($_POST["portal_title"])) {
-    function Zip($source, $destination)
-    {
-        if (!extension_loaded('zip') || !file_exists($source)) {
-            return false;
-        }
-
-        $zip = new ZipArchive();
-        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-            return false;
-        }
-
-        $source = str_replace('\\', '/', realpath($source));
-
-        if (is_dir($source) === true)
-        {
-            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-
-            foreach ($files as $file)
-            {
-                $file = str_replace('\\', '/', $file);
-
-                // Ignore "." and ".." folders
-                if( in_array(substr($file, strrpos($file, '/')+1), array('.', '..')) )
-                    continue;
-
-                $file = realpath($file);
-
-                if (is_dir($file) === true)
-                {
-                    $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
-                }
-                else if (is_file($file) === true)
-                {
-                    $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
-                }
-            }
-        }
-        else if (is_file($source) === true)
-        {
-            $zip->addFromString(basename($source), file_get_contents($source));
-        }
-        return $zip->close();
-    }
     $folder_level = "./";
     while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
     define("BASEDIR", $folder_level);
@@ -94,7 +52,6 @@ if(isset($_POST["portal_title"])) {
     fclose($myfile);
     include("../controller/IPPConfig.php");
     $config = new IPPConfig();
-
     foreach($_POST as $key=>$value) {
         $new_config = $config->UpdateConfig(strtoupper($key),$value);
     }
@@ -121,7 +78,6 @@ if(isset($_POST["portal_title"])) {
             throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
         }
         unlink($filename);
-
     }
     if(isset($_POST["plugin_email"]) && $_POST["plugin_email"] === "smtp_server") {
         $src = BASEDIR."plugins/".$_POST["plugin_email"]."/";
@@ -165,40 +121,6 @@ if(isset($_POST["portal_title"])) {
         }
         unlink($filename);
     }
-
-    if(isset($_POST["woocommerce"]) && $_POST["woocommerce"] === "woocommerce") {
-        if (!file_exists(BASEDIR . 'tmp')) {
-            mkdir(BASEDIR . 'tmp', 0777, true);
-        }
-        include(BASEDIR . "setup/shop_extensions/woocommerce.php");
-    }
-    if(isset($_POST["prestashop"]) && $_POST["prestashop"] === "prestashop") {
-        if (!file_exists(BASEDIR . 'tmp')) {
-            mkdir(BASEDIR . 'tmp', 0777, true);
-        }
-        include(BASEDIR . "setup/shop_extensions/prestashop.php");
-    }
-    if((isset($_POST["woocommerce"]) && $_POST["woocommerce"] === "woocommerce") || (isset($_POST["prestashop"]) && $_POST["prestashop"] === "prestashop")) {
-        $src = BASEDIR."plugins/identify_ecommerce/";
-        $filename = $src . "identify_ecommerce.zip";
-        $dirMode = 0755;
-        if(!file_exists($src))
-            if (!mkdir($src, $dirMode, true) && !is_dir($src)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $src));
-            }
-        sleep(1);
-        file_put_contents($filename, fopen("https://plugins.ippworldwide.com/identify_ecommerce.zip", 'r'));
-        $zip = new ZipArchive();
-        $res = $zip->open($filename);
-        if ($res === TRUE) {
-            $zip->extractTo($src);
-            $zip->close();
-            $partner->InstallPlugin("identify_ecommerce",$_POST["partner_id"],$_POST["partner_key1"]);
-        } else {
-            throw new \RuntimeException(sprintf('Could not Unzip file at "%s"', $src));
-        }
-        unlink($filename);
-    }
     die();
 }
 include("../controller/IPP.php");
@@ -237,6 +159,9 @@ $ipp        = new IPP($request,null, null);
         <div class="container">
             <form method="POST" id="signup-form" class="signup-form" action="#">
                 <input type="HIDDEN" name="version" id="version" value="<?php echo $ipp->version()->content->version; ?>" />
+                <input type="HIDDEN" name="partner_id" id="partner_id" value="" />
+                <input type="HIDDEN" name="partner_key1" id="partner_key1" value="" />
+                <input type="HIDDEN" name="partner_key2" id="partner_key2" value="" />
                 <div>
                     <h3>Merchant Portal</h3>
                     <fieldset>
@@ -255,7 +180,7 @@ $ipp        = new IPP($request,null, null);
                             <div class="form-row">
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <label class="form-label" for="administrator_email">Administrative e-mail</label>
+                                        <label class="form-label" for="administrator_email">Support e-mail</label>
                                         <input type="text" name="administrator_email" id="administrator_email" />
                                         <p class="desc">Define the e-mail used for outbound communication.</p>
                                     </div>
@@ -381,14 +306,6 @@ $ipp        = new IPP($request,null, null);
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="partner_password" id="partner_password" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <label class="form-label">Repeat Password</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="partner_password2" id="partner_password2" />
                                     </div>
                                 </div>
                             </div>
