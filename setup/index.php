@@ -304,37 +304,6 @@ $ipp        = new IPP($request,null, null);
                             </div>
                         </div>
                     </fieldset>
-                    <h3>Connectivity Details</h3>
-                    <fieldset>
-                        <h2>Connectivity Details</h2>
-                        <p class="desc">These details have been provided by IPP. Reach out to your representative if you aren't sure.</p>
-                        <div class="fieldset-content">
-                            <div class="form-row">
-                                <label class="form-label">ID</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="partner_id" id="partner_id" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <label class="form-label">Key 1</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="partner_key1" id="partner_key1" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <label class="form-label">Key 2</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                        <input type="text" name="partner_key2" id="partner_key2" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
                     <h3>Theme Setup</h3>
                     <fieldset>
                         <h2>Theme Setup</h2>
@@ -368,12 +337,12 @@ $ipp        = new IPP($request,null, null);
                                 <div class="form-radio-flex">
                                     <div class="form-radio-item">
                                         <input type="radio" name="payments_method" id="injected_payment" value="injected_payment" checked="checked">
-                                        <label for="injected_payment"><img src="images/payments_injected.png" alt=""></label>
+                                        <label for="injected_payment"><img src="images/payments_injected.png" alt="Payment Page Modal on eCommerce Webshop"></label>
                                         <h3>Injected on eCommerce site</h3>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="payments_method" id="hosted_payment" value="hosted_payment">
-                                        <label for="hosted_payment"><img src="images/payments_hosted_flow.png" alt=""></label>
+                                        <label for="hosted_payment"><img src="images/payments_hosted_flow.png"  alt="Hosted Payment Page. Users get redirected."></label>
                                     </div>
                                 </div>
                             </div>
@@ -394,20 +363,32 @@ $ipp        = new IPP($request,null, null);
                             </div>
                         </div>
                     </fieldset>
-                    <h3>eCommerce Platforms</h3>
+                    <h3>Create Administrator</h3>
                     <fieldset>
-                        <h2>Which eCommerce platforms do you support</h2>
-                        <p class="desc">Lets create an standardized version of a Plugin for each eCommerce Platform. Plug'n'play.</p>
+                        <h2>Create Your Administrator</h2>
+                        <p class="desc">Create your administrative account below. This account will be set up as a Super-Administrator and can't be deactivated.</p>
                         <div class="fieldset-content">
-                            <div class="choose-bank">
-                                <div class="form-radio-flex">
-                                    <div class="form-radio-item">
-                                        <input type="checkbox" name="woocommerce" id="woocommerce" value="woocommerce" checked="checked">
-                                        <label for="woocommerce"><img src="images/platforms/woocommerce.png" alt=""></label>
+                            <div class="form-row">
+                                <label class="form-label">E-mail</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="text" name="partner_email" id="partner_email" />
                                     </div>
-                                    <div class="form-radio-item">
-                                        <input type="checkbox" name="prestashop" id="prestashop" value="prestashop">
-                                        <label for="prestashop"><img src="images/platforms/prestashop.png" alt=""></label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <label class="form-label">Password</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="text" name="partner_password" id="partner_password" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <label class="form-label">Repeat Password</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="text" name="partner_password2" id="partner_password2" />
                                     </div>
                                 </div>
                             </div>
