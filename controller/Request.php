@@ -55,7 +55,8 @@ class IPPRequest {
         if(isset($this->key2) && strlen($this->key2) > 0)
             $data["key2"] = $this->key2;
 
-        $data["partner_id"] = $_ENV["PARTNER_ID"];
+        if(isset($_ENV["PARTNER_ID"]))
+            $data["partner_id"] = $_ENV["PARTNER_ID"];
         if(isset($_SESSION["ipp_type"]) && $_SESSION["ipp_type"] == "partner") {
             $data["key1"] = $_ENV["PARTNER_KEY1"];
             $data["key2"] = $_ENV["PARTNER_KEY2"];
