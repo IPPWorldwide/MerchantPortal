@@ -64,7 +64,6 @@ echo '
         <table class="table table-striped table-sm" id="tnx_list">
           <thead>
             <tr>
-              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["FUNCTION"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["METHOD"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"].'</th>
@@ -72,6 +71,7 @@ echo '
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CURRENCY"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["STATUS"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["REASON"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["FUNCTION"].'</th>
             </tr>
           </thead>
           <tbody>
@@ -87,7 +87,6 @@ if(is_array($transaction_list))
                   echo "class='bg-danger'";
               }
               echo ">
-              <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>".$lang["COMPANY"]["DASHBOARD"]["INFO"]."</a></td>
               <td>".date("Y-m-d H:i:s",$value->unixtimestamp)."</td>
               <td>".$value->method."</td>
               <td>".$value->cardholder."</td>
@@ -95,6 +94,7 @@ if(is_array($transaction_list))
               <td>".$currency->currency($value->currency)[0]."</td>
               <td>".$value->result."</td>
               <td>".$value->reason."</td>              
+              <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>".$lang["COMPANY"]["DASHBOARD"]["INFO"]."</a></td>
             </tr>";
           }
 echo '
