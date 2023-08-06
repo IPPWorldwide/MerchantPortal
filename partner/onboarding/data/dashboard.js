@@ -1,7 +1,3 @@
-(function () {
-    'use strict'
-    feather.replace({ 'aria-hidden': 'true' })
-})();
 $(document).ready(function() {
     $(".ApproveApplication").on("click",function(e) {
         HandleApplication(e,"Approve");

@@ -1,6 +1,5 @@
 (function () {
     'use strict'
-    feather.replace({ 'aria-hidden': 'true' })
 })();
 $('.ResetPasswordModal').on('click', function () {
     var button = $(this);
