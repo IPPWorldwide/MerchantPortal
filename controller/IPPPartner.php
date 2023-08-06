@@ -68,6 +68,10 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $merchant_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/data/", "POST", [], $data)->content;
     }
+    public function AccessCompanyAccount($company_id) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"company_id" => $company_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/company/connect/", "POST", [], $data);
+    }
     public function MerchantDataUpdate($all_data = []) {
         if(isset($all_data["pos_device"])) {
             $pos = [];
@@ -302,8 +306,8 @@ class IPPPartner {
     }
 
 
-    public function statisticCharts($chart,$period) {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"type"=>$chart,"period"=>$period];
+    public function statisticCharts($chart,$datasource,$period) {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"type"=>$chart,"source"=>$datasource,"period"=>$period];
         $curl = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/", "POST", [], $data);
 
         return $curl;
@@ -381,5 +385,9 @@ class IPPPartner {
     public function ListPublicThemes() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/themes/list.json", "POST", [], $data);
+    }
+    public function ListTerminals() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/terminals.php", "POST", [], $data)->content;
     }
 }

@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 
 header('Content-Type: application/xls');
 header('Content-Disposition: attachment; filename=info.xls');

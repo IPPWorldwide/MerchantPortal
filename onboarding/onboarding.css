@@ -1,0 +1,37 @@
+#onboarding_form #onboarding_menu ul li {
+    background: lightgray;
+    list-style-type: none;
+}
+
+#onboarding_form #onboarding_menu ul li.group {
+    line-height: 40px;
+    padding-left: 25px;
+}
+
+
+#onboarding_form #onboarding_menu ul li ol {
+    display: none;
+}
+#onboarding_form #onboarding_menu ul li ol li {
+    padding-left: 50px;
+}
+
+#onboarding_form #company div.step1,
+#onboarding_form #company div.step2,
+#onboarding_form #company div.step3,
+#onboarding_form #company div.step4,
+#onboarding_form #company .identified_company_details,
+#onboarding_form #financial div.settlement,
+#onboarding_form #financial div.earlier_provider,
+#onboarding_form #website div.website_check,
+#onboarding_form #website div.mcc,
+#onboarding_form #website div.limits,
+#onboarding_form #website div.timeframes,
+#onboarding_form #contract div.our_contracts,
+#onboarding_form #contract div.contracts_sent {
+    display: none;
+}
+
+#onboarding_form #company #welcome {
+    display: inline;
+}

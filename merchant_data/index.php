@@ -1,7 +1,11 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 if(isset($REQ["id"])) {
     $merchant_data = $ipp->MerchantDataUpdate($REQ);
+}
+if(isset($REQ["support_status"])) {
+    $ipp->MerchantSupportUpdate($REQ["support_status"]);
+    die();
 }
 if(isset($REQ["acquirer_id"]) && isset($REQ["acquirer_data"])) {
     $acquirer_data = array();
@@ -13,6 +17,7 @@ if(isset($REQ["acquirer_id"]) && isset($REQ["acquirer_data"])) {
 $merchant_data = $ipp->MerchantData();
 echo head();
 $actions->get_action("merchant_data");
+$actions->get_action("theme_replacement");
 echo '
         <form action="?" method="POST" class="form">
             <h2>'.$lang["COMPANY"]["DATA"]["HEADER"].'</h2>
@@ -98,12 +103,13 @@ echo '
                     </div>
                 </div>
             </div>
-
             <div class="row row-cols-md-1 mb-1">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary mb-3 btnSupportSettings">'.$lang["COMPANY"]["DATA"]["SHOW_SUPPORT"].'</button> 
+                </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mb-3">'.$lang["COMPANY"]["DATA"]["SAVE"].'</button>
                 </div>
-
             </div>
         </form>
     <div class="modal fade" id="settingsAcquirerModal" tabindex="-1" role="dialog" aria-labelledby="settingsAcquirerModalTitle" aria-hidden="true">
@@ -124,5 +130,18 @@ echo '
             </div>
         </div>
     </div>
+    <div class="modal fade" id="settingsSupport" tabindex="-1" role="dialog" aria-labelledby="settingsAcquirerModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Support</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeModal">'.$lang["COMPANY"]["DATA"]["DISABLE_SUPPORT"].'</button>
+                    <button type="button" class="btn btn-primary confirm">'.$lang["COMPANY"]["DATA"]["ENABLE_SUPPORT"].'</button>
+                </div>
+            </div>
+        </div>
+    </div>    
 ';
 echo foot();

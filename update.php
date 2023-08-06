@@ -88,7 +88,6 @@ endforeach;
 cpy("update/MerchantPortal-".$REQ["version"],".");
 recurseRmdir("update/MerchantPortal-".$REQ["version"]);
 
-include("controller/IPPConfig.php");
 $config = new IPPConfig();
 $new_config = $config->UpdateConfig("version",$REQ["version"]);
 $config = $config->WriteConfig();

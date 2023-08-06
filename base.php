@@ -5,8 +5,10 @@ if(session_id() === "") {
 $folder_level = "./";
 while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
 
-if(!defined("BASEDIR"))
+if(!defined("BASEDIR")) {
     define("BASEDIR", $folder_level);
+    define("PUBLIC_FILES", $folder_level . "files/");
+}
 
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
@@ -27,8 +29,8 @@ include(BASEDIR . "controller/IPPUtils.php");
 include(BASEDIR . "controller/IPPPartnerGraph.php");
 include(BASEDIR . "controller/IPPLanguages.php");
 include(BASEDIR . "controller/IPPActions.php");
-
-$_ENV           = $IPP_CONFIG;
+include(BASEDIR . "controller/IPPConfig.php");
+$_ENV       = $IPP_CONFIG;
 $RequestP   = new RequestParams();
 $REQ        = $RequestP->getRequestParams($_SERVER["REQUEST_METHOD"],$_GET,$_POST);
 
@@ -87,8 +89,16 @@ if(isset($partner_page) && $partner_page == 1) {
     }
     $user_data = $partner->UserData();
     require_once(THEME."/functions.php");
-    require_once(THEME."/partner/head.php");
-    require_once(THEME."/partner/foot.php");
+    if(file_exists(THEME."/partner/head.php"))
+        require_once(THEME."/partner/head.php");
+    else
+        require_once(THEMES."/standard/partner/head.php");
+    if(file_exists(THEME."/partner/foot.php"))
+        require_once(THEME."/partner/foot.php");
+    else
+        require_once(THEMES."/standard/partner/foot.php");
+    if(file_exists(THEMES."/standard/functions.php"))
+        require_once(THEMES."/standard/functions.php");
 }
 elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
     $company_data = $ipp->checkLogin();
@@ -109,6 +119,28 @@ $lang = $languages->getLanguageStrings($language);
 if(isset($_COOKIE["ipp_type"]))
     $user_type = $_COOKIE["ipp_type"];
 
-
 $inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
+$actions->add_action("theme_replacement","theme_replacement",9999);
 $actions->get_action("init");
+if(isset($_COOKIE["ipp_user_id"])) {
+    $load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/user.js";
+    $load_script[] = $IPP_CONFIG["PORTAL_URL"]."assets/js/company.js";
+    $inline_script[] = "(function () {user.id = '".$_COOKIE["ipp_user_id"]."';user.session_id = '".$_COOKIE["ipp_user_session_id"]."'; })();";
+    $inline_script[] = "const onboarding_extensions = [];";
+    if(isset($company_data->success) && $company_data->success)
+        $inline_script[] = "company.id='".$company_data->content->id."';company.api_key='".$company_data->content->security->key1."'";
+    $inline_script[] = "GLOBAL_BASE_URL = '".$IPP_CONFIG["GLOBAL_BASE_URL"]."';";
+    $inline_script[] = "PORTAL_URL = '".$IPP_CONFIG["PORTAL_URL"]."';";
+}
+function theme_replacement() {
+    global $REQ,$currency,$company_data,$actions,$lang,$ipp,$merchant_data,$companies,$invoices,$inline_css,$inline_script;
+    $uri = $_SERVER["REQUEST_URI"];
+    $query = strtok($uri, '?');
+    if(!isset(pathinfo($query)["extension"]))
+        $query .= "index.php";
+    if(file_exists(THEME."/pages/".$query) && is_file(THEME."/pages/".$query)) {
+        include_once(THEME."/pages/".$query);
+        echo foot();
+        die();
+    }
+}

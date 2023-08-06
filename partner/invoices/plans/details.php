@@ -2,7 +2,7 @@
 include("../../b.php");
 
 if(isset($REQ["id"]) && isset($REQ["name"])) {
-    $partner->UpdateSubscriptionPlan($REQ);
+    $data = $partner->UpdateSubscriptionPlan($REQ);
     header("Location: details.php?id=".$REQ["id"]);
     die();
 }
@@ -57,6 +57,12 @@ echo head();
                 <div class="col themed-grid-col">
                     Cost per transaction:
                     <input name="amount_tnx" class="form-control" value="<?php echo $invoice->amount_tnx_readable; ?>">
+                </div>
+            </div>
+            <div class="row row-cols-md-3 mb-3">
+                <div class="col themed-grid-col">
+                    Minimum cost per transaction:
+                    <input name="amount_tnx_min" class="form-control" value="<?php echo $invoice->amount_tnx_min_readable; ?>">
                 </div>
             </div>
 

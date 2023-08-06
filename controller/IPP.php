@@ -27,6 +27,11 @@ class IPP {
         return $login_response;
     }
 
+    public function user_data() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/user/", "POST", [], $data)->content;
+    }
+
     public function CheckLogin() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data);
@@ -62,7 +67,13 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/charts/", "POST", [], $data)->content;
     }
 
-
+    public function PublicCompanyData($companyvat,$merchant_id="",$key1="") {
+        if($merchant_id === "")
+            $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "company-vat" => $companyvat];
+        else
+            $data = ["company_id" => $merchant_id, "key1" => $key1, "company-vat" => $companyvat];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/onboarding/public_data/", "POST", [], $data)->content;
+    }
     public function MerchantData($data = [],$merchant_id="",$key1="") {
         if($merchant_id === "")
             $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
@@ -88,6 +99,10 @@ class IPP {
         $data["acquirer_id"] = $acquirer_id;
         $data["settings"] = $settings;
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/acquirer/data/update.php", "POST", [], $data)->content;
+    }
+    public function MerchantSupportUpdate($status) {
+        $security_data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "status" => $status];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/support/", "POST", [], $security_data);
     }
 
     public function SendPaymentLink($sender,$recipient,$expiry_time,$order_id,$amount,$currency) {
@@ -279,6 +294,37 @@ class IPP {
     public function AddAccessRight($name, $rules) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"name"=>$name,"rules" => $rules];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/add/", "POST", [], $data);
+    }
+
+    public function StatisticsRequest($data_table,$group_method,$period,$summerize=false,$divide=1) {
+        global $request;
+        $dataset    = [];
+        $dataset["x"] = "";
+        $dataset["y"] = "";
+        $data = [
+            "user_id" => $this->user_id,
+            "session_id" => $this->session_id,
+            "since" => (time()-(86400*$period)),
+            "table" => $data_table,
+            "serve" => "list",
+            "group" => "start_time,$group_method"
+        ];
+        $r_data = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/statistics/", "POST", [], $data)->content;
+        foreach($r_data->list as $key=>$value) {
+            $dataset["x"] .= "'".$key."',";
+            if(!$summerize)
+                $dataset["y"] .= "'".round(count((array)$value)/$divide)."',";
+            else {
+                $total = 0;
+                foreach($value as $subvalue) {
+                    $total += $subvalue->$summerize;
+                }
+                $dataset["y"] .= "'".round($total/$divide)."',";
+            }
+        }
+        $dataset["x"] = rtrim($dataset["x"],",");
+        $dataset["y"] = rtrim($dataset["y"],",");
+        return $dataset;
     }
 
 }

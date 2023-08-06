@@ -50,3 +50,17 @@ function CheckPassword(inputtxt)
     }
 }
 
+$(".AccessCompanyAccount").on("click", function() {
+    $.ajax({
+        method: "POST",
+        url: "?",
+        dataType: "json",
+        data: {
+            company_id: $(this).attr("data-company"),
+            access_company: 1
+        }
+    }).done(function (data) {
+        console.log(data["content"].user_id);
+        window.location.href = PORTAL_URL + "partner/companies/?redirect=1&user_id=" + data["content"].user_id + "&session_id=" + data["content"].session_id;
+    });
+});

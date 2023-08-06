@@ -18,7 +18,7 @@ $(".btnAcquirerSettings").on("click",function(event) {
     $("#settingsAcquirerModal").modal("show");
 });
 
-$(".closeModal").on("click",function() {
+$("#settingsAcquirerModal .closeModal").on("click",function() {
     $("#settingsAcquirerModal").modal("hide");
 });
 
@@ -34,7 +34,35 @@ $("#settingsAcquirerModal .confirm").on("click",function() {
         $('#settingsAcquirerModal').modal('hide');
         $("button.btnAcquirerSettings[data-id=\"" + $('#settingsAcquirerModal #acquirer-id').val() + "\"]").attr("data-field-values",data);
     });
-})
+});
+
+
+$(".btnSupportSettings").on("click",function(event) {
+    event.preventDefault();
+    $("#settingsSupport").modal("show");
+});
+
+$("#settingsSupport .closeModal").on("click",function() {
+    $.ajax({
+        method: "POST",
+        url: "?",
+        data: {
+            support_status: 0
+        }
+    });
+    $("#settingsSupport").modal("hide");
+});
+
+$("#settingsSupport .confirm").on("click",function() {
+    $.ajax({
+        method: "POST",
+        url: "?",
+        data: {
+            support_status: 1
+        }
+    });
+    $('#settingsSupport').modal('hide');
+});
 
 function addField(label,id,text,value) {
     return "<div class=\"form-group stdFormsSetup\" data-label=\"" + label + "\">\n" +

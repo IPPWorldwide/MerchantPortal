@@ -1,9 +1,28 @@
 <?php
 include("b.php");
-if(isset($REQ["update"]) && $REQ["update"] == "true"):
+$config     = new IPPConfig();
+
+if(isset($REQ["update"]) && $REQ["update"] == "true") {
     header( "Location: /update.php?version=".$ipp->version()->content->version);
     die();
-endif;
+}
+if(isset($REQ["action"]) && $REQ["action"] === "addElement") {
+    $current = $config->ReadConfig("admin_user_".$id."_dashboard");
+    $current = json_decode($current, true);
+    $current[][$REQ["data"]] = ["type" => $REQ["type"], "source" => $REQ["source"]];
+    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
+    $config = $config->WriteConfig();
+    echo $partner_graph->GenerateHTML(($REQ["total"]+1),$REQ["data"],$REQ["type"],"daily",1,true);
+    die();
+}
+if(isset($REQ["action"]) && $REQ["action"] === "removeElement") {
+    $current = $config->ReadConfig("admin_user_".$id."_dashboard");
+    $current = json_decode($current, true);
+    array_splice($current, ($REQ["sequence"]-1), 1);
+    $config->UpdateConfig("admin_user_".$id."_dashboard",json_encode($current));
+    $config = $config->WriteConfig();
+    die();
+}
 if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
     if(class_exists('ZipArchive')) {
         $src = BASEDIR."plugins/interactive_guide/";
@@ -26,14 +45,11 @@ if(!isset($IPP_CONFIG["INTERACTIVE_GUIDE"])) {
         }
         unlink($filename);
     }
-    include(BASEDIR . "controller/IPPConfig.php");
-    $config = new IPPConfig();
     $config->UpdateConfig("INTERACTIVE_GUIDE","1");
     $config = $config->WriteConfig();
 }
 echo head();
 $actions->get_action("partner_dashboard");
-
 if($_ENV["VERSION"] < $ipp->version()->content->version):
     ?>
     <div class="alert alert-warning" role="alert"><?=$lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"]?><a href='?update=true'><?=$lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"]?></a></div>
@@ -48,61 +64,74 @@ if($_ENV["VERSION"] < $ipp->version()->content->version):
     endif;
 endforeach;
 endif;
+$elements = json_decode($config->ReadConfig("admin_user_".$id."_dashboard"), JSON_THROW_ON_ERROR,512);
+$available_elements = $partner_graph->data_sources;
 echo '
     <div class="row">
         <div class="col-6">
             <h2>Status</h2>
         </div>
         <div class="col-6 text-end">
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-success btnChangeDashboard">
           '.$lang["PARTNER"]["DASHBOARD"]["CHANGE"].'
         </button>
+    </div>
+    <div class="row AddNewElementToPage">
+        <div class="col-2">
+            Add new Element
         </div>
-<div class="row row-cols-md-3 mb-3">
-    <div class="col themed-grid-col chartscol" data-sequence="1">
-        <canvas id="chart1" height="230px"></canvas>
-        <select data-sequence="1" name="type_1" id="type_1" data-updateframe="30000" class="form-control">
-            <option value="10m">Last 10 Minutes</option>
-            <option value="30m">Last 30 Minutes</option>
-        </select>
+        <div class="col-3">
+            <div class="form-group row">
+                <select type="select" class="form-control ElementContent selectpicker" name="ElementContent" data-live-search="true">
+                    <option value="0">-- CHOOSE DATA --</option>           
+                    ';
+                    foreach($available_elements as $value) {
+                        echo '<option data-tokens="'.$value["id"].'" data-source="'.$value['source'].'" value="'.$value["id"].'">'.$value["title"].'</option>';
+                    }
+                    echo '
+                </select>
+            </div>
+        </div>
+        <div class="col-3">
+            <select type="select" class="form-select ElementType" name="ElementType">
+                <option value="0">-- CHOOSE TYPE --</option>
+                <option value="bar">Graph, Bar</option>
+                <option value="line">Graph, Line</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn btn-success btnAddElement" disabled="disabled">
+              '.$lang["PARTNER"]["DASHBOARD"]["ADD_ELEMENT"].'
+            </button>
+        </div>
+        <div class="col-12">&nbsp;</div>
     </div>
-    <div class="col themed-grid-col chartscol" data-sequence="2">
-        <canvas id="chart2" height="230px"></canvas>
-        <select data-sequence="2" name="type_2" id="type_2" data-updateframe="360000" class="form-control">
-            <option value="7d">Last 7 Days</option>
-            <option value="30d">Last 30 Days</option>
-            <option value="90d">Last 90 Days</option>
-            <option value="1y">Lastest year</option>
-        </select>
-    </div>
-    <div class="col themed-grid-col chartscol" data-sequence="3">
-        <canvas id="chart3" height="230px"></canvas>
-        <select data-sequence="3" name="type_3" id="type_3" data-updateframe="480000" class="form-control">
-            <option value="1y">1 year</option>
-            <option value="2y">2 years</option>
-            <option value="3y">3 years</option>
-        </select>
-    </div>
+    <div class="row row-cols-md-3 mb-3 DashboardElements">
+    ';
+    $i=1;
+    if(isset($elements) && is_array((array)$elements) && count((array)$elements)>0) {
+        foreach($elements as $element) {
+            echo $partner_graph->GenerateHTML($i, key($element),$element[key($element)]["type"],"daily",1);
+            $i++;
+        }
+    } else {
+        echo $partner_graph->GenerateHTML(1, "customers_created_7_days","bar","daily",1);
+        echo $partner_graph->GenerateHTML(2, "transactions_approved_7_days","bar","daily",1);
+        echo $partner_graph->GenerateHTML(3, "transactions_approved_30_days","bar","daily",1);
+    }
+    echo '
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 ';
-echo foot(); ?>
+$load_script[] = "https://d3js.org/d3.v7.min.js";
+$load_script[] = "https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js";
+$load_script[] = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js";
+$load_css[] = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css";
+$inline_css[] = "/*just a bit of style*/
+.DashboardElements div div.graph {
+  width: 100%;
+  height: 30vh;
+  margin: auto;
+  margin-top: 50px;
+}
+";
+echo foot();

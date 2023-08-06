@@ -214,3 +214,31 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
 }
+.content {
+  position: relative;
+  z-index: 1;
+}
+.settings {
+  position: absolute;
+  display: none;
+  z-index: 2;
+  top: 0;
+  right: 15px;
+}
+.bootstrap-select>.dropdown-toggle {
+  background: #FFF !important;
+}
+.bootstrap-select.btn-group .dropdown-menu li a:hover {
+  color: whitesmoke !important;
+  background: #bf5279 !important;
+}
+.AddNewElementToPage, .DashboardRemoveElement {
+  display: none;
+}
+canvas {
+  width: 100%;
+}
+.dashboard .content h2 {
+  text-align: center;
+  font-size: 1.25em;
+}

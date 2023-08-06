@@ -9,17 +9,22 @@ class IPPPlugins
     public $bookkeeping;
     public $communication;
 
+    function __construct($request) {
+        $this->request = $request;
+    }
     public function loadPlugins() {
         if ($handle = opendir(BASEDIR . 'plugins')) {
             while (false !== ($entry = readdir($handle))) {
                 if ($entry != "." && $entry != ".." && $entry != "index.php") {
-                    include(BASEDIR . "plugins/".$entry."/init.php");
-                    $this->loadPlugin($entry);
-                    if(file_exists(BASEDIR . "plugins/".$entry."/settings.php")) {
-                        $settings = [];
-                        include(BASEDIR . "plugins/".$entry."/settings.php");
-                        if(isset($settings) && count($settings) > 0)
-                            $this->setSettingsValues($entry,$settings);
+                    if(file_exists(BASEDIR . "plugins/".$entry."/init.php")) {
+                        include(BASEDIR . "plugins/".$entry."/init.php");
+                        $this->loadPlugin($entry);
+                        if(file_exists(BASEDIR . "plugins/".$entry."/settings.php")) {
+                            $settings = [];
+                            include(BASEDIR . "plugins/".$entry."/settings.php");
+                            if(isset($settings) && count($settings) > 0)
+                                $this->setSettingsValues($entry,$settings);
+                        }
                     }
                 }
             }
@@ -56,13 +61,15 @@ class IPPPlugins
         $list = $this->available_plugins;
         $plugin_list = [];
         if($company_plugin) {
-            foreach($list as $value) {
-                if(isset($value->company_plugin)) {
-                    $plugin_list[$value->id] = $value;
+            if($list !== NULL) {
+                foreach($list as $value) {
+                    if(isset($value->company_plugin)) {
+                        $plugin_list[$value->id] = $value;
+                    }
                 }
             }
         } else {
-            if(count($list) > 0) {
+            if($list !== NULL && count($list) > 0) {
                 foreach($list as $value) {
                     if(!isset($value->company_plugin)) {
                         $plugin_list[$value->id] = $value;
@@ -111,9 +118,11 @@ class IPPPlugins
                 if(isset($this->available_plugins[$plugin_name]->company_plugin) && $this->available_plugins[$plugin_name]->company_plugin) {
                     $fields = [];
                     $all_fields = $this->available_plugins[$plugin_name]->getFields();
-                    foreach($all_fields as $value) {
-                        if(isset($value["access"]) && $value["access"] === "partner")
-                            $fields[] = $value;
+                    if(!is_null($all_fields)) {
+                        foreach($all_fields as $value) {
+                            if(isset($value["access"]) && $value["access"] === "partner")
+                                $fields[] = $value;
+                        }
                     }
                 } else {
                     $fields = $this->available_plugins[$plugin_name]->getFields();
@@ -265,7 +274,7 @@ class IPPPlugins
             return [];
     }
     private function loadPlugin($plugin_name) {
-        $this->available_plugins[$plugin_name] = new $plugin_name();
+        $this->available_plugins[$plugin_name] = new $plugin_name($this->request);
 
         if(isset($this->available_plugins[$plugin_name]->bookkeeping))
             $this->bookkeeping = $this->available_plugins[$plugin_name]->bookkeeping;
@@ -284,7 +293,7 @@ class IPPPlugins
 
 
     public function loadPage($plugin_name,$page,$REQ) {
-        $this->available_plugins[$plugin_name] = new $plugin_name();
+        $this->available_plugins[$plugin_name] = new $plugin_name($this->request);
         return (array)$this->available_plugins[$plugin_name]->{"pages_".$page}($REQ);
     }
 

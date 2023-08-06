@@ -33,6 +33,7 @@ echo head();
                 </div>
                 <div class="col themed-grid-col">Fixed Monthly Fee:<br /><input name="amount" class="form-control"></div>
                 <div class="col themed-grid-col">Cost per transaction:<br /><input name="amount_tnx" class="form-control"></div>
+                <div class="col themed-grid-col">Minimum cost per transaction:<br /><input name="amount_tnx_min" class="form-control"></div>
                 <div class="col themed-grid-col">Acquiring Percentage %:<br /><input name="acquirer[percentage]" class="form-control"></div>
                 <div class="col themed-grid-col">Acquiring Refund Cost:<br /><input name="acquirer[refund][cost]" class="form-control"></div>
                 <div class="col themed-grid-col">Acquiring Refund Percentage %:<br /><input name="acquirer[refund][percentage]" class="form-control"></div>

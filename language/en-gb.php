@@ -34,6 +34,8 @@ $lang["PARTNER"]["COMPANIES"]["MODAL_REPEAT_PASSWORD"] = "Repeat Password:";
 $lang["PARTNER"]["COMPANIES"]["MODAL_PASSWORD_DESCRIPTION"] = "Password must have a length of minimum 12 chars, contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
 $lang["PARTNER"]["COMPANIES"]["MODAL_CLOSE"] = "Close";
 $lang["PARTNER"]["COMPANIES"]["MODAL_SUBMIT_BTN"] = "Change password";
+$lang["PARTNER"]["COMPANIES"]["ACCESS_ACCOUNT"] = "Access customer";
+
 
 $lang["PARTNER"]["INVOICES"]["HEADER"] = "Company Invoices";
 $lang["PARTNER"]["INVOICES"]["ADD_NEW"] = "Issue new Invoice";
@@ -186,7 +188,7 @@ $lang["PARTNER"]["MENUS"]["ADD_TO_MENU"] = "Add to menu";
 $lang["PARTNER"]["DASHBOARD"]["OUTDATED_VERSION"] = "Your version of MerchantAdmin is outdated!";
 $lang["PARTNER"]["DASHBOARD"]["UPDATE_HERE"] = "Click here to update";
 $lang["PARTNER"]["DASHBOARD"]["CHANGE"] = "Change elements";
-$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"] = "Change";
+$lang["PARTNER"]["DASHBOARD"]["CHANGE_ELEMENT"] = "DELETE";
 $lang["PARTNER"]["DASHBOARD"]["ADD_ELEMENT"] = "Add new Element";
 
 
@@ -272,6 +274,9 @@ $lang["COMPANY"]["DATA"]["DATA"] = "Data";
 $lang["COMPANY"]["DATA"]["SETTINGS"] = "Settings";
 $lang["COMPANY"]["DATA"]["SAVE"] = "Save";
 $lang["COMPANY"]["DATA"]["CLOSE"] = "Close";
+$lang["COMPANY"]["DATA"]["SHOW_SUPPORT"] = "Show Support Settings";
+$lang["COMPANY"]["DATA"]["DISABLE_SUPPORT"] = "Disable Support Access";
+$lang["COMPANY"]["DATA"]["ENABLE_SUPPORT"] = "Enable Support Access";
 
 $lang["COMPANY"]["PAYOUTS"]["HEADER"] = "Payouts";
 $lang["COMPANY"]["PAYOUTS"]["DATE"] = "Date";
@@ -444,6 +449,7 @@ $lang["PARTNER"]["ONBOARDING"]["CONTINUE_ANYWAY"] = "Continue anyway";
 $lang["PARTNER"]["ONBOARDING"]["CONTINUE"] = "Continue";
 
 $lang["PARTNER"]["APPEARANCE"]["HEADER"] = "Appearance";
+$lang["PARTNER"]["APPEARANCE"]["EDIT"] = "Edit";
 $lang["PARTNER"]["APPEARANCE"]["INSTALL"] = "Activate Theme";
 $lang["PARTNER"]["APPEARANCE"]["REMOVE"] = "Delete Theme";
 $lang["PARTNER"]["APPEARANCE"]["PURCHASE_THEME"] = "Purchase";
@@ -453,7 +459,11 @@ $lang["PARTNER"]["APPEARANCE"]["BTN_PURCHASE"] = "Purchase and install";
 $lang["PARTNER"]["APPEARANCE"]["MONTHLY_COST"] = "Monthly cost:";
 
 
+$lang["PARTNER"]["APPEARANCE_EDITOR"]["HEADER"] = "Editor";
+$lang["PARTNER"]["APPEARANCE_EDITOR"]["SAVE"] = "Save file";
 
+
+$lang["PARTNER"]["SHOPPING_CARTS"]["HEADER"] = "Shopping Carts Modules";
 
 
 

@@ -1,5 +1,5 @@
 <?php
-include("../base.php");
+include_once "../base.php";
 
 if(isset($REQ["action"])) {
     $ipp->TransactionsAction($REQ["action"],$REQ["transaction_id"],$REQ["action_id"],$REQ["amount"] ?? 0);
@@ -13,13 +13,13 @@ if(isset($REQ["action"])) {
             echo "class='bg-danger'";
         }
         echo ">
-            <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>".$lang["COMPANY"]["PAYMENT"]["INFO"]."</a></td>
             <td>".date("Y-m-d H:i:s",$value->unixtimestamp)."</td>
             <td>".$value->method."</td>
             <td>".$value->cardholder."</td>
             <td>".number_format($value->amount/100,2,",",".")."</td>
             <td>".$currency->currency($value->currency)[0]."</td>
             <td>".$value->result."</td>
+            <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>".$lang["COMPANY"]["PAYMENT"]["INFO"]."</a></td>
         </tr>";
     }
     die();
@@ -28,6 +28,9 @@ $merchant_data = $ipp->MerchantData();
 $transaction_data = $ipp->TransactionsData($REQ["id"]);
 
 echo head();
+$actions->get_action("payments");
+$actions->get_action("theme_replacement");
+
 echo '
 <div class="row row-cols-md-2 mb-2">
     <div class="col-6">
@@ -104,13 +107,13 @@ echo '
             <table class="table table-striped table-sm related-payment-table">
                 <thead>
                 <tr>
-                    <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["FUNCTION"].'</th>
                     <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["TIMESTAMP"].'</th>
                     <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["METHOD"].'</th>
                     <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["CARDHOLDER"].'</th>
                     <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["AMOUNT"].'</th>
                     <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["CURRENCY"].'</th>
                     <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["STATUS"].'</th>
+                    <th scope="col">'.$lang["COMPANY"]["PAYMENT"]["FUNCTION"].'</th>
                 </tr>
                 </thead>
                 <tbody id="related_payments">';
@@ -123,13 +126,13 @@ echo '
                             echo "class='bg-danger'";
                         }
                         echo ">
-                                  <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>".$lang["COMPANY"]["PAYMENT"]["INFO"]."</a></td>
                                   <td>".date("Y-m-d H:i:s",$value->unixtimestamp)."</td>
                                   <td>".$value->method."</td>
                                   <td>".$value->cardholder."</td>
                                   <td>".number_format($value->amount/100,2,",",".")."</td>
                                   <td>".$currency->currency($value->currency)[0]."</td>
                                   <td>".$value->result."</td>
+                                  <td><a href='/payments/?id=".$value->action_id."' class='btn btn-dark'>".$lang["COMPANY"]["PAYMENT"]["INFO"]."</a></td>
                                 </tr>";
                     }
                     echo '

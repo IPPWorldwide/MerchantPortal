@@ -1,29 +1,6 @@
 <?php
-include("../base.php");
-
-echo head();
-$actions->get_action("charts");
-echo '
-      <h2>'.$lang["COMPANY"]["CHARTS"]["HEADER"].'</h2>
-        <div class="card chart-container">
-            <canvas id="chart_amount"></canvas>
-        </div>
-        <div class="card chart-container">
-            <canvas id="chart_tnx"></canvas>
-        </div>
-    </main>
-  </div>
-</div>
-';
-$inline_css = ["
-    .chart-container {
-        width: 50%;
-        height: 50%;
-        margin: auto;
-    }"];
-
+include_once "../base.php";
 $charts = $ipp->Charts();
-
 $ch_count = count((array)$charts);
 $i = 1;
 $tnx_labels = "";
@@ -69,6 +46,55 @@ foreach ($charts as $value) {
         $amount_data_set_decline .= ",";
     $i++;
 }
+
+echo head();
+$actions->get_action("charts");
+$actions->get_action("theme_replacement");
+$inline_css = ["
+    .chart-container {
+        width: 50%;
+        height: 50%;
+        margin: auto;
+    }"];
+
+$cards = array_slice((array)$charts, 0, 7, true);
+$volume = 0;
+$tnx_count = 0;
+foreach($cards as $card) {
+    $volume += $card->amount->approved;
+    $tnx_count += $card->count;
+}
+echo '
+      <h2>'.$lang["COMPANY"]["CHARTS"]["HEADER"].'</h2>
+        <div class="row row-cols-md-2 mb-2">
+            <div class="col-md-6 py-1">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Processing, 7 days</h4>
+                        <h6 class="card-text">'.number_format($volume/100,2).'</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 py-1">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Transactions, 7 days</h4>
+                        <h6 class="card-text">'.($tnx_count).'</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card chart-container">
+            <canvas id="chart_amount"></canvas>
+        </div>
+        <div class="card chart-container">
+            <canvas id="chart_tnx"></canvas>
+        </div>
+    </main>
+  </div>
+</div>
+';
+
 
 $inline_script = ["
     const ctx = document.getElementById('chart_tnx').getContext('2d');
