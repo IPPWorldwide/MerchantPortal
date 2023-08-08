@@ -40,14 +40,14 @@ if($company_country !== "" && strlen($company_vat) > 3) {
     <div class="step1 row url">
         <h2>URL</h2>
         <div class="col-9">
-            <input class="form-control input-lg col-9" type="text" placeholder="The URL of your website" id="company-url" value="<?php echo $website_domain_name; ?>">
+            <input class="form-control input-lg col-9" type="text" placeholder="<?php echo $lang["COMPANY"]["ONBOARDING"]["URL_OF_WEBSITE"] ?>" id="company-url" value="<?php echo $website_domain_name; ?>">
         </div>
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-href="country" data-validation="access_url">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-href="country" data-validation="access_url"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
     </div>
     <div class="step2 row country">
-        <h2>Country of company registration</h2>
+        <h2><?php echo $lang["COMPANY"]["ONBOARDING"]["COUNTRY_OF_REGISTRATION"] ?></h2>
     <div class="flags">
             <?php
             foreach($countries as $value) {
@@ -64,48 +64,48 @@ if($company_country !== "" && strlen($company_vat) > 3) {
     <div class="step3 row company_data">
         <h2>VAT code</h2>
         <div class="col-9">
-            <input class="form-control input-lg col-9" id="company_vat" type="text" placeholder="Enter your local VAT number" value="<?php echo $company_vat; ?>">
+            <input class="form-control input-lg col-9" id="company_vat" type="text" placeholder="<?php echo $lang["COMPANY"]["ONBOARDING"]["LOCAL_VAT"] ?>" value="<?php echo $company_vat; ?>">
         </div>
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" onclick="FindCompanyDetails();">Confirm</button>
+            <button class="form-control btn btn-success col-3" onclick="FindCompanyDetails();"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
         <div class="identified_company_details">
             <div class="CompanyLoading"><img src="<?php echo $IPP_CONFIG["PORTAL_URL"]."assets/img/loading.gif"; ?>"></div>
             <div class="mb-12 row">
-                    <label for="staticEmail" class="col-sm-4 col-form-label">Company Name</label>
+                    <label for="staticEmail" class="col-sm-4 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["COMPANY_NAME"] ?></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control input" id="company-name" value="<?php echo $company_name; ?>">
                 </div>
             </div>
             <div class="mb-12 row">
-                <label for="staticEmail" class="col-sm-4 col-form-label">Address</label>
+                <label for="staticEmail" class="col-sm-4 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["ADDRESS"] ?></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control input" id="company-address" value="<?php echo $company_address; ?>">
                 </div>
             </div>
             <div class="mb-12 row">
-                <label for="staticEmail" class="col-sm-4 col-form-label">ZIP Code</label>
+                <label for="staticEmail" class="col-sm-4 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["ZIP_CODE"] ?></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control input" id="company-zip" value="<?php echo $company_zip; ?>">
                 </div>
             </div>
             <div class="mb-12 row">
-                <label for="staticEmail" class="col-sm-4 col-form-label">City</label>
+                <label for="staticEmail" class="col-sm-4 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["CITY"] ?></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control input" id="company-city" value="<?php echo $company_city; ?>">
                 </div>
             </div>
             <div class="col-3 row">
-                <button class="form-control btn btn-success col-3" data-href="ubo" data-validation="validate_for_ubo">Confirm</button>
+                <button class="form-control btn btn-success col-3" data-href="ubo" data-validation="validate_for_ubo"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
             </div>
         </div>
     </div>
     <div class="step3 row ubo">
-        <h2>Attach documents for the following UBOs:</h2>
+        <h2><?php echo $lang["COMPANY"]["ONBOARDING"]["UBO_DATA"] ?></h2>
         <div id="allUbos">
         </div>
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-group="financial" data-href="settlement">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-group="financial" data-href="settlement"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
     </div>
 </div>
