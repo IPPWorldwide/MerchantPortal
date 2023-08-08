@@ -467,6 +467,14 @@ $lang["PARTNER"]["SHOPPING_CARTS"]["HEADER"] = "Shopping Carts Modules";
 
 
 
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["HEADER"] = "Payment Notifications";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["ID"] = "ID";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["TRANSACTION_ID"] = "Transaction ID";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["STATUS"] = "Status";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["CREATED"] = "Created";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["LATEST_RETRY"] = "Latest Retry";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["NEXT_RETRY"] = "Next Retry";
+
 
 
 

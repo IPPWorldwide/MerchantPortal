@@ -24,18 +24,19 @@ echo '
           </thead>
           <tbody>
           ';
-var_dump($payment_notifications);
-echo '
+foreach($payment_notifications as $value) {
+    echo '
           <tr>
-              <td>'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["ID"].'</td>
-              <td>'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["TRANSACTION_ID"].'</td>
-              <td>'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["STATUS"].'</td>
-              <td>'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["CREATED"].'</td>
-              <td>'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["LATEST_RETRY"].'</td>
-              <td>'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["NEXT_RETRY"].'</td>
+              <td>'.$value->id.'</td>
+              <td>'.$value->transaction_id.'</td>
+              <td>'.$value->status.'</td>
+              <td>'.$value->created->time_readable.'</td>
+              <td>'.$value->last->time_readable.'</td>
+              <td>'.$value->next->time_readable.'</td>
             </tr>
           <tr>
-';
+    ';
+}
 echo '</tbody>
     </table>
     </div>
