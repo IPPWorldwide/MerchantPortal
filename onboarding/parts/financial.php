@@ -15,27 +15,27 @@ $settlement = [
 ?>
 <div id='financial'>
     <div class="step1 row settlement">
-        <h3>Settlement account</h3>
+        <h3><?php echo $lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_ACCOUNT"] ?></h3>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Name of Bank</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["NAME_OF_BANK"] ?></label>
             <div class="col-sm-10">
                 <input type="text" class="form-control input" id="bank-name" value="<?php echo $bank_name; ?>">
             </div>
         </div>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">IBAN</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["IBAN"] ?></label>
             <div class="col-sm-10">
                 <input type="text" class="form-control input" id="iban" value="<?php echo $iban; ?>">
             </div>
         </div>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">SWIFT</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["SWIFT"] ?></label>
             <div class="col-sm-10">
                 <input type="text" class="form-control input" id="swift" value="<?php echo $swift; ?>">
             </div>
         </div>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Settlement Currency</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_CURRENCY"] ?></label>
             <div class="col-sm-10">
                 <select class="form-control input" id="bank-account-currency-code" >
                     <?php
@@ -50,28 +50,21 @@ $settlement = [
             </div>
         </div>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Screenshot from Bank</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["SCREENSHOT_FROM_BANK"] ?></label>
             <div class="col-sm-10">
                 <input type="file" class="form-control input" id="bank-screenshot">
                 <?php
                     if($bank_documentation !== "") {
-                        echo "An screenshot have already been uploaded.";
+                        echo  $lang["COMPANY"]["ONBOARDING"]["SCREENSHOT_ALREADY_UPLOADED"];
                     }
                 ?>
             </div>
             <div class="alert alert-warning">
-                The Screnshot must contain:<br />
-                <ol>
-                    <li>Logo or name of bank</li>
-                    <li>IBAN</li>
-                    <li>SWIFT</li>
-                    <li>Account holder (Your company name)</li>
-                    <li>Date</li>
-                </ol>
+                <?php echo $lang["COMPANY"]["ONBOARDING"]["SCREENSHOT_DOCUMENTATION"] ?>
             </div>
         </div>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Settlement Frequency</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_FREQUENCY"] ?></label>
             <div class="col-sm-10">
                 <select class="form-control select" id="settlementFrequency">
                     <?php
@@ -83,34 +76,34 @@ $settlement = [
             </div>
         </div>
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-group="financial" data-href="earlier_provider">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-group="financial" data-href="earlier_provider"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
     </div>
     <div class="step2 row earlier_provider">
-        <h2>Earlier Processing provider</h2>
-        <p>We do collect data on your earlier payment provider. We do not ask why you want to change, but we need to see a copy of earlier processing.</p>
+        <h2><?php echo $lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_EARLIER_PROVIDER"] ?></h2>
+        <p><?php echo $lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_EARLIER_PROVIDER_EXPLAINER"] ?></p>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Have you had an earlier provider</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_EARLIER_PROVIDER_NEW"] ?></label>
             <div class="col-sm-10">
                 <select class="form-control select" id="earlierProcessing">
-                    <option value="no" <?php if($earlier_processing === "no") { echo "selected"; } ?>>No</option>
-                    <option value="yes" <?php if($earlier_processing === "yes") { echo "selected"; } ?>>Yes</option>
+                    <option value="no" <?php if($earlier_processing === "no") { echo "selected"; } ?>><?php echo $lang["NO"] ?></option>
+                    <option value="yes" <?php if($earlier_processing === "yes") { echo "selected"; } ?>><?php echo $lang["YES"] ?></option>
                 </select>
             </div>
         </div>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Copy of processing history (3 months)</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_COPY_OF_PROCESSING"] ?></label>
             <div class="col-sm-10">
                 <input type="file" class="form-control input" name="processing-history" id="processing-history">
                 <?php
                 if($processing_history !== "") {
-                    echo "An screenshot have already been uploaded.";
+                    echo $lang["COMPANY"]["ONBOARDING"]["SCREENSHOT_ALREADY_UPLOADED"];
                 }
                 ?>
             </div>
         </div>
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-group="website" data-href="website_check">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-group="website" data-href="website_check"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
     </div>
 </div>

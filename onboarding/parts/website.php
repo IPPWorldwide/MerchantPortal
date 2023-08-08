@@ -45,15 +45,15 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
 ?>
 <div id='website'>
     <div class="step1 row website_check">
-        <h2>Checking your website</h2>
+        <h2><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_HEADER"] ?></h2>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">URL</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_URL"] ?></label>
             <div class="col-sm-10 col-form-label website_check_url">
                 <?php echo $website_domain_name; ?>
             </div>
         </div>
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Terms & Conditions</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_TERMS_AND_CONDITIONS"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php
                 if($identified_terms) {
@@ -63,14 +63,14 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
                 }
                 ?>
             </div>
-            <label for="staticEmail" class="col-sm-2 col-form-label">Terms & Conditions URL</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_TERMS_AND_CONDITIONS_URL"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php echo $terms_url; ?>
             </div>
         </div>
 
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Privacy Policy</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_PRIVACY_POLICY"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php
                 if($identified_privacy_policy) {
@@ -80,14 +80,14 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
                 }
                 ?>
             </div>
-            <label for="staticEmail" class="col-sm-2 col-form-label">Privacy Policy URL</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["PRIVACY_POLICY_URL"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php echo $privacy_policy_url; ?>
             </div>
         </div>
 
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Checkout Flow</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["CHECKOUT_FLOW"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php
                 if($identified_checkout_flow) {
@@ -97,14 +97,14 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
                 }
                 ?>
             </div>
-            <label for="staticEmail" class="col-sm-2 col-form-label">Checkout Flow URL</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["CHECKOUT_FLOW_URL"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php echo $checkout_flow_url; ?>
             </div>
         </div>
 
         <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Lorem Ipsum Check</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["LOREM_IPSUM_TEXT"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php
                 if($identified_lorem_ipsum) {
@@ -114,7 +114,7 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
                 }
                 ?>
             </div>
-            <label for="staticEmail" class="col-sm-2 col-form-label">Lorem Ipsum URL</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"><?php echo $lang["COMPANY"]["ONBOARDING"]["LOREM_IPSUM_TEXT_URL"] ?></label>
             <div class="col-sm-10 col-form-label">
                 <?php echo $lorem_ipsum_url; ?>
             </div>
@@ -122,16 +122,16 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
 
 
         <div class="col-6">
-            <button class="form-control btn btn-success col-3 checkWebsite" disabled="disabled">Ask us to check Again</button>
+            <button class="form-control btn btn-success col-3 checkWebsite" disabled="disabled"><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_ASK_FOR_RECHECK"] ?></button>
         </div>
         <div class="col-6">
-            <button class="form-control btn btn-success col-3 ValidatedWebsiteChecks" disabled="disabled" data-href="mcc">Confirm the list above is in place</button>
+            <button class="form-control btn btn-success col-3 ValidatedWebsiteChecks" disabled="disabled" data-href="mcc"><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_CONFIRM_IN_PLACE"] ?></button>
         </div>
     </div>
     <div class="step2 row mcc">
-        <h2>MCC</h2>
+        <h2><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_MCC_TITLE"] ?></h2>
         <select name="mcc" id="mcc" class="form-control" >
-            <option value="0">Choose MCC</option>
+            <option value="0"><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_MCC_SELECT"] ?></option>
             <?php
             foreach($mcc_list as $key=>$value) {
                 echo "<option value='".$key."'";
@@ -142,12 +142,12 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
             ?>
         </select>
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-href="limits">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-href="limits"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
     </div>
     <div class="step2 row limits">
-        <h2>Payment Limits</h2>
-        <p>What is the largest size a basket is expected to be in your local currency:</p>
+        <h2><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_LIMITS_TITLE"] ?></h2>
+        <p><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_LIMITS_LARGEST_BASKET"] ?></p>
         <select name="basket_limit" id="basket_limit" class="form-control" >
             <?php
             foreach($basket_limits as $value) {
@@ -156,14 +156,14 @@ $lorem_ipsum_url = $onboarding_data->website->lorem_ipsum->{"url"} ?? "";
             ?>
         </select>
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-href="timeframes">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-href="timeframes"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
     </div>
     <div class="step2 row timeframes">
-        <h2>How fast do you generally deliver your goods</h2>
+        <h2><?php echo $lang["COMPANY"]["ONBOARDING"]["WEBSITE_DELIVERY_TIMEFRAME"] ?></h2>
         <input type="text" id="delivery_timeframe" name="delivery_timeframe" value="<?php echo $onb_delivery_timeframe; ?>">
         <div class="col-3">
-            <button class="form-control btn btn-success col-3" data-group="contract" data-href="our_contracts">Confirm</button>
+            <button class="form-control btn btn-success col-3" data-group="contract" data-href="our_contracts"><?php echo $lang["COMPANY"]["ONBOARDING"]["CONFIRM"] ?></button>
         </div>
     </div>
 </div>
