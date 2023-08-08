@@ -426,6 +426,13 @@ $lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Incremental Auth";
 $lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refund";
 $lang["COMPANY"]["PAYMENT"]["VOID"] = "Void";
 
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["HEADER"] = "Payment Notifications";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["ID"] = "ID";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["TRANSACTION_ID"] = "Transaction ID";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["STATUS"] = "Status";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["CREATED"] = "Created";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["LATEST_RETRY"] = "Latest Retry";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["NEXT_RETRY"] = "Next Retry";
 
 
 $lang["PARTNER"]["ONBOARDING"]["FUNCTION"] = "#";
