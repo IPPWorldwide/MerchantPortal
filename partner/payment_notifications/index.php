@@ -15,6 +15,7 @@ echo '
           <thead>
             <tr>
               <th scope="col">'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["ID"].'</th>
+              <th scope="col">'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["COMPANY_ID"].'</th>
               <th scope="col">'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["TRANSACTION_ID"].'</th>
               <th scope="col">'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["STATUS"].'</th>
               <th scope="col">'.$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["CREATED"].'</th>
@@ -28,6 +29,7 @@ foreach($payment_notifications as $value) {
     echo '
           <tr>
               <td>'.$value->id.'</td>
+              <td>'.$value->company_id.'</td>
               <td>'.$value->transaction_id.'</td>
               <td>'.$value->status.'</td>
               <td>'.$value->created->time_readable.'</td>
