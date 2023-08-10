@@ -115,9 +115,9 @@ echo '
             $i++;
         }
     } else {
-        echo $partner_graph->GenerateHTML(1, "customers_created_7_days","bar","daily",1);
-        echo $partner_graph->GenerateHTML(2, "transactions_approved_7_days","bar","daily",1);
-        echo $partner_graph->GenerateHTML(3, "transactions_approved_30_days","bar","daily",1);
+        echo $partner_graph->GenerateHTML(1, "customers_created_7_days","bar",1);
+        echo $partner_graph->GenerateHTML(2, "transactions_approved_7_days","bar",1);
+        echo $partner_graph->GenerateHTML(3, "transactions_approved_30_days","bar",1);
     }
     echo '
 </div>

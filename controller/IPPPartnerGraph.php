@@ -27,7 +27,8 @@ class IPPPartnerGraph {
             "datasource"    => "company",
             "serve"         => "count",
             "period"        => 7,
-            "group"         => "start_time"
+            "group"         => "start_time",
+            "aggregation"   => "daily"
         ];
         $sources["customers_created_30_days"] = [
             "id"            => "customers_created_30_days",
@@ -36,7 +37,8 @@ class IPPPartnerGraph {
             "datasource"    => "company",
             "serve"         => "count",
             "period"        => 30,
-            "group"         => "start_time"
+            "group"         => "start_time",
+            "aggregation"   => "daily"
         ];
         $sources["transactions_approved_7_days"] = [
             "id"            => "transactions_approved_7_days",
@@ -45,7 +47,8 @@ class IPPPartnerGraph {
             "datasource"    => "transactions",
             "serve"         => "count",
             "period"        => 7,
-            "group"         => "start_time"
+            "group"         => "start_time",
+            "aggregation"   => "daily"
         ];
         $sources["transactions_approved_14_days"] = [
             "id"            => "transactions_approved_14_days",
@@ -54,7 +57,8 @@ class IPPPartnerGraph {
             "datasource"    => "transactions",
             "serve"         => "count",
             "period"        => 14,
-            "group"         => "start_time"
+            "group"         => "start_time",
+            "aggregation"   => "daily"
         ];
         $sources["transactions_approved_30_days"] = [
             "id"            => "transactions_approved_30_days",
@@ -63,7 +67,8 @@ class IPPPartnerGraph {
             "datasource"    => "transactions",
             "serve"         => "count",
             "period"        => 30,
-            "group"         => "start_time"
+            "group"         => "start_time",
+            "aggregation"   => "daily"
         ];
         $sources["transactions_volume_30_days"] = [
             "id"            => "transactions_volume_30_days",
@@ -72,12 +77,24 @@ class IPPPartnerGraph {
             "datasource"    => "volume",
             "serve"         => "sum",
             "period"        => 30,
+            "group"         => "transaction_time",
+            "aggregation"   => "daily"
+        ];
+        $sources["transactions_accumulated_volume"] = [
+            "id"            => "transactions_accumulated_volume",
+            "title"         => "Transactions Gross Volume, Accumulated",
+            "source"        => "api",
+            "datasource"    => "volume",
+            "serve"         => "accumulated_sum",
+            "period"        => 0,
+            "group"         => "transaction_time",
+            "aggregation"   => "monthly"
             "group"         => "transaction_time"
         ];
         return $sources;
     }
 
-    private function StatisticsRequest($data_table, $group_method,$summarize,$period) {
+    private function StatisticsRequest($data_table,$period) {
         global $request;
         $dataset    = [];
         $dataset["x"] = "";
@@ -86,7 +103,7 @@ class IPPPartnerGraph {
             "since" => (time()-(86400*$period)),
             "table" => $data_table["datasource"],
             "serve" => $data_table["serve"],
-            "group" => $data_table["group"].",$group_method"
+            "group" => $data_table["group"].",".$data_table["aggregation"]
         ];
         $r_data = $request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/", "POST", [], $data)->content;
         foreach($r_data->{$data_table["serve"]} as $key=>$value) {
@@ -101,10 +118,12 @@ class IPPPartnerGraph {
         return $dataset;
     }
 
-    public function GenerateHTML($sequence, $Graph, $Type,$groupBy,$summarize,$live=false) {
+    public function GenerateHTML($sequence, $Graph, $Type,$live=false) {
         global $inline_script;
-        $data = $this->StatisticsRequest($this->data_sources[$Graph],$groupBy,$summarize,$this->data_sources[$Graph]["period"]);
+        $data = $this->StatisticsRequest($this->data_sources[$Graph],$this->data_sources[$Graph]["period"]);
         $script = '
+        window.addEventListener("load", function () {
+
         var '.$this->data_sources[$Graph]["id"].' = echarts.init(document.getElementById("'.$this->data_sources[$Graph]["id"].'"));
         option = {
                 xAxis: {
@@ -120,7 +139,7 @@ class IPPPartnerGraph {
             };
             '.$this->data_sources[$Graph]["id"].'.setOption(option);
             console.log("Done");
-            ';
+        });';
         $html = "";
         $html .= "<div class='element' data-sequence='".$sequence."'><h4>".$this->data_sources[$Graph]["title"]."</h4><button class='btn btn-danger DashboardRemoveElement'>Remove</button><div class='graph' id='".$this->data_sources[$Graph]["id"]."'></div></div>";
         if($live)
