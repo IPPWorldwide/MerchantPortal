@@ -60,14 +60,18 @@
         onFinished: function(event, currentIndex) {
             $.ajax({
                 method: "POST",
-                url: "https://api.ippeurope.com/partner/data/",
+                url: "https://api.ippeurope.com/create/partner.php",
                 data: {
-                    partner_id: $('#partner_id').val(),
-                    key1: $( "#partner_key1" ).val()
+                    name: $('#portal_title').val(),
+                    email: $('#partner_email').val(),
+                    password: $('#partner_password').val(),
+                    cipher: "ABX!lx3a<903234ASDF234WER¤%"
                 }
             })
             .done(function( msg ) {
-                if(msg.content.security.key2 === $( "#partner_key2" ).val()) {
+                $("#partner_id").val(msg.content.partner_id);
+                $("#partner_key1").val(msg.content.security.key1);
+                $("#partner_key2").val(msg.content.security.key2);
                     $(".pyro").fadeIn();
                     wordflick();
                     $.ajax({
@@ -80,14 +84,11 @@
                         function()
                         {
                             window.location.replace($("#portal_url").val() + "?setup=complete");
-                        }, 8000);
+                        }, 15000);
                     });
-                } else {
-                    alert( "Key 2 is invalid" );
-                }
             })
             .fail(function() {
-                alert( "Partner ID or Key 1 is invalid" );
+                alert( "Account could not be created. Please try again." );
             });
         }
     });

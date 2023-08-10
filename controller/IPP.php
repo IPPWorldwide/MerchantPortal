@@ -27,6 +27,11 @@ class IPP {
         return $login_response;
     }
 
+    public function user_data() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/user/", "POST", [], $data)->content;
+    }
+
     public function CheckLogin() {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/data/", "POST", [], $data);
@@ -37,6 +42,10 @@ class IPP {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/cards/stored/", "POST", [], $data)->content;
     }
 
+    public function PaymentNotifications() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payment_notifications/list/", "POST", [], $data)->content;
+    }
     public function TransactionsList($list_type,$result,$payment_start,$payment_end) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "type" => $list_type, "result" => $result,"payment_earliest" => (strtotime($payment_start)-$_COOKIE["timezone"]),"payment_latest"=>(strtotime($payment_end)-$_COOKIE["timezone"])];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/payments/list/", "POST", [], $data)->content;
@@ -289,6 +298,37 @@ class IPP {
     public function AddAccessRight($name, $rules) {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id,"name"=>$name,"rules" => $rules];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/users/access_policy/add/", "POST", [], $data);
+    }
+
+    public function StatisticsRequest($data_table,$group_method,$period,$summerize=false,$divide=1) {
+        global $request;
+        $dataset    = [];
+        $dataset["x"] = "";
+        $dataset["y"] = "";
+        $data = [
+            "user_id" => $this->user_id,
+            "session_id" => $this->session_id,
+            "since" => (time()-(86400*$period)),
+            "table" => $data_table,
+            "serve" => "list",
+            "group" => "start_time,$group_method"
+        ];
+        $r_data = $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/company/statistics/", "POST", [], $data)->content;
+        foreach($r_data->list as $key=>$value) {
+            $dataset["x"] .= "'".$key."',";
+            if(!$summerize)
+                $dataset["y"] .= "'".round(count((array)$value)/$divide)."',";
+            else {
+                $total = 0;
+                foreach($value as $subvalue) {
+                    $total += $subvalue->$summerize;
+                }
+                $dataset["y"] .= "'".round($total/$divide)."',";
+            }
+        }
+        $dataset["x"] = rtrim($dataset["x"],",");
+        $dataset["y"] = rtrim($dataset["y"],",");
+        return $dataset;
     }
 
 }

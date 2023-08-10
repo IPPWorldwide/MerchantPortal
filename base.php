@@ -5,8 +5,10 @@ if(session_id() === "") {
 $folder_level = "./";
 while (!file_exists($folder_level."base.php")) {$folder_level .= "../";}
 
-if(!defined("BASEDIR"))
+if(!defined("BASEDIR")) {
     define("BASEDIR", $folder_level);
+    define("PUBLIC_FILES", $folder_level . "files/");
+}
 
 if (file_exists(BASEDIR . "ipp-config.php")) {
     include BASEDIR . "ipp-config.php";
@@ -87,8 +89,16 @@ if(isset($partner_page) && $partner_page == 1) {
     }
     $user_data = $partner->UserData();
     require_once(THEME."/functions.php");
-    require_once(THEME."/partner/head.php");
-    require_once(THEME."/partner/foot.php");
+    if(file_exists(THEME."/partner/head.php"))
+        require_once(THEME."/partner/head.php");
+    else
+        require_once(THEMES."/standard/partner/head.php");
+    if(file_exists(THEME."/partner/foot.php"))
+        require_once(THEME."/partner/foot.php");
+    else
+        require_once(THEMES."/standard/partner/foot.php");
+    if(file_exists(THEMES."/standard/functions.php"))
+        require_once(THEMES."/standard/functions.php");
 }
 elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
     $company_data = $ipp->checkLogin();
@@ -123,7 +133,7 @@ if(isset($_COOKIE["ipp_user_id"])) {
     $inline_script[] = "PORTAL_URL = '".$IPP_CONFIG["PORTAL_URL"]."';";
 }
 function theme_replacement() {
-    global $REQ,$currency,$company_data,$actions,$lang,$ipp,$merchant_data,$companies,$invoices;
+    global $REQ,$currency,$company_data,$actions,$lang,$ipp,$merchant_data,$companies,$invoices,$inline_css,$inline_script;
     $uri = $_SERVER["REQUEST_URI"];
     $query = strtok($uri, '?');
     if(!isset(pathinfo($query)["extension"]))

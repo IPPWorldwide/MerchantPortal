@@ -1,6 +1,6 @@
 <?php
 function html_preson($id,$full_name,$email="", $address = "",$postal = "",$city = "",$country = "", $files_passport= "", $files_driving_license_front="", $files_driving_license_back="", $files_address="") {
-    global $IPP_CONFIG;
+    global $IPP_CONFIG, $lang;
     $html = '
 <div id="person_'.md5($full_name).'" data-md5="'.md5($full_name).'" data-id="'.$id.'">
     <div class="mb-12 row">
@@ -12,11 +12,11 @@ function html_preson($id,$full_name,$email="", $address = "",$postal = "",$city 
         </div>
     </div>
     <div class="mb-12 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Passport</label>
+        <label for="staticPassport" class="col-sm-2 col-form-label">'.$lang["COMPANY"]["ONBOARDING"]["PERSON_PASSPORT"].'</label>
         <div class="col-sm-10">
         ';
             if($files_passport !== "") {
-                $html .=    "Received";
+                $html .= $lang["COMPANY"]["ONBOARDING"]["RECEIVED"];
             } else {
                 $html .= "<input type='file' class='form-control input passport'>";
             }
@@ -24,11 +24,11 @@ function html_preson($id,$full_name,$email="", $address = "",$postal = "",$city 
         </div>
     </div>
     <div class="mb-12 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Utility Bill</label>
+        <label for="staticUtilitybill" class="col-sm-2 col-form-label">'.$lang["COMPANY"]["ONBOARDING"]["PERSON_UTILITY_BILL"].'</label>
         <div class="col-sm-10">
         ';
         if($files_address !== "") {
-            $html .= "Received";
+            $html .= $lang["COMPANY"]["ONBOARDING"]["RECEIVED"];
         } else {
             $html .= "<input type='file' class='form-control input address'>";
         }
@@ -36,12 +36,36 @@ function html_preson($id,$full_name,$email="", $address = "",$postal = "",$city 
         </div>
     </div>
     <div class="mb-12 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <label for="staticDrivinglicenseFront" class="col-sm-2 col-form-label">'.$lang["COMPANY"]["ONBOARDING"]["PERSON_DRIVING_LICENSE_FRONT"].'</label>
+        <div class="col-sm-10">
+        ';
+    if($files_driving_license_front !== "") {
+        $html .= $lang["COMPANY"]["ONBOARDING"]["RECEIVED"];
+    } else {
+        $html .= "<input type='file' class='form-control input driving_license_front'>";
+    }
+    $html .= '
+        </div>
+    </div>
+    <div class="mb-12 row">
+        <label for="staticDrivinglicenseBack" class="col-sm-2 col-form-label">'.$lang["COMPANY"]["ONBOARDING"]["PERSON_DRIVING_LICENSE_BACK"].'</label>
+        <div class="col-sm-10">
+        ';
+    if($files_driving_license_back !== "") {
+        $html .= $lang["COMPANY"]["ONBOARDING"]["RECEIVED"];
+    } else {
+        $html .= "<input type='file' class='form-control input driving_license_back'>";
+    }
+    $html .= '
+        </div>
+    </div>
+    <div class="mb-12 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">'.$lang["COMPANY"]["ONBOARDING"]["PERSON_EMAIL"].'</label>
         <div class="col-sm-10">
             <input type="text" class="form-control input email" value="'.$email.'">
         </div>
     </div>
-</div> ';
+</div>';
 
 return $html;
 }

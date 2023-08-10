@@ -288,6 +288,62 @@ $lang["COMPANY"]["PAYOUTS"]["INFO"] = "Info";
 $lang["COMPANY"]["PAYMENT_LINKS"]["INFO"] = "To use this function, you need an eCommerce account. Please reach our support for further information.";
 
 $lang["COMPANY"]["ONBOARDING"]["HEADER"] = "Merchant Onboarding";
+$lang["COMPANY"]["ONBOARDING"]["CONFIRM"] = "Confirm";
+$lang["COMPANY"]["ONBOARDING"]["URL_OF_WEBSITE"] = "The URL of your website";
+$lang["COMPANY"]["ONBOARDING"]["COUNTRY_OF_REGISTRATION"] = "Country of company registration";
+$lang["COMPANY"]["ONBOARDING"]["LOCAL_VAT"] = "Enter your local VAT number";
+$lang["COMPANY"]["ONBOARDING"]["COMPANY_NAME"] = "Company Name";
+$lang["COMPANY"]["ONBOARDING"]["ADDRESS"] = "Address";
+$lang["COMPANY"]["ONBOARDING"]["ZIP_CODE"] = "ZIP Code";
+$lang["COMPANY"]["ONBOARDING"]["CITY"] = "City";
+$lang["COMPANY"]["ONBOARDING"]["UBO_DATA"] = "Attach documents for the following UBOs:";
+$lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_ACCOUNT"] = "Settlement account";
+$lang["COMPANY"]["ONBOARDING"]["WELCOME_TITLE"] = "Welcome to our Onboarding";
+$lang["COMPANY"]["ONBOARDING"]["WELCOME_DESCRIPTION"] = "<p>Our Onboardung Guide will walk you through the few details we will need to know about your company for processing your payments.<br>This will take 5-10 minutes to complete, and will require your focus.</p><p>Our fully automated onboarding flow reviews your documents instantly, and provides feedback if they are going to be rejected.<br>Please bear in mind that the documents afterwards will be manually reviewed.</p><p>If all documents and information is provided in full and is correct, our approval usually takes 1-5 business days.</p>";
+$lang["COMPANY"]["ONBOARDING"]["WELCOME_START_FLOW"] = "Start the onboarding flow";
+$lang["COMPANY"]["ONBOARDING"]["CONTRACT_SENT_HEADER"] = "Contracts is sent to you";
+$lang["COMPANY"]["ONBOARDING"]["CONTRACT_SENT_EXPLAINER"] = "<p>If the contract haven't already landed in your inbox, it sure will do within the next few minutes.</p><p>The contract is being sent from DocuSign. If you can't see the e-mail, please take a minute and search for it.</p>";
+$lang["COMPANY"]["ONBOARDING"]["PERSON_PASSPORT"] = "Passport";
+$lang["COMPANY"]["ONBOARDING"]["RECEIVED"] = "Received";
+$lang["COMPANY"]["ONBOARDING"]["PERSON_UTILITY_BILL"] = "Utility Bill";
+$lang["COMPANY"]["ONBOARDING"]["PERSON_DRIVING_LICENSE_FRONT"] = "Front of Driving license";
+$lang["COMPANY"]["ONBOARDING"]["PERSON_DRIVING_LICENSE_BACK"] = "Back of Driving license";
+$lang["COMPANY"]["ONBOARDING"]["PERSON_EMAIL"] = "Email of UBO";
+$lang["COMPANY"]["ONBOARDING"]["NAME_OF_BANK"] = "Bank";
+$lang["COMPANY"]["ONBOARDING"]["IBAN"] = "IBAN";
+$lang["COMPANY"]["ONBOARDING"]["SWIFT"] = "SWIFT";
+$lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_CURRENCY"] = "Funding Currency";
+$lang["COMPANY"]["ONBOARDING"]["SCREENSHOT_ALREADY_UPLOADED"] = "Documentation uploaded";
+$lang["COMPANY"]["ONBOARDING"]["SCREENSHOT_FROM_BANK"] = "Screenshot of Bank account";
+$lang["COMPANY"]["ONBOARDING"]["SCREENSHOT_DOCUMENTATION"] = "The Screnshot must contain:<br><ol><li>Logo or name of bank</li><li>IBAN</li><li>SWIFT</li><li>Account holder (Your company name)</li><li>Date</li></ol>";
+$lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_FREQUENCY"] = "Funding frequency";
+$lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_EARLIER_PROVIDER"] = "Current Payment Provider";
+$lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_EARLIER_PROVIDER_NEW"] = "Name of provider";
+$lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_COPY_OF_PROCESSING"] = "Latest 6 months processing";
+$lang["COMPANY"]["ONBOARDING"]["SETTLEMENT_EARLIER_PROVIDER_EXPLAINER"] = "We do collect data on your earlier payment provider. We do not ask why you want to change, but we need to see a copy of earlier processing.";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_HEADER"] = "Checking your website";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_URL"] = "URL";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_TERMS_AND_CONDITIONS"] = "Terms & Conditions";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_TERMS_AND_CONDITIONS_URL"] = "Terms & Conditions URL";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_PRIVACY_POLICY"] = "Privacy Policy";
+$lang["COMPANY"]["ONBOARDING"]["PRIVACY_POLICY_URL"] = "Privacy Policy URL";
+$lang["COMPANY"]["ONBOARDING"]["CHECKOUT_FLOW"] = "Checkout Flow";
+$lang["COMPANY"]["ONBOARDING"]["CHECKOUT_FLOW_URL"] = "Checkout Flow URL";
+$lang["COMPANY"]["ONBOARDING"]["LOREM_IPSUM_TEXT"] = "Lorem Ipsum Check";
+$lang["COMPANY"]["ONBOARDING"]["LOREM_IPSUM_TEXT_URL"] = "Lorem Ipsum URL";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_ASK_FOR_RECHECK"] = "Ask us to check Again";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_CONFIRM_IN_PLACE"] = "Comfirm the data above is available on the website";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_MCC_TITLE"] = "MCC";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_LIMITS_TITLE"] = "Payment Limits";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_LIMITS_LARGEST_BASKET"] = "What is the largest size a basket is expected to be in your local currency:";
+$lang["COMPANY"]["ONBOARDING"]["WEBSITE_DELIVERY_TIMEFRAME"] = "How many days does it take before you ship the products?";
+$lang["COMPANY"]["ONBOARDING"]["CONTRACT_TITLE"] = "The Contract";
+$lang["COMPANY"]["ONBOARDING"]["CONTRACT_CONTAINS_EXPLAINER"] = "Thank you for providing all the documentation in the steps before. You are now ready to sign the financial contract with us.<br />The following contract must be signed by an Authorized signer of the company.<br />The contract is in two parts:";
+$lang["COMPANY"]["ONBOARDING"]["CONTRACT_CONTAINS_LIST"] = "<ol><li><b>The Agreement</b>:<br>The first e-mail you receive is the Agreement itself, it contains the fees, settlement terms and what we have registed on you as a customer. This is used as our shared documentation on what the actual agreement betwen us is.</li><li><b>The POA</b>:<br>The second e-mail you receive is the POA. A POA is a contract giving us the authority to enable the financial agreement between you and the financial institute.<br>You need to sign both e-mails before the onboarding-flow have been fully completed.</li></ol>";
+$lang["COMPANY"]["ONBOARDING"]["CONTRACT_SEND_TO_SIGN"] = "Send the contract for signing";
+
+$lang["NO"] = "No";
+$lang["YES"] = "Yes";
 
 
 $lang["COMPANY"]["USERS"]["HEADER"] = "Users";
@@ -426,6 +482,13 @@ $lang["COMPANY"]["PAYMENT"]["INCREMENTAL_AUTH"] = "Incremental Auth";
 $lang["COMPANY"]["PAYMENT"]["REFUND"] = "Refund";
 $lang["COMPANY"]["PAYMENT"]["VOID"] = "Void";
 
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["HEADER"] = "Payment Notifications";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["ID"] = "ID";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["TRANSACTION_ID"] = "Transaction ID";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["STATUS"] = "Status";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["CREATED"] = "Created";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["LATEST_RETRY"] = "Latest Retry";
+$lang["COMPANY"]["PAYMENT_NOTIFICATIONS"]["NEXT_RETRY"] = "Next Retry";
 
 
 $lang["PARTNER"]["ONBOARDING"]["FUNCTION"] = "#";
@@ -457,14 +520,20 @@ $lang["PARTNER"]["APPEARANCE"]["CLOSE"] = "Close";
 $lang["PARTNER"]["APPEARANCE"]["PURCHASE"] = "Purchase";
 $lang["PARTNER"]["APPEARANCE"]["BTN_PURCHASE"] = "Purchase and install";
 $lang["PARTNER"]["APPEARANCE"]["MONTHLY_COST"] = "Monthly cost:";
-
-
 $lang["PARTNER"]["APPEARANCE_EDITOR"]["HEADER"] = "Editor";
 $lang["PARTNER"]["APPEARANCE_EDITOR"]["SAVE"] = "Save file";
+$lang["PARTNER"]["SHOPPING_CARTS"]["HEADER"] = "Shopping Carts Modules";
 
 
 
-
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["HEADER"] = "Payment Notifications";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["ID"] = "ID";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["COMPANY_ID"] = "Company ID";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["TRANSACTION_ID"] = "Transaction ID";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["STATUS"] = "Status";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["CREATED"] = "Created";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["LATEST_RETRY"] = "Latest Retry";
+$lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["NEXT_RETRY"] = "Next Retry";
 
 
 

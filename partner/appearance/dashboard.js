@@ -1,7 +1,3 @@
-(function () {
-    'use strict'
-    feather.replace({ 'aria-hidden': 'true' })
-})();
 $('.purchaseModal').on('click', function () {
     var btn = $(this);
     $("#purchaseModal h5.modal-title").html(btn.attr("data-theme-name"));

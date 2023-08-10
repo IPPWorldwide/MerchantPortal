@@ -1,6 +1,5 @@
 (function () {
     'use strict'
-    feather.replace({ 'aria-hidden': 'true' })
 })();
     $(document).ready(function() {
 
