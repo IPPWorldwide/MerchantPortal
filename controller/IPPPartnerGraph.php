@@ -99,7 +99,6 @@ class IPPPartnerGraph {
             "period"        => 0,
             "group"         => "transaction_time",
             "aggregation"   => "monthly"
-            "group"         => "transaction_time"
         ];
         return $sources;
     }
