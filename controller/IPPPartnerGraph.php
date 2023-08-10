@@ -40,6 +40,16 @@ class IPPPartnerGraph {
             "group"         => "start_time",
             "aggregation"   => "daily"
         ];
+        $sources["customers_accumulated"] = [
+            "id"            => "customers_accumulated",
+            "title"         => "Customers Accumulated",
+            "source"        => "api",
+            "datasource"    => "company",
+            "serve"         => "accumulated_count",
+            "period"        => 0,
+            "group"         => "start_time",
+            "aggregation"   => "monthly"
+        ];
         $sources["transactions_approved_7_days"] = [
             "id"            => "transactions_approved_7_days",
             "title"         => "Approved Transactions, past 7 days",
