@@ -88,16 +88,24 @@ if(isset($partner_page) && $partner_page == 1) {
         die();
     }
     $user_data = $partner->UserData();
-    require_once(THEME."/functions.php");
+    if(file_exists(THEMES."/standard/partner/head.php") && !file_exists(THEME."/partner/head.php") && !file_exists(THEME."/partner/foot.php")) {
+        $config = new IPPConfig();
+        $config->UpdateConfig("THEME","standard");
+        $config = $config->WriteConfig();
+        header("Refresh:0");
+        exit;
+    }
     if(file_exists(THEME."/partner/head.php"))
         require_once(THEME."/partner/head.php");
-    else
+    elseif(file_exists(THEMES."/standard/partner/head.php"))
         require_once(THEMES."/standard/partner/head.php");
     if(file_exists(THEME."/partner/foot.php"))
         require_once(THEME."/partner/foot.php");
-    else
+    elseif(file_exists(THEMES."/standard/partner/foot.php"))
         require_once(THEMES."/standard/partner/foot.php");
-    if(file_exists(THEMES."/standard/functions.php"))
+    if(file_exists(THEME."/functions.php"))
+        require_once(THEME."/functions.php");
+    elseif(file_exists(THEMES."/standard/functions.php"))
         require_once(THEMES."/standard/functions.php");
 }
 elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
