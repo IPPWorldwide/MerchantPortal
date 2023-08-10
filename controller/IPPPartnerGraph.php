@@ -104,7 +104,6 @@ class IPPPartnerGraph {
             "serve" => $data_table["serve"],
             "group" => $data_table["group"].",".$data_table["aggregation"]
         ];
-        var_dump($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/?".http_build_query($data));
         $r_data = $request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/", "POST", [], $data)->content;
         foreach($r_data->{$data_table["serve"]} as $key=>$value) {
             $dataset["x"] .= "'".$key."',";
