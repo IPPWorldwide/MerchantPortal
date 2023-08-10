@@ -25,44 +25,58 @@ class IPPPartnerGraph {
             "title"         => "Created Customers, past 7 days",
             "source"        => "api",
             "datasource"    => "company",
-            "serve"         => "list",
-            "period"        => 7
+            "serve"         => "count",
+            "period"        => 7,
+            "group"         => "start_time"
         ];
         $sources["customers_created_30_days"] = [
             "id"            => "customers_created_30_days",
             "title"         => "Created Customers, past 30 days",
             "source"        => "api",
             "datasource"    => "company",
-            "serve"         => "list",
-            "period"        => 30
+            "serve"         => "count",
+            "period"        => 30,
+            "group"         => "start_time"
         ];
         $sources["transactions_approved_7_days"] = [
             "id"            => "transactions_approved_7_days",
             "title"         => "Approved Transactions, past 7 days",
             "source"        => "api",
             "datasource"    => "transactions",
-            "serve"         => "list",
-            "period"        => 7
+            "serve"         => "count",
+            "period"        => 7,
+            "group"         => "start_time"
         ];
         $sources["transactions_approved_14_days"] = [
             "id"            => "transactions_approved_14_days",
             "title"         => "Approved Transactions, past 14 days",
             "source"        => "api",
             "datasource"    => "transactions",
-            "serve"         => "list",
-            "period"        => 14
+            "serve"         => "count",
+            "period"        => 14,
+            "group"         => "start_time"
         ];
         $sources["transactions_approved_30_days"] = [
             "id"            => "transactions_approved_30_days",
             "title"         => "Approved Transactions, past 30 days",
             "source"        => "api",
             "datasource"    => "transactions",
-            "serve"         => "list",
-            "period"        => 30
+            "serve"         => "count",
+            "period"        => 30,
+            "group"         => "start_time"
+        ];
+        $sources["transactions_volume_30_days"] = [
+            "id"            => "transactions_volume_30_days",
+            "title"         => "Transactions Gross Volume, past 30 days",
+            "source"        => "api",
+            "datasource"    => "volume",
+            "serve"         => "sum",
+            "period"        => 30,
+            "group"         => "transaction_time"
         ];
         return $sources;
     }
-    
+
     private function StatisticsRequest($data_table, $group_method,$summarize,$period) {
         global $request;
         $dataset    = [];
@@ -70,23 +84,26 @@ class IPPPartnerGraph {
         $dataset["y"] = "";
         $data = [
             "since" => (time()-(86400*$period)),
-            "table" => $data_table,
-            "serve" => "list",
-            "group" => "start_time,$group_method"
+            "table" => $data_table["datasource"],
+            "serve" => $data_table["serve"],
+            "group" => $data_table["group"].",$group_method"
         ];
         $r_data = $request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/statistics/", "POST", [], $data)->content;
-        foreach($r_data->list as $key=>$value) {
+        foreach($r_data->{$data_table["serve"]} as $key=>$value) {
             $dataset["x"] .= "'".$key."',";
-            $dataset["y"] .= "'".count((array)$value)."',";
+            if(isset($value->sum))
+                $dataset["y"] .= "'".$value->sum."',";
+            else
+                $dataset["y"] .= "'".$value->count."',";
         }
         $dataset["x"] = rtrim($dataset["x"],",");
         $dataset["y"] = rtrim($dataset["y"],",");
         return $dataset;
     }
-    
+
     public function GenerateHTML($sequence, $Graph, $Type,$groupBy,$summarize,$live=false) {
         global $inline_script;
-        $data = $this->StatisticsRequest($this->data_sources[$Graph]["datasource"],$groupBy,$summarize,$this->data_sources[$Graph]["period"]);
+        $data = $this->StatisticsRequest($this->data_sources[$Graph],$groupBy,$summarize,$this->data_sources[$Graph]["period"]);
         $script = '
         var '.$this->data_sources[$Graph]["id"].' = echarts.init(document.getElementById("'.$this->data_sources[$Graph]["id"].'"));
         option = {
