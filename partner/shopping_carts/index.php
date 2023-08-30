@@ -67,7 +67,7 @@ echo head();
 $actions->get_action("external_platforms");
 
 //$supported_carts = ["woocommerce","magento","prestashop","opencart"];
-$supported_carts = ["woocommerce"];
+$supported_carts = ["woocommerce", "prestashop"];
 echo '
         <form action="?" method="POST" class="form">
             <h2>'.$lang["PARTNER"]["SHOPPING_CARTS"]["HEADER"].'</h2>
