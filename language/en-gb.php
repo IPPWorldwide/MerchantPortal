@@ -472,6 +472,7 @@ $lang["COMPANY"]["PAYMENT"]["AMOUNT"] = "Amount";
 $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
+$lang["COMPANY"]["PAYMENT"]["RECURRING_ID"] = "Parent Transaction";
 
 $lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Related Payments";
 $lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Acquirer Response";

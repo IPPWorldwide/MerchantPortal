@@ -39,6 +39,15 @@ echo '
                 <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["TRANSACTION_ID"].'</div>
                 <div class="col themed-grid-col">'; echo  $transaction_data->transaction_id; echo '</div>
         </div>
+        ';
+if($transaction_data->initilization_data->rebilling_id !== NULL) {
+    echo '
+        <div class="row row-cols-md-2 mb-2">
+            <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["RECURRING_ID"].'</div>
+            <div class="col themed-grid-col">'; echo  $transaction_data->initilization_data->rebilling_id; echo '</div>  
+        </div>';
+}
+        echo '
         <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">'.$lang["COMPANY"]["PAYMENT"]["TOP_STATUS"].'</div>
             <div class="col themed-grid-col">'; echo  $transaction_data->status; echo '</div>  

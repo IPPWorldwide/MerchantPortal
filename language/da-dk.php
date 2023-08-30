@@ -396,6 +396,7 @@ $lang["COMPANY"]["PAYMENT"]["AMOUNT"] = "Beløb";
 $lang["COMPANY"]["PAYMENT"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["PAYMENT"]["STATUS"] = "Status";
 $lang["COMPANY"]["PAYMENT"]["INFO"] = "Info";
+$lang["COMPANY"]["PAYMENT"]["RECURRING_ID"] = "Abonnementsbetalings ID:";
 
 $lang["COMPANY"]["PAYMENT"]["RELATED_PAYMENTS"] = "Relaterede transaktioner";
 $lang["COMPANY"]["PAYMENT"]["ACQUIRER_RESPONSE"] = "Svar fra indløseren";
