@@ -95,6 +95,7 @@ $lang["PARTNER"]["DATA"]["ACQUIRERS_NAME"] = "Name";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_ID"] = "ID";
 $lang["PARTNER"]["DATA"]["ACQUIRERS_WEBSITE"] = "Website";
 $lang["PARTNER"]["DATA"]["SAVE"] = "Save";
+$lang["PARTNER"]["DATA"]["URL"] = "Portal URL";
 
 $lang["PARTNER"]["DATA"]["PORTAL_SETTINGS"] = "Portal Settings";
 $lang["PARTNER"]["DATA"]["SETTING_NAME"] = "Setting";

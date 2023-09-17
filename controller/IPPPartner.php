@@ -41,8 +41,8 @@ class IPPPartner {
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/data/", "POST", [], $data)->content;
     }
 
-    public function UpdateData($all_data = [],$name="") {
-        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "value" => $all_data, "name" => $name];
+    public function UpdateData($all_data = [],$name="",$url="") {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id, "value" => $all_data, "name" => $name,$url=>$url];
         $data = array_merge($all_data, $data);
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/data/update/", "POST", [], $data)->content;
     }
