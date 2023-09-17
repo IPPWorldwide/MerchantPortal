@@ -2,7 +2,12 @@
 include("../b.php");
 
 if(isset($REQ["submit"])) {
+    $config = new IPPConfig();
+    $new_config = $config->UpdateConfig("PORTAL_URL",$REQ["url"]);
+    $config = $config->WriteConfig();
     $partner->UpdateData($REQ,$REQ["meta"]["name"]);
+    header("Location: /partner/data");
+    exit;
 }
 $partner_data = $partner->PartnerData();
 echo head();
@@ -13,8 +18,8 @@ echo '
             <h2>'.$lang["PARTNER"]["DATA"]["HEADER"].'</h2>
             <div class="row row-cols-md-3 mb-3">
                 <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["PARTNER_ID"].'<br /><input name="id" class="form-control" value="'.$partner_data->id.'" readonly></div>
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["KEY_1"].'<br /><input name="security[key1]" class="form-control" value="'.$partner_data->security->key1.'"></div>
-                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["KEY_2"].'<br /><input name="security[key2]" class="form-control" value="'.$partner_data->security->key2.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["KEY_1"].'<br /><input maxlength="42" name="security[key1]" class="form-control" value="'.$partner_data->security->key1.'"></div>
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["KEY_2"].'<br /><input maxlength="14" name="security[key2]" class="form-control" value="'.$partner_data->security->key2.'"></div>
             </div>
             <h2>'.$lang["COMPANY"]["DATA"]["HEADER_SESSION"].'</h2>
             <div class="row row-cols-md-3 mb-3">
@@ -36,6 +41,13 @@ echo '
                         }
                         echo '
                     </select>
+                    </div>
+            </div>
+            <div class="row row-cols-md-3 mb-3">
+                <div class="col themed-grid-col">'.$lang["PARTNER"]["DATA"]["URL"].'<br />
+                    <input name="url" class="form-control" value="';
+                        echo $_ENV["PORTAL_URL"];
+                        echo '">
                     </div>
             </div>
             <div class="row row-cols-md-2 mb-2">
