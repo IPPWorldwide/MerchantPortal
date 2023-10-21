@@ -33,7 +33,7 @@ echo '
         <tbody>
 ';
         foreach($ipp->ListPayouts() as $value) {
-            echo "<tr class='align-middle'>";
+            echo "<tr class='align-middle' onClick=\"ShowPayouts('".trim($value->id)."')\">";
 //                echo "<td><a href='/payouts/data.php?id=".$value->id."' class='btn btn-dark'>".$lang["COMPANY"]["PAYOUTS"]["INFO"]."</a></td>";
                 echo "<td>".date("Y-m-d",$value->dates->release->time)."</td>";
             if(!isset($IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"]) || (isset($IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"]) && $IPP_CONFIG["PORTAL_LOCAL_HIDE_TOTAL_VOLUME"] !== "1")) {
@@ -48,6 +48,30 @@ echo '
                 else
                     echo "/theme/".$_ENV["THEME"]."/assets/img/no.png";
                 echo "'>";
+                echo "</td>";
+            echo "</tr>";
+            echo "<tr id='".trim($value->id)."' class='hide'>";
+                echo "<td colspan='5'>";
+                    echo "<table class='table table-striped table-sm'>";
+                        echo "<thead>";
+                            echo "<tr>";
+                                echo "<th>Method</th>";
+                                echo "<th>Transaction ID</th>";
+                                echo "<th>Order ID</th>";
+                                echo "<th>Amount</th>";
+                            echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody>";
+                            foreach($value->related->transactions as $related_transactions) {
+                                echo "<tr>";
+                                    echo "<td>$related_transactions->method</td>";
+                                    echo "<td>$related_transactions->transaction_id</td>";
+                                    echo "<td>$related_transactions->order_id</td>";
+                                    echo "<td>".number_format($related_transactions->amount/100,2,",","")."</td>";
+                                echo "</tr>";
+                            }
+                        echo "</tbody>";
+                    echo "</table>";
                 echo "</td>";
             echo "</tr>";
         }
