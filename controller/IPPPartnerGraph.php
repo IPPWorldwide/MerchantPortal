@@ -100,6 +100,26 @@ class IPPPartnerGraph {
             "group"         => "transaction_time",
             "aggregation"   => "monthly"
         ];
+        $sources["provision_accumulated_volume"] = [
+            "id"            => "provision_accumulated_volume",
+            "title"         => "Provision Gross Volume, Accumulated",
+            "source"        => "api",
+            "datasource"    => "partner_provision",
+            "serve"         => "accumulated_sum",
+            "period"        => 0,
+            "group"         => "created",
+            "aggregation"   => "monthly"
+        ];
+        $sources["provision_last_12_months"] = [
+            "id"            => "provision_last_12_months",
+            "title"         => "Provision Gross Volume, Last 12 months",
+            "source"        => "api",
+            "datasource"    => "partner_provision",
+            "serve"         => "sum",
+            "period"        => 365,
+            "group"         => "created",
+            "aggregation"   => "monthly"
+        ];
         return $sources;
     }
 
