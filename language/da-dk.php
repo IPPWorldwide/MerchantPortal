@@ -104,6 +104,7 @@ $lang["PARTNER"]["KICKBACK"]["HEADER"] = "Kickback";
 $lang["PARTNER"]["KICKBACK"]["TRANSACTION_ID"] = "Transaktions ID";
 $lang["PARTNER"]["KICKBACK"]["ACTION_ID"] = "Action ID";
 $lang["PARTNER"]["KICKBACK"]["ORDER_ID"] = "Ordre nummer";
+$lang["PARTNER"]["KICKBACK"]["CURRENCY"] = "Valuta";
 $lang["PARTNER"]["KICKBACK"]["COST"] = "Gebyr";
 $lang["PARTNER"]["KICKBACK"]["PROFIT"] = "Profit";
 $lang["PARTNER"]["KICKBACK"]["SETTLED"] = "Udbetalt";
