@@ -6,7 +6,6 @@ if(isset($REQ["section"])) {
         $menu[$value["url"]] = $value["value"];
     $current_menu = json_decode($IPP_CONFIG["MENU"]);
     $current_menu->{strtoupper($REQ["section"])} = $menu;
-    include(BASEDIR . "controller/IPPConfig.php");
     $config = new IPPConfig();
     $new_config = $config->UpdateConfig("MENU",json_encode($current_menu));
     $config = $config->WriteConfig();
