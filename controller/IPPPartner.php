@@ -394,4 +394,8 @@ class IPPPartner {
         $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
         return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/payment_notifications.php", "POST", [], $data)->content;
     }
+    public function ListKickback() {
+        $data = ["user_id" => $this->user_id, "session_id" => $this->session_id];
+        return $this->request->curl($_ENV["GLOBAL_BASE_URL"]."/partner/list/kickback.php", "POST", [], $data)->content;
+    }
 }

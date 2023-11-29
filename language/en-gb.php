@@ -538,6 +538,13 @@ $lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["LATEST_RETRY"] = "Latest Retry";
 $lang["PARTNER"]["PAYMENT_NOTIFICATIONS"]["NEXT_RETRY"] = "Next Retry";
 
 
+$lang["PARTNER"]["KICKBACK"]["HEADER"] = "Kickback";
+$lang["PARTNER"]["KICKBACK"]["TRANSACTION_ID"] = "Transaction ID";
+$lang["PARTNER"]["KICKBACK"]["ACTION_ID"] = "Action ID";
+$lang["PARTNER"]["KICKBACK"]["ORDER_ID"] = "Order ID";
+$lang["PARTNER"]["KICKBACK"]["COST"] = "Cost";
+$lang["PARTNER"]["KICKBACK"]["PROFIT"] = "Profit";
+$lang["PARTNER"]["KICKBACK"]["SETTLED"] = "Settled";
 
 
 

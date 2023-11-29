@@ -100,6 +100,14 @@ $lang["PARTNER"]["DATA"]["LOCAL_DEACTIVATE_VOIDS"] = "Deaktiver anullering";
 $lang["PARTNER"]["DATA"]["LOCAL_HIDE_TOTAL_VOLUME"] = "Skjul Total omsætning på Udbetalinger";
 $lang["PARTNER"]["DATA"]["URL"] = "Portal URL";
 
+$lang["PARTNER"]["KICKBACK"]["HEADER"] = "Kickback";
+$lang["PARTNER"]["KICKBACK"]["TRANSACTION_ID"] = "Transaktions ID";
+$lang["PARTNER"]["KICKBACK"]["ACTION_ID"] = "Action ID";
+$lang["PARTNER"]["KICKBACK"]["ORDER_ID"] = "Ordre nummer";
+$lang["PARTNER"]["KICKBACK"]["COST"] = "Gebyr";
+$lang["PARTNER"]["KICKBACK"]["PROFIT"] = "Profit";
+$lang["PARTNER"]["KICKBACK"]["SETTLED"] = "Udbetalt";
+
 
 
 $lang["PARTNER"]["USERS"]["HEADER"] = "Brugere";
