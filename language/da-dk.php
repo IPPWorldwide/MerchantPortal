@@ -212,6 +212,7 @@ $lang["COMPANY"]["DASHBOARD"]["FUNCTION"] = "#";
 $lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"] = "Tidsstempel";
 $lang["COMPANY"]["DASHBOARD"]["METHOD"] = "Metode";
 $lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"] = "Kortholder";
+$lang["COMPANY"]["DASHBOARD"]["ORDER_ID"] = "Ordre";
 $lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Beløb";
 $lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Valuta";
 $lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
