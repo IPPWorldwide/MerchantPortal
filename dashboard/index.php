@@ -67,6 +67,7 @@ echo '
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["METHOD"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"].'</th>
+              <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["ORDER_ID"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["AMOUNT"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["CURRENCY"].'</th>
               <th scope="col">'.$lang["COMPANY"]["DASHBOARD"]["STATUS"].'</th>
@@ -90,6 +91,7 @@ if(is_array($transaction_list))
               <td>".date("Y-m-d H:i:s",$value->unixtimestamp)."</td>
               <td>".$value->method."</td>
               <td>".$value->cardholder."</td>
+              <td>".$value->order_id."</td>
               <td>".number_format($value->amount/100,2,",",".")."</td>
               <td>".$currency->currency($value->currency)[0]."</td>
               <td>".$value->result."</td>

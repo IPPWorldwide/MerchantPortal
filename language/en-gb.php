@@ -214,6 +214,7 @@ $lang["COMPANY"]["DASHBOARD"]["FUNCTION"] = "#";
 $lang["COMPANY"]["DASHBOARD"]["TIMESTAMP"] = "Timestamp";
 $lang["COMPANY"]["DASHBOARD"]["METHOD"] = "Method";
 $lang["COMPANY"]["DASHBOARD"]["CARDHOLDER"] = "Cardholder";
+$lang["COMPANY"]["DASHBOARD"]["ORDER_ID"] = "Order ID";
 $lang["COMPANY"]["DASHBOARD"]["AMOUNT"] = "Amount";
 $lang["COMPANY"]["DASHBOARD"]["CURRENCY"] = "Currency";
 $lang["COMPANY"]["DASHBOARD"]["STATUS"] = "Status";
