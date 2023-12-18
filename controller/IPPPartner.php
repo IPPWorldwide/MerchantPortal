@@ -97,6 +97,7 @@ class IPPPartner {
         $meta_data["value"] = $all_data["meta"];
         $meta_data["subscription_plan"] = $all_data["subscription_plan"];
         $meta_data["mcc"] = $all_data["mcc"];
+        $meta_data["settlement_terms"] = $all_data["settlement_terms"];
         if(isset($all_data["rules"]))
             $meta_data["rules"] = $all_data["rules"];
 
