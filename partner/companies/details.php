@@ -14,6 +14,8 @@ if(isset($REQ["id"]) && isset($REQ["meta"])) {
     $partner->MerchantDataUpdate($REQ);
      //echo '<pre>';
  //print_r($REQ["meta"]);die;
+    header("Location: ?id=".$REQ["id"]);
+    die();
 }
 
 $partner_acquirers = $partner->ListAcquirers();
@@ -100,6 +102,33 @@ echo head();
         </div>
         <div class="row row-cols-md-2 mb-2">
             <div class="col themed-grid-col">
+                <h2>Funding Details</h2>
+                <div class="row">
+                    <?php
+                    if((int)$merchant_data->settlement_terms->active === 0) {
+                        ?>
+                        <div class="col-sm-12 md-12 alert-warning rounded text-muted alert">
+                            <div>New Funding Details is currently being evaluated by the Acquirer.</div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <div class="col-sm-6">
+                        <label class="ui-check ui-check-lg">
+                            <input type="text" class="form form-control"  name="settlement_terms[delay]" value="<?php echo $merchant_data->settlement_terms->delay;?>">
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="ui-check ui-check-lg">
+                            <select class="form form-control" name="settlement_terms[period]">
+                                <option value="daily" <?php if($merchant_data->settlement_terms->period === "daily") { echo "selected"; } ?>>Daily</option>
+                                <option value="weekly" <?php if($merchant_data->settlement_terms->period === "weekly") { echo "selected"; } ?>>Weekly</option>
+                                <option value="monthly" <?php if($merchant_data->settlement_terms->period === "monthly") { echo "selected"; } ?>>Monthly</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
                 <h2>Acquirers</h2>
                 <table class="table table-striped table-sm">
                     <thead>
