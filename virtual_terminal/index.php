@@ -27,19 +27,6 @@ $actions->get_action("theme_replacement");
 if(!isset($_POST["start_terminal"])) {
 echo '
       <h2>'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["HEADER"].'</h2>
-    <script>
-        var payment_settings = {
-            "payw_failed_payment"       :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["FAILED_PAYMENT"].'",
-            "payw_cardholder"           :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDHOLDER"].'",
-            "payw_cardno"               :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDNO"].'",
-            "payw_expmonth"             :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPMONTH"].'",
-            "payw_expyear"              :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPYEAR"].'",
-            "payw_cvv"                  :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CVV"].'",
-            "payw_confirmPayment"       :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED"].'",
-            "payw_confirmPayment_btn"   :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED_BTN"].'",
-            "waiting_icon"              :   "https://icon-library.com/images/waiting-icon-png/waiting-icon-png-19.jpg",
-        };
-    </script>
     <form action="#" method="POST" class="">
         <div class="class="row row-cols-md-3 mb-3">
             <div class="col themed-grid-col">
@@ -79,6 +66,23 @@ echo '
 ';
 }
 elseif(isset($_POST["start_terminal"])) {
+    echo '    <script>
+        var payment_settings = {
+            "payw_failed_payment"       :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["FAILED_PAYMENT"].'",
+            "payw_cardholder"           :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDHOLDER"].'",
+            "payw_cardno"               :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CARDNO"].'",
+            "payw_expmonth"             :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPMONTH"].'",
+            "payw_expyear"              :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["EXPYEAR"].'",
+            "payw_cvv"                  :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CVV"].'",
+            "payw_confirmPayment"       :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED"].'",
+            "payw_confirmPayment_btn"   :   "'.$lang["COMPANY"]["VIRTUAL_TERMINAL"]["CONFIRMED_BTN"].'",
+            "waiting_icon"              :   "https://icon-library.com/images/waiting-icon-png/waiting-icon-png-19.jpg",
+        };
+        var alternative_payment_methods = {
+            "mobilepay": true,
+            "applepay": true
+        };
+    </script>';
     echo "<script src='https://pay.ippeurope.com/pay.js?checkoutId=".$data_url."&cryptogram=".$cryptogram."'></script><form action='#' class='search-form paymentWidgets' data-brands='VISA MASTER' data-theme='divs'></form>";
 }
 echo foot();
