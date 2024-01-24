@@ -19,6 +19,7 @@ echo '
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["ACTION_ID"].'</th>
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["CURRENCY"].'</th>
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["COST"].'</th>
+              <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["PROFIT_CURRENCY"].'</th>
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["PROFIT"].'</th>
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["SETTLED"].'</th>
             </tr>
@@ -32,6 +33,7 @@ echo '
                       <td>'.$tnx->action->id.'</td>
                       <td>'.$tnx->currency->txt.'</td>
                       <td>'.(($tnx->costs->acquirer+$tnx->costs->fixed)/100).'</td>
+                      <td>'.$tnx->profit->currency->txt.'</td>
                       <td>'.($tnx->profit->value/100).'</td>
                       <td>'.$tnx->settled.'</td>
                     </tr>

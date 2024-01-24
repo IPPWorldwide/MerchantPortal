@@ -110,7 +110,7 @@ if(isset($partner_page) && $partner_page == 1) {
 }
 elseif(!isset($public_page) || (isset($public_page) && !$public_page)) {
     $company_data = $ipp->checkLogin();
-    if(!$company_data->success) {
+    if(!$company_data OR !$company_data->success) {
         header("Location: /");
         die();
     }

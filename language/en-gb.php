@@ -545,6 +545,7 @@ $lang["PARTNER"]["KICKBACK"]["ACTION_ID"] = "Action ID";
 $lang["PARTNER"]["KICKBACK"]["ORDER_ID"] = "Order ID";
 $lang["PARTNER"]["KICKBACK"]["CURRENCY"] = "Currency";
 $lang["PARTNER"]["KICKBACK"]["COST"] = "Cost";
+$lang["PARTNER"]["KICKBACK"]["PROFIT_CURRENCY"] = "Profit Currency";
 $lang["PARTNER"]["KICKBACK"]["PROFIT"] = "Profit";
 $lang["PARTNER"]["KICKBACK"]["SETTLED"] = "Settled";
 
