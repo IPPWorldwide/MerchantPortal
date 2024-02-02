@@ -52,7 +52,7 @@ echo '
                       <td>'.$tnx->profit->currency->txt.'</td>
                       <td>'.$tnx->profit->value.'</td>
                       <td>'.$tnx->settled->settled.'</td>
-                      <td>'.$tnx->settled->settled_date.'</td>
+                      <td>'.$tnx->settled->time->readable.'</td>
                     </tr>
                     ';
                 }
