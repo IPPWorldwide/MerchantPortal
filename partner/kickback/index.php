@@ -6,9 +6,14 @@ echo head();
 $actions->get_action("partner_kickback");
 
 echo '
-    <div class="row">
-        <div class="col-6">
-            <h2>'.$lang["PARTNER"]["KICKBACK"]["HEADER"].'</h2>
+    <div class="row row-cols-md-2 mb-2">
+        <div class="col themed-grid-col">
+            <div class="col-6">
+                <h2>'.$lang["PARTNER"]["KICKBACK"]["HEADER"].'</h2>
+            </div>
+        </div>
+        <div class="col themed-grid-col d-flex flex-row-reverse">
+            <input type="button" class="btn btn-secondary " onclick="array2excel()" value="'.$lang["COMPANY"]["EXPORT_TABLE"].'" />
         </div>
     </div>
       <div class="table-responsive">

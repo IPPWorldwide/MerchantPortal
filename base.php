@@ -128,6 +128,7 @@ if(isset($_COOKIE["ipp_type"]))
     $user_type = $_COOKIE["ipp_type"];
 
 $inline_script[] = "var portal_path = '". $_ENV["PORTAL_URL"]."';";
+$load_script[]   = BASEDIR . "assets/js/array2excel.js";
 $actions->add_action("theme_replacement","theme_replacement",9999);
 $actions->get_action("init");
 if(isset($_COOKIE["ipp_user_id"])) {
