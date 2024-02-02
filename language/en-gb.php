@@ -548,6 +548,8 @@ $lang["PARTNER"]["KICKBACK"]["COST"] = "Cost";
 $lang["PARTNER"]["KICKBACK"]["PROFIT_CURRENCY"] = "Profit Currency";
 $lang["PARTNER"]["KICKBACK"]["PROFIT"] = "Profit";
 $lang["PARTNER"]["KICKBACK"]["SETTLED"] = "Settled";
-
-
-
+$lang["PARTNER"]["KICKBACK"]["ORDER_ID"] = "Order ID";
+$lang["PARTNER"]["KICKBACK"]["COMPANY_ID"] = "Company ID";
+$lang["PARTNER"]["KICKBACK"]["COMPANY_NAME"] = "Company Name";
+$lang["PARTNER"]["KICKBACK"]["ACTION_VALUE"] = "Action Value";
+$lang["PARTNER"]["KICKBACK"]["TRANSACTION_DATE"] = "Transaction Date";
