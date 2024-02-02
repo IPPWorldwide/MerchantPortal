@@ -51,8 +51,8 @@ echo '
                       <td>'.$tnx->costs->total.'</td>
                       <td>'.$tnx->profit->currency->txt.'</td>
                       <td>'.$tnx->profit->value.'</td>
-                      <td>'.$tnx->settled.'</td>
-                      <td>'.$tnx->settled_date.'</td>
+                      <td>'.$tnx->settled->settled.'</td>
+                      <td>'.$tnx->settled->time->readable.'</td>
                     </tr>
                     ';
                 }
