@@ -32,6 +32,7 @@ echo '
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["PROFIT_CURRENCY"].'</th>
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["PROFIT"].'</th>
               <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["SETTLED"].'</th>
+              <th scope="col">'.$lang["PARTNER"]["KICKBACK"]["SETTLED_DATE"].'</th>
             </tr>
           </thead>
           <tbody>';
@@ -51,6 +52,7 @@ echo '
                       <td>'.$tnx->profit->currency->txt.'</td>
                       <td>'.$tnx->profit->value.'</td>
                       <td>'.$tnx->settled.'</td>
+                      <td>'.$tnx->settled_date.'</td>
                     </tr>
                     ';
                 }
