@@ -553,3 +553,4 @@ $lang["PARTNER"]["KICKBACK"]["COMPANY_ID"] = "Company ID";
 $lang["PARTNER"]["KICKBACK"]["COMPANY_NAME"] = "Company Name";
 $lang["PARTNER"]["KICKBACK"]["ACTION_VALUE"] = "Action Value";
 $lang["PARTNER"]["KICKBACK"]["TRANSACTION_DATE"] = "Transaction Date";
+$lang["PARTNER"]["KICKBACK"]["SETTLED_DATE"] = "Settlement Date";
