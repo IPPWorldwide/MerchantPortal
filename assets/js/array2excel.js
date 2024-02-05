@@ -1,7 +1,14 @@
 function array2excel() {
     var convertedIntoArray = [];
-    $("table#tnx_list tr").each(function() {
+    $("table#tnx_list tr").not(".hide").each(function() {
         var rowDataArray = [];
+        var actualData = $(this).find('th');
+        if (actualData.length > 0) {
+            actualData.each(function() {
+                rowDataArray.push($(this).text());
+            });
+            convertedIntoArray.push(rowDataArray);
+        }
         var actualData = $(this).find('td');
         if (actualData.length > 0) {
             actualData.each(function() {
