@@ -155,17 +155,20 @@ class IPPPartnerGraph {
 
         var '.$this->data_sources[$Graph]["id"].' = echarts.init(document.getElementById("'.$this->data_sources[$Graph]["id"].'"));
         option = {
-                xAxis: {
-                    data: ['.$data["x"].']
-                },
-                yAxis: {},
-                series: [
-                    {
-                        type: \''.$Type.'\',
-                        data: ['.$data["y"].']
-                    }
-                ]
-            };
+            tooltip: {
+                trigger: "item",
+            },
+            xAxis: {
+                data: ['.$data["x"].']
+            },
+            yAxis: {},
+            series: [
+                {
+                    type: \''.$Type.'\',
+                    data: ['.$data["y"].']
+                }
+            ]
+        };
             '.$this->data_sources[$Graph]["id"].'.setOption(option);
             console.log("Done");
         });';
